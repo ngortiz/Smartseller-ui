@@ -1,27 +1,77 @@
 .navbar {
-	background-color: #245b92 !important;
-	padding: 15px 0;
+  background-color: #245b92 !important;
+  padding: 15px 0;
 }
 
 .navbar-brand img {
-	margin-right: 10px;
+  margin-right: 10px;
 }
 
 .navbar-nav .nav-link {
-	color: white !important;
-	margin-right: 20px;
+  color: white !important;
+  margin-right: 20px;
 }
 
 .navbar-nav .nav-link:hover {
-	color: orange !important;
+  color: orange !important;
 }
 nav-item .dropdown {
-	float: right !important;
+  float: right !important;
 }
 .navbar .dropdown-item {
-	background-color: orange !important;
-	display: flex;
+  background-color: orange !important;
+  display: flex;
 }
 .dropdown-menu {
-	margin-left: 15px;
+  margin-left: 15px;
+}
+.dropdown-title {
+  color: white !important;
+}
+/* LeftNavigationBar*/
+/* styles.css (o tu archivo de estilos principal) */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.app {
+  display: flex;
+  height: 10vh;
+}
+
+.content {
+  flex: 2;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+/* LeftNavigationBar*/
+.LeftNavigationBar {
+  width: 350px;
+  height: 100%;
+  background-color: whitesmoke;
+  color: rgb(95, 72, 72);
+  padding: 20px;
+}
+
+.LeftNavigationBar h2 {
+  margin-bottom: 10px;
+
+  font-size: larger;
+}
+
+.LeftNavigationBar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.LeftNavigationBar li {
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: small;
+}
+
+.LeftNavigationBar li:hover {
+  color: #ffc107;
 }
