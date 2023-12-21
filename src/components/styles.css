@@ -1,18 +1,27 @@
 .navbar {
-  background-color: #245b92 !important;
-  padding: 15px 0;
+	background-color: #245b92 !important;
+	padding: 15px 0;
 }
 
 .navbar-brand img {
-  margin-right: 10px;
+	margin-right: 10px;
 }
 
 .navbar-nav .nav-link {
-  color: white !important;
-  margin-right: 20px;
-  float: right !important;
+	color: white !important;
+	margin-right: 20px;
 }
 
 .navbar-nav .nav-link:hover {
-  color: orange !important;
+	color: orange !important;
+}
+nav-item .dropdown {
+	float: right !important;
+}
+.navbar .dropdown-item {
+	background-color: orange !important;
+	display: flex;
+}
+.dropdown-menu {
+	margin-left: 15px;
 }
