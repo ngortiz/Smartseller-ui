@@ -1,0 +1,18 @@
+.navbar {
+  background-color: #245b92 !important;
+  padding: 15px 0;
+}
+
+.navbar-brand img {
+  margin-right: 10px;
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+  margin-right: 20px;
+  float: right !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: orange !important;
+}
