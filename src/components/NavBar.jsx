@@ -22,7 +22,7 @@ const NavBar = () => {
             <Nav.Link href='#link'>Administracion</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <NavDropdown id='basic-nav-dropdown'>
+        <NavDropdown title='Usuario' id='basic-nav-dropdown'>
           <NavDropdown.Item href='#action/3.2'>
             Cambiar contraseña
           </NavDropdown.Item>
