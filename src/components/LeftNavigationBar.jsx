@@ -1,55 +1,56 @@
 import React from 'react'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import './styles.css'
 
 const LeftNavigationBar = () => {
   return (
     <div className='LeftNavigationBar'>
-      <img src='src/imagenes/img.svg' />
-
-      <h2> Usuario</h2>
       <ul>
-        <li></li>
-        <li></li>
-        <li></li>
+        <img src='src/imagenes/img.svg' />
+        <NavDropdown title='🛒 Pedidos Online' id='basic-nav-dropdown'>
+          <li href='#action/3.2'> ⏪ Resumen</li>
+          <li href='#action/3.3'> ⏪ Control Pedido</li>
+          <li href='#action/3.4'> ⏪ Reportes</li>
+        </NavDropdown>
       </ul>
-      <h2>🛒Pedidos Online</h2>
       <ul>
-        <li>Resumen</li>
-        <li>Control de Pedido</li>
-        <li>Reporte</li>
+        <NavDropdown title='💲 Pagos de Pedidos' id='basic-nav-dropdown'>
+          <li href='#action/3.2'> ⏪ Por Deposito/Transf/Sucursal</li>
+          <li href='#action/3.3'> ⏪ Por Tarjeta Credito/Debito</li>
+        </NavDropdown>
       </ul>
-      <h2>💲 Pagos De Pedidos</h2>
       <ul>
-        <li>Por Deposito/Transf/Sucursal</li>
-        <li>Por Tarjeta Credito/Debito</li>
+        <NavDropdown title=' ⬇️ Compras' id='basic-nav-dropdown'>
+          <li href='#action/3.2'> ⏪ Registro Producto</li>
+          <li href='#action/3.3'> ⏪ Registrar Compra</li>
+          <li href='#action/3.4'> ⏪ Crear Plantilla</li>
+          <li href='#action/3.5'> ⏪ Plantilla de Productos</li>
+          <li href='#action/3.6'> ⏪ Buscar Variante</li>
+          <li href='#action/3.7'> ⏪ Carga de imagenes</li>
+          <li href='#action/3.8'> ⏪ Reporte de Stock</li>
+        </NavDropdown>
       </ul>
-      <h2>⬇️ Compras</h2>
       <ul>
-        <li>Registrar Producto</li>
-        <li>Registrar Compra</li>
-        <li>Crar Plantilla</li>
-        <li>Planilla de Producto</li>
-        <li>Buscar Variante</li>
-        <li>Carga de Imagenes</li>
-        <li>Reporte de Stock</li>
+        <NavDropdown title=' ⬆️Ventas' id='basic-nav-dropdown'>
+          <li> ⏪ Registrar Venta</li>
+          <li> ⏪ Lista Venta</li>
+        </NavDropdown>
       </ul>
-      <h2> ⬆️Ventas</h2>
-      <ul>
-        <li>Resgistrar Venta</li>
-        <li>Lista Ventas</li>
-      </ul>
-      <h2>🔊Promociones</h2>
+      <h2>🗣️ Promociones</h2>
       <ul></ul>
-      <h2>Cotizaciones</h2>
+      <h2> 🎹 Categoria</h2>
       <ul></ul>
-      <h2>Cupones</h2>
+      <h2> 🎹 Cotizaciones</h2>
       <ul></ul>
-      <h2>Clientes</h2>
+      <h2> 🎹 Cupones</h2>
       <ul></ul>
-      <h2>Estadistica</h2>
+      <h2> 🎹 Clientes</h2>
+      <ul></ul>
+      <h2> 📶 Estadisticas</h2>
       <ul></ul>
       <h2>Tareas internas</h2>
       <ul></ul>
-      <h2>Pagina de Inicio</h2>
+      <h2>Pagina Inicio</h2>
       <ul></ul>
       <h2>Pagina Productos</h2>
       <ul></ul>
