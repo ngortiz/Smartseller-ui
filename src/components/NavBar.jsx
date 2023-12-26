@@ -22,13 +22,23 @@ const NavBar = () => {
             <Nav.Link href='#link'>Administracion</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <NavDropdown title='Usuario' id='basic-nav-dropdown'>
-          <NavDropdown.Item href='#action/3.2'>
-            Cambiar contraseña
-          </NavDropdown.Item>
-          <NavDropdown.Item href='#action/3.3'>Salir</NavDropdown.Item>
-          <NavDropdown.Divider />
-        </NavDropdown>
+        <Nav>
+          <NavDropdown
+            title={
+              <span>
+                <i className='bi bi-person-fill'></i> Nidia Ortiz
+              </span>
+            }
+            id='basic-nav-dropdown'
+          >
+            {' '}
+            <NavDropdown.Item href='#action/3.2'>
+              Cambiar contraseña
+            </NavDropdown.Item>
+            <NavDropdown.Item href='#action/3.3'>Salir</NavDropdown.Item>
+            <NavDropdown.Divider />
+          </NavDropdown>
+        </Nav>
       </Container>
     </Navbar>
   )
