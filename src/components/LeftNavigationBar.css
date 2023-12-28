@@ -1,11 +1,9 @@
-/* styles.css */
-
 .LeftNavigationBar {
   width: 20%;
   background-color: #354052;
   padding: 1em;
   box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
-  border-bottom: 5px solid gray; /* Ajustado para ser una propiedad completa */
+  border-bottom: 5px solid gray;
   text-align: left;
   color: white;
   margin-bottom: 10px;
