@@ -5,19 +5,24 @@ import './LeftNavigationBar.css'
 const LeftNavigationBar = () => {
   return (
     <div className='LeftNavigationBar'>
-      <img src='src/imagenes/icono.png' alt='Nidia Ortiz' />
+      <img src='src/images/icon.png' alt='Nidia Ortiz' />
       <ul>
         <NavDropdown
           title={
             <span>
-              <i className='bi bi-cart3'></i> Pedidos Onlines
+              <i className='bi bi-cart3'></i> Pedidos Online
             </span>
           }
           id='basic-nav-dropdown'
         >
-          <li href='#action/3.2'> Resumen</li>
-          <li href='#action/3.3'> Control Pedido</li>
-          <li href='#action/3.4'> Reportes</li>
+          <NavDropdown.Item href='#action/3.2'> Resumen</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href='#action/3.3'>
+            {' '}
+            Control Pedido
+          </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href='#action/3.4'> Reportes</NavDropdown.Item>
         </NavDropdown>
       </ul>
       <ul>
@@ -29,8 +34,13 @@ const LeftNavigationBar = () => {
           }
           id='basic-nav-dropdown'
         >
-          <li href='#action/3.2'>Por Deposito/Transf/Sucursal</li>
-          <li href='#action/3.3'>Por Tarjeta Credito/Debito</li>
+          <NavDropdown.Item href='#action/3.2'>
+            Por Deposito/Transf/Sucursal
+          </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href='#action/3.3'>
+            Por Tarjeta Credito/Debito
+          </NavDropdown.Item>
         </NavDropdown>
       </ul>
       <ul>
@@ -42,13 +52,33 @@ const LeftNavigationBar = () => {
           }
           id='basic-nav-dropdown'
         >
-          <li href='#action/3.2'>Registro Producto</li>
-          <li href='#action/3.3'>Registrar Compra</li>
-          <li href='#action/3.4'>Crear Plantilla</li>
-          <li href='#action/3.5'>Plantilla de Productos</li>
-          <li href='#action/3.6'>Buscar Variante</li>
-          <li href='#action/3.7'>Carga de imagenes</li>
-          <li href='#action/3.8'>Reporte de Stock</li>
+          <NavDropdown.Item href='#action/3.2'>
+            Registro Producto
+          </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href='#action/3.3'>
+            Registrar Compra
+          </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href='#action/3.4'>
+            Crear Plantilla
+          </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href='#action/3.5'>
+            Plantilla de Productos
+          </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href='#action/3.6'>
+            Buscar Variante
+          </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href='#action/3.7'>
+            Carga de imagenes
+          </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href='#action/3.8'>
+            Reporte de Stock
+          </NavDropdown.Item>
         </NavDropdown>
       </ul>
       <ul>
@@ -60,8 +90,9 @@ const LeftNavigationBar = () => {
           }
           id='basic-nav-dropdown'
         >
-          <li>Registrar Venta</li>
-          <li>Lista Venta</li>
+          <NavDropdown.Item>Registrar Venta</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item>Lista Ventas</NavDropdown.Item>
         </NavDropdown>
       </ul>
       <ul>
@@ -101,8 +132,9 @@ const LeftNavigationBar = () => {
           }
           id='basic-nav-dropdown'
         >
-          <li>Clientes</li>
-          <li>Suscriptores</li>
+          <NavDropdown.Item>Clientes</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item>Suscriptores</NavDropdown.Item>
         </NavDropdown>
       </ul>
       <ul>
@@ -114,9 +146,11 @@ const LeftNavigationBar = () => {
           }
           id='basic-nav-dropdown'
         >
-          <li>Analitica de Plataforma</li>
-          <li>Ventas Online</li>
-          <li>Productos Vendidos Online</li>
+          <NavDropdown.Item>Analitica de Plataforma</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item>Ventas Online</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item>Productos Vendidos Online</NavDropdown.Item>
         </NavDropdown>
       </ul>
       <ul>
@@ -129,7 +163,7 @@ const LeftNavigationBar = () => {
       <ul>
         <h2>
           <span>
-            <i className='bi bi-grid-fill'></i> Paginas de Productos
+            <i className='bi bi-grid-fill'></i> Pagina de Productos
           </span>
         </h2>
       </ul>
@@ -149,8 +183,9 @@ const LeftNavigationBar = () => {
           }
           id='basic-nav-dropdown'
         >
-          <li>Cambiar Contraseña</li>
-          <li>salir</li>
+          <NavDropdown.Item> Cambiar Contraseña </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item> Salir </NavDropdown.Item>
         </NavDropdown>
       </ul>
     </div>

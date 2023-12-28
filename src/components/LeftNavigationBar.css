@@ -5,7 +5,7 @@
   background-color: #354052;
   padding: 1em;
   box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
-  border-bottom: 5px solid gray; /* Ajustado para ser una propiedad completa */
+  border-bottom: 5px solid rgb(50, 47, 47);
   text-align: left;
   color: white;
   margin-bottom: 10px;
@@ -38,7 +38,7 @@
   text-align: left;
 }
 
-.NavDropdown li {
+.NavDropdown-item {
   list-style: none;
   font-size: small;
   padding: 10px;
@@ -57,9 +57,7 @@
 }
 
 .NavDropdown a:hover {
-  color: rgb(184, 166, 166);
-  padding-left: 1em;
-  padding-right: 1em;
+  color: rgb(124, 115, 115);
 }
 
 .LeftNavigationBar h2 {
@@ -73,8 +71,6 @@
 
 .LeftNavigationBar h2:hover {
   background-color: #354063;
-  padding-left: 1em;
-  padding-right: 1em;
 }
 
 .LeftNavigationBar ul {
@@ -84,7 +80,7 @@
   font-size: medium;
 }
 
-.LeftNavigationBar ul li {
+.LeftNavigationBar ul .item {
   list-style: none;
   margin: 5px;
   padding: 1em;
@@ -92,11 +88,11 @@
   text-align: left;
 }
 
-.LeftNavigationBar ul li:hover {
+.LeftNavigationBar ul .item:hover {
   color: #354063;
 }
 
 .LeftNavigationBar ul:hover {
   background-color: #354063;
-  width: 117%;
+  width: 110%;
 }
