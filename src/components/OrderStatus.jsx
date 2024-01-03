@@ -1,29 +1,61 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Button, Card } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
 import './OrderStatus.css'
 
-const OrderStatus = ({ color, amount, status }) => {
+const OrderStatus = () => {
   return (
-    <div>
-      <Card style={{ background: color }}>
+    <div className='order-status-container'>
+      <Card className='order-status-card'>
         <Card.Body>
-          <Card.Title>{amount}</Card.Title>
-          <Card.Text>{status}</Card.Text>
-          <div className='icon-container'>
-            <i className='bi bi-handbag'></i>
-          </div>
-          <Button variant=''>
-            Buscar <i className='bi bi-arrow-right-circle'></i>
-          </Button>
+          <Card.Title>0</Card.Title>
+          <Card.Text>Pedidos Recientes</Card.Text>
+          <Button variant='primary'>Buscar</Button>
+        </Card.Body>
+      </Card>
+      <Card className='order-status-card'>
+        <Card.Body>
+          <Card.Title>0</Card.Title>
+          <Card.Text>No Atendidos</Card.Text>
+          <Button variant='primary'>Buscar</Button>
+        </Card.Body>
+      </Card>
+      <Card className='order-status-card'>
+        <Card.Body>
+          <Card.Title>0</Card.Title>
+          <Card.Text>Preparando Pedidos</Card.Text>
+          <Button variant='primary'>Buscar</Button>
+        </Card.Body>
+      </Card>
+      <Card className='order-status-card'>
+        <Card.Body>
+          <Card.Title>0</Card.Title>
+          <Card.Text>Pedidos Preparados</Card.Text>
+          <Button variant='primary'>Buscar</Button>
+        </Card.Body>
+      </Card>
+      <Card className='order-status-card'>
+        <Card.Body>
+          <Card.Title>0</Card.Title>
+          <Card.Text>Enviando Pedidos</Card.Text>
+          <Button variant='primary'>Buscar</Button>
+        </Card.Body>
+      </Card>
+      <Card className='order-status-card'>
+        <Card.Body>
+          <Card.Title>0</Card.Title>
+          <Card.Text>Retirar en Sucursal</Card.Text>
+          <Button variant='primary'>Buscar</Button>
+        </Card.Body>
+      </Card>
+      <Card>
+        <Card.Body>
+          <Card.Title>0</Card.Title>
+          <Card.Text>Pedidos Atendidos</Card.Text>
+          <Button variant='primary'>Buscar</Button>
         </Card.Body>
       </Card>
     </div>
   )
-}
-OrderStatus.propTypes = {
-  color: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired,
-  status: PropTypes.string.isRequired
 }
 export default OrderStatus
