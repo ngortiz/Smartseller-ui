@@ -1,64 +1,17 @@
+.order-status-container {
+  display: flex !important;
+  justify-content: space-between;
+}
+
+.order-status-button {
+  margin-top: 10px;
+}
 .card {
-  width: 100%;
-  margin: 10px;
-  border-radius: 1px;
-  overflow: hidden;
-  margin-right: 15px !important;
-}
-
-.card-body {
-  display: contents;
-  flex-direction: column;
-  align-items: center;
-  padding: 0px;
-  margin-left: 15px;
-  font-weight: bold;
-}
-
-.card-title {
-  margin: 0 0 10px 0;
-  white-space: nowrap;
-  padding: 5px;
-
-  font-family: 'Source Sans Pro', sans-serif;
-  margin-left: 15px;
-  font-size: 24px;
-  font-weight: bold;
-  color: white;
-}
-
-.card-text {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 15px;
+  width: 70%;
   margin-bottom: 10px;
-  margin-left: 15px;
-  color: white;
-}
-.icon-container {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  border-radius: 50%;
-  font-size: 65px;
-  color: rgba(0, 0, 0, 0.15);
-  display: inline-block;
-  font-weight: normal;
-}
-
-.btn {
-  position: relative;
-  text-align: center;
-  padding: 3px 0;
-  background: rgba(0, 0, 0, 0.1);
-  border: 1px;
-  color: white;
-  border-radius: 1px;
-  font-size: x-small;
-}
-.btn:hover {
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.bi-arrow-right-circle {
-  margin-left: 5px;
+  margin-right: 5px;
+  flex-direction: flex;
+  flex-direction: row-reverse;
+  background-color: cadetblue;
+  display: grid;
 }
