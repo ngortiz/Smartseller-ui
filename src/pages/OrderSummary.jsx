@@ -4,32 +4,29 @@ import OrderStatus from '../components/OrderStatus'
 
 const OrderSummary = () => {
   return (
-    <Container>
+    <Container fluid>
       <Row>
-        <Col>
-          <OrderStatus statusName='Recientes' amount='4' color='blue' />
+        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+          {' '}
+          <OrderStatus status='Recientes' amount={4} color='#00c0ef' />
         </Col>
-        <Col>
-          <OrderStatus statusName='No Atendido' amount='4' color='blue' />
+        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+          <OrderStatus status='No Atendidos' amount={4} color='#f56954' />
         </Col>
-        <Col>
-          <OrderStatus statusName='Preparando' amount='3' color='green' />
+        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+          <OrderStatus status='Preparando' amount={3} color='#00a65a' />
         </Col>
-        <Col>
-          <OrderStatus
-            statusName='Preparado'
-            amount='1'
-            color='otros colores'
-          />
+        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+          <OrderStatus status='Preparados' amount={1} color='#0073b7' />
         </Col>
-        <Col>
-          <OrderStatus statusName='Enviando' amount='3' color='etc' />
+        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+          <OrderStatus status='Enviando' amount={3} color='#ff851b' />
         </Col>
-        <Col>
-          <OrderStatus statusName='Sucursal' amount='3' color='etc' />
+        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+          <OrderStatus status='Sucursal' amount={3} color='#f39c12' />
         </Col>
-        <Col>
-          <OrderStatus statusName='Atendido' amount='8' color='etx' />
+        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+          <OrderStatus status='Atendidos' amount={1} color='#222222' />
         </Col>
       </Row>
     </Container>
