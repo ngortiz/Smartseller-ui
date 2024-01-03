@@ -1,9 +1,9 @@
 /* styles.css */
 
 .LeftNavigationBar {
-  width: 80%;
+  width: 100%;
   background-color: #354052;
-  padding: 1em;
+  padding: 10px;
   box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
   border-bottom: 5px solid rgb(50, 47, 47);
   text-align: left;
@@ -13,7 +13,7 @@
 
 .LeftNavigationBar img {
   max-width: 100px;
-  padding: 5px;
+  padding: 1px;
   height: auto;
   margin-bottom: 30px;
   border-radius: 50px;
@@ -94,5 +94,5 @@
 
 .LeftNavigationBar ul:hover {
   background-color: #354063;
-  width: 110%;
+  margin-left: auto;
 }
