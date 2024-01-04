@@ -1,10 +1,17 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import OrderStatus from '../components/OrderStatus'
+import './OrderSummary.css'
 
 const OrderSummary = () => {
   return (
     <Container fluid>
+      <Row className='title-container'>
+        <Col>
+          <h2 className='title'>Resumen de Pedidos</h2>
+        </Col>
+      </Row>
+      <Row className='order-summary-container'></Row>
       <Row>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
           {' '}
