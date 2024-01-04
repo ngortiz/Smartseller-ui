@@ -11,7 +11,10 @@ const OrderStatus = props => {
         <Card.Body>
           <Card.Title>{props.amount}</Card.Title>
           <Card.Text>{props.status}</Card.Text>
-          <Button variant='primary'>
+          <div className='icon-container'>
+            <i className='bi bi-handbag'></i>
+          </div>
+          <Button variant=''>
             Buscar <i className='bi bi-arrow-right-circle'></i>
           </Button>
         </Card.Body>
