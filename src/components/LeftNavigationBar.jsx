@@ -1,11 +1,12 @@
 import React from 'react'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import './LeftNavigationBar.css'
+import icon from '../images/icon.png'
 
 const LeftNavigationBar = () => {
   return (
     <div className='LeftNavigationBar'>
-      <img src='src/images/icon.png' alt='Nidia Ortiz' />
+      <img src={icon} alt='Nidia Ortiz' />
       <ul>
         <NavDropdown
           title={
@@ -15,14 +16,14 @@ const LeftNavigationBar = () => {
           }
           id='basic-nav-dropdown'
         >
-          <NavDropdown.Item to='Resumen'> Resumen</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item to='contro pedido'>
+          <NavDropdown.Item href='orders/orders-summary'>
             {' '}
-            Control Pedido
+            Resumen{' '}
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item to='Reportes'> Reportes</NavDropdown.Item>
+          <NavDropdown.Item href='/'> Control Pedido </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item to='/'> Reportes </NavDropdown.Item>
         </NavDropdown>
       </ul>
       <ul>

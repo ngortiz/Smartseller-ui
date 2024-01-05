@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import OrderStatus from '../components/OrderStatus'
-import './OrderSummary.css'
+import './OrdersSummary.css'
 
-const OrderSummary = () => {
+const OrdersSummary = () => {
   return (
     <Container fluid>
       <Row className='title-container'>
@@ -40,4 +40,4 @@ const OrderSummary = () => {
   )
 }
 
-export default OrderSummary
+export default OrdersSummary
