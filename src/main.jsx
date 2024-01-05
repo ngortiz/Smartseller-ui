@@ -9,6 +9,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import { Container, Row, Col } from 'react-bootstrap'
 import LeftNavigationBar from './components/LeftNavigationBar'
 import OrderSummary from './pages/OrderSummary'
+import OrderStatus from './components/OrderStatus'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -25,7 +26,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </Container>
       <Routes>
         <Route path='/' element={<OrderSummary />} />
-        <Route path='/Item' element={<Container fluid></Container>} />
+        <Route path='/' element={<OrderStatus />} />
+        <Route path='/' element={<LeftNavigationBar />} />
       </Routes>
     </React.StrictMode>
   </BrowserRouter>
