@@ -15,14 +15,14 @@ const LeftNavigationBar = () => {
           }
           id='basic-nav-dropdown'
         >
-          <NavDropdown.Item href='#action/3.2'> Resumen</NavDropdown.Item>
+          <NavDropdown.Item to='Resumen'> Resumen</NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href='#action/3.3'>
+          <NavDropdown.Item to='contro pedido'>
             {' '}
             Control Pedido
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href='#action/3.4'> Reportes</NavDropdown.Item>
+          <NavDropdown.Item to='Reportes'> Reportes</NavDropdown.Item>
         </NavDropdown>
       </ul>
       <ul>
