@@ -27,6 +27,7 @@ const OrdersSummary = () => {
       </Row>
       <Row>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+          {' '}
           <OrderStatus status='Recientes' amount={4} color='#00c0ef' />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>

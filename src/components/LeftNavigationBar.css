@@ -1,7 +1,8 @@
 .LeftNavigationBar {
-  width: 100%;
+  width: 110%;
   background-color: #354052;
   padding: 10px;
+  padding-left: 0;
   box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
   border-bottom: 5px solid rgb(50, 47, 47);
   text-align: left;
@@ -92,9 +93,10 @@
 .LeftNavigationBar ul .item:hover {
   color: #354063;
   width: 110%;
+  width: 110%;
 }
 
 .LeftNavigationBar ul:hover {
   background-color: #354063;
-  margin-left: auto;
+  width: 110%;
 }
