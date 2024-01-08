@@ -1,5 +1,3 @@
-/* OrderSummary.css */
-
 .title-container {
   margin: 10px 0 20px 0;
   text-align: left;
@@ -14,11 +12,9 @@
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 18px;
   font-weight: bold;
-  color: #333; /* Cambia el color según tus preferencias */
+  color: #333;
 }
 
 .order-summary-container {
-  margin: 0 -5px; /* Para compensar el padding de las columnas */
+  margin: 0 -5px;
 }
-
-/* Otras clases o estilos según sea necesario */
