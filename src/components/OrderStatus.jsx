@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
+import { Button, Card } from 'react-bootstrap'
 import './OrderStatus.css'
 
-const OrderStatus = props => {
+const OrderStatus = ({ color, amount, status }) => {
   return (
     <div>
-      <Card style={{ background: props.color }}>
+      <Card style={{ background: color }}>
         <Card.Body>
-          <Card.Title>{props.amount}</Card.Title>
-          <Card.Text>{props.status}</Card.Text>
+          <Card.Title>{amount}</Card.Title>
+          <Card.Text>{status}</Card.Text>
           <div className='icon-container'>
             <i className='bi bi-handbag'></i>
           </div>
