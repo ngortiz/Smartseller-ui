@@ -6,7 +6,7 @@ import icon from '../images/icon.png'
 const LeftNavigationBar = () => {
   return (
     <div className='LeftNavigationBar'>
-      <img src={icon} alt='Nidia Ortiz' />
+      <img src={icon} alt='Logo' />
       <ul>
         <NavDropdown
           title={
