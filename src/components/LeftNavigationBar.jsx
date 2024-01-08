@@ -16,10 +16,7 @@ const LeftNavigationBar = () => {
           }
           id='basic-nav-dropdown'
         >
-          <NavDropdown.Item href='orders/orders-summary'>
-            {' '}
-            Resumen{' '}
-          </NavDropdown.Item>
+          <NavDropdown.Item href='/orders/summary'>Resumen</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href='/'> Control Pedido </NavDropdown.Item>
           <NavDropdown.Divider />
@@ -30,7 +27,7 @@ const LeftNavigationBar = () => {
         <NavDropdown
           title={
             <span>
-              <i className='"bi bi-currency-dollar'></i> Pagos de Pedido
+              <i className='bi bi-currency-dollar'></i> Pagos de Pedido
             </span>
           }
           id='basic-nav-dropdown'
