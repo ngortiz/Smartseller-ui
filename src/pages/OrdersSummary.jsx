@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import OrderStatus from '../components/OrderStatus'
 import './OrdersSummary.css'
+import CustomDatePicker from '../components/CustomDatePicker'
 import CustomDatePicker from '../components/CustomDatePicker'
 
 const OrdersSummary = () => {
@@ -14,10 +16,6 @@ const OrdersSummary = () => {
   const handleEndDateChange = date => {
     setEndDate(date)
   }
-  const handleSearch = () => {
-    console.log('Buscar...')
-  }
-
   return (
     <Container fluid>
       <Row className='title-container'>
@@ -48,37 +46,20 @@ const OrdersSummary = () => {
           <OrderStatus status='Atendidos' amount={1} color='#222222' />
         </Col>
       </Row>
-
-      <Row className='order-summary-container'></Row>
-      <Row className='justify-content-between'>
-        <Col>
-          <div className='date-picker-container'>
-            <h1 className='date-picker-label'>Inicio Fecha de Creación: </h1>
-            <div className='input-group-addon'>
-              <CustomDatePicker
-                selectedDate={startDate}
-                handleChange={handleStartDateChange}
-              />
-            </div>
-          </div>
-        </Col>
-        <Col>
-          <div className='date-picker-container'>
-            <h1 className='date-picker-label'>Fin Fecha de Creación: </h1>
-            <div className='input-group-addon'>
-              <CustomDatePicker
-                selectedDate={endDate}
-                handleChange={handleEndDateChange}
-              />
-            </div>
-          </div>
-        </Col>
-        <Col>
-          <button className='search-button' onClick={handleSearch}>
-            Buscar
-          </button>
-        </Col>
-      </Row>
+      <div className='date-picker-container'>
+        <h1 className='date-picker-label'> Inicio Fecha de Creacion: </h1>
+        <CustomDatePicker
+          selectedDate={startDate}
+          handleChange={handleStartDateChange}
+        />
+        <div className='date-picker-container'>
+          <h1 className='date-picker-label'> Fin Fecha de Creacion: </h1>
+          <CustomDatePicker
+            selectedDate={endDate}
+            handleChange={handleEndDateChange}
+          />
+        </div>
+      </div>
     </Container>
   )
 }

@@ -1,21 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import 'react-datepicker/dist/react-datepicker.css'
 import './CustomDatePicker.css'
-import { BiCalendar } from 'react-icons/bi'
 
-const CustomDatePicker = ({ selectedDate, handleChange }) => {
+const CustomDatePicker = props => {
+  const { selectedDate, handleChange } = props
   return (
-    <div className='custom-date-picker'>
-      <BiCalendar className='bi bi-calendar-icon' />
-      <DatePicker
-        selected={selectedDate}
-        onChange={handleChange}
-        dateFormat='dd/MM/yyyy'
-        className='date-picker-input'
-      />
-    </div>
+    <>
+      <div className='custom-datepicker-container'>
+        <FontAwesomeIcon icon={faCalendarAlt} className='calendar-icon' />
+        <DatePicker
+          selected={selectedDate}
+          onChange={handleChange}
+          className='custom-datepicker'
+        />
+      </div>
+    </>
   )
 }
 CustomDatePicker.propTypes = {
