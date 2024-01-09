@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import OrderStatus from '../components/OrderStatus'
 import './OrdersSummary.css'
+import CustomDatePicker from '../components/CustomDatePicker'
 
 const OrdersSummary = () => {
+  const defaultDate = new Date()
+  const [startDate, setStartDate] = useState(defaultDate)
+  const [endDate, setEndDate] = useState(defaultDate)
+  const handleStartDateChange = date => {
+    setStartDate(date)
+  }
+  const handleEndDateChange = date => {
+    setEndDate(date)
+  }
   return (
     <Container fluid>
       <Row className='title-container'>
@@ -35,6 +45,20 @@ const OrdersSummary = () => {
           <OrderStatus status='Atendidos' amount={1} color='#222222' />
         </Col>
       </Row>
+      <div className='date-picker-container'>
+        <h1 className='date-picker-label'> Inicio Fecha de Creacion: </h1>
+        <CustomDatePicker
+          selectedDate={startDate}
+          handleChange={handleStartDateChange}
+        />
+        <div className='date-picker-container'>
+          <h1 className='date-picker-label'> Fin Fecha de Creacion: </h1>
+          <CustomDatePicker
+            selectedDate={endDate}
+            handleChange={handleEndDateChange}
+          />
+        </div>
+      </div>
     </Container>
   )
 }
