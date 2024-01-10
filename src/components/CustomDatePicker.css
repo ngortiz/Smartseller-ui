@@ -1,63 +1,32 @@
-.custom-datepicker {
-  display: block;
-  margin-bottom: 25px;
-  color: black;
-  padding: 10px;
-  margin: 30px;
-  position: relative;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
-}
+/* Agrega estos estilos a tu archivo CSS correspondiente */
 
-.custom-datepicker .react-datepicker-wrapper {
+.custom-date-picker {
   display: inline-block;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  margin-left: 0px;
+  border-radius: 0px;
+  background-color: #f8f9fa; /* Fondo sutil */
+  box-shadow: 0 0 1px; /* Sombreado suave */
 }
 
-.custom-datepicker .react-datepicker {
-  font-family: 'Times New Roman', Times, serif;
-  border: 1px solid #ccc;
-  border-radius: 30px;
-  box-shadow: 0 5px 10px rgba(199, 67, 67, 0.1);
+.bi-calendar-icon {
+  color: #393f45;
+  font-size: 1.5em;
+  margin-right: 8px;
 }
 
-.custom-datepicker .react-datepicker__day--selected {
-  background-color: #007bff;
-  color: #fff;
+.date-picker-input {
+  font-weight: 200;
+  font-style: normal;
+  width: 150px;
+  padding: 10px;
 }
-.custom-datepicker .react-datepicker__day--today {
+
+.date-picker-label {
+  font-size: 15px;
+  margin-bottom: 5px;
+  padding: 10px;
   font-weight: bold;
-  flex-direction: column;
-}
-
-.custom-datepicker .react-datepicker__header {
-  background-color: #007bff;
-  color: #fff;
-  padding: 20px;
-  border-bottom: none;
-}
-
-.custom-datepicker .react-datepicker__navigation {
-  top: 30px;
-}
-.custom-datepicker .react-datepicker__year-container {
-  margin-top: 8px;
-}
-
-.custom-datepicker-container {
-  position: relative;
-}
-
-.calendar-icon {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  font-size: 1.2em;
-  color: #3c434a;
-  cursor: pointer;
-}
-
-.custom-datepicker {
-  color: #3c434a;
+  font-family: 'Source Sans Pro', sans-serif;
 }
