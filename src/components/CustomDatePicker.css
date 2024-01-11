@@ -1,13 +1,11 @@
-/* Agrega estos estilos a tu archivo CSS correspondiente */
-
 .custom-date-picker {
   display: inline-block;
   border: 1px solid #ced4da;
   padding: 10px;
   margin-left: 0px;
   border-radius: 0px;
-  background-color: #f8f9fa; /* Fondo sutil */
-  box-shadow: 0 0 1px; /* Sombreado suave */
+  background-color: #f8f9fa;
+  box-shadow: 0 0 1px;
 }
 
 .bi-calendar-icon {

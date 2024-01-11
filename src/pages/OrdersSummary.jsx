@@ -45,20 +45,24 @@ const OrdersSummary = () => {
           <OrderStatus status='Atendidos' amount={1} color='#222222' />
         </Col>
       </Row>
-      <div className='date-picker-container'>
-        <h1 className='date-picker-label'> Inicio Fecha de Creacion: </h1>
-        <CustomDatePicker
-          selectedDate={startDate}
-          handleChange={handleStartDateChange}
-        />
-        <div className='date-picker-container'>
-          <h1 className='date-picker-label'> Fin Fecha de Creacion: </h1>
-          <CustomDatePicker
-            selectedDate={endDate}
-            handleChange={handleEndDateChange}
-          />
-        </div>
-      </div>
+      <Row>
+        <Col>
+          <div className='date-picker-container'>
+            <h1 className='date-picker-label'> Inicio Fecha de Creacion: </h1>
+            <CustomDatePicker
+              selectedDate={startDate}
+              handleChange={handleStartDateChange}
+            />
+          </div>
+          <div className='date-picker-container'>
+            <h1 className='date-picker-label'> Fin Fecha de Creacion: </h1>
+            <CustomDatePicker
+              selectedDate={endDate}
+              handleChange={handleEndDateChange}
+            />
+          </div>
+        </Col>
+      </Row>
     </Container>
   )
 }
