@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import OrderStatus from '../components/OrderStatus'
 import './OrdersSummary.css'
 import CustomDatePicker from '../components/CustomDatePicker'
-import CustomDatePicker from '../components/CustomDatePicker'
+import DataTable from '../components/DataTable'
 
 const OrdersSummary = () => {
   const defaultDate = new Date()
@@ -19,6 +19,7 @@ const OrdersSummary = () => {
   const handleSearch = () => {
     console.log('Buscar...')
   }
+  const orders = [{ id: 1 }]
 
   return (
     <Container fluid>
@@ -79,6 +80,9 @@ const OrdersSummary = () => {
           <button className='search-button' onClick={handleSearch}>
             Buscar
           </button>
+        </Col>
+        <Col>
+          <DataTable orders={orders} />
         </Col>
       </Row>
     </Container>
