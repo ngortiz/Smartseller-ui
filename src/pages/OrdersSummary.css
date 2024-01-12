@@ -36,8 +36,8 @@
   margin-left: -12px;
 }
 .search-button {
-  margin-left: 15px; /* Ajusta el espacio entre el DatePicker y el botón según tus preferencias */
-  padding: 10px 12px;
+  margin-left: 10px; /* Ajusta el espacio entre el DatePicker y el botón según tus preferencias */
+  padding: 10px 20px;
   font-size: 16px;
   font-weight: normal;
   color: #fff;
