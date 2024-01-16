@@ -19,7 +19,52 @@ const OrdersSummary = () => {
   const handleSearch = () => {
     console.log('Buscar...')
   }
-  const orders = [{ id: 1 }]
+  const orders = [
+    {
+      item: 1,
+      numero: 270,
+      cliente: 'Maria Bogado',
+      estadoPedido: 'Preparando',
+      estadoPAgo: 'Procesado',
+      formaPago: 'Tc',
+      fechaCreacion: '12/01/2023 ',
+      fechaExpiracion: '13/01/2023 12:30:10',
+      total: 'US$ 2,20'
+    },
+    {
+      item: 2,
+      numero: 371,
+      cliente: 'Valeria Gomez',
+      estadoPedido: 'Preparando',
+      estadoPAgo: 'Procesado',
+      formaPago: 'Tc',
+      fechaCreacion: '12/01/2023 ',
+      fechaExpiracion: '13/01/2023 12:30:10',
+      total: 'US$ 5,30'
+    },
+    {
+      item: 3,
+      numero: 372,
+      cliente: 'Rafael Gomez',
+      estadoPedido: 'Preparando',
+      estadoPAgo: 'Atendido',
+      formaPago: 'Sucursal',
+      fechaCreacion: '15/01/2023 ',
+      fechaExpiracion: '16/01/2023 15:30:10',
+      total: 'US$ 8,10'
+    },
+    {
+      item: 4,
+      numero: 374,
+      cliente: 'Roque levy',
+      estadoPedido: 'No atendido',
+      estadoPAgo: 'Pendiente',
+      formaPago: 'Deposito',
+      fechaCreacion: '11/01/2023 ',
+      fechaExpiracion: '12/01/2023 12:30:10',
+      total: 'US$ 12,12'
+    }
+  ]
 
   return (
     <Container fluid>
