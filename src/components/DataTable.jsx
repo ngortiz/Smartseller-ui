@@ -27,7 +27,7 @@ const DataTable = ({ orders }) => {
       <Table striped bordered hover className='Table'>
         <thead>
           <tr>
-            <th>Item</th>
+            <th>Id</th>
             <th>Numero</th>
             <th>Cliente</th>
             <th>Estado Pedido</th>
@@ -40,21 +40,20 @@ const DataTable = ({ orders }) => {
         </thead>
         <tbody>
           {filteredOrders.length > 0 ? (
-            <>
-              {filteredOrders.map(order => (
-                <tr key={order.id}>
-                  <td>{order.item}</td>
-                  <td>{order.numero}</td>
-                  <td>{order.cliente}</td>
-                  <td>{order.estadoPedido}</td>
-                  <td>{order.estadoPAgo}</td>
-                  <td>{order.formaPago}</td>
-                  <td>{order.fechaCreacion}</td>
-                  <td>{order.fechaExpiracion}</td>
-                  <td>{order.total}</td>
-                </tr>
-              ))}
-            </>
+          {filteredOrders.map((order,item)=> (
+            <tr key={order.id}>
+            <td>{item}</td>
+            <td>{order.number}</td>
+            <td>{order.client}</td>
+            <td>{order.state}</td>
+            <td>{order.payment_state}</td>
+            <td>{order.payment_method}</td>
+            <td>{order.created_date}</td>
+            <td>{order.expiration_date}</td>
+            <td>{order.total}</td>
+
+            </tr>
+           ))}
           ) : (
             <tr>
               <td colSpan='9'>No se encontraron resultados.</td>

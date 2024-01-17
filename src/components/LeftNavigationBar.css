@@ -3,11 +3,14 @@
   background-color: #354052;
   padding: 10px;
   padding-left: 10px;
-  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
-  border-bottom: 5px solid rgb(50, 47, 47);
+  border-bottom: 1px solid rgb(50, 47, 47);
   text-align: left;
   color: white;
-  margin: 0;
+}
+
+.col-3 {
+  flex: 0 0 auto;
+  width: 20%;
 }
 
 .LeftNavigationBar img {
