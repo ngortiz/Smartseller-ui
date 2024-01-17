@@ -38,26 +38,18 @@
   margin-right: auto;
   margin-left: -12px;
 }
-.search-button {
-  margin-left: 10px; /* Ajusta el espacio entre el DatePicker y el botón según tus preferencias */
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: normal;
-  color: #fff;
-  border-color: #112845;
+
+.OrdersButton {
   background-color: #053857;
-  border: 1px solid #007bff;
-  border-radius: 3px;
-  border-color: #112845;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 1px;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  font-size: 16px;
   margin-top: 90px;
-  position: relative;
 }
 
-.search-button:hover {
-  background-color: #007bff;
-  border-color: #0056b3;
+.OrdersButton:hover {
+  background-color: #112845;
 }

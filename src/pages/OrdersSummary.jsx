@@ -1,68 +1,68 @@
 import React, { useState } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import OrderStatus from '../components/OrderStatus'
-import './OrdersSummary.css'
 import CustomDatePicker from '../components/CustomDatePicker'
 import DataTable from '../components/DataTable'
+import './OrdersSummary.css'
 
 const OrdersSummary = () => {
   const defaultDate = new Date()
   const [startDate, setStartDate] = useState(defaultDate)
   const [endDate, setEndDate] = useState(defaultDate)
+
   const handleStartDateChange = date => {
     setStartDate(date)
   }
+
   const handleEndDateChange = date => {
     setEndDate(date)
   }
-  const handleSearch = () => {
-    console.log('Buscar...')
-  }
+
   const orders = [
     {
       id: 1,
       number: 270,
       client: 'Maria Bogado',
-      order_state: 'Preparando',
+      state: 'Preparando',
       payment_state: 'Procesado',
       payment_method: 'Tc',
       created_date: '12/01/2023 ',
       expiration_date: '13/01/2023 12:30:10',
-      total: 'US$ 2,20',
+      total: 'US$ 2,20'
     },
     {
       id: 2,
       number: 371,
       client: 'Valeria Gomez',
-      order_state: 'Preparando',
+      state: 'Preparando',
       payment_state: 'Procesado',
       payment_method: 'Tc',
-      fechaCreacion: '12/01/2023 ',
+      created_date: '12/01/2023 ',
       expiration_date: '13/01/2023 12:30:10',
-      total: 'US$ 5,30',
+      total: 'US$ 5,30'
     },
     {
       id: 3,
       number: 372,
       client: 'Rafael Gomez',
-      order_state: 'Preparando',
-      payment_state: 'Atendido',
+      state: 'Preparando',
+      payment_state: 'Procesado',
       payment_method: 'Sucursal',
-      fechaCreacion: '15/01/2023 ',
+      created_date: '15/01/2023 ',
       expiration_date: '16/01/2023 15:30:10',
-      total: 'US$ 8,10',
+      total: 'US$ 8,10'
     },
     {
-      d: 4,
+      id: 4,
       number: 374,
       client: 'Roque levy',
-      order_state: 'No atendido',
+      state: 'No atendido',
       payment_state: 'Pendiente',
       payment_method: 'Deposito',
-      fechaCreacion: '11/01/2023 ',
+      created_date: '11/01/2023 ',
       expiration_date: '12/01/2023 12:30:10',
-      total: 'US$ 12,12',
-    },
+      total: 'US$ 12,12'
+    }
   ]
 
   return (
@@ -96,7 +96,6 @@ const OrdersSummary = () => {
         </Col>
       </Row>
 
-      <Row className='order-summary-container'></Row>
       <Row className='justify-content-between'>
         <Col>
           <div className='date-picker-container'>
@@ -121,10 +120,13 @@ const OrdersSummary = () => {
           </div>
         </Col>
         <Col>
-          <button className='search-button' onClick={handleSearch}>
+          <Button variant='primary' className='OrdersButton'>
             Buscar
-          </button>
+          </Button>
         </Col>
+      </Row>
+
+      <Row>
         <Col>
           <DataTable orders={orders} />
         </Col>

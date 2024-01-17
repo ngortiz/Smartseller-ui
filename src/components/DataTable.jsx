@@ -1,3 +1,5 @@
+// DataTable.jsx
+
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Table, Form } from 'react-bootstrap'
@@ -8,8 +10,8 @@ const DataTable = ({ orders }) => {
 
   const filteredOrders = orders.filter(order => {
     return (
-      order.cliente.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.numero.toString().includes(searchTerm)
+      order.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.number.toString().includes(searchTerm)
     )
   })
 
@@ -39,26 +41,24 @@ const DataTable = ({ orders }) => {
           </tr>
         </thead>
         <tbody>
-          {filteredOrders.length > 0 ? (
-          {filteredOrders.map((order,item)=> (
-            <tr key={order.id}>
-            <td>{item}</td>
-            <td>{order.number}</td>
-            <td>{order.client}</td>
-            <td>{order.state}</td>
-            <td>{order.payment_state}</td>
-            <td>{order.payment_method}</td>
-            <td>{order.created_date}</td>
-            <td>{order.expiration_date}</td>
-            <td>{order.total}</td>
-
+          {filteredOrders.map(order => (
+            <tr
+              key={order.id}
+              className={`row-${order.state
+                .toLowerCase()
+                .replace(/\s+/g, '-')}`}
+            >
+              <td>{order.id}</td>
+              <td>{order.number}</td>
+              <td>{order.client}</td>
+              <td>{order.state}</td>
+              <td>{order.payment_state}</td>
+              <td>{order.payment_method}</td>
+              <td>{order.created_date}</td>
+              <td>{order.expiration_date}</td>
+              <td>{order.total}</td>
             </tr>
-           ))}
-          ) : (
-            <tr>
-              <td colSpan='9'>No se encontraron resultados.</td>
-            </tr>
-          )}
+          ))}
         </tbody>
       </Table>
     </div>
