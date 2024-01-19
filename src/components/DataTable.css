@@ -1,12 +1,13 @@
 .Table {
-  width: 90%;
+  width: 101%;
   margin-top: 1%;
   color: #354052;
   border-spacing: 0 10px;
 }
+
 #searchForm {
   margin-bottom: 10px;
-  margin-left: 55%;
+  margin-left: 66%;
   width: 35%;
   margin-top: 5%;
   border-radius: 1px;
@@ -30,29 +31,4 @@
 
 .Table tbody tr:nth-child(odd) {
   background-color: #ecf0f1;
-}
-.Table tbody tr:hover {
-  background-color: #d4e6f1;
-  transition: background-color 0.3s;
-}
-.row-recientes {
-  background-color: #00c0ef;
-}
-.row-no-atendidos {
-  background-color: #f56954;
-}
-.row-preparando {
-  background-color: #00a65a;
-}
-.row-preparados {
-  background-color: #0073b7;
-}
-.row-enviando {
-  background-color: #ff851b;
-}
-.row-sucursal {
-  background-color: #f39c12;
-}
-.row-atendidos {
-  background-color: #222222;
 }

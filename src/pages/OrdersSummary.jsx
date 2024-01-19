@@ -17,6 +17,7 @@ const OrdersSummary = () => {
   const handleEndDateChange = date => {
     setEndDate(date)
   }
+  const handleSearch = () => {}
 
   const orders = [
     {
@@ -120,7 +121,11 @@ const OrdersSummary = () => {
           </div>
         </Col>
         <Col>
-          <Button variant='primary' className='OrdersButton'>
+          <Button
+            variant='primary'
+            className='OrdersButton'
+            onClick={handleSearch}
+          >
             Buscar
           </Button>
         </Col>

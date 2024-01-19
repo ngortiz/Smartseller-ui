@@ -16,7 +16,7 @@
 }
 
 .order-summary-container {
-  margin: 0 -5px;
+  margin: 5 -5px;
   margin-bottom: 10px;
 }
 .date-picker-container {
@@ -29,14 +29,14 @@
 .col-9 {
   padding: 20px 15px;
   margin: -30px;
-  margin-right: 10px;
+  margin-right: 1%;
   width: 80%;
 }
 
 .container-fluid {
   width: 100%;
   margin-right: auto;
-  margin-left: -12px;
+  margin-left: -10px;
 }
 
 .OrdersButton {
@@ -52,4 +52,12 @@
 
 .OrdersButton:hover {
   background-color: #112845;
+}
+@media screen and (max-width: 767px) {
+  col-9 {
+    padding: 20px 15px;
+    margin: -30px;
+    margin-right: 1%;
+    width: 80%;
+  }
 }

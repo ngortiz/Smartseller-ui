@@ -29,7 +29,7 @@ const DataTable = ({ orders }) => {
       <Table striped bordered hover className='Table'>
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Item</th>
             <th>Numero</th>
             <th>Cliente</th>
             <th>Estado Pedido</th>
@@ -41,14 +41,9 @@ const DataTable = ({ orders }) => {
           </tr>
         </thead>
         <tbody>
-          {filteredOrders.map(order => (
-            <tr
-              key={order.id}
-              className={`row-${order.state
-                .toLowerCase()
-                .replace(/\s+/g, '-')}`}
-            >
-              <td>{order.id}</td>
+          {filteredOrders.map((order, item) => (
+            <tr key={order.id}>
+              <td>{item}</td>
               <td>{order.number}</td>
               <td>{order.client}</td>
               <td>{order.state}</td>
