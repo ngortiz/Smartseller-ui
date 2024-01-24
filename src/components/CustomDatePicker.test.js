@@ -1,19 +1,22 @@
 import React from 'react'
 import '@testing-library/jest-dom'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import CustomDatePicker from './CustomDatePicker'
 
-test('renders content', () => {
-  const selectedDate = new Date()
-  const { getByText } = render(
-    <CustomDatePicker selectedDate={selectedDate} handleChange={() => {}} />
-  )
+describe('CustomDatePicker', () => {
+  test('renders CustomDatePicker with date and icon', () => {
+    const selectedDate = new Date('2024-01-23 23:00')
+    const handleChange = jest.fn()
 
-  const componentText = getByText('Tu texto del componente')
-  expect(componentText).toBeInTheDocument()
+    render(
+      <CustomDatePicker
+        selectedDate={selectedDate}
+        handleChange={handleChange}
+      />
+    )
 
-  console.log(
-    'Componente renderizado correctamente:',
-    componentText.textContent
-  )
+    // Check if the DatePicker is rendered with the correct date
+    const datePickerInput = screen.getByDisplayValue('23/01/2024')
+    expect(datePickerInput).toBeInTheDocument()
+  })
 })
