@@ -6,7 +6,6 @@ import './CustomDatePicker.css'
 import { BiCalendar } from 'react-icons/bi'
 
 const CustomDatePicker = ({ selectedDate, handleChange }) => {
-  console.log(selectedDate)
   return (
     <div className='custom-date-picker'>
       <BiCalendar className='bi bi-calendar-icon' />
