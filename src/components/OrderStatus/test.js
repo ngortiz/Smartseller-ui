@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import OrderStatus from './OrderStatus'
+import OrderStatus from '.'
 
 test('renders OrderStatus component with amount and background', () => {
   const testData = {

@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Table, Form } from 'react-bootstrap'
-import './DataTable.css'
+import './style.css'
 
 const DataTable = ({ orders }) => {
   const [searchTerm, setSearchTerm] = useState('')

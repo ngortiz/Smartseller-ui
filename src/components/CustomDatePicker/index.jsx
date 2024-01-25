@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import './CustomDatePicker.css'
+import './style.css'
 import { BiCalendar } from 'react-icons/bi'
 
 const CustomDatePicker = ({ selectedDate, handleChange }) => {
