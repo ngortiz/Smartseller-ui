@@ -1,0 +1,73 @@
+/* style.css */
+
+/* Estilo general */
+.container {
+  margin-top: 30px;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.order-info-col {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.order-info-col p {
+  font-size: small;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.comprobante h2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: left;
+  font-size: small;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.detalles-adicionales {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.detalles-adicionales h2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.detalles-adicionales p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+}
