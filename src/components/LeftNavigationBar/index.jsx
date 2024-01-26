@@ -1,7 +1,7 @@
 import React from 'react'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import './LeftNavigationBar.css'
-import icon from '../images/icon.png'
+import './style.css'
+import icon from './images/icon.png'
 
 const LeftNavigationBar = () => {
   return (

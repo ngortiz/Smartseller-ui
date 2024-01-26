@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import LeftNavigationBar from './LeftNavigationBar'
+import LeftNavigationBar from '../LeftNavigationBar'
 
 test('checks that the LeftNavigationBar component renders correctly', () => {
   // Render the component

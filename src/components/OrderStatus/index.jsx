@@ -3,7 +3,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Card } from 'react-bootstrap'
-import './OrderStatus.css'
+import './style.css'
 
 const OrderStatus = ({ color, amount, status }) => {
   return (

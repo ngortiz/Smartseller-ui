@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
-import OrderStatus from '../components/OrderStatus'
-import CustomDatePicker from '../components/CustomDatePicker'
-import DataTable from '../components/DataTable'
+import OrderStatus from '../components/OrderStatus/index'
+import CustomDatePicker from '../components/CustomDatePicker/index'
+
+import DataTable from '../components/DataTable/index'
 import './OrdersSummary.css'
 
 const OrdersSummary = () => {
