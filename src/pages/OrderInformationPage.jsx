@@ -5,26 +5,62 @@ const OrderInformationPage = () => {
   return (
     <Container>
       <Row>
+        <h1>Visualización del Pedido</h1>
+      </Row>
+      <Row>
         <Col className='order-info-col'>
-          <h1>Visualizacion del Pedido</h1>
-          <p>Nro.Pedido(interno): #1</p>
-          <p>Nro.Pedido(Pagopar): 11111111</p>
-          <p>Nro.Comprobante(Pagopar):1111</p>
-          <p>Estdo del Pedido: antendido</p>
-          <p>Cliente: Enrique Vera</p>
-          <p>Direccion: Barrio Ka'avyrory 1508,Encarnacion,Paraguay</p>
-          <p>Telefono de Contacto:111111111</p>
-          <p>RUC./CI.: 1111111</p>
+          <p>
+            <strong>Nro.Pedido(interno):</strong> <label>11111111</label>
+          </p>
+          <p>
+            <strong>Nro.Pedido(Pagopar):</strong> <label>11111111</label>
+          </p>
+          <p>
+            <strong>Nro.Comprobante(Pagopar):</strong> <label>11111111</label>
+          </p>
+          <p>
+            <strong>Estdo del Pedido:</strong> <label>antendido</label>
+          </p>
+          <p>
+            <strong>Cliente:</strong> <label>Enrique Vera</label>
+          </p>
+          <p>
+            <strong>Direccion:</strong>
+            <label>Barrio Ka'avyrory 1508, Encarnacion, Paraguay</label>
+          </p>
+          <p>
+            <strong>Telefono de Contacto:</strong> <label>111111111</label>
+          </p>
+          <p>
+            <strong>RUC./CI.:</strong> <label>1111111</label>
+          </p>
         </Col>
         <Col className='order-info-col'>
-          <p>Fecha de Pedido: 12:10 2024 01 26 </p>
-          <p>Fecha de Pago: 12:10 2024 01 26</p>
-          <p>Estado de Pago:1111</p>
-          <p>Estdo del Pedido: completado(Tarjeta de Credito)</p>
-          <p>Total: US$10.5</p>
-          <p>Total Pagado: US$10.5</p>
-          <p>Total Deuda: 0.00US$ </p>
-          <p>RUC./CI.: 1111111</p>
+          <p>
+            <strong>Fecha de Pedido:</strong> <label>12:10 2024 01 26</label>
+          </p>
+          <p>
+            <strong>Fecha de Pago:</strong> <label>12:10 2024 01 26</label>
+          </p>
+          <p>
+            <strong>Estado de Pago:</strong> <label>completado</label>
+          </p>
+          <p>
+            <strong>Estado del Pedido:</strong>{' '}
+            <label>completado(Tarjeta de Credito)</label>
+          </p>
+          <p>
+            <strong>Total:</strong> <label>US$10.5</label>
+          </p>
+          <p>
+            <strong>Total Pagado:</strong> <label>US$10.5</label>
+          </p>
+          <p>
+            <strong>Total Deuda:</strong> <label>0.00US$</label>
+          </p>
+          <p>
+            <strong>RUC./CI.:</strong> <label>1111111</label>
+          </p>
         </Col>
       </Row>
 
@@ -64,9 +100,9 @@ const OrderInformationPage = () => {
       <Col>
         <div className='detalles-adicionales'>
           <p>Costo de Envío: </p>
-          <p>Subtotales</p>
-          <p>Cupón de Descuento</p>
-          <p>Total a Pagar</p>
+          <p>Subtotales:</p>
+          <p>Cupón de Descuento:</p>
+          <p>Total a Pagar:</p>
         </div>
       </Col>
 

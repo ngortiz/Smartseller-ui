@@ -1,27 +1,27 @@
-/* style.css */
-
-/* Estilo general */
 .container {
   margin-top: 30px;
+  background-color: rgb(219, 210, 210);
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 15px;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  display: contents;
 }
 
 .order-info-col {
   background-color: #f5f5f5;
   padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  border-radius: 1px;
+  margin-bottom: 10px;
 }
 
 .order-info-col p {
   font-size: small;
   color: #555;
   margin-bottom: 10px;
+  line-height: 1.6;
 }
 
 .comprobante h2 {
@@ -55,8 +55,8 @@ th {
 
 .detalles-adicionales {
   background-color: #f5f5f5;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 15px;
+  border-radius: 5px;
   margin-bottom: 20px;
 }
 
@@ -67,7 +67,19 @@ th {
 }
 
 .detalles-adicionales p {
-  font-size: 16px;
+  font-size: small;
   color: #555;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+}
+
+.order-info-col p strong {
+  font-weight: bold;
+  margin-right: 10px;
+  display: inline-block;
+  min-width: 180px;
+}
+
+.order-info-col p label {
+  font-weight: normal;
+  color: #007bff;
 }
