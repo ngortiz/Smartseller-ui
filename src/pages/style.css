@@ -1,33 +1,43 @@
-.container {
-  margin-top: 30px;
-  background-color: rgb(219, 210, 210);
-}
+/* style.css */
 
-h1 {
-  font-size: 15px;
-  color: #333;
-  margin-bottom: 15px;
-  display: contents;
+.container {
+  margin-top: 15px;
+  background-color: #f0f0f0;
 }
 
 .order-info-col {
-  background-color: #f5f5f5;
-  padding: 20px;
+  background-color: #ffffff;
+  padding: 25px;
   border-radius: 1px;
   margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.order-info-col p {
-  font-size: small;
-  color: #555;
-  margin-bottom: 10px;
-  line-height: 1.6;
-}
-
-.comprobante h2 {
-  font-size: 20px;
-  color: #333;
+.column-content {
   margin-bottom: 15px;
+}
+
+.column-content h2 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.column-content p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.comprobante {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 1px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 table {
@@ -44,42 +54,39 @@ td {
 
 th,
 td {
-  padding: 5px;
+  padding: 12px;
   text-align: left;
-  font-size: small;
-}
-
-th {
+  font-size: 14px;
   background-color: #f2f2f2;
 }
 
-.detalles-adicionales {
-  background-color: #f5f5f5;
-  padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 20px;
+th {
+  background-color: #f0f0f0;
 }
 
-.detalles-adicionales h2 {
-  font-size: 20px;
-  color: #333;
-  margin-bottom: 15px;
+.detalles-adicionales {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 1px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
 }
 
 .detalles-adicionales p {
-  font-size: small;
+  font-size: 14px;
   color: #555;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
+  line-height: 1.6;
 }
 
-.order-info-col p strong {
-  font-weight: bold;
-  margin-right: 10px;
-  display: inline-block;
-  min-width: 180px;
+.detalles-adicionales h2 {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 2px;
+  white-space: pre-line;
 }
-
-.order-info-col p label {
-  font-weight: normal;
-  color: #007bff;
+.visualizacion-pedido {
+  color: #333;
+  font-size: 18px;
 }
