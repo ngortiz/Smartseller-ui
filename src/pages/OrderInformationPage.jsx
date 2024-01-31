@@ -1,6 +1,11 @@
 import React from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import './style.css'
+
+const orangeButtonStyle = {
+  backgroundColor: '#ffA500',
+  borderColor: '#755316'
+}
 const OrderInformationPage = () => {
   return (
     <Container>
@@ -138,10 +143,7 @@ const OrderInformationPage = () => {
           <Button variant='primary'>
             <i className='bi bi-arrow-left-circle'></i> Volver atras
           </Button>
-          <Button
-            variant='secondary'
-            style={{ backgroundColor: '#ffA500', borderColor: '#715728' }}
-          >
+          <Button variant='secondary' style={orangeButtonStyle}>
             <i className='bi bi-printer'></i> Imprimir
           </Button>
         </Col>
