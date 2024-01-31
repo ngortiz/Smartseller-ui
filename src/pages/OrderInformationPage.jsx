@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import './style.css'
 const OrderInformationPage = () => {
   return (
@@ -13,7 +13,7 @@ const OrderInformationPage = () => {
               <strong>Cliente:</strong> Enrique Vera
             </p>
             <p>
-              <strong>Direccion:</strong>{' '}
+              <strong>Direccion:</strong>
               <label>Barrio Ka'avyrory 1508, Encarnacion, Paraguay</label>
             </p>
             <p>
@@ -96,20 +96,26 @@ const OrderInformationPage = () => {
       </Row>
 
       <Col>
-        <div className='detalles-adicionales'>
-          <p>
-            Costo de Envío: <strong>US$0.00</strong>
-          </p>
-          <p>
-            Subtotales: <strong>US$50.00</strong>
-          </p>
-          <p>
-            Cupón de Descuento: <strong>No</strong>
-          </p>
-          <p>
-            Total a Pagar: <strong>US$45.00</strong>
-          </p>
-        </div>
+        <table className='table'>
+          <tbody>
+            <tr>
+              <td className='colspan-4'>Costo de Envio</td>
+              <td className='td-2'>$8.00</td>
+            </tr>
+            <tr>
+              <td className='colspan-4'>Subtotales</td>
+              <td className='td-2'>$8.00</td>
+            </tr>
+            <tr>
+              <td className='colspan-4'>Cupon de Descuento</td>
+              <td className='td-2'>No tiene</td>
+            </tr>
+            <tr>
+              <td className='colspan-4'>Total a Pagar</td>
+              <td className='td-2'>$8.00</td>
+            </tr>
+          </tbody>
+        </table>
       </Col>
 
       <Row>
@@ -125,6 +131,19 @@ const OrderInformationPage = () => {
               </thead>
             </table>
           </div>
+        </Col>
+      </Row>
+      <Row className='mt-4'>
+        <Col className='button-container'>
+          <Button variant='primary'>
+            <i className='bi bi-arrow-left-circle'></i> Volver atras
+          </Button>
+          <Button
+            variant='secondary'
+            style={{ backgroundColor: '#ffA500', borderColor: '#715728' }}
+          >
+            <i className='bi bi-printer'></i> Imprimir
+          </Button>
         </Col>
       </Row>
     </Container>
