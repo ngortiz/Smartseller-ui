@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
-import './style.css'
+import './OrderInformationPage.css'
 
 const orangeButtonStyle = {
   backgroundColor: '#ffA500',
