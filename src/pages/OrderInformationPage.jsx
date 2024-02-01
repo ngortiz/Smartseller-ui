@@ -4,12 +4,14 @@ import './OrderInformationPage.css'
 
 const orangeButtonStyle = {
   backgroundColor: '#ffA500',
-  borderColor: '#755316'
+  borderColor: '#755316',
+  fontfamily: 'Times New Roman'
 }
+
 const OrderInformationPage = () => {
   return (
     <Container>
-      <h1 className='visualizacion-pedido'>Visualización del Pedido</h1>
+      <h1 className='order-view'>Visualización del Pedido</h1>
       <Row>
         <Col className='order-info-col'>
           <div className='column-content'>
@@ -113,7 +115,7 @@ const OrderInformationPage = () => {
             </tr>
             <tr>
               <td className='colspan-4'>Cupon de Descuento</td>
-              <td className='td-2'>No tiene</td>
+              <td className='td-2'>Ninguno</td>
             </tr>
             <tr>
               <td className='colspan-4'>Total a Pagar</td>
@@ -125,7 +127,7 @@ const OrderInformationPage = () => {
 
       <Row>
         <Col>
-          <div className='detalles-adicionales'>
+          <div className='additional-details'>
             <table>
               <thead>
                 <tr>

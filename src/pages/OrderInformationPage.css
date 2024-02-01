@@ -1,8 +1,6 @@
-/* style.css */
-
 .container {
   margin-top: 15px;
-  background-color: #f1f1f1;
+  background-color: #f0f0f0;
 }
 
 .order-info-col {
@@ -30,29 +28,29 @@
 .column-content p {
   font-size: 14px;
   color: #333;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .comprobante {
   background-color: #ffffff;
   padding: 10px;
   border-radius: 1px;
-  margin-bottom: 0px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin-right: -10px;
+  margin-bottom: 3px;
   color: #333;
-  border: 1px solid #ddd;
 }
 
 table,
 th,
 td {
   border: 1px solid #ddd;
+  background-color: #007bff;
 }
 
 th,
@@ -60,8 +58,7 @@ td {
   padding: 12px;
   text-align: left;
   font-size: 14px;
-  background-color: #f2f2f2;
-  border-top: 1px solid #ddd;
+  background-color: #fff;
   color: #333;
 }
 
@@ -71,42 +68,32 @@ th {
 .tb-4 {
   font-weight: bold;
   color: #007bff;
+  margin-left: 10px;
 }
-/* Agrega este estilo para las celdas con colspan='4' */
+
 .colspan-4 {
   font-weight: bold;
 }
 
-.detalles-adicionales {
-  background-color: #ffffff;
-  padding: 15px;
-  border-radius: 1px;
+.additional-details {
+  background-color: #f0f0f0;
+  padding: 10 10px;
   margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(223, 20, 20, 0.1);
-  line-height: 1.6;
-  border-top: 1px solid #ddd;
+}
+.additional-details p {
+  background-color: #fff;
 }
 
-.detalles-adicionales p {
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 2px;
-  line-height: 1.6;
-  border-top: 1px solid #ddd;
+.additional-details h2 {
+  background-color: #fff;
 }
 
-.detalles-adicionales h2 {
-  font-size: 15px;
+.order-view {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
   color: #333;
-  margin-bottom: 2px;
-  white-space: pre-line;
-  border-top: 1px solid #ddd;
-}
-
-.visualizacion-pedido {
-  color: #333;
-  font-size: 19px;
-  border-top: 1px solid #ddd;
+  border-width: 10px;
 }
 
 .button-container {
@@ -114,7 +101,7 @@ th {
 }
 
 .button-container button {
-  margin-right: 10px;
+  margin-left: 15px;
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
@@ -123,6 +110,7 @@ th {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .button-container button:last-child {
