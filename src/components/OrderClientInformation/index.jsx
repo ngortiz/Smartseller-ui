@@ -15,7 +15,7 @@ const OrderClientInformation = ({ client, address, phone, ruc }) => {
           <label>{address}</label>
         </p>
         <p>
-          <strong>Teléfono de Contacto:</strong> <label>{phone}</label>
+          <strong>Celular:</strong> <label>{phone}</label>
         </p>
         <p>
           <strong>RUC./CI.:</strong> <label>{ruc}</label>

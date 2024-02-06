@@ -1,9 +1,20 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import './style.css'
 
-const OrderDetails = () => {
+const OrderDetails = ({
+  orderItems,
+  shippingCost,
+  subtotal,
+  discountCoupon,
+  totalAmount,
+  liquidationIVA5,
+  liquidationIVA10,
+  totalIVA
+}) => {
   return (
     <div className='comprobante'>
-      <table>
+      <table className='order-table'>
         <thead>
           <tr>
             <th>Cantidad</th>
@@ -17,36 +28,46 @@ const OrderDetails = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>001</td>
-            <td>Producto</td>
-            <td>$10.00</td>
-            <td>$8.00</td>
-            <td>$0.00</td>
-            <td>$1.00</td>
-            <td>$0.50</td>
-          </tr>
+          {orderItems.map((item, index) => (
+            <tr key={index}>
+              <td>{item.quantity}</td>
+              <td>{item.internalCode}</td>
+              <td>{item.productName}</td>
+              <td>${item.unitPrice}</td>
+              <td>${item.offerPrice}</td>
+              <td>${item.exempt}</td>
+              <td>${item.iva10}</td>
+              <td>${item.iva5}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
-      <table className='table'>
+      <table className='summary-table'>
         <tbody>
           <tr>
-            <td className='colspan-4'>Costo de Envio</td>
-            <td className='td-2'>$8.00</td>
+            <td className='summary-cell' colSpan='4'>
+              Costo de Envío
+            </td>
+            <td className='summary-value'>${shippingCost}</td>
           </tr>
           <tr>
-            <td className='colspan-4'>Subtotales</td>
-            <td className='td-2'>$8.00</td>
+            <td className='summary-cell' colSpan='4'>
+              Subtotal
+            </td>
+            <td className='summary-value'>${subtotal}</td>
           </tr>
           <tr>
-            <td className='colspan-4'>Cupon de Descuento</td>
-            <td className='td-2'>Ninguno</td>
+            <td className='summary-cell' colSpan='4'>
+              Cupón de Descuento
+            </td>
+            <td className='summary-value'>{discountCoupon}</td>
           </tr>
           <tr>
-            <td className='colspan-4'>Total a Pagar</td>
-            <td className='td-2'>$8.00</td>
+            <td className='summary-cell' colSpan='4'>
+              Total a Pagar
+            </td>
+            <td className='summary-value'>${totalAmount}</td>
           </tr>
         </tbody>
       </table>
@@ -55,15 +76,26 @@ const OrderDetails = () => {
         <table>
           <thead>
             <tr>
-              <th>Liquidacion Del IVA(5%): US$ 0.00</th>
-              <th>Liquidacion Del IVA(10%): US$ 0.00</th>
-              <th>Total Del IVA: US$ 0.00</th>
+              <th>Liquidación Del IVA (5%): US$ {liquidationIVA5}</th>
+              <th>Liquidación Del IVA (10%): US$ {liquidationIVA10}</th>
+              <th>Total Del IVA: US$ {totalIVA}</th>
             </tr>
           </thead>
         </table>
       </div>
     </div>
   )
+}
+
+OrderDetails.propTypes = {
+  orderItems: PropTypes.array.isRequired,
+  shippingCost: PropTypes.number.isRequired,
+  subtotal: PropTypes.number.isRequired,
+  discountCoupon: PropTypes.string.isRequired,
+  totalAmount: PropTypes.number.isRequired,
+  liquidationIVA5: PropTypes.number.isRequired,
+  liquidationIVA10: PropTypes.number.isRequired,
+  totalIVA: PropTypes.number.isRequired
 }
 
 export default OrderDetails

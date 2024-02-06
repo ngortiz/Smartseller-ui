@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Col } from 'react-bootstrap'
 
-export const OrderData = ({ number, comprobante, state, date }) => {
+export const OrderData = ({ number, voucher, state, date }) => {
   return (
     <div className='column-content'>
       <Col className='order-info-col'>
@@ -12,8 +12,8 @@ export const OrderData = ({ number, comprobante, state, date }) => {
           <strong>Nro.Pedido:</strong> <label>{number}</label>
         </p>
         <p>
-          <strong>Nro.Comprobante(Pagopar):</strong>{' '}
-          <label>{comprobante}</label>
+          <strong>Nro.Comprobante(Pagopar):</strong>
+          <label>{voucher}</label>
         </p>
         <p>
           <strong>Estado del Pedido:</strong> <label>{state}</label>
@@ -28,7 +28,7 @@ export const OrderData = ({ number, comprobante, state, date }) => {
 
 OrderData.propTypes = {
   number: PropTypes.string.isRequired,
-  comprobante: PropTypes.string.isRequired,
+  voucher: PropTypes.string.isRequired,
   stat: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired
 }

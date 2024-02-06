@@ -4,37 +4,54 @@ import './OrderInformationPage.css'
 import OrderClientInformation from '../components/OrderClientInformation'
 import OrderData from '../components/OrderData'
 import OrderPayment from '../components/OrderPayment'
+import OrderDetails from '../components/OrderDetails'
 
 const OrderInformationPage = () => {
+  const orderItems = [
+    {
+      quantity: 1,
+      internalCode: '001',
+      productName: 'Producto 1',
+      unitPrice: 10.0,
+      offerPrice: 8.0,
+      exempt: 0.0,
+      iva10: 1.0,
+      iva5: 0.5
+    }
+  ]
+
+  const shippingCost = 8.0
+  const subtotal = 8.0
+  const discountCoupon = 'Ninguno'
+  const totalAmount = 8.0
+  const liquidationIVA5 = 0.0
+  const liquidationIVA10 = 0.0
+  const totalIVA = 0.0
+
   return (
     <Container>
       <header>
         <h1 className='order-view'>Visualización del Pedido</h1>
       </header>
-      <Row>
-        {' '}
+      <Row className='justify-content-center'>
         <Col>
           <OrderClientInformation
             client='Enrique Vera'
-            address="Barrio Ka'avyrory 1508, Encarnacion, Paraguay"
+            address='Encarnacion, Paraguay'
             phone='111111111'
             ruc='1111111'
             color='#ffA500'
           />
         </Col>
-      </Row>
-
-      <Row>
         <Col>
           <OrderData
             number='11111111'
-            comprobante='1111'
+            voucher='1111'
             state='atendido'
             date='12:10 2024 01 26'
           />
         </Col>
-      </Row>
-      <Row>
+
         <Col>
           <OrderPayment
             payment_state='completado(T.Debito)'
@@ -45,75 +62,20 @@ const OrderInformationPage = () => {
         </Col>
       </Row>
 
-      <Row>
+      <Row className='justify-content-center'>
         <Col>
-          <div className='comprobante'>
-            <table>
-              <thead>
-                <tr>
-                  <th>Cantidad</th>
-                  <th>Cod. Interno</th>
-                  <th>Producto</th>
-                  <th>Precio Unitario</th>
-                  <th>Precio Oferta</th>
-                  <th>Exenta</th>
-                  <th>IVA 10%</th>
-                  <th>IVA 5%</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>001</td>
-                  <td>Producto </td>
-                  <td>US$10.00</td>
-                  <td>US$8.00</td>
-                  <td>US$0.00</td>
-                  <td>US$1.00</td>
-                  <td>US$0.50</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <OrderDetails
+            orderItems={orderItems}
+            shippingCost={shippingCost}
+            subtotal={subtotal}
+            discountCoupon={discountCoupon}
+            totalAmount={totalAmount}
+            liquidationIVA5={liquidationIVA5}
+            liquidationIVA10={liquidationIVA10}
+            totalIVA={totalIVA}
+          />
         </Col>
       </Row>
-
-      <Col>
-        <table className='table'>
-          <tbody>
-            <tr>
-              <td className='colspan-4'>Costo de Envio</td>
-              <td className='td-2'>US$8.00</td>
-            </tr>
-            <tr>
-              <td className='colspan-4'>Subtotales</td>
-              <td className='td-2'>$8.00</td>
-            </tr>
-            <tr>
-              <td className='colspan-4'>Cupon de Descuento</td>
-              <td className='td-2'>Ninguno</td>
-            </tr>
-            <tr>
-              <td className='colspan-4'>Total a Pagar</td>
-              <td className='td-2'>$8.00</td>
-            </tr>
-          </tbody>
-        </table>
-      </Col>
-
-      <Col>
-        <div className='additional-details'>
-          <table>
-            <thead>
-              <tr>
-                <th>Liquidacion Del IVA(5%): US$ 0.00</th>
-                <th>Liquidacion Del IVA(10%): US$ 0.00</th>
-                <th>Total Del IVA: US$ 0.00</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </Col>
 
       <Row className='mt-4'>
         <Col className='button-container'>
