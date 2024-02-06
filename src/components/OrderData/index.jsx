@@ -29,7 +29,7 @@ export const OrderData = ({ number, voucher, state, date }) => {
 OrderData.propTypes = {
   number: PropTypes.string.isRequired,
   voucher: PropTypes.string.isRequired,
-  stat: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired
 }
 

@@ -2,37 +2,32 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
 
-export const OrderPayment = ({
-  payment_state,
-  total,
-  total_payment,
-  total_debt
-}) => {
+export const OrderPayment = ({ paymentState, total, totalPaid, totalDebt }) => {
   return (
     <div className='column-content'>
       <h2 className='title'>Pago</h2>
       <p>
         <strong>Estado de Pago:</strong>
-        <label>{payment_state}</label>
+        <label>{paymentState}</label>
       </p>
       <p>
         <strong>Total:</strong> <label>{total}</label>
       </p>
       <p>
-        <strong>Total Pagado:</strong> <label>{total_payment}</label>
+        <strong>Total Pagado:</strong> <label>{totalPaid}</label>
       </p>
       <p>
-        <strong>Total Deuda:</strong> <label>{total_debt}</label>
+        <strong>Total Deuda:</strong> <label>{totalDebt}</label>
       </p>
     </div>
   )
 }
 
 OrderPayment.propTypes = {
-  payment_state: PropTypes.string.isRequired,
+  paymentState: PropTypes.string.isRequired,
   total: PropTypes.string.isRequired,
-  total_payment: PropTypes.string.isRequired,
-  total_debt: PropTypes.string.isRequired
+  totalPaid: PropTypes.string.isRequired,
+  totalDebt: PropTypes.string.isRequired
 }
 
 export default OrderPayment

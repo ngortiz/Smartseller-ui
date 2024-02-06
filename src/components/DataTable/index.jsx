@@ -47,8 +47,7 @@ const DataTable = ({ orders }) => {
             <tr key={order.id}>
               <td>{item}</td>
               <td>
-                {' '}
-                <Link to='/order/information'>{order.number}</Link>
+                <Link to={`/orders/${order.id}`}>{order.number}</Link>
               </td>
               <td>{order.client}</td>
               <td>{order.state}</td>
