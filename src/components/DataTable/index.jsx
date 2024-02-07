@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import { Table, Form } from 'react-bootstrap'
 import './style.css'
 
+import { Link } from 'react-router-dom'
+
 const DataTable = ({ orders }) => {
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -44,7 +46,9 @@ const DataTable = ({ orders }) => {
           {filteredOrders.map((order, item) => (
             <tr key={order.id}>
               <td>{item}</td>
-              <td>{order.number}</td>
+              <td>
+                <Link to={`/orders/${order.id}`}>{order.number}</Link>
+              </td>
               <td>{order.client}</td>
               <td>{order.state}</td>
               <td>{order.payment_state}</td>

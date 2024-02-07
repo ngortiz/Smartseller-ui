@@ -1,0 +1,71 @@
+body {
+  font-family: 'Times New Roman', serif;
+}
+
+header {
+  background-color: #f8f8f8;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.order-view {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.title-h2 {
+  color: #333;
+}
+
+.comprobante table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.comprobante th,
+.comprobante td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.back-button {
+  background-color: darkblue;
+  color: white;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Source Sans Pro', sans-serif;
+  transition: background-color 0.3s ease;
+  border: 1px solid #42484e;
+  font-size: 18px;
+}
+
+.print-button {
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid rgb(97, 80, 50);
+  font-family: 'Source Sans Pro', sans-serif;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+}
+
+.button-container {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.additional-details th {
+  background-color: #fff;
+  color: #333;
+  padding: 10px;
+  text-align: center;
+}
