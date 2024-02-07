@@ -3,7 +3,7 @@ import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
 import { OrderData } from '../OrderData'
 
-test('verifica si el texto "Pedido" está presente en la salida renderizada', () => {
+test('checks if the text "Order" is present in the rendered output', () => {
   // Render the component
   const { getByText } = render(
     <OrderData
@@ -15,6 +15,6 @@ test('verifica si el texto "Pedido" está presente en la salida renderizada', ()
   )
 
   // Check if the text "Order" is present
-  const pedidoTexto = getByText('Pedido')
-  expect(pedidoTexto).toBeInTheDocument()
+  const orderText = getByText('Pedido')
+  expect(orderText).toBeInTheDocument()
 })

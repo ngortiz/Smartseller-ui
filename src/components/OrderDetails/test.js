@@ -3,7 +3,7 @@ import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
 import OrderDetails from '../OrderDetails'
 
-test('verifica si "Producto 1" está presente en la salida renderizada', () => {
+test('checks if "Product 1" is present in the rendered output', () => {
   const orderItems = [
     {
       quantity: 2,
