@@ -3,7 +3,7 @@
   padding: 15px;
   margin: 15px;
   margin-right: 8px;
-  margin-left: 8px;
+  margin-left: -1px;
   width: 100%;
 }
 
@@ -32,11 +32,13 @@
   background-color: #f2f2f2;
   padding: 8px;
   text-align: right;
+  width: 90%;
 }
 
 .summary-value {
   padding: 8px;
   text-align: right;
+  width: 10%;
 }
 
 .additional-details {

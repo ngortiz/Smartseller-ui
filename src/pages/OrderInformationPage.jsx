@@ -54,7 +54,7 @@ const OrderInformationPage = () => {
 
         <Col>
           <OrderPayment
-            payment_state='completado(T.Debito)'
+            paymentState='completado(T.Debito)'
             total='US$ 10.5'
             total_payment='US$ 10.5'
             total_debt='US$ 0.00'
@@ -79,10 +79,10 @@ const OrderInformationPage = () => {
 
       <Row className='mt-4'>
         <Col className='button-container'>
-          <Button variant='primary'>
+          <Button className='back-button'>
             <i className='bi bi-arrow-left-circle'></i> Volver atras
           </Button>
-          <Button className='button-secondary'>
+          <Button className='print-button'>
             <i className='bi bi-printer'></i> Imprimir
           </Button>
         </Col>

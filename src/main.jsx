@@ -18,10 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </Col>
           <Col xs={9}>
             <Routes>
-              <Route
-                path='/order/information'
-                element={<OrderInformationPage />}
-              />
+              <Route path='/orders/:id' element={<OrderInformationPage />} />
               <Route path='/orders/summary' element={<OrdersSummary />} />
             </Routes>
           </Col>
