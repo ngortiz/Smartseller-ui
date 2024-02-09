@@ -45,6 +45,7 @@ header {
   border: 1px solid #42484e;
   font-size: 18px;
   font-weight: bold;
+  width: 20%;
 }
 
 .print-button {
@@ -58,6 +59,7 @@ header {
   transition: background-color 0.3s ease;
   font-size: 18px;
   font-weight: bold;
+  width: 20%;
 }
 
 .button-container {
