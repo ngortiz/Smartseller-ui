@@ -1,102 +1,100 @@
-header {
-  font-size: 16px;
+.order-control-header {
+  font-size: 24px;
   margin-bottom: 20px;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #ddd;
-  font-weight: bold;
-}
-
-.col-title-container {
-  border: 1px solid #ccc;
-  border-radius: 1px;
-  padding: 20px;
-  margin-bottom: 20px;
-  background-color: #f8f9fa;
-  width: 150%;
-  margin-right: 10px;
-  font-weight: 489;
-  line-height: 0.3;
-}
-
-.col-title {
-  font-size: 15px;
-  text-align: center;
-  margin-bottom: 0;
+  padding: 15px;
+  background-color: #fff;
   color: #333;
-  margin-right: 25px;
-}
-
-.card-body {
-  background-color: #ccc;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.Text-card {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 11px;
-  margin-bottom: 10px;
-  color: #555;
   text-align: justify;
-  padding: 0px;
 }
 
-.title-card {
-  margin: 0;
-  padding: 1px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 12px;
+.order-control-container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.order-column {
+  flex: 0 0 calc(34% - 20px);
+  margin-bottom: 20px;
+}
+
+.order-column-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+  background-color: #fff;
+}
+
+.order-card {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-card-title {
+  font-size: 15px;
   font-weight: bold;
   color: #333;
-  border-bottom: 1px solid #ddd;
-  background-color: #ccc;
-  text-align: center;
+  margin-bottom: 10px;
 }
 
-.card .btn-primary {
-  display: block;
-  width: 80%;
-  text-align: center;
-  margin-top: 20px;
-  padding: 5px;
+.order-card-text {
   font-size: 12px;
+  color: #666;
+  line-height: 1.6;
+  margin-left: 25px;
+}
+
+.order-card-button {
+  display: block;
+  width: 60%;
+  padding: 10px 10px;
+  text-align: center;
   background-color: #007bff;
   color: #fff;
-  border-bottom: 1px solid #0e1e2e;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  flex: center;
-  margin-left: 10px;
+  transition: background-color 0.3s ease;
+  margin-left: 30px;
+  font-size: medium;
 }
 
-.card .btn-primary:hover {
+.order-card-button:hover {
   background-color: #0056b3;
 }
 
-/* Estilos para los diferentes datos dentro de los cards */
-.card .client-name,
-.card .order-number,
-.card .quantity {
+.order-control-span {
   color: #333;
-  font-size: 11px;
+  line-height: 2.6;
+}
+.separator {
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
-/* Estilo para las columnas */
-.col {
-  display: flex;
-  flex-direction: column;
-  margin-right: 30px;
+.estado-no-atendido {
+  background-color: #f56954;
 }
 
-.container {
-  margin: 40px auto;
+.estado-preparando {
+  background-color: #00a65a;
 }
 
-/* Estilo para las columnas con un ancho específico */
-.col-md-1 {
-  flex: 0 0 auto;
-  width: 14%;
+.estado-preparado {
+  background-color: #0073b7;
+}
+
+.estado-enviando {
+  background-color: #ff851b;
+}
+
+.estado-sucursal {
+  background-color: #f39c12;
+}
+
+.estado-atendido {
+  background-color: #222222;
 }
