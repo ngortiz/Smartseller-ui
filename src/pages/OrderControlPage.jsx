@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Card, Col, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import './OrderControlPage.css'
 import CustomDatePicker from '../components/CustomDatePicker'
 
@@ -10,7 +9,7 @@ const OrderControlPage = () => {
       id: 2,
       number: 'ORD-002',
       client: 'Camila Vera',
-      state: 'Enviando',
+      state: 'No Atendidos',
       product_quantity: '6',
       payment_method: 'Sucursal',
       created_date: '08-02-2024 10:10',
@@ -62,14 +61,16 @@ const OrderControlPage = () => {
   return (
     <div className='order-control-container'>
       <header className='order-control-header'>Control de Pedidos</header>
-      <Row>
+      <Row className='row-cols'>
         <Col className='order-date-col'>
+          <h1 className='date-picker-label'>Inicio Fecha de Creación: </h1>
           <CustomDatePicker
             selectedDate={startDate}
             handleChange={handleStartDateChange}
           />
         </Col>
         <Col className='order-date-col'>
+          <h1 className='date-picker-label'>Fin Fecha de Creación: </h1>
           <CustomDatePicker
             selectedDate={endDate}
             handleChange={handleEndDateChange}
@@ -78,7 +79,7 @@ const OrderControlPage = () => {
       </Row>
       <Row className='row-cols'>
         {orderColumns.map((column, index) => (
-          <Col key={index} className='column-card'>
+          <Col key={index} md={2} className='column-card'>
             <div className='column-with-card'>
               <h4 className='order-column-texto'>{column.title}</h4>
               {orders.map(order => {
@@ -90,24 +91,20 @@ const OrderControlPage = () => {
                         column.filterState
                       )}`}
                     >
-                      <Card.Body>
-                        <Card.Title className='order-card-title'>
-                          Detalle de compra
-                        </Card.Title>
+                      <Card.Body className='order-card-content'>
                         <Card.Text className='order-card-text'>
-                          <span>Cliente: {order.client}</span>
-                          <br />
-                          <span>Cantidad Pedido: {order.product_quantity}</span>
-                          <br />
-                          <span>Pedido Numero: {order.number}</span>
-                          <br />
+                          <span className='texto-spam'>
+                            <i className='bi bi-person-square'></i>
+                            {order.client}
+                          </span>
+
+                          <span className='texto-spam'>
+                            <i className='bi bi-calendar-check'></i>
+                            {order.end_creation}
+                          </span>
+
+                          <span className='texto-spam'>{order.number}</span>
                         </Card.Text>
-                        <Link
-                          to={`/orders/${order.id}`}
-                          className='order-card-button'
-                        >
-                          Ver Detalles
-                        </Link>
                       </Card.Body>
                     </Card>
                   )
