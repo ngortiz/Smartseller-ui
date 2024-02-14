@@ -1,4 +1,116 @@
-/* OrderControlPage.css */
+/* Estilo para el contenedor principal */
+.order-control-container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Estilo para el encabezado */
+.order-control-header {
+  font-size: 18px;
+  margin-bottom: 10%;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgb(13, 67, 155); /* Color: --blue-ribbon-900 */
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Estilo para las etiquetas de fecha */
+.order-label {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+/* Estilo para las columnas de fecha */
+.order-date-col {
+  margin-bottom: 8%;
+  margin-right: 5%;
+  margin-left: 3%;
+  text-align: center;
+}
+
+/* Estilo para las tarjetas de pedido */
+.order-card {
+  border: 1px solid rgb(218, 217, 217);
+  border-radius: 10px;
+  margin-bottom: 10%;
+  word-wrap: break-word;
+  width: auto;
+  box-shadow: 0 3px 3px 3px#b5e3ff;
+}
+
+/* Estilo para el contenido de las tarjetas de pedido */
+.order-card-content {
+  padding: 20%;
+  background-color: rgb(214, 238, 255); /* Color: --blue-ribbon-100 */
+}
+
+/* Estilo para el texto dentro de las tarjetas de pedido */
+.order-card-text {
+  font-size: 12px;
+  color: #555;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 5px;
+}
+
+/* Estilo para los iconos junto al texto */
+.texto-spam {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8%;
+}
+
+/* Estilo para los iconos */
+.texto-spam i {
+  margin-right: 10%;
+  font-size: small;
+}
+
+/* Estilo para las columnas */
+.column-card {
+  display: flex;
+  justify-content: center;
+}
+
+/* Estilo para el contenedor de cada columna */
+.column-with-card {
+  width: 150%;
+  border: 1px solid #9aa1a7; /* Color: --blue-ribbon-900 */
+  border-radius: 5px;
+  background-color: #edf8ff; /* Color: --blue-ribbon-200 */
+  text-align: center;
+  margin: -10px;
+}
+
+/* Estilo para el texto del título de columna */
+.order-column-texto {
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+  margin: 5px;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+  border-bottom: 3px solid rgb(218, 217, 217);
+}
+
+/* Estilo para el botón */
+.order-button {
+  background-color: #0e2a5d;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 30px;
+  font-family: 'Times New Roman', Times, serif;
+  box-shadow: 0 2px 2px #335;
+}
+
+.order-button:hover {
+  background-color: #0056b3;
+}
+/* OrderControlPage.css 
 .order-control-container {
   margin: 0 auto;
   max-width: 1200px;
@@ -44,29 +156,29 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: -5px;
+  width: 100%; 
   word-wrap: break-word;
   border: 1px solid rgb(172, 166, 166);
   border-radius: 10px;
-  padding: 25%;
+  padding: 20px; 
+  margin-right: -10px;
 }
 
 .order-card-text {
-  font-size: 12px;
+  font-size: 10px;
   color: #666;
-  line-height: 1.6;
+  line-height: 1.8;
   margin-right: 10%;
+  text-align: justify; 
 }
 
 .order-date-col {
   margin-bottom: 10%;
   margin-left: 10%;
 }
-.texto-spam {
-  color: aqua;
-}
 
 html,
 body {
   background: #f0f0f0;
 }
+*/
