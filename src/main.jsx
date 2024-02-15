@@ -7,7 +7,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import LeftNavigationBar from './components/LeftNavigationBar'
 import OrdersSummary from './pages/OrdersSummary'
 import OrderInformationPage from './pages/OrderInformationPage'
-import OrderControlPage from './pages/OrderControlPage'
+import OrderBoardPage from './pages/OrderBoardPage'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -21,10 +21,7 @@ createRoot(document.getElementById('root')).render(
             <Routes>
               <Route path='/orders/:id' element={<OrderInformationPage />} />
               <Route path='/orders/summary' element={<OrdersSummary />} />
-              <Route
-                path='/orders/control/page'
-                element={<OrderControlPage />}
-              />
+              <Route path='/order/board' element={<OrderBoardPage />} />
             </Routes>
           </Col>
         </Row>

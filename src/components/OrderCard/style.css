@@ -1,4 +1,4 @@
-/* Estilo para las tarjetas de pedido */
+/* Style for order cards */
 .order-card {
   border: 1px solid rgb(218, 217, 217);
   border-radius: 10px;
@@ -8,13 +8,13 @@
   box-shadow: 0 2px 2px 2px#053857;
 }
 
-/* Estilo para el contenido de las tarjetas de pedido */
+/* Style for order card content */
 .order-card-content {
   padding: 20%;
   background-color: rgb(214, 238, 255);
 }
 
-/* Estilo para el texto dentro de las tarjetas de pedido */
+/* Style for text inside order cards*/
 .order-card-text {
   font-size: 12px;
   color: #555;
@@ -22,26 +22,26 @@
   padding: 5px;
 }
 
-/* Estilo para los iconos junto al texto */
+/* Style for next tu text */
 .texto-spam {
   display: flex;
   align-items: center;
   margin-bottom: 8%;
 }
 
-/* Estilo para los iconos */
+/* Style for icons */
 .texto-spam i {
   margin-right: 10%;
   font-size: small;
 }
 
-/* Estilo para las columnas */
+/* Style for columns*/
 .column-card {
   display: flex;
   justify-content: center;
 }
 
-/* Estilo para el contenedor de cada columna */
+/* Style for the container of each column */
 .column-with-card {
   width: 150%;
   border: 1px solid #9aa1a7;
@@ -52,7 +52,7 @@
 }
 
 /* Estilo para el texto del título de columna */
-.order-column-texto {
+.order-column-text {
   font-size: 12px;
   font-weight: bold;
   color: #555;
@@ -60,4 +60,5 @@
   padding: 15px;
   font-family: Arial, sans-serif;
   border-bottom: 1px solid #9aa1a7;
+  text-transform: uppercase;
 }

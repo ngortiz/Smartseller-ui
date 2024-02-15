@@ -15,29 +15,24 @@ const OrderCard = ({ order, getClassForState, column }) => {
           <Card.Text className='order-card-text'>
             <span className='texto-spam'>
               <i className='bi bi-bag-fill'></i>
-              <span className='separator'></span>
               <Link to={`/orders/${order.id}`}>{order.number}</Link>
             </span>
             <span className='texto-spam'>
               <i className='bi bi-person-square'></i>
-              <span className='separator'></span>
               {order.client}
             </span>
 
             <span className='texto-spam'>
               <i className='bi bi-calendar-check'></i>
-              <span className='separator'></span>
-              {order.end_creation}
+              {order.endCreation}
             </span>
 
             <span className='texto-spam'>
               <i className='bi bi-credit-card'></i>
-              <span className='separator'></span>
-              {order.payment_method}
+              {order.paymentMethod}
             </span>
             <span className='texto-spam'>
               <i className='bi bi-credit-card'></i>
-              <span className='separator'></span>
               {order.total}
             </span>
           </Card.Text>

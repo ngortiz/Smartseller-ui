@@ -1,55 +1,55 @@
 import React, { useState } from 'react'
 import { Col, Row, Button } from 'react-bootstrap'
 
-import './OrderControlPage.css'
+import './OrderBoardPage.css'
 import CustomDatePicker from '../components/CustomDatePicker'
 import OrderCard from '../components/OrderCard'
 
-const OrderControlPage = () => {
+const OrderBoardPage = () => {
   const [orders] = useState([
     {
       id: 1,
       number: 'ORD-002',
       client: 'Lisa Vera',
-      state: 'NO ATENDIDOS',
-      product_quantity: '6',
-      payment_method: 'Sucursal',
-      created_date: '08-02-2024 10:10',
+      state: 'issued',
+      productQuantity: '6',
+      paymentMethod: 'Sucursal',
+      createdDate: '08-02-2024 10:10',
       total: 'US$ 10.5',
-      end_creation: '08-02-2024'
+      endCreation: '08-02-2024'
     },
     {
       id: 2,
       number: 'ORD-003',
       client: 'Juan Pérez',
-      state: 'PREPARANDO',
-      product_quantity: '3',
-      payment_method: 'Deposito',
-      created_date: '08-02-2024 11:20',
+      state: 'preparing',
+      productQuantity: '3',
+      paymentMethod: 'Deposito',
+      createdDate: '08-02-2024 11:20',
       total: 'US$ 15.25',
-      end_creation: '08-02-2024'
+      endCreation: '08-02-2024'
     },
     {
       id: 3,
       number: 'ORD-004',
       client: 'Paula V',
-      state: 'ENVIANDO',
-      product_quantity: '3',
-      payment_method: 'TC',
-      created_date: '08-02-2024 11:20',
+      state: 'delivering',
+      productQuantity: '3',
+      paymentMethod: 'TC',
+      createdDate: '08-02-2024 11:20',
       total: 'US$ 8.25',
-      end_creation: '09-02-2024'
+      endCreation: '09-02-2024'
     },
     {
       id: 4,
       number: 'ORD-005',
       client: 'Enrique v',
-      state: 'ATENDIDOS',
-      product_quantity: '3',
-      payment_method: 'T.C',
-      created_date: '10-02-2024 11:20',
+      state: 'dispatched',
+      productQuantity: '3',
+      paymentMethod: 'T.C',
+      createdDate: '10-02-2024 11:20',
       total: 'US$ 10.25',
-      end_creation: '10-02-2024'
+      endCreation: '10-02-2024'
     }
   ])
 
@@ -67,28 +67,28 @@ const OrderControlPage = () => {
   const handleSearch = () => {}
 
   const orderColumns = [
-    { title: 'NO ATENDIDOS', filterState: 'NO ATENDIDOS' },
-    { title: 'PREPARANDO', filterState: 'PREPARANDO' },
-    { title: 'PREPARADOS', filterState: 'PREPARADOS' },
-    { title: 'ENVIANDO', filterState: 'ENVIANDO' },
-    { title: 'SUCURSAL', filterState: 'SUCURSAL' },
-    { title: 'ATENDIDOS', filterState: 'ATENDIDOS' }
+    { title: 'No Atendidos', filterState: 'issued' },
+    { title: 'Preparando', filterState: 'preparing' },
+    { title: 'Preparados', filterState: 'prepared' },
+    { title: 'Enviando', filterState: 'delivering' },
+    { title: 'Sucursal', filterState: 'ready_to_pickup' },
+    { title: 'Atendidos', filterState: 'dispatched' }
   ]
 
   const getClassForState = state => {
     switch (state) {
-      case 'NO ATENDIDOS':
-        return 'estado-NO-atendido'
-      case 'PREPARANDO':
-        return 'estado-PREPARANDO'
-      case 'PREPARADOS':
-        return 'estado-preparado'
-      case 'ENVIANDO':
-        return 'estado-ENVIANDO'
-      case 'SUCURSAL':
-        return 'estado-SUCURSAL'
-      case 'ATENDIDOS':
-        return 'estado-atendido'
+      case 'issued':
+        return 'state-issued'
+      case 'preparing':
+        return 'state-preparing'
+      case 'prepared':
+        return 'state-prepared'
+      case 'delivering':
+        return 'state-delivering'
+      case 'ready_to_pickup':
+        return 'state-ready_to_pickup'
+      case 'dispatched':
+        return 'state-dispatched'
       default:
         return ''
     }
@@ -124,7 +124,7 @@ const OrderControlPage = () => {
         {orderColumns.map((column, index) => (
           <Col key={index} md={2} className='column-card'>
             <div className='column-with-card'>
-              <h4 className='order-column-texto'>{column.title}</h4>
+              <h4 className='order-column-text'>{column.title}</h4>
               {orders.map(order => {
                 if (order.state === column.filterState) {
                   return (
@@ -135,8 +135,9 @@ const OrderControlPage = () => {
                       column={column}
                     />
                   )
+                } else {
+                  return null
                 }
-                return null
               })}
             </div>
           </Col>
@@ -146,4 +147,4 @@ const OrderControlPage = () => {
   )
 }
 
-export default OrderControlPage
+export default OrderBoardPage
