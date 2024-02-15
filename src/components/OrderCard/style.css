@@ -1,0 +1,63 @@
+/* Estilo para las tarjetas de pedido */
+.order-card {
+  border: 1px solid rgb(218, 217, 217);
+  border-radius: 10px;
+  margin-bottom: 10%;
+  word-wrap: break-word;
+  width: auto;
+  box-shadow: 0 2px 2px 2px#053857;
+}
+
+/* Estilo para el contenido de las tarjetas de pedido */
+.order-card-content {
+  padding: 20%;
+  background-color: rgb(214, 238, 255);
+}
+
+/* Estilo para el texto dentro de las tarjetas de pedido */
+.order-card-text {
+  font-size: 12px;
+  color: #555;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 5px;
+}
+
+/* Estilo para los iconos junto al texto */
+.texto-spam {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8%;
+}
+
+/* Estilo para los iconos */
+.texto-spam i {
+  margin-right: 10%;
+  font-size: small;
+}
+
+/* Estilo para las columnas */
+.column-card {
+  display: flex;
+  justify-content: center;
+}
+
+/* Estilo para el contenedor de cada columna */
+.column-with-card {
+  width: 150%;
+  border: 1px solid #9aa1a7;
+  border-radius: 5px;
+  background-color: #eff9ff;
+  text-align: center;
+  margin: -10px;
+}
+
+/* Estilo para el texto del título de columna */
+.order-column-texto {
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+  margin: 5px;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+  border-bottom: 1px solid #9aa1a7;
+}

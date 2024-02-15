@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Card, Col, Row, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Col, Row, Button } from 'react-bootstrap'
+
 import './OrderControlPage.css'
 import CustomDatePicker from '../components/CustomDatePicker'
+import OrderCard from '../components/OrderCard'
 
 const OrderControlPage = () => {
   const [orders] = useState([
@@ -103,8 +104,6 @@ const OrderControlPage = () => {
             selectedDate={startDate}
             handleChange={handleStartDateChange}
           />
-        </Col>
-        <Col className='order-date-col'>
           <h1 className='order-label'>Fin Fecha de Creación: </h1>
           <CustomDatePicker
             selectedDate={endDate}
@@ -129,47 +128,12 @@ const OrderControlPage = () => {
               {orders.map(order => {
                 if (order.state === column.filterState) {
                   return (
-                    <Card
+                    <OrderCard
                       key={order.id}
-                      className={`order-card ${getClassForState(
-                        column.filterState
-                      )}`}
-                    >
-                      <Card.Body className='order-card-content'>
-                        <Card.Text className='order-card-text'>
-                          <span className='texto-spam'>
-                            <i className='bi bi-bag-fill'></i>
-                            <span className='separator'></span>
-                            <Link to={`/orders/${order.id}`}>
-                              {order.number}
-                            </Link>
-                          </span>
-                          <span className='texto-spam'>
-                            <i className='bi bi-person-square'></i>
-                            <span className='separator'></span>
-                            {order.client}
-                          </span>
-
-                          <span className='texto-spam'>
-                            <i className='bi bi-calendar-check'></i>
-                            <span className='separator'></span>
-                            {order.end_creation}
-                          </span>
-
-                          <span className='texto-spam'>
-                            <i class='bi bi-credit-card'></i>
-                            <span className='separator'></span>
-                            {order.payment_method}
-                          </span>
-
-                          <span className='texto-spam'>
-                            <i className='bi bi-currency-dollar'></i>
-                            <span className='separator'></span>
-                            {order.total}
-                          </span>
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
+                      order={order}
+                      getClassForState={getClassForState}
+                      column={column}
+                    />
                   )
                 }
                 return null
