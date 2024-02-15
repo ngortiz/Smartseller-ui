@@ -18,7 +18,9 @@ const LeftNavigationBar = () => {
         >
           <NavDropdown.Item href='/orders/summary'>Resumen</NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href='/'> Control Pedido </NavDropdown.Item>
+          <NavDropdown.Item href='/order/board'>
+            Control Pedido
+          </NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item to='/'> Reportes </NavDropdown.Item>
         </NavDropdown>

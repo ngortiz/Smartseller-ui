@@ -1,0 +1,64 @@
+/* Style for order cards */
+.order-card {
+  border: 1px solid rgb(218, 217, 217);
+  border-radius: 10px;
+  margin-bottom: 10%;
+  word-wrap: break-word;
+  width: auto;
+  box-shadow: 0 2px 2px 2px#053857;
+}
+
+/* Style for order card content */
+.order-card-content {
+  padding: 20%;
+  background-color: rgb(214, 238, 255);
+}
+
+/* Style for text inside order cards*/
+.order-card-text {
+  font-size: 12px;
+  color: #555;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 5px;
+}
+
+/* Style for next tu text */
+.texto-spam {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8%;
+}
+
+/* Style for icons */
+.texto-spam i {
+  margin-right: 10%;
+  font-size: small;
+}
+
+/* Style for columns*/
+.column-card {
+  display: flex;
+  justify-content: center;
+}
+
+/* Style for the container of each column */
+.column-with-card {
+  width: 150%;
+  border: 1px solid #9aa1a7;
+  border-radius: 5px;
+  background-color: #eff9ff;
+  text-align: center;
+  margin: -10px;
+}
+
+/* Estilo para el texto del título de columna */
+.order-column-text {
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+  margin: 5px;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+  border-bottom: 1px solid #9aa1a7;
+  text-transform: uppercase;
+}

@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+
 import './OrderInformationPage.css'
 import OrderClientInformation from '../components/OrderClientInformation'
 import OrderData from '../components/OrderData'
@@ -7,6 +9,12 @@ import OrderPayment from '../components/OrderPayment'
 import OrderDetails from '../components/OrderDetails'
 
 const OrderInformationPage = () => {
+  const navigate = useNavigate()
+
+  const handleGoBack = () => {
+    navigate(-1)
+  }
+
   const orderItems = [
     {
       quantity: 1,
@@ -56,8 +64,8 @@ const OrderInformationPage = () => {
           <OrderPayment
             paymentState='completado(T.Debito)'
             total='US$ 10.5'
-            total_payment='US$ 10.5'
-            total_debt='US$ 0.00'
+            totalPaid='US$ 10.5'
+            totalDebt='US$ 0.00'
           />
         </Col>
       </Row>
@@ -79,8 +87,8 @@ const OrderInformationPage = () => {
 
       <Row className='mt-4'>
         <Col className='button-container'>
-          <Button className='back-button'>
-            <i className='bi bi-arrow-left-circle'></i> Volver atras
+          <Button className='back-button' onClick={handleGoBack}>
+            <i className='bi bi-arrow-left-circle'></i> Volver atrás
           </Button>
           <Button className='print-button'>
             <i className='bi bi-printer'></i> Imprimir

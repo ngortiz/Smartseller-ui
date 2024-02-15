@@ -8,7 +8,7 @@ const OrderDetails = ({
   subtotal,
   discountCoupon,
   totalAmount,
-  liquidationIVA4,
+  liquidationIVA5,
   liquidationIVA10,
   totalIVA
 }) => {
@@ -24,7 +24,7 @@ const OrderDetails = ({
             <th>Precio Oferta</th>
             <th>Exenta</th>
             <th>IVA 10%</th>
-            <th>IVA 4%</th>
+            <th>IVA 5%</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +37,7 @@ const OrderDetails = ({
               <td>${item.offerPrice}</td>
               <td>${item.exempt}</td>
               <td>${item.iva10}</td>
-              <td>${item.iva4}</td>
+              <td>${item.iva5}</td>
             </tr>
           ))}
         </tbody>
@@ -76,7 +76,7 @@ const OrderDetails = ({
         <table>
           <thead>
             <tr>
-              <th>Liquidación Del IVA (4%): US$ {liquidationIVA4}</th>
+              <th>Liquidación Del IVA (5%): US$ {liquidationIVA5}</th>
               <th>Liquidación Del IVA (10%): US$ {liquidationIVA10}</th>
               <th>Total Del IVA: US$ {totalIVA}</th>
             </tr>
@@ -93,7 +93,7 @@ OrderDetails.propTypes = {
   subtotal: PropTypes.number.isRequired,
   discountCoupon: PropTypes.string.isRequired,
   totalAmount: PropTypes.number.isRequired,
-  liquidationIVA4: PropTypes.number.isRequired,
+  liquidationIVA5: PropTypes.number.isRequired,
   liquidationIVA10: PropTypes.number.isRequired,
   totalIVA: PropTypes.number.isRequired
 }
