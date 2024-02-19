@@ -1,9 +1,10 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { createRoot } from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { Container, Row, Col } from 'react-bootstrap'
+
 import LeftNavigationBar from './components/LeftNavigationBar'
 import OrdersSummary from './pages/OrdersSummary'
 import OrderInformationPage from './pages/OrderInformationPage'
