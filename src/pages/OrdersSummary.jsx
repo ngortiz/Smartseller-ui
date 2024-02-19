@@ -98,28 +98,18 @@ const OrdersSummary = () => {
         </Col>
       </Row>
 
-      <Row className='justify-content-between'>
-        <Col>
-          <div className='date-picker-container'>
-            <h1 className='date-picker-label'>Inicio Fecha de Creación: </h1>
-            <div className='input-group-addon'>
-              <CustomDatePicker
-                selectedDate={startDate}
-                handleChange={handleStartDateChange}
-              />
-            </div>
-          </div>
-        </Col>
-        <Col>
-          <div className='date-picker-container'>
-            <h1 className='date-picker-label'>Fin Fecha de Creación: </h1>
-            <div className='input-group-addon'>
-              <CustomDatePicker
-                selectedDate={endDate}
-                handleChange={handleEndDateChange}
-              />
-            </div>
-          </div>
+      <Row>
+        <Col className='date-picker-container'>
+          <h1 className='custom-label'>Desde: </h1>
+          <CustomDatePicker
+            selectedDate={startDate}
+            handleChange={handleStartDateChange}
+          />
+          <h1 className='custom-label'>Hasta: </h1>
+          <CustomDatePicker
+            selectedDate={endDate}
+            handleChange={handleEndDateChange}
+          />
         </Col>
         <Col>
           <Button

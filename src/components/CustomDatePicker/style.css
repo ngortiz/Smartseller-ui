@@ -1,11 +1,11 @@
 .custom-date-picker {
-  display: inline-block;
+  display: block ruby;
   border: 2px solid #e0e0e0;
-  padding: 8px;
+  padding: 5px;
   margin-left: 0;
   border-radius: 2px;
   background-color: #f5f5f5;
-  box-shadow: 0 1px 1px #335;
+  box-shadow: 0 1px 1px #053857;
 }
 
 .bi-calendar-icon {
@@ -24,11 +24,21 @@
   border-radius: 4px;
 }
 
-.date-picker-label {
+.custom-label {
   font-size: 16px;
   margin-bottom: 5px;
   padding: 0;
   font-weight: bold;
   font-family: 'Source Sans Pro', sans-serif;
   margin: 10px 0;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.date-picker-container {
+  margin-bottom: 5%;
+  margin-left: 10%;
+  text-align: center;
+  display: flex;
+  font-weight: bold;
+  margin-top: 5%;
 }

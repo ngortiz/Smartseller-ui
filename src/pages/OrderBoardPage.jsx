@@ -99,12 +99,12 @@ const OrderBoardPage = () => {
       <header className='order-control-header'>Control de Pedidos</header>
       <Row className='row-cols'>
         <Col className='order-date-col'>
-          <h1 className='order-label'>Inicio Fecha de Creación: </h1>
+          <h1 className='order-label'>Desde: </h1>
           <CustomDatePicker
             selectedDate={startDate}
             handleChange={handleStartDateChange}
           />
-          <h1 className='order-label'>Fin Fecha de Creación: </h1>
+          <h1 className='order-label'>Hasta: </h1>
           <CustomDatePicker
             selectedDate={endDate}
             handleChange={handleEndDateChange}
