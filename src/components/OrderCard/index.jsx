@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Card } from 'react-bootstrap'
+
 import './style.css'
 
 const OrderCard = ({ order, getClassForState, column }) => {

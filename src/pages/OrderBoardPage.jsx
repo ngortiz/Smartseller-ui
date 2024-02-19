@@ -4,8 +4,13 @@ import { Col, Row, Button } from 'react-bootstrap'
 import './OrderBoardPage.css'
 import CustomDatePicker from '../components/CustomDatePicker'
 import OrderCard from '../components/OrderCard'
+import { DndContext } from '@dnd-kit/core'
+import Droppable from '../components/Droppable'
+import Draggable from '../components/Draggable'
 
 const OrderBoardPage = () => {
+  const [parent, setParent] = useState(null)
+  const draggable = <Draggable id='draggable'>Go ahead, drag me.</Draggable>
   const [orders] = useState([
     {
       id: 1,
@@ -93,57 +98,68 @@ const OrderBoardPage = () => {
         return ''
     }
   }
+  function handleDragEnd({ over }) {
+    setParent(over ? over.id : null)
+  }
 
   return (
-    <div className='order-control-container'>
-      <header className='order-control-header'>Control de Pedidos</header>
-      <Row className='row-cols'>
-        <Col className='order-date-col'>
-          <h1 className='order-label'>Desde: </h1>
-          <CustomDatePicker
-            selectedDate={startDate}
-            handleChange={handleStartDateChange}
-          />
-          <h1 className='order-label'>Hasta: </h1>
-          <CustomDatePicker
-            selectedDate={endDate}
-            handleChange={handleEndDateChange}
-          />
-        </Col>
-        <Col>
-          <Button
-            variant='primary'
-            className='order-button'
-            onClick={handleSearch}
-          >
-            Buscar
-          </Button>
-        </Col>
-      </Row>
-      <Row className='row-cols'>
-        {orderColumns.map((column, index) => (
-          <Col key={index} md={2} className='column-card'>
-            <div className='column-with-card'>
-              <h4 className='order-column-text'>{column.title}</h4>
-              {orders.map(order => {
-                if (order.state === column.filterState) {
-                  return (
-                    <OrderCard
-                      key={order.id}
-                      order={order}
-                      getClassForState={getClassForState}
-                      column={column}
-                    />
-                  )
-                } else {
-                  return null
-                }
-              })}
-            </div>
+    <DndContext onDragEnd={handleDragEnd}>
+      <div className='order-control-container'>
+        <header className='order-control-header'>Control de Pedidos</header>
+        <Row className='row-cols'>
+          <Col className='order-date-col'>
+            <h1 className='order-label'>Desde: </h1>
+            <CustomDatePicker
+              selectedDate={startDate}
+              handleChange={handleStartDateChange}
+            />
+            <h1 className='order-label'>Hasta: </h1>
+            <CustomDatePicker
+              selectedDate={endDate}
+              handleChange={handleEndDateChange}
+            />
           </Col>
-        ))}
-      </Row>
-    </div>
+          <Col>
+            <Button
+              variant='primary'
+              className='order-button'
+              onClick={handleSearch}
+            >
+              Buscar
+            </Button>
+          </Col>
+        </Row>
+        <Row className='row-cols'>
+          {orderColumns.map((column, index) => (
+            <Col key={index} md={2} className='column-card'>
+              <div className='column-with-card'>
+                <h4 className='order-column-text'>{column.title}</h4>
+                {orders.map(order => {
+                  if (order.state === column.filterState) {
+                    if (!parent) {
+                      return (
+                        <Draggable key={order.id} id={order.id}>
+                          <OrderCard
+                            order={order}
+                            getClassForState={getClassForState}
+                            column={column}
+                          />
+                        </Draggable>
+                      )
+                    }
+                  } else {
+                    return null
+                  }
+                })}
+                <Droppable id='droppable'>
+                  {parent === 'droppable' ? draggable : 'Drop here'}
+                </Droppable>
+              </div>
+            </Col>
+          ))}
+        </Row>
+      </div>
+    </DndContext>
   )
 }
 
