@@ -6,7 +6,7 @@ import CustomDatePicker from '../components/CustomDatePicker'
 import OrderCard from '../components/OrderCard'
 import { DndContext } from '@dnd-kit/core'
 import Droppable from '../components/Droppable'
-import { useDraggable } from '@dnd-kit/core'
+import OrderDraggable from '../components/OrderDraggable'
 
 const OrderBoardPage = () => {
   const [orders, setOrders] = useState([
@@ -164,23 +164,6 @@ const OrderBoardPage = () => {
         </Row>
       </div>
     </DndContext>
-  )
-}
-
-const OrderDraggable = ({ id, children }) => {
-  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
-    id: id.toString()
-  })
-
-  return (
-    <div
-      ref={setNodeRef}
-      {...attributes}
-      {...listeners}
-      className={isDragging ? 'dragging' : ''}
-    >
-      {children}
-    </div>
   )
 }
 
