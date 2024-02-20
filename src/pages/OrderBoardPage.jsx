@@ -6,12 +6,10 @@ import CustomDatePicker from '../components/CustomDatePicker'
 import OrderCard from '../components/OrderCard'
 import { DndContext } from '@dnd-kit/core'
 import Droppable from '../components/Droppable'
-import Draggable from '../components/Draggable'
+import { useDraggable } from '@dnd-kit/core'
 
 const OrderBoardPage = () => {
-  const [parent, setParent] = useState(null)
-  const draggable = <Draggable id='draggable'>Go ahead, drag me.</Draggable>
-  const [orders] = useState([
+  const [orders, setOrders] = useState([
     {
       id: 1,
       number: 'ORD-002',
@@ -98,8 +96,20 @@ const OrderBoardPage = () => {
         return ''
     }
   }
-  function handleDragEnd({ over }) {
-    setParent(over ? over.id : null)
+
+  const updateOrderState = (orderId, newState) => {
+    const updatedOrders = orders.map(order =>
+      order.id === orderId ? { ...order, state: newState } : order
+    )
+    setOrders(updatedOrders)
+  }
+
+  const handleDragEnd = ({ active, over }) => {
+    if (over) {
+      const orderId = parseInt(active.id)
+      const newState = over.id
+      updateOrderState(orderId, newState)
+    }
   }
 
   return (
@@ -134,25 +144,19 @@ const OrderBoardPage = () => {
             <Col key={index} md={2} className='column-card'>
               <div className='column-with-card'>
                 <h4 className='order-column-text'>{column.title}</h4>
-                {orders.map(order => {
-                  if (order.state === column.filterState) {
-                    if (!parent) {
-                      return (
-                        <Draggable key={order.id} id={order.id}>
+                <Droppable id={column.filterState}>
+                  {orders.map(
+                    order =>
+                      order.state === column.filterState && (
+                        <OrderDraggable key={order.id} id={order.id}>
                           <OrderCard
                             order={order}
                             getClassForState={getClassForState}
                             column={column}
                           />
-                        </Draggable>
+                        </OrderDraggable>
                       )
-                    }
-                  } else {
-                    return null
-                  }
-                })}
-                <Droppable id='droppable'>
-                  {parent === 'droppable' ? draggable : 'Drop here'}
+                  )}
                 </Droppable>
               </div>
             </Col>
@@ -160,6 +164,23 @@ const OrderBoardPage = () => {
         </Row>
       </div>
     </DndContext>
+  )
+}
+
+const OrderDraggable = ({ id, children }) => {
+  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
+    id: id.toString()
+  })
+
+  return (
+    <div
+      ref={setNodeRef}
+      {...attributes}
+      {...listeners}
+      className={isDragging ? 'dragging' : ''}
+    >
+      {children}
+    </div>
   )
 }
 

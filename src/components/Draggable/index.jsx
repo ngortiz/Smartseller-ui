@@ -6,9 +6,10 @@ export default function Draggable(props) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: props.id
   })
+
   const style = {
-    // Outputs `translate3d(x, y, 0)`
-    transform: CSS.Translate.toString(transform)
+    transform: CSS.Translate.toString(transform),
+    cursor: 'grab' // Agrega un cursor de agarre para indicar que el elemento es arrastrable
   }
 
   return (
