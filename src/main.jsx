@@ -9,6 +9,7 @@ import LeftNavigationBar from './components/LeftNavigationBar'
 import OrdersSummary from './pages/OrdersSummary'
 import OrderInformationPage from './pages/OrderInformationPage'
 import OrderBoardPage from './pages/OrderBoardPage'
+import OrderPaymentMethod from './pages/OrderPaymentMethod'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')).render(
               <Route path='/orders/:id' element={<OrderInformationPage />} />
               <Route path='/orders/summary' element={<OrdersSummary />} />
               <Route path='/order/board' element={<OrderBoardPage />} />
+              <Route path='/order/payment' element={<OrderPaymentMethod />} />
             </Routes>
           </Col>
         </Row>
