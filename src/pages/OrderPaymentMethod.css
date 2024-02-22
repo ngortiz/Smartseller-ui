@@ -1,100 +1,60 @@
-/* Estilo para la tabla */
+/* OrderPaymentMethod.css */
 .payment-header {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
-  color: #333;
-  padding: 10px;
-  margin-bottom: 15px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-}
-
-/* Estilo para el encabezado de la tabla */
-th {
-  background-color: #f2f2f2;
-  border: 1px solid #dddddd;
-  text-align: center;
-  padding: 8px;
-  font-size: 14px;
-}
-
-/* Estilo para las celdas de la tabla */
-td {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 10px;
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-/* Estilo para las filas impares de la tabla */
-tr:nth-child(odd) {
-  background-color: #f9f9f9;
-}
-
-/* Estilo para las filas al pasar el ratón */
-tr:hover {
-  background-color: #e9e9e9;
-}
-
-@media only screen and (max-width: 600px) {
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-
-  th,
-  td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-}
-
-.arrow-box span {
-  display: ruby;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  margin-left: 10px;
+  margin-bottom: 20px;
 }
 
 .search-container {
-  display: inline-block;
-  vertical-align: top;
-  margin-bottom: 10%;
+  margin-bottom: 20px;
 }
 
-.arrow-box {
-  display: inline-block;
-  position: relative;
-}
-
-.transactions-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
+.form-select-lg {
+  width: 27%;
+  padding: 10px;
+  font-size: 16px;
   border: 1px solid #ccc;
-  padding: 5px;
+  border-radius: 0px;
+  background-color: #f9f9f9;
 }
 
-.transactions-dropdown button {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 5px;
+.button-back {
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 14px;
   border: none;
-  background: none;
+  border-radius: 1px;
   cursor: pointer;
-  position: initial;
+  background-color: #262c40;
 }
 
-.transactions-dropdown button:hover {
-  background-color: #f0f0f0;
+.button-back:hover {
+  background-color: #50657c;
+}
+.transacciones-body {
+  background-color: #50657c;
+}
+
+table {
+  width: 101%;
+  margin-top: 1%;
+  color: #354052;
+  border-spacing: 0 10px;
+}
+
+.table th {
+  background-color: #354052;
+  color: #fff;
+  border: 1px solid #566168;
+  padding: 6px;
+  text-align: left;
+}
+.table td {
+  border: 1px solid #bdc3c7;
+  padding: 12px;
+  font-family: 'Arial', sans-serif;
+  font-size: 15px;
+}
+.table tbody tr:nth-child(odd) {
+  background-color: #ecf0f1;
 }

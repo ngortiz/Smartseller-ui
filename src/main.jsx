@@ -22,7 +22,11 @@ createRoot(document.getElementById('root')).render(
           <Col xs={9}>
             <Routes>
               <Route path='/orders/:id' element={<OrderInformationPage />} />
-              <Route path='/orders/summary' element={<OrdersSummary />} />
+              <Route
+                path='/order-summary/:orderId'
+                element={<OrdersSummary />}
+              />
+
               <Route path='/order/board' element={<OrderBoardPage />} />
               <Route path='/order/payment' element={<OrderPaymentMethod />} />
             </Routes>
