@@ -1,4 +1,13 @@
 /* Estilo para la tabla */
+.payment-header {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -33,7 +42,6 @@ tr:hover {
   background-color: #e9e9e9;
 }
 
-/* Estilo para la tabla en dispositivos móviles */
 @media only screen and (max-width: 600px) {
   table {
     border-collapse: collapse;
@@ -46,4 +54,47 @@ tr:hover {
     text-align: left;
     padding: 8px;
   }
+}
+
+.arrow-box span {
+  display: ruby;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 10px;
+}
+
+.search-container {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 10%;
+}
+
+.arrow-box {
+  display: inline-block;
+  position: relative;
+}
+
+.transactions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.transactions-dropdown button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 5px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: initial;
+}
+
+.transactions-dropdown button:hover {
+  background-color: #f0f0f0;
 }

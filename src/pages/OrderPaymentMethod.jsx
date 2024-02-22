@@ -1,7 +1,32 @@
-import React from 'react'
 import './OrderPaymentMethod.css'
+import React, { useState } from 'react'
 
 const OrderPaymentMethod = () => {
+  const [showTransactions, setShowTransactions] = useState(false)
+  const [selectedOption, setSelectedOption] = useState('')
+  const [searchInput, setSearchInput] = useState('')
+
+  const toggleTransactions = () => {
+    setShowTransactions(!showTransactions)
+  }
+
+  const handleOptionClick = option => {
+    setSelectedOption(option)
+  }
+
+  const handleSearch = () => {}
+
+  const transactionsContent = (
+    <div className='transactions-dropdown'>
+      <button onClick={() => handleOptionClick('Transacciones Rechazadas')}>
+        Transacciones Rechazadas
+      </button>
+      <button onClick={() => handleOptionClick('Transacciones Aceptadas')}>
+        Transacciones Aceptadas
+      </button>
+    </div>
+  )
+
   const payments = [
     {
       id: 1,
@@ -26,16 +51,31 @@ const OrderPaymentMethod = () => {
       paymentDate: '2024-02-26',
       dueDate: '2024-03-11',
       paid: false,
-      cancelled: false,
+      cancelled: true,
       creationDate: '2024-02-21'
     }
   ]
 
   return (
     <div>
-      <header className='order-control-header'>
+      <header className='payment-header'>
         Transacciones hechas por tarjetas de crédito
       </header>
+      <div className='arrow-box' onClick={toggleTransactions}>
+        {selectedOption && <span>{selectedOption}</span>}
+        {showTransactions && transactionsContent}▼
+      </div>
+      {selectedOption && (
+        <div className='search-container'>
+          <input
+            type='text'
+            value={searchInput}
+            onChange={e => setSearchInput(e.target.value)}
+          />
+          <button onClick={handleSearch}>Buscar</button>
+        </div>
+      )}
+
       <table>
         <thead>
           <tr>

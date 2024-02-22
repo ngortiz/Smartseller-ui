@@ -34,9 +34,7 @@ const LeftNavigationBar = () => {
           }
           id='basic-nav-dropdown'
         >
-          <NavDropdown.Item href='#action/3.2'>
-            Por Deposito/Transf/Sucursal
-          </NavDropdown.Item>
+          <NavDropdown.Item>Por Deposito/Transf/Sucursal</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href='/order/payment'>
             Por Tarjeta Credito/Debito
