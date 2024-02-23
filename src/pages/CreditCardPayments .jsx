@@ -1,4 +1,5 @@
-import './OrderPaymentMethod.css'
+import './CreditCardPayments.css'
+
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -31,7 +32,7 @@ const allPayments = [
   }
 ]
 
-const OrderPaymentMethod = () => {
+const CreditCardPayments = () => {
   const [selectedOption, setSelectedOption] = useState('')
   const [payments, setPayments] = useState(allPayments)
 
@@ -39,8 +40,8 @@ const OrderPaymentMethod = () => {
     if (selectedOption === 'all') {
       return allPayments
     }
-    const isPaid = selectedOption === 'Transacciones Aceptadas'
-    const filteredPayments = payments.filter(payment => payment.paid === isPaid)
+    const isPaid = selectedOption !== 'Transacciones Aceptadas'
+    const filteredPayments = payments.filter(payment => payment.paid !== isPaid)
     return filteredPayments
   }
 
@@ -72,16 +73,10 @@ const OrderPaymentMethod = () => {
           <option value='all' className='transacciones-body'>
             Todas las transacciones
           </option>
-          <option
-            value='Transacciones Rechazadas'
-            className='transacciones-body'
-          >
+          <option value='rejectedTransactions' className='transacciones-body'>
             Transacciones Rechazadas
           </option>
-          <option
-            value='Transacciones Aceptadas'
-            className='transacciones-body'
-          >
+          <option value='acceptedTransactions' className='transacciones-body'>
             Transacciones Aceptadas
           </option>
         </select>
@@ -132,4 +127,4 @@ const OrderPaymentMethod = () => {
   )
 }
 
-export default OrderPaymentMethod
+export default CreditCardPayments
