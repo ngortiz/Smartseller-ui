@@ -16,7 +16,7 @@ const LeftNavigationBar = () => {
           }
           id='basic-nav-dropdown'
         >
-          <NavDropdown.Item href='/orders/summary'>Resumen</NavDropdown.Item>
+          <NavDropdown.Item href='/orders-summary'>Resumen</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href='/order/board'>
             Control Pedido

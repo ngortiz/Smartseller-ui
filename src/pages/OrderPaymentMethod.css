@@ -1,4 +1,3 @@
-/* OrderPaymentMethod.css */
 .payment-header {
   font-size: 18px;
   font-weight: bold;
@@ -49,12 +48,14 @@ table {
   padding: 6px;
   text-align: left;
 }
+
 .table td {
   border: 1px solid #bdc3c7;
   padding: 12px;
   font-family: 'Arial', sans-serif;
   font-size: 15px;
 }
+
 .table tbody tr:nth-child(odd) {
   background-color: #ecf0f1;
 }

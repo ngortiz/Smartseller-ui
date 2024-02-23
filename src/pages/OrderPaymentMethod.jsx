@@ -108,7 +108,7 @@ const OrderPaymentMethod = () => {
             <tr key={payment.id}>
               <td>{index + 1}</td>
               <td>
-                <Link to={`/order-summary/${payment.id}`}>
+                <Link to={`/orderInformation/${payment.orderNumber}`}>
                   {payment.orderNumber}
                 </Link>
               </td>
