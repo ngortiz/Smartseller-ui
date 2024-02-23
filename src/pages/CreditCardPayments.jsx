@@ -40,8 +40,9 @@ const CreditCardPayments = () => {
     if (selectedOption === 'all') {
       return allPayments
     }
-    const isPaid = selectedOption !== 'Transacciones Aceptadas'
-    const filteredPayments = payments.filter(payment => payment.paid !== isPaid)
+    const isPaid = selectedOption === 'acceptedTransactions'
+    const filteredPayments = payments.filter(payment => payment.paid === isPaid)
+    console.log(filteredPayments)
     return filteredPayments
   }
 
