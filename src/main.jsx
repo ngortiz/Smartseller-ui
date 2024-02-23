@@ -28,10 +28,7 @@ createRoot(document.getElementById('root')).render(
                 path='/credit-card-payments'
                 element={<CreditCardPayments />}
               />
-              <Route
-                path='/orderInformation/:id'
-                element={<OrderInformationPage />}
-              />
+              <Route path='/orders/:id' element={<OrderInformationPage />} />
             </Routes>
           </Col>
         </Row>
