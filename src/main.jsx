@@ -9,7 +9,7 @@ import LeftNavigationBar from './components/LeftNavigationBar'
 import OrdersSummary from './pages/OrdersSummary'
 import OrderInformationPage from './pages/OrderInformationPage'
 import OrderBoardPage from './pages/OrderBoardPage'
-import CreditCardPayments from './pages/CreditCardPayments '
+import CreditCardPayments from './pages/CreditCardPayments'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
