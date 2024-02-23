@@ -1,0 +1,61 @@
+.payment-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.form-select-lg {
+  width: 27%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  background-color: #f9f9f9;
+}
+
+.button-back {
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  background-color: #262c40;
+}
+
+.button-back:hover {
+  background-color: #50657c;
+}
+.transacciones-body {
+  background-color: #50657c;
+}
+
+table {
+  width: 101%;
+  margin-top: 1%;
+  color: #354052;
+  border-spacing: 0 10px;
+}
+
+.table th {
+  background-color: #354052;
+  color: #fff;
+  border: 1px solid #566168;
+  padding: 6px;
+  text-align: left;
+}
+
+.table td {
+  border: 1px solid #bdc3c7;
+  padding: 12px;
+  font-family: 'Arial', sans-serif;
+  font-size: 15px;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #ecf0f1;
+}
