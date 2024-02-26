@@ -10,6 +10,7 @@ import OrdersSummary from './pages/OrdersSummary'
 import OrderInformationPage from './pages/OrderInformationPage'
 import OrderBoardPage from './pages/OrderBoardPage'
 import CreditCardPayments from './pages/CreditCardPayments'
+import BankPaymentsPage from './pages/BankPaymentsPage'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -28,6 +29,7 @@ createRoot(document.getElementById('root')).render(
                 path='/credit-card-payments'
                 element={<CreditCardPayments />}
               />
+              <Route path='/bank/payments' element={<BankPaymentsPage />} />
               <Route path='/orders/:id' element={<OrderInformationPage />} />
             </Routes>
           </Col>
