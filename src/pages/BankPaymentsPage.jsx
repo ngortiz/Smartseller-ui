@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
+import { Form } from 'react-bootstrap' // Importa Form de react-bootstrap
+import './BankPaymentsPage.css'
 
 const BankPaymentsPage = () => {
   const [selectedOption, setSelectedOption] = useState('all')
-  const payments = [
+  const [payments, setPayments] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+
+  const listPayments = [
     {
-      id: 1,
-      orderNumber: 'ORD-003',
+      id: 3,
+      orderNumber: '103',
       invoiceNumber: 'INV-003',
       amount: '20.00 US$',
       client: 'Ana Rodríguez',
@@ -19,8 +24,8 @@ const BankPaymentsPage = () => {
       paymentState: 'Pendiente'
     },
     {
-      id: 2,
-      orderNumber: 'ORD-004',
+      id: 4,
+      orderNumber: '104',
       invoiceNumber: 'INV-004',
       amount: '25.50 US$',
       client: 'Pedro Martinez',
@@ -34,9 +39,24 @@ const BankPaymentsPage = () => {
       paymentState: 'Pendiente'
     },
     {
-      id: 3,
-      orderNumber: 'ORD-005',
+      id: 5,
+      orderNumber: '105',
       invoiceNumber: 'INV-005',
+      amount: '18.75 US$',
+      client: 'María López',
+      paymentMethod: 'Sucursal',
+      paymentDate: '2024-02-28',
+      dueDate: '2024-03-13',
+      paid: false,
+      cancelled: false,
+      creationDate: '2024-02-23',
+      orderState: 'No atendido',
+      paymentState: 'Cancelado'
+    },
+    {
+      id: 6,
+      orderNumber: '106',
+      invoiceNumber: 'INV-006',
       amount: '18.75 US$',
       client: 'María López',
       paymentMethod: 'Sucursal',
@@ -45,21 +65,90 @@ const BankPaymentsPage = () => {
       paid: true,
       cancelled: true,
       creationDate: '2024-02-23',
+      orderState: 'Atendido',
+      paymentState: 'Completado'
+    },
+    {
+      id: 7,
+      orderNumber: '107',
+      invoiceNumber: 'INV-007',
+      amount: '18.75 US$',
+      client: 'María Vera',
+      paymentMethod: 'Sucursal',
+      paymentDate: '2024-02-28',
+      dueDate: '2024-03-13',
+      paid: true,
+      cancelled: true,
+      creationDate: '2024-02-23',
       orderState: 'No atendido',
-      paymentState: 'Cancelado'
+      paymentState: 'No completado'
     }
   ]
 
+  const handleSelectorChange = e => {
+    const selectedValue = e.target.value
+    setSelectedOption(selectedValue)
+
+    let filteredPayments = [...listPayments] // Hacer una copia de la lista original
+
+    if (selectedValue !== 'all') {
+      filteredPayments = filteredPayments.filter(
+        payment =>
+          payment.paymentState.toLowerCase() === selectedValue.toLowerCase()
+      )
+    }
+
+    if (searchTerm.trim() !== '') {
+      const searchTermLowerCase = searchTerm.trim().toLowerCase()
+      filteredPayments = filteredPayments.filter(
+        payment =>
+          payment.orderNumber.includes(searchTermLowerCase) ||
+          payment.invoiceNumber.toLowerCase().includes(searchTermLowerCase)
+      )
+    }
+
+    setPayments(filteredPayments)
+  }
+
   const handleBackButtonClick = () => {
     setSelectedOption('all')
+    setPayments([])
   }
 
   return (
     <div>
-      <header className='payment-header'>
+      <header className='bank-header'>
         Pagos por Depósito/Transferencia/Sucursal
       </header>
-      <table className='table'>
+
+      <div className='bank-container'>
+        <span className='heard-state'>Estado:</span>
+        <select
+          className='bank-select'
+          aria-label='large-select-example'
+          value={selectedOption}
+          onChange={handleSelectorChange}
+        >
+          <option value='all'>Seleccionar</option>
+          <option value='Pendiente'>Pendiente</option>
+          <option value='No completado'>No completado</option>
+          <option value='Completado'>Completado</option>
+          <option value='Cancelado'>Cancelado</option>
+        </select>
+      </div>
+
+      <div className='bank-container'>
+        <span className='heard-state'>Número de Orden:</span>
+        <input
+          type='text'
+          className='bank-input'
+          placeholder='Buscar por Número de pedido'
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+        />
+      </div>
+
+      <table className='bank-table'>
         <thead>
           <tr>
             <th>Item</th>
@@ -88,14 +177,14 @@ const BankPaymentsPage = () => {
               <td>{payment.amount}</td>
               <td>
                 <button onClick={() => handlePaymentRegistration(payment.id)}>
-                  Registrar Pago
+                  Pagar
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button className='button-back' onClick={handleBackButtonClick}>
+      <button className='bank-btn' onClick={handleBackButtonClick}>
         Atrás
       </button>
     </div>

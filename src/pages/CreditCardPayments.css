@@ -1,7 +1,8 @@
 .payment-header {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 16x;
+  font-weight: 500;
   margin-bottom: 20px;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .search-container {
@@ -12,7 +13,7 @@
   width: 27%;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 0px;
   background-color: #f9f9f9;
 }
@@ -22,9 +23,10 @@
   padding: 10px 20px;
   font-size: 14px;
   border: none;
-  border-radius: 1px;
+  border-radius: 3px;
   cursor: pointer;
   background-color: #262c40;
+  margin-top: 5px;
 }
 
 .button-back:hover {
