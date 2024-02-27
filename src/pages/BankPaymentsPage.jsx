@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form } from 'react-bootstrap' // Importa Form de react-bootstrap
+
 import './BankPaymentsPage.css'
 
 const BankPaymentsPage = () => {
@@ -89,7 +89,7 @@ const BankPaymentsPage = () => {
     const selectedValue = e.target.value
     setSelectedOption(selectedValue)
 
-    let filteredPayments = [...listPayments] // Hacer una copia de la lista original
+    let filteredPayments = [...listPayments]
 
     if (selectedValue !== 'all') {
       filteredPayments = filteredPayments.filter(
