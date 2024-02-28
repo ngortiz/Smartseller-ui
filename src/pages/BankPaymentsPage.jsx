@@ -121,9 +121,7 @@ const BankPaymentsPage = () => {
 
   return (
     <div>
-      <header className='bank-header'>
-        Pagos por Depósito/Transferencia/Sucursal
-      </header>
+      <header className='bank-header'>Pagos vía Banco o en Sucursal</header>
 
       <div className='bank-flex-container'>
         <div className='bank-container'>
@@ -181,14 +179,17 @@ const BankPaymentsPage = () => {
               </td>
 
               <td>{payment.client}</td>
-              <td className='td-color'> {payment.orderState}</td>
-              <td className='td-color'>{payment.paymentState}</td>
+              <td> {payment.orderState}</td>
+              <td>{payment.paymentState}</td>
               <td>{payment.paymentMethod}</td>
               <td>{payment.creationDate}</td>
               <td>{payment.dueDate}</td>
               <td>{payment.amount}</td>
               <td>
-                <button onClick={() => handlePaymentRegistration(payment.id)}>
+                <button
+                  className='btn-pagar'
+                  onClick={() => handlePaymentRegistration(payment.id)}
+                >
                   Pagar
                 </button>
               </td>
