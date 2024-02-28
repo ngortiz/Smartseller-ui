@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import './BankPaymentsPage.css'
+import { Link } from 'react-router-dom'
 
 const BankPaymentsPage = () => {
   const [selectedOption, setSelectedOption] = useState('all')
@@ -97,7 +98,11 @@ const BankPaymentsPage = () => {
           payment.paymentState.toLowerCase() === selectedValue.toLowerCase()
       )
     }
+    setPayments(filteredPayments)
+  }
 
+  const handleOrderNumberChange = () => {
+    let filteredPayments = [...listPayments]
     if (searchTerm.trim() !== '') {
       const searchTermLowerCase = searchTerm.trim().toLowerCase()
       filteredPayments = filteredPayments.filter(
@@ -106,7 +111,6 @@ const BankPaymentsPage = () => {
           payment.invoiceNumber.toLowerCase().includes(searchTermLowerCase)
       )
     }
-
     setPayments(filteredPayments)
   }
 
@@ -145,6 +149,7 @@ const BankPaymentsPage = () => {
           placeholder='Buscar por Número de pedido'
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
+          onBlur={handleOrderNumberChange}
         />
       </div>
 
@@ -167,7 +172,11 @@ const BankPaymentsPage = () => {
           {payments.map((payment, index) => (
             <tr key={payment.id}>
               <td>{index + 1}</td>
-              <td>{payment.orderNumber}</td>
+              <td>
+                <Link to={`/orders/${payment.orderNumber}`}>
+                  {payment.orderNumber}
+                </Link>
+              </td>
               <td>{payment.client}</td>
               <td>{payment.orderState}</td>
               <td>{payment.paymentState}</td>
