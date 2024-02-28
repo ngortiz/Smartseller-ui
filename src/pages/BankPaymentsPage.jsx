@@ -125,32 +125,34 @@ const BankPaymentsPage = () => {
         Pagos por Depósito/Transferencia/Sucursal
       </header>
 
-      <div className='bank-container'>
-        <span className='heard-state'>Estado:</span>
-        <select
-          className='bank-select'
-          aria-label='large-select-example'
-          value={selectedOption}
-          onChange={handleSelectorChange}
-        >
-          <option value='all'>Seleccionar</option>
-          <option value='Pendiente'>Pendiente</option>
-          <option value='No completado'>No completado</option>
-          <option value='Completado'>Completado</option>
-          <option value='Cancelado'>Cancelado</option>
-        </select>
-      </div>
+      <div className='bank-flex-container'>
+        <div className='bank-container'>
+          <span className='heard-state'>Estado:</span>
+          <select
+            className='bank-select'
+            aria-label='large-select-example'
+            value={selectedOption}
+            onChange={handleSelectorChange}
+          >
+            <option value='all'>Seleccionar</option>
+            <option value='Pendiente'>Pendiente</option>
+            <option value='No completado'>No completado</option>
+            <option value='Completado'>Completado</option>
+            <option value='Cancelado'>Cancelado</option>
+          </select>
+        </div>
 
-      <div className='bank-container'>
-        <span className='heard-state'>Número de Orden:</span>
-        <input
-          type='text'
-          className='bank-input'
-          placeholder='Buscar por Número de pedido'
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-          onBlur={handleOrderNumberChange}
-        />
+        <div className='bank-container'>
+          <span className='heard-number'>Número de Orden:</span>
+          <input
+            type='text'
+            className='bank-input'
+            placeholder='Buscar por número de pedido'
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+            onBlur={handleOrderNumberChange}
+          />
+        </div>
       </div>
 
       <table className='bank-table'>
@@ -177,9 +179,10 @@ const BankPaymentsPage = () => {
                   {payment.orderNumber}
                 </Link>
               </td>
+
               <td>{payment.client}</td>
-              <td>{payment.orderState}</td>
-              <td>{payment.paymentState}</td>
+              <td className='td-color'> {payment.orderState}</td>
+              <td className='td-color'>{payment.paymentState}</td>
               <td>{payment.paymentMethod}</td>
               <td>{payment.creationDate}</td>
               <td>{payment.dueDate}</td>
