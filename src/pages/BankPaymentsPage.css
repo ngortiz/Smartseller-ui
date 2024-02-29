@@ -44,13 +44,13 @@
   background-color: #354052;
   color: #fff;
   border: 1px solid #566168;
-  padding: 6px;
+  padding: 12px;
   text-align: center;
 }
 
 .bank-table td {
   border: 1px solid #bdc3c7;
-  padding: 12px;
+  padding: 5px;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 13px;
   text-align: center;
