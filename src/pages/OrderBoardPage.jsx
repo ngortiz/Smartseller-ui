@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Col, Row, Button } from 'react-bootstrap'
-
+import { Col, Row } from 'react-bootstrap'
+import DateRangePicker from '../components/DateRangePicker'
 import './OrderBoardPage.css'
-import CustomDatePicker from '../components/CustomDatePicker'
+
 import OrderCard from '../components/OrderCard'
 import { DndContext } from '@dnd-kit/core'
 import Droppable from '../components/Droppable'
@@ -118,25 +118,13 @@ const OrderBoardPage = () => {
         <header className='order-control-header'>Control de Pedidos</header>
         <Row className='row-cols'>
           <Col className='order-date-col'>
-            <h1 className='order-label'>Desde: </h1>
-            <CustomDatePicker
-              selectedDate={startDate}
-              handleChange={handleStartDateChange}
+            <DateRangePicker
+              startDate={startDate}
+              endDate={endDate}
+              handleStartDateChange={handleStartDateChange}
+              handleEndDateChange={handleEndDateChange}
+              handleSearch={handleSearch}
             />
-            <h1 className='order-label'>Hasta: </h1>
-            <CustomDatePicker
-              selectedDate={endDate}
-              handleChange={handleEndDateChange}
-            />
-          </Col>
-          <Col>
-            <Button
-              variant='primary'
-              className='order-button'
-              onClick={handleSearch}
-            >
-              Buscar
-            </Button>
           </Col>
         </Row>
         <Row className='row-cols'>
