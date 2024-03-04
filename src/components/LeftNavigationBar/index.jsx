@@ -35,7 +35,7 @@ const LeftNavigationBar = () => {
           id='basic-nav-dropdown'
         >
           <NavDropdown.Item href='/bank-payments'>
-            Por Deposito/Transf/Sucursal
+            Pagos vía Banco o en Sucursal
           </NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href='/credit-card-payments'>

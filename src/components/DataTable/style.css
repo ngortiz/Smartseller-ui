@@ -29,6 +29,7 @@
   padding: 12px;
   font-family: 'Source Sans Pro', sans-serif;
   margin-top: 10px;
+  text-align: center;
 }
 
 .Table tbody tr:nth-child(odd) {
