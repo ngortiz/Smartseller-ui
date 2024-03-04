@@ -32,7 +32,7 @@ const DataTable = ({ orders }) => {
         <thead>
           <tr>
             <th>Item</th>
-            <th>Numero</th>
+            <th>Número</th>
             <th>Cliente</th>
             <th>Estado Pedido</th>
             <th>Estado Pago</th>
@@ -45,7 +45,7 @@ const DataTable = ({ orders }) => {
         <tbody>
           {filteredOrders.map((order, item) => (
             <tr key={order.id}>
-              <td>{item}</td>
+              <td>{item + 1}</td>
               <td>
                 <Link to={`/orders/${order.id}`}>{order.number}</Link>
               </td>

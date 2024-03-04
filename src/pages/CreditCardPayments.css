@@ -1,8 +1,15 @@
 .payment-header {
-  font-size: 16x;
-  font-weight: 500;
+  margin: 10px 0 20px 0;
+  text-align: left;
   margin-bottom: 20px;
+  background-color: inherit;
+  border-bottom: 1px solid #eeee;
+  padding: 5px;
+  margin-bottom: 15px;
   font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 }
 
 .search-container {

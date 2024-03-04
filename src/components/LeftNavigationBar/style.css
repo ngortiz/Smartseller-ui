@@ -1,16 +1,17 @@
 .LeftNavigationBar {
-  width: 90%;
+  height: 1000vh; /* Modifica la altura para que ocupe toda la altura del viewport */
   background-color: #354052;
   padding: 10px;
   padding-left: 10px;
   border-bottom: 1px solid rgb(50, 47, 47);
   text-align: left;
   color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .col-3 {
-  flex: 0 0 auto;
-  width: 20%;
+  flex: 1;
 }
 
 .LeftNavigationBar img {
@@ -101,6 +102,10 @@
 .LeftNavigationBar ul:hover {
   background-color: #354063;
   width: 110%;
+}
+
+.LeftNavigationBar .NavDropdown {
+  flex: 1;
 }
 
 @media screen and (max-width: 767px) {

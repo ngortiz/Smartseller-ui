@@ -1,8 +1,15 @@
 .bank-header {
-  font-size: 16px;
-  font-weight: 500;
+  margin: 10px 0 20px 0;
+  text-align: left;
   margin-bottom: 20px;
+  background-color: inherit;
+  border-bottom: 1px solid #eeee;
+  padding: 5px;
+  margin-bottom: 15px;
   font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 }
 
 .heard-state {
@@ -82,14 +89,15 @@
   margin: 0px;
   margin-top: 0px;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 12px;
   line-height: inherit;
   margin-top: 5px;
   width: 100%;
   padding: 7px 5px;
   background-color: #f9f9f9;
-  margin-left: 18%;
+  margin-left: 15%;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border: 2px solid #bdc3c7;
 }
 .bank-flex-container {
   display: flex;

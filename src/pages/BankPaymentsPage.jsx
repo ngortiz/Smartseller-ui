@@ -158,7 +158,7 @@ const BankPaymentsPage = () => {
         <thead>
           <tr>
             <th>Item</th>
-            <th>Numero</th>
+            <th>Número</th>
             <th>Cliente</th>
             <th>Estado del Pedido</th>
             <th>Estado del Pago</th>

@@ -21,7 +21,8 @@ const OrderDetails = ({
             <th>Cod. Interno</th>
             <th>Producto</th>
             <th>Precio Unitario</th>
-            <th>Precio Oferta</th>
+            <th>Precio Venta</th>
+            <th>Descuento</th>
             <th>Exenta</th>
             <th>IVA 10%</th>
             <th>IVA 5%</th>
@@ -35,6 +36,7 @@ const OrderDetails = ({
               <td>{item.productName}</td>
               <td>${item.unitPrice}</td>
               <td>${item.offerPrice}</td>
+              <td>${item.descuento}</td>
               <td>${item.exempt}</td>
               <td>${item.iva10}</td>
               <td>${item.iva5}</td>
