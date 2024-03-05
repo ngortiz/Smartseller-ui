@@ -2,11 +2,11 @@ import React from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
-import './OrderInformationPage.css'
-import OrderClientInformation from '../components/OrderClientInformation'
-import OrderData from '../components/OrderData'
-import OrderPayment from '../components/OrderPayment'
-import OrderDetails from '../components/OrderDetails'
+import './style.css'
+import OrderClientInformation from '../OrderClientInformation'
+import OrderData from '../OrderData'
+import OrderPayment from '../OrderPayment'
+import OrderDetails from '../OrderDetails'
 
 const OrderInformationPage = () => {
   const navigate = useNavigate()

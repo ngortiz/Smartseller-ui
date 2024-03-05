@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import OrderStatus from '../components/OrderStatus/index'
-import DateRangePicker from '../components/DateRangePicker'
-import DataTable from '../components/DataTable/index'
-import './OrdersSummary.css'
+import OrderStatus from '../OrderStatus/index'
+import DateRangePicker from '../DateRangePicker'
+import DataTable from '../DataTable/index'
+import './style.css'
 
 const OrdersSummary = () => {
   const defaultDate = new Date()

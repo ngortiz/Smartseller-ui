@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import './BankPaymentsPage.css'
+import './style.css'
 import { Link } from 'react-router-dom'
 
 const BankPaymentsPage = () => {

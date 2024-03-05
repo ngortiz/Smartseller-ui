@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import DateRangePicker from '../components/DateRangePicker'
-import './OrderBoardPage.css'
+import DateRangePicker from '../DateRangePicker'
+import './style.css'
 
-import OrderCard from '../components/OrderCard'
+import OrderCard from '../OrderCard'
 import { DndContext } from '@dnd-kit/core'
-import Droppable from '../components/Droppable'
-import OrderDraggable from '../components/OrderDraggable'
+import Droppable from '../Droppable'
+import OrderDraggable from '../OrderDraggable'
 
 const OrderBoardPage = () => {
   const [orders, setOrders] = useState([
