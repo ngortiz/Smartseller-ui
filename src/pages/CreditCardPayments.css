@@ -4,12 +4,13 @@
   margin-bottom: 20px;
   background-color: inherit;
   border-bottom: 1px solid #eeee;
-  padding: 5px;
+  padding: 0%;
   margin-bottom: 15px;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 18px;
   font-weight: bold;
   color: #333;
+  margin-top: 1%;
 }
 
 .search-container {
@@ -19,7 +20,7 @@
 .form-select-lg {
   width: 27%;
   padding: 10px;
-  font-size: 16px;
+  font-size: 14px;
   border: 2px solid #ccc;
   border-radius: 0px;
   background-color: #f9f9f9;
@@ -56,13 +57,14 @@ table {
   border: 1px solid #566168;
   padding: 6px;
   text-align: center;
+  font-size: 15px;
 }
 
 .table td {
   border: 1px solid #bdc3c7;
   padding: 12px;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .table tbody tr:nth-child(odd) {

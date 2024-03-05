@@ -2,7 +2,7 @@
 .order-control-container {
   margin: 0 auto;
   max-width: 1200px;
-  padding: 20px;
+  padding: 10px;
   font-family: 'Arial', sans-serif;
 }
 
@@ -19,6 +19,7 @@
   font-size: 18px;
   font-weight: bold;
   color: #333;
+  margin-top: -1%;
 }
 
 /* Style for date labesl*/

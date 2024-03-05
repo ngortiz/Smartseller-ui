@@ -5,23 +5,27 @@
   background-color: inherit;
   border-bottom: 1px solid #eeee;
   padding: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 3%;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 18px;
   font-weight: bold;
   color: #333;
+  margin-top: -1%;
 }
 
 .heard-state {
   margin-bottom: -8px;
   font-weight: 700;
   display: block;
+  font-size: 15px;
 }
 .heard-number {
-  margin-bottom: -8px;
+  margin-bottom: -10px;
   font-weight: 700;
   display: block;
   text-align: center;
+  margin-left: 5px;
+  font-size: 15px;
 }
 
 .bank-container {
@@ -53,13 +57,14 @@
   border: 1px solid #566168;
   padding: 6px;
   text-align: center;
+  font-size: 15px;
 }
 
 .bank-table td {
   border: 1px solid #bdc3c7;
   padding: 12px;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
 }
 

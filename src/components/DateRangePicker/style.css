@@ -16,14 +16,6 @@
 .OrdersButton:hover {
   background-color: #112845;
 }
-/*
-.custom-label {
-  font-size: 15px;
-  margin-bottom: 10px;
-  margin-left: 3%;
-  margin-right: 2%;
-  margin-top: auto;
-}*/
 
 .order-button:hover {
   background-color: #0056b3;
@@ -66,11 +58,12 @@
   margin-left: 10px;
 }
 .date-picker-container {
-  margin-top: 7%;
+  margin-top: 5%;
   margin-right: 0%;
-  margin-left: 12%;
+  margin-left: 10%;
   text-align: center;
   display: flex;
   font-weight: bold;
   align-items: center;
+  margin-bottom: -10px;
 }

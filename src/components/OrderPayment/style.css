@@ -5,6 +5,9 @@
   margin-right: 10px;
   width: 110%;
 }
+.body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
 
 .title {
   font-size: 20px;
@@ -19,8 +22,11 @@ p {
 strong {
   font-weight: bold;
   margin-right: 5px;
+  font-size: 14px;
 }
 
 label {
   color: #354052;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
 }

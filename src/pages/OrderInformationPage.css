@@ -1,12 +1,19 @@
 body {
-  font-family: 'Times New Roman', serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 header {
-  background-color: #f8f8f8;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  padding: 10px;
+  margin: 10px 0 20px 0;
+  text-align: left;
+  margin-bottom: 20px;
+  background-color: inherit;
+  border-bottom: 1px solid #eeee;
+  padding: -6px;
+  margin-bottom: 15px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 }
 
 .order-view {
