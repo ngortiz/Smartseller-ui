@@ -6,11 +6,11 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import { Container, Row, Col } from 'react-bootstrap'
 
 import LeftNavigationBar from './components/LeftNavigationBar'
-import OrdersSummary from './pages/OrdersSummary'
-import OrderInformationPage from './pages/OrderInformationPage'
-import OrderBoardPage from './pages/OrderBoardPage'
-import CreditCardPayments from './pages/CreditCardPayments'
-import BankPaymentsPage from './pages/BankPaymentsPage'
+import OrdersSummary from './components/OrdersSummary'
+import OrderInformationPage from './components/OrderInformationPage'
+import OrderBoardPage from './components/OrderBoardPage'
+import CreditCardPayments from './components/CreditCardPayments'
+import BankPaymentsPage from './components/BankPaymentsPage'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
