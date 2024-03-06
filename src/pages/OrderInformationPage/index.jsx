@@ -3,10 +3,10 @@ import { Container, Row, Col, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import './style.css'
-import OrderClientInformation from '../OrderClientInformation'
-import OrderData from '../OrderData'
-import OrderPayment from '../OrderPayment'
-import OrderDetails from '../OrderDetails'
+import OrderClientInformation from '../../components/OrderClientInformation'
+import OrderData from '../../components/OrderData'
+import OrderPayment from '../../components/OrderPayment'
+import OrderDetails from '../../components/OrderDetails'
 
 const OrderInformationPage = () => {
   const navigate = useNavigate()
