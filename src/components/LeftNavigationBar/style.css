@@ -1,16 +1,17 @@
 .LeftNavigationBar {
-  width: 90%;
+  height: 1000vh;
   background-color: #354052;
   padding: 10px;
   padding-left: 10px;
   border-bottom: 1px solid rgb(50, 47, 47);
   text-align: left;
   color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .col-3 {
-  flex: 0 0 auto;
-  width: 20%;
+  flex: 1;
 }
 
 .LeftNavigationBar img {
@@ -68,7 +69,7 @@
   font-size: 18px;
   margin-top: 10px;
   margin-bottom: 5px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: medium;
   text-align: left;
 }
@@ -82,7 +83,7 @@
   margin-left: -20px;
   padding-bottom: 0.6em;
   margin-left: -20px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: medium;
 }
 
@@ -101,6 +102,10 @@
 .LeftNavigationBar ul:hover {
   background-color: #354063;
   width: 110%;
+}
+
+.LeftNavigationBar .NavDropdown {
+  flex: 1;
 }
 
 @media screen and (max-width: 767px) {

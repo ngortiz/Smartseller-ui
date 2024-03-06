@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { Container, Row, Col, Button } from 'react-bootstrap'
-import OrderStatus from '../components/OrderStatus/index'
-import CustomDatePicker from '../components/CustomDatePicker/index'
-
-import DataTable from '../components/DataTable/index'
-import './OrdersSummary.css'
+import { Container, Row, Col } from 'react-bootstrap'
+import OrderStatus from '../../components/OrderStatus/index'
+import DateRangePicker from '../../components/DateRangePicker'
+import DataTable from '../../components/DataTable/index'
+import './style.css'
 
 const OrdersSummary = () => {
   const defaultDate = new Date()
@@ -97,31 +96,13 @@ const OrdersSummary = () => {
           <OrderStatus status='Atendidos' amount={1} color='#222222' />
         </Col>
       </Row>
-
-      <Row>
-        <Col className='date-picker-container'>
-          <h1 className='custom-label'>Desde: </h1>
-          <CustomDatePicker
-            selectedDate={startDate}
-            handleChange={handleStartDateChange}
-          />
-          <h1 className='custom-label'>Hasta: </h1>
-          <CustomDatePicker
-            selectedDate={endDate}
-            handleChange={handleEndDateChange}
-          />
-        </Col>
-        <Col>
-          <Button
-            variant='primary'
-            className='OrdersButton'
-            onClick={handleSearch}
-          >
-            Buscar
-          </Button>
-        </Col>
-      </Row>
-
+      <DateRangePicker
+        startDate={startDate}
+        endDate={endDate}
+        handleStartDateChange={handleStartDateChange}
+        handleEndDateChange={handleEndDateChange}
+        handleSearch={handleSearch}
+      />
       <Row>
         <Col>
           <DataTable orders={orders} />

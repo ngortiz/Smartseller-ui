@@ -8,7 +8,8 @@ const OrderClientInformation = ({ client, address, phone, ruc }) => {
       <Col className='order-info-col'>
         <h2 className='title'>Cliente</h2>
         <p>
-          <strong>Cliente:</strong> {client}
+          <strong>Cliente:</strong>
+          <label> {client} </label>
         </p>
         <p>
           <strong>Dirección:</strong>

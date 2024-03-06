@@ -11,16 +11,21 @@
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
 }
 
 .order-table th,
 .order-table td {
   border: 1px solid #ddd;
   padding: 8px;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .order-table th {
   background-color: #f2f2f2;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .summary-table {
@@ -32,15 +37,21 @@
   background-color: #f2f2f2;
   padding: 8px;
   text-align: right;
-  width: 90%;
+  width: 98%;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
 }
 
 .summary-value {
   padding: 8px;
   text-align: right;
-  width: 10%;
+  width: 2%;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
 }
 
 .additional-details {
   margin-top: 20px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
 }

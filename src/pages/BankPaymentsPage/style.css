@@ -1,20 +1,31 @@
 .bank-header {
-  font-size: 16px;
-  font-weight: 500;
+  margin: 10px 0 20px 0;
+  text-align: left;
   margin-bottom: 20px;
+  background-color: inherit;
+  border-bottom: 1px solid #eeee;
+  padding: 5px;
+  margin-bottom: 3%;
   font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-top: -1%;
 }
 
 .heard-state {
   margin-bottom: -8px;
   font-weight: 700;
   display: block;
+  font-size: 15px;
 }
 .heard-number {
-  margin-bottom: -8px;
+  margin-bottom: -10px;
   font-weight: 700;
   display: block;
   text-align: center;
+  margin-left: 5px;
+  font-size: 15px;
 }
 
 .bank-container {
@@ -28,8 +39,8 @@
   border: 2px solid #ccc;
   border-radius: 0px;
   background-color: #f9f9f9;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 12px;
   color: #333333;
 }
 
@@ -46,13 +57,14 @@
   border: 1px solid #566168;
   padding: 6px;
   text-align: center;
+  font-size: 15px;
 }
 
 .bank-table td {
   border: 1px solid #bdc3c7;
   padding: 12px;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -82,14 +94,15 @@
   margin: 0px;
   margin-top: 0px;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 12px;
   line-height: inherit;
   margin-top: 5px;
   width: 100%;
   padding: 7px 5px;
   background-color: #f9f9f9;
-  margin-left: 18%;
+  margin-left: 15%;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border: 2px solid #bdc3c7;
 }
 .bank-flex-container {
   display: flex;

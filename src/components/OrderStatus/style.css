@@ -1,9 +1,9 @@
 .card {
-  width: 100%;
+  width: 98%;
   margin: 10px;
   border-radius: 1px;
   overflow: hidden;
-  margin-right: 15px !important;
+  margin-right: 20px !important;
 }
 
 .card-body {

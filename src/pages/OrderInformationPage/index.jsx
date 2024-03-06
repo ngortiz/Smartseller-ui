@@ -2,11 +2,11 @@ import React from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
-import './OrderInformationPage.css'
-import OrderClientInformation from '../components/OrderClientInformation'
-import OrderData from '../components/OrderData'
-import OrderPayment from '../components/OrderPayment'
-import OrderDetails from '../components/OrderDetails'
+import './style.css'
+import OrderClientInformation from '../../components/OrderClientInformation'
+import OrderData from '../../components/OrderData'
+import OrderPayment from '../../components/OrderPayment'
+import OrderDetails from '../../components/OrderDetails'
 
 const OrderInformationPage = () => {
   const navigate = useNavigate()
@@ -44,7 +44,7 @@ const OrderInformationPage = () => {
       <Row className='justify-content-center'>
         <Col>
           <OrderClientInformation
-            client='Enrique Vera'
+            client='Juan Vera'
             address='Encarnacion, Paraguay'
             phone='111111111'
             ruc='1111111'
@@ -56,14 +56,14 @@ const OrderInformationPage = () => {
             number='11111111'
             voucher='1111'
             state='atendido'
-            date='12:10 2024 01 26'
+            date='12:10 2024-01-26'
           />
         </Col>
 
         <Col>
           <OrderPayment
-            paymentState='completado(T.Debito)'
-            total='US$ 10.5'
+            paymentState='completado(T.C)'
+            total='US$ 15.5'
             totalPaid='US$ 10.5'
             totalDebt='US$ 0.00'
           />

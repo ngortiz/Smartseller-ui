@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import './BankPaymentsPage.css'
+import './style.css'
 import { Link } from 'react-router-dom'
 
 const BankPaymentsPage = () => {
@@ -101,16 +101,18 @@ const BankPaymentsPage = () => {
     setPayments(filteredPayments)
   }
 
-  const handleOrderNumberChange = () => {
+  const handleOrderNumberChange = e => {
+    const search = e.target.value
     let filteredPayments = [...listPayments]
-    if (searchTerm.trim() !== '') {
-      const searchTermLowerCase = searchTerm.trim().toLowerCase()
+    if (search.trim() !== '') {
+      const searchTermLowerCase = search.trim().toLowerCase()
       filteredPayments = filteredPayments.filter(
         payment =>
           payment.orderNumber.includes(searchTermLowerCase) ||
           payment.invoiceNumber.toLowerCase().includes(searchTermLowerCase)
       )
     }
+    setSearchTerm(search)
     setPayments(filteredPayments)
   }
 
@@ -147,8 +149,7 @@ const BankPaymentsPage = () => {
             className='bank-input'
             placeholder='Buscar por número de pedido'
             value={searchTerm}
-            onChange={e => setSearchTerm(e.target.value)}
-            onBlur={handleOrderNumberChange}
+            onChange={handleOrderNumberChange}
           />
         </div>
       </div>
@@ -157,7 +158,7 @@ const BankPaymentsPage = () => {
         <thead>
           <tr>
             <th>Item</th>
-            <th>Numero</th>
+            <th>Número</th>
             <th>Cliente</th>
             <th>Estado del Pedido</th>
             <th>Estado del Pago</th>

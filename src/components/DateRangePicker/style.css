@@ -1,0 +1,69 @@
+.date-button {
+  background-color: #0e2a5d;
+  color: #fff;
+  padding: 7px 18px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 1px;
+  font-family: 'Source Sans Pro', sans-serif;
+  box-shadow: 0 2px 2px #335;
+  margin-left: 5%;
+  margin-top: 0%;
+}
+
+.OrdersButton:hover {
+  background-color: #112845;
+}
+
+.order-button:hover {
+  background-color: #0056b3;
+}
+.custom-date-picker {
+  display: flex;
+  border: 2px solid #e0e0e0;
+  padding: 5px;
+  margin-left: 1%;
+  border-radius: 2px;
+  background-color: #f5f5f5;
+  box-shadow: 0 1px 1px #053857;
+  align-items: center;
+}
+
+.bi-calendar-icon {
+  color: #354063;
+  font-size: 1.8em;
+  margin-right: 10px;
+}
+
+.date-picker-input {
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  width: 150px;
+  padding: 2px;
+  border: 2px solid #e0e0e0;
+  border-radius: 4px;
+  align-items: center;
+}
+
+.custom-label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  padding: 0;
+  font-weight: bold;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 10px 0;
+  margin-left: 10px;
+}
+.date-picker-container {
+  margin-top: 5%;
+  margin-right: 0%;
+  margin-left: 10%;
+  text-align: center;
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  margin-bottom: -10px;
+}
