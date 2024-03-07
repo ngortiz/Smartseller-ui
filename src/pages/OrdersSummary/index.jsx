@@ -1,14 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import OrderStatus from '../../components/OrderStatus/index'
 import DateRangePicker from '../../components/DateRangePicker'
 import DataTable from '../../components/DataTable/index'
+import {useQuery, gql } from  '@apollo/client'
+
 import './style.css'
 
 const OrdersSummary = () => {
   const defaultDate = new Date()
   const [startDate, setStartDate] = useState(defaultDate)
   const [endDate, setEndDate] = useState(defaultDate)
+  const [orders, setOrders] = useState([])
+
+  const GET_ORDERS_QUERY = gql`
+    query GetOrdersQuery {
+      getOrders {
+        buyMethod
+        number
+        username
+        id
+        orderState
+        paymentState
+        updatedAt
+        createdAt
+        total
+      }
+    }
+  `
+
+  const { loading, data } = useQuery(GET_ORDERS_QUERY)
+ 
+  useEffect(()=> {
+    console.log('entro en el useEffect')
+    if(data){
+      console.log(data.getOrders)
+      setOrders(data.getOrders)
+    }
+  }, [loading])
 
   const handleStartDateChange = date => {
     setStartDate(date)
@@ -19,52 +48,6 @@ const OrdersSummary = () => {
   }
   const handleSearch = () => {}
 
-  const orders = [
-    {
-      id: 1,
-      number: 270,
-      client: 'Maria Bogado',
-      state: 'Preparando',
-      payment_state: 'Procesado',
-      payment_method: 'Tc',
-      created_date: '12/01/2023 ',
-      expiration_date: '13/01/2023 12:30:10',
-      total: 'US$ 2,20'
-    },
-    {
-      id: 2,
-      number: 371,
-      client: 'Valeria Gomez',
-      state: 'Preparando',
-      payment_state: 'Procesado',
-      payment_method: 'Tc',
-      created_date: '12/01/2023 ',
-      expiration_date: '13/01/2023 12:30:10',
-      total: 'US$ 5,30'
-    },
-    {
-      id: 3,
-      number: 372,
-      client: 'Rafael Gomez',
-      state: 'Preparando',
-      payment_state: 'Procesado',
-      payment_method: 'Sucursal',
-      created_date: '15/01/2023 ',
-      expiration_date: '16/01/2023 15:30:10',
-      total: 'US$ 8,10'
-    },
-    {
-      id: 4,
-      number: 374,
-      client: 'Roque levy',
-      state: 'No atendido',
-      payment_state: 'Pendiente',
-      payment_method: 'Deposito',
-      created_date: '11/01/2023 ',
-      expiration_date: '12/01/2023 12:30:10',
-      total: 'US$ 12,12'
-    }
-  ]
 
   return (
     <Container fluid>
