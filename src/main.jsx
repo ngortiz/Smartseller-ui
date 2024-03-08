@@ -4,8 +4,14 @@ import { createRoot } from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { Container, Row, Col } from 'react-bootstrap'
-import { ApolloClient, createHttpLink, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+  ApolloProvider,
+  gql
+} from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
 
 import LeftNavigationBar from './components/LeftNavigationBar'
 import OrdersSummary from './pages/OrdersSummary'
@@ -15,22 +21,22 @@ import CreditCardPayments from './pages/CreditCardPayments'
 import BankPaymentsPage from './pages/BankPaymentsPage'
 
 const httpLink = createHttpLink({
-  uri: 'https://ityvl3yq6rdklorvuczme56giq.appsync-api.us-east-1.amazonaws.com/graphql',
-});
+  uri: import.meta.env.VITE_API_URL
+})
 
 const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: 'fbe90179-d8e5-415b-a41f-bb3ab4cbfafd',
+      authorization: import.meta.env.VITE_ACCESS_TOKEN
     }
   }
-});
+})
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
+  cache: new InMemoryCache()
+})
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
