@@ -37,8 +37,8 @@ const DataTable = ({ orders }) => {
             <th>Estado Pedido</th>
             <th>Estado Pago</th>
             <th>Forma Pago</th>
-            <th>Fecha Creacion</th>
-            <th>Fecha Expiracion</th>
+            <th>Fecha Creación</th>
+            <th>Fecha Expiración</th>
             <th>Total</th>
           </tr>
         </thead>
