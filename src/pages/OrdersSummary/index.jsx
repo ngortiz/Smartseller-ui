@@ -55,8 +55,10 @@ const OrdersSummary = () => {
   }
 
   const handleOrderStatusSearch = status => {
+    console.log('Estado seleccionado:', status) // Verifica el estado seleccionado
     setCurrentStatus(status)
-    if (status === 'all') {
+    if (status === null) {
+      // Verificar si status es null en lugar de 'all'
       // Si se selecciona "todos", mostramos todos los pedidos
       setFilteredOrders(orders)
     } else {

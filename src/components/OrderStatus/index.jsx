@@ -28,10 +28,10 @@ const OrderStatus = ({ color, amount, status, onSearchClick }) => {
   })
 
   const handleSearchClick = async () => {
+    console.log('Estado seleccionado en OrderStatus:', status)
     setIsSearching(true)
     try {
-      const newData = data ? data.getOrders : []
-      await onSearchClick(newData)
+      await onSearchClick(status)
     } finally {
       setIsSearching(false)
     }
