@@ -28,7 +28,6 @@ const OrdersSummary = () => {
       }
     }
   `
-
   const { loading, data } = useQuery(GET_ORDERS_QUERY)
 
   useEffect(() => {
@@ -46,7 +45,10 @@ const OrdersSummary = () => {
   const handleEndDateChange = date => {
     setEndDate(date)
   }
-  const handleSearch = () => {}
+  const handleSearch = () => {
+    // Lógica para realizar la búsqueda
+  }
+  const handleOrderStatusSearch = () => {}
 
   return (
     <Container fluid>
@@ -57,25 +59,60 @@ const OrdersSummary = () => {
       </Row>
       <Row>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus status='Recientes' amount={4} color='#00c0ef' />
+          <OrderStatus
+            status='new'
+            amount={4}
+            color='#00c0ef'
+            onSearchClick={handleOrderStatusSearch}
+          />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus status='No Atendidos' amount={4} color='#f56954' />
+          <OrderStatus
+            status='issued'
+            amount={4}
+            color='#f56954'
+            onSearchClick={handleOrderStatusSearch}
+          />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus status='Preparando' amount={3} color='#00a65a' />
+          <OrderStatus
+            status='preparing'
+            amount={3}
+            color='#00a65a'
+            onSearchClick={handleOrderStatusSearch}
+          />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus status='Preparados' amount={1} color='#0073b7' />
+          <OrderStatus
+            status='prepared'
+            amount={1}
+            color='#0073b7'
+            onSearchClick={handleOrderStatusSearch}
+          />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus status='Enviando' amount={3} color='#ff851b' />
+          <OrderStatus
+            status='delivering'
+            amount={3}
+            color='#ff851b'
+            onSearchClick={handleOrderStatusSearch}
+          />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus status='Sucursal' amount={3} color='#f39c12' />
+          <OrderStatus
+            status='ready_to_pickup'
+            amount={3}
+            color='#f39c12'
+            onSearchClick={handleOrderStatusSearch}
+          />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus status='Atendidos' amount={1} color='#222222' />
+          <OrderStatus
+            status='dispatched'
+            amount={1}
+            color='#222222'
+            onSearchClick={handleOrderStatusSearch}
+          />
         </Col>
       </Row>
       <DateRangePicker
