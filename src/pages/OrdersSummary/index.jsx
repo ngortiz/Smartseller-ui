@@ -51,18 +51,18 @@ const OrdersSummary = () => {
 
   const handleSearch = () => {
     console.log('Realizar búsqueda para el estado:', currentStatus)
-    // Aquí podrías realizar alguna acción de búsqueda adicional si es necesario
+    // Here you could perform some additional search action if necessary
   }
 
   const handleOrderStatusSearch = status => {
-    console.log('Estado seleccionado:', status) // Verifica el estado seleccionado
+    console.log('Estado seleccionado:', status) // Check the selected state
     setCurrentStatus(status)
     if (status === null) {
-      // Verificar si status es null en lugar de 'all'
-      // Si se selecciona "todos", mostramos todos los pedidos
+      // Check if status is null instead of 'all'
+      // If "all" is selected, we show all orders
       setFilteredOrders(orders)
     } else {
-      // Filtramos los pedidos por estado seleccionado
+      // We filter orders by selected status
       const filtered = orders.filter(order => order.orderState === status)
       setFilteredOrders(filtered)
     }
