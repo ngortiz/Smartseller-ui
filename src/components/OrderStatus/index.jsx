@@ -30,7 +30,8 @@ const OrderStatus = ({ color, amount, status, onSearchClick }) => {
   const handleSearchClick = async () => {
     setIsSearching(true)
     try {
-      await onSearchClick(status)
+      const newData = data ? data.getOrders : []
+      await onSearchClick(newData)
     } finally {
       setIsSearching(false)
     }

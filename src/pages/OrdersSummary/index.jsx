@@ -12,6 +12,8 @@ const OrdersSummary = () => {
   const [startDate, setStartDate] = useState(defaultDate)
   const [endDate, setEndDate] = useState(defaultDate)
   const [orders, setOrders] = useState([])
+  const [currentStatus, setCurrentStatus] = useState(null)
+  const [filteredOrders, setFilteredOrders] = useState([])
 
   const GET_ORDERS_QUERY = gql`
     query GetOrdersQuery {
@@ -28,15 +30,16 @@ const OrdersSummary = () => {
       }
     }
   `
+
   const { loading, data } = useQuery(GET_ORDERS_QUERY)
 
   useEffect(() => {
-    console.log('entro en el useEffect')
     if (data) {
-      console.log(data.getOrders)
       setOrders(data.getOrders)
+      // Al principio, mostramos todos los pedidos
+      setFilteredOrders(data.getOrders)
     }
-  }, [loading])
+  }, [loading, data])
 
   const handleStartDateChange = date => {
     setStartDate(date)
@@ -45,10 +48,23 @@ const OrdersSummary = () => {
   const handleEndDateChange = date => {
     setEndDate(date)
   }
+
   const handleSearch = () => {
-    // Lógica para realizar la búsqueda
+    console.log('Realizar búsqueda para el estado:', currentStatus)
+    // Aquí podrías realizar alguna acción de búsqueda adicional si es necesario
   }
-  const handleOrderStatusSearch = () => {}
+
+  const handleOrderStatusSearch = status => {
+    setCurrentStatus(status)
+    if (status === 'all') {
+      // Si se selecciona "todos", mostramos todos los pedidos
+      setFilteredOrders(orders)
+    } else {
+      // Filtramos los pedidos por estado seleccionado
+      const filtered = orders.filter(order => order.orderState === status)
+      setFilteredOrders(filtered)
+    }
+  }
 
   return (
     <Container fluid>
@@ -124,7 +140,7 @@ const OrdersSummary = () => {
       />
       <Row>
         <Col>
-          <DataTable orders={orders} />
+          <DataTable orders={filteredOrders} />
         </Col>
       </Row>
     </Container>
