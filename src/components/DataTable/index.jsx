@@ -12,7 +12,7 @@ const DataTable = ({ orders }) => {
 
   const filteredOrders = orders.filter(order => {
     return (
-      order.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.number.toString().includes(searchTerm)
     )
   })
@@ -49,12 +49,12 @@ const DataTable = ({ orders }) => {
               <td>
                 <Link to={`/orders/${order.id}`}>{order.number}</Link>
               </td>
-              <td>{order.client}</td>
-              <td>{order.state}</td>
-              <td>{order.payment_state}</td>
-              <td>{order.payment_method}</td>
-              <td>{order.created_date}</td>
-              <td>{order.expiration_date}</td>
+              <td>{order.username}</td>
+              <td>{order.orderState}</td>
+              <td>{order.paymentState}</td>
+              <td>{order.buyMethod}</td>
+              <td>{order.createdAt}</td>
+              <td>{order.updatedAt}</td>
               <td>{order.total}</td>
             </tr>
           ))}
