@@ -12,8 +12,6 @@ const OrdersSummary = () => {
   const [startDate, setStartDate] = useState(defaultDate)
   const [endDate, setEndDate] = useState(defaultDate)
   const [orders, setOrders] = useState([])
-  const [currentStatus, setCurrentStatus] = useState(null)
-  const [filteredOrders, setFilteredOrders] = useState([])
 
   const GET_ORDERS_QUERY = gql`
     query GetOrdersQuery {
@@ -36,8 +34,6 @@ const OrdersSummary = () => {
   useEffect(() => {
     if (data) {
       setOrders(data.getOrders)
-      // Al principio, mostramos todos los pedidos
-      setFilteredOrders(data.getOrders)
     }
   }, [loading, data])
 
@@ -49,24 +45,10 @@ const OrdersSummary = () => {
     setEndDate(date)
   }
 
-  const handleSearch = () => {
-    console.log('Realizar búsqueda para el estado:', currentStatus)
-    // Here you could perform some additional search action if necessary
+  const handleOrdersUpdate = newOrders => {
+    setOrders(newOrders)
   }
-
-  const handleOrderStatusSearch = status => {
-    console.log('Estado seleccionado:', status) // Check the selected state
-    setCurrentStatus(status)
-    if (status === null) {
-      // Check if status is null instead of 'all'
-      // If "all" is selected, we show all orders
-      setFilteredOrders(orders)
-    } else {
-      // We filter orders by selected status
-      const filtered = orders.filter(order => order.orderState === status)
-      setFilteredOrders(filtered)
-    }
-  }
+  const handleSearch = () => {}
 
   return (
     <Container fluid>
@@ -81,7 +63,7 @@ const OrdersSummary = () => {
             status='new'
             amount={4}
             color='#00c0ef'
-            onSearchClick={handleOrderStatusSearch}
+            onSearchClick={handleOrdersUpdate}
           />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
@@ -89,7 +71,7 @@ const OrdersSummary = () => {
             status='issued'
             amount={4}
             color='#f56954'
-            onSearchClick={handleOrderStatusSearch}
+            onSearchClick={handleOrdersUpdate}
           />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
@@ -97,7 +79,7 @@ const OrdersSummary = () => {
             status='preparing'
             amount={3}
             color='#00a65a'
-            onSearchClick={handleOrderStatusSearch}
+            onSearchClick={handleOrdersUpdate}
           />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
@@ -105,7 +87,7 @@ const OrdersSummary = () => {
             status='prepared'
             amount={1}
             color='#0073b7'
-            onSearchClick={handleOrderStatusSearch}
+            onSearchClick={handleOrdersUpdate}
           />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
@@ -113,7 +95,7 @@ const OrdersSummary = () => {
             status='delivering'
             amount={3}
             color='#ff851b'
-            onSearchClick={handleOrderStatusSearch}
+            onSearchClick={handleOrdersUpdate}
           />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
@@ -121,7 +103,7 @@ const OrdersSummary = () => {
             status='ready_to_pickup'
             amount={3}
             color='#f39c12'
-            onSearchClick={handleOrderStatusSearch}
+            onSearchClick={handleOrdersUpdate}
           />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
@@ -129,7 +111,7 @@ const OrdersSummary = () => {
             status='dispatched'
             amount={1}
             color='#222222'
-            onSearchClick={handleOrderStatusSearch}
+            onSearchClick={handleOrdersUpdate}
           />
         </Col>
       </Row>
@@ -142,7 +124,7 @@ const OrdersSummary = () => {
       />
       <Row>
         <Col>
-          <DataTable orders={filteredOrders} />
+          <DataTable orders={orders} />
         </Col>
       </Row>
     </Container>

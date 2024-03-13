@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import { Button, Card } from 'react-bootstrap'
 import './style.css'
-import React, { useState } from 'react'
-import { useQuery, gql } from '@apollo/client'
+import React, { useEffect } from 'react'
+import { useLazyQuery, gql } from '@apollo/client'
 
-const GET_ORDERS_BY_STATUS_QUERY = gql`
-  query GetOrdersByStatus($status: String!) {
-    getOrders(status: $status) {
+const GET_ORDERS_BY_STATE_QUERY = gql`
+  query GetOrdersByState($state: OrderState!) {
+    getOrders(state: $state) {
       buyMethod
       number
       username
@@ -21,21 +21,14 @@ const GET_ORDERS_BY_STATUS_QUERY = gql`
 `
 
 const OrderStatus = ({ color, amount, status, onSearchClick }) => {
-  const [isSearching, setIsSearching] = useState(false)
-
-  const { loading, data } = useQuery(GET_ORDERS_BY_STATUS_QUERY, {
-    variables: { status }
-  })
-
-  const handleSearchClick = async () => {
-    console.log('Estado seleccionado en OrderStatus:', status)
-    setIsSearching(true)
-    try {
-      await onSearchClick(status)
-    } finally {
-      setIsSearching(false)
+  const [handleSearch, { loading, error, data }] = useLazyQuery(
+    GET_ORDERS_BY_STATE_QUERY
+  )
+  useEffect(() => {
+    if (data) {
+      onSearchClick(data.getOrders)
     }
-  }
+  }, [loading])
 
   return (
     <div>
@@ -46,8 +39,12 @@ const OrderStatus = ({ color, amount, status, onSearchClick }) => {
           <div className='icon-container'>
             <i className='bi bi-handbag'></i>
           </div>
-          <Button variant='' onClick={handleSearchClick} disabled={isSearching}>
-            {isSearching ? 'Buscando...' : 'Buscar'}{' '}
+          <Button
+            variant=''
+            onClick={() => handleSearch({ variables: { state: status } })}
+            disabled={loading}
+          >
+            {loading ? 'Buscando...' : 'Buscar'}{' '}
             <i className='bi bi-arrow-right-circle'></i>
           </Button>
         </Card.Body>
