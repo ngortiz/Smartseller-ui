@@ -1,8 +1,7 @@
-// DataTable.jsx
-
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Table, Form } from 'react-bootstrap'
+import moment from 'moment' // Importa Moment.js
 import './style.css'
 
 import { Link } from 'react-router-dom'
@@ -53,8 +52,10 @@ const DataTable = ({ orders }) => {
               <td>{order.orderState}</td>
               <td>{order.paymentState}</td>
               <td>{order.buyMethod}</td>
-              <td>{order.createdAt}</td>
-              <td>{order.updatedAt}</td>
+              <td>{moment(order.createdAt).format('DD-MM-YYYY HH:mm')}</td>
+
+              <td>{moment(order.updatedAt).format('DD-MM-YYYY HH:mm')}</td>
+
               <td>{order.total}</td>
             </tr>
           ))}

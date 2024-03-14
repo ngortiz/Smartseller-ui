@@ -60,10 +60,10 @@
 .date-picker-container {
   margin-top: 5%;
   margin-right: 0%;
-  margin-left: 10%;
+  margin-left: 8%;
   text-align: center;
   display: flex;
   font-weight: bold;
   align-items: center;
-  margin-bottom: -10px;
+  margin-bottom: 5%;
 }

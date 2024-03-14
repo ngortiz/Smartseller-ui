@@ -3,6 +3,7 @@ import { Button, Card } from 'react-bootstrap'
 import './style.css'
 import React, { useEffect } from 'react'
 import { useLazyQuery, gql } from '@apollo/client'
+import { useTranslation } from 'react-i18next'
 
 const GET_ORDERS_BY_STATE_QUERY = gql`
   query GetOrdersByState($state: OrderState!) {
@@ -21,6 +22,7 @@ const GET_ORDERS_BY_STATE_QUERY = gql`
 `
 
 const OrderStatus = ({ color, amount, status, onSearchClick }) => {
+  const { t } = useTranslation()
   const [handleSearch, { loading, error, data }] = useLazyQuery(
     GET_ORDERS_BY_STATE_QUERY
   )

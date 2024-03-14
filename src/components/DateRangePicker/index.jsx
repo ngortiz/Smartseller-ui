@@ -2,6 +2,9 @@ import React from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import CustomDatePicker from '../CustomDatePicker'
 import './style.css'
+import { subMonths } from 'date-fns'
+import PropTypes from 'prop-types'
+
 const DateRangePicker = ({
   startDate,
   endDate,
@@ -9,13 +12,14 @@ const DateRangePicker = ({
   handleEndDateChange,
   handleSearch
 }) => {
+  const defaultStartDate = subMonths(new Date(), 1)
   return (
     <div className='date-range-picker-container'>
       <Row>
         <Col className='date-picker-container '>
           <h1 className='custom-label'>Desde: </h1>
           <CustomDatePicker
-            selectedDate={startDate}
+            selectedDate={startDate || defaultStartDate}
             handleChange={handleStartDateChange}
           />
 
@@ -35,6 +39,13 @@ const DateRangePicker = ({
       </Row>
     </div>
   )
+}
+DateRangePicker.propTypes = {
+  startDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
+  handleStartDateChange: PropTypes.func.isRequired,
+  handleEndDateChange: PropTypes.func.isRequired,
+  handleSearch: PropTypes.func.isRequired
 }
 
 export default DateRangePicker

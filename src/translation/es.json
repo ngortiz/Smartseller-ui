@@ -1,0 +1,12 @@
+{
+  "translation": {
+    "credit_card": "Tarjeta de Crédito",
+    "issued": "No Atendido",
+    "preparing": "Preparando",
+    "prepared": "Preparado",
+    "dispatched": "Atendido",
+    "new": "Recientes",
+    "delivering": "Enviando",
+    "ready_to_pickup": "Sucursal"
+  }
+}
