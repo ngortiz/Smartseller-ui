@@ -9,5 +9,11 @@
   "dispatched": "Dispatched",
   "new": "New",
   "delivering": "Delivering",
-  "ready_to_pickup": "ready_to_pickup"
+  "ready to pickup": "ready to pickup",
+  "order Status": "Order Status",
+  "payment Status": "Payment Status",
+  "Buy Method": "Buy Method",
+  "pending": "Pending",
+  "completed": "completed",
+  "cancelled": "Cancelado"
 }
