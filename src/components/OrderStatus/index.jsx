@@ -22,8 +22,8 @@ const GET_ORDERS_BY_STATE_QUERY = gql`
 `
 
 const OrderStatus = ({ color, amount, status, onSearchClick }) => {
-  const { t } = useTranslation('translation')
-  console.log(t('prepared'))
+  const { t } = useTranslation()
+ 
   const [handleSearch, { loading, error, data }] = useLazyQuery(
     GET_ORDERS_BY_STATE_QUERY
   )

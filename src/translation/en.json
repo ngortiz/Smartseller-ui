@@ -1,15 +1,13 @@
 {
-  "translation": {
-    "credit_card": "Credit Card",
-    "bank_transference": "Bank_transference",
-    "bank_deposit": "Bank_deposit",
-    "in_branch": "In_branch",
-    "issued": "Issued",
-    "preparing": "Preparing",
-    "prepared": "Prepared",
-    "dispatched": "Dispatched",
-    "new": "New",
-    "delivering": "Delivering",
-    "ready_to_pickup": "ready_to_pickup"
-  }
+  "credit_card": "Credit Card",
+  "bank_transference": "Bank_transference",
+  "bank_deposit": "Bank_deposit",
+  "in_branch": "In_branch",
+  "issued": "Issued",
+  "preparing": "Preparing",
+  "prepared": "Prepared",
+  "dispatched": "Dispatched",
+  "new": "New",
+  "delivering": "Delivering",
+  "ready_to_pickup": "ready_to_pickup"
 }
