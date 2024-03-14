@@ -1,10 +1,9 @@
-// i18n.js
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
 // Importa los archivos de traducción
-import translationEN from './locales/en.json'
-import translationES from './locales/es.json'
+import translationEN from '../translation/en.json'
+import translationES from '../translation/es.json'
 
 // Configura i18next
 i18n.use(initReactI18next).init({
@@ -20,7 +19,8 @@ i18n.use(initReactI18next).init({
   fallbackLng: 'en', // Si no se encuentra una traducción, usa inglés como fallback
   interpolation: {
     escapeValue: false // No necesitas escapar valores de cadenas traducidas
-  }
+  },
+  debug: true
 })
 
 export default i18n
