@@ -57,10 +57,17 @@
   margin: 10px 0;
   margin-left: 10px;
 }
-.date-picker-container {
-  display: flex;
+.date-range-picker-container {
+  display: flexbox;
   text-align: center;
   margin-top: 5%;
   margin-bottom: 5%;
   margin-right: 5%;
+}
+.date-picker-container {
+  display: flex;
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 0%;
+  margin-right: 22%;
 }
