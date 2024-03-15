@@ -4,13 +4,13 @@ import OrderStatus from '../../components/OrderStatus/index'
 import DateRangePicker from '../../components/DateRangePicker'
 import DataTable from '../../components/DataTable/index'
 import { useQuery, gql } from '@apollo/client'
+import { subMonths } from 'date-fns'
 
 import './style.css'
 
 const OrdersSummary = () => {
-  const defaultDate = new Date()
-  const [startDate, setStartDate] = useState(defaultDate)
-  const [endDate, setEndDate] = useState(defaultDate)
+  const [startDate, setStartDate] = useState(subMonths(new Date(), 1))
+  const [endDate, setEndDate] = useState(new Date())
   const [orders, setOrders] = useState([])
 
   const GET_ORDERS_QUERY = gql`
