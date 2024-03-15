@@ -50,9 +50,9 @@ const DataTable = ({ orders }) => {
                 <Link to={`/orders/${order.id}`}>{order.number}</Link>
               </td>
               <td>{order.username}</td>
-              <td>{t(order.orderState)}</td>
-              <td>{t(order.paymentState)}</td>
-              <td>{t(order.buyMethod)}</td>
+              <td>{t(`orderStatus.${order.orderState}`)}</td>
+              <td>{t(`paymentStatus.${order.paymentState}`)}</td>
+              <td>{t(`buyMethods.${order.buyMethod}`)}</td>
               <td>{moment(order.createdAt).format('DD-MM-YYYY HH:mm')}</td>
 
               <td>{moment(order.updatedAt).format('DD-MM-YYYY HH:mm')}</td>
