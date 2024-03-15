@@ -57,6 +57,13 @@ const OrdersSummary = () => {
           <h2 className='title'>Resumen de Pedidos</h2>
         </Col>
       </Row>
+      <DateRangePicker
+        startDate={startDate}
+        endDate={endDate}
+        handleStartDateChange={handleStartDateChange}
+        handleEndDateChange={handleEndDateChange}
+        handleSearch={handleSearch}
+      />
       <Row>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
           <OrderStatus
@@ -115,13 +122,7 @@ const OrdersSummary = () => {
           />
         </Col>
       </Row>
-      <DateRangePicker
-        startDate={startDate}
-        endDate={endDate}
-        handleStartDateChange={handleStartDateChange}
-        handleEndDateChange={handleEndDateChange}
-        handleSearch={handleSearch}
-      />
+
       <Row>
         <Col>
           <DataTable orders={orders} />

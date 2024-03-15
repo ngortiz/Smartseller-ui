@@ -1,14 +1,14 @@
-// DataTable.jsx
-
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Table, Form } from 'react-bootstrap'
+import moment from 'moment'
 import './style.css'
-
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 const DataTable = ({ orders }) => {
   const [searchTerm, setSearchTerm] = useState('')
+  const { t } = useTranslation()
 
   const filteredOrders = orders.filter(order => {
     return (
@@ -37,8 +37,8 @@ const DataTable = ({ orders }) => {
             <th>Estado Pedido</th>
             <th>Estado Pago</th>
             <th>Forma Pago</th>
-            <th>Fecha Creacion</th>
-            <th>Fecha Expiracion</th>
+            <th>Fecha Creación</th>
+            <th>Fecha Expiración</th>
             <th>Total</th>
           </tr>
         </thead>
@@ -50,11 +50,13 @@ const DataTable = ({ orders }) => {
                 <Link to={`/orders/${order.id}`}>{order.number}</Link>
               </td>
               <td>{order.username}</td>
-              <td>{order.orderState}</td>
-              <td>{order.paymentState}</td>
-              <td>{order.buyMethod}</td>
-              <td>{order.createdAt}</td>
-              <td>{order.updatedAt}</td>
+              <td>{t(order.orderState)}</td>
+              <td>{t(order.paymentState)}</td>
+              <td>{t(order.buyMethod)}</td>
+              <td>{moment(order.createdAt).format('DD-MM-YYYY HH:mm')}</td>
+
+              <td>{moment(order.updatedAt).format('DD-MM-YYYY HH:mm')}</td>
+
               <td>{order.total}</td>
             </tr>
           ))}
