@@ -12,14 +12,15 @@ const DateRangePicker = ({
   handleEndDateChange,
   handleSearch
 }) => {
-  const defaultStartDate = subMonths(new Date(), 1)
+  const defaultDate = subMonths(new Date(), 1)
+
   return (
     <div className='date-range-picker-container'>
-      <Row>
-        <Col className='date-picker-container '>
+      <Row className='justify-content-center'>
+        <Col xs={12} sm={8} md={6} lg={4} className='date-picker-container '>
           <h1 className='custom-label'>Desde: </h1>
           <CustomDatePicker
-            selectedDate={startDate || defaultStartDate}
+            selectedDate={startDate || defaultDate}
             handleChange={handleStartDateChange}
           />
 
@@ -40,6 +41,7 @@ const DateRangePicker = ({
     </div>
   )
 }
+
 DateRangePicker.propTypes = {
   startDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),

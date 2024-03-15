@@ -58,12 +58,9 @@
   margin-left: 10px;
 }
 .date-picker-container {
-  margin-top: 5%;
-  margin-right: 0%;
-  margin-left: 8%;
-  text-align: center;
   display: flex;
-  font-weight: bold;
-  align-items: center;
+  text-align: center;
+  margin-top: 5%;
   margin-bottom: 5%;
+  margin-right: 5%;
 }

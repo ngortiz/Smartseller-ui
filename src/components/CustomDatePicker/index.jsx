@@ -8,6 +8,7 @@ import { subMonths } from 'date-fns'
 
 const CustomDatePicker = ({ selectedDate, handleChange }) => {
   const defaultDate = subMonths(new Date(), 1)
+
   return (
     <div className='custom-date-picker'>
       <BiCalendar className='bi bi-calendar-icon' />
@@ -17,12 +18,16 @@ const CustomDatePicker = ({ selectedDate, handleChange }) => {
         dateFormat='dd/MM/yyyy'
         className='date-picker-input'
         startDate={defaultDate}
+        minDate={defaultDate}
+        maxDate={new Date()}
       />
     </div>
   )
 }
+
 CustomDatePicker.propTypes = {
   selectedDate: PropTypes.instanceOf(Date),
   handleChange: PropTypes.func.isRequired
 }
+
 export default CustomDatePicker
