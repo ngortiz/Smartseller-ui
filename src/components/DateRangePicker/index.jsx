@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import CustomDatePicker from '../CustomDatePicker'
 import './style.css'
-import { subMonths } from 'date-fns'
+
 import PropTypes from 'prop-types'
 
 const DateRangePicker = ({
@@ -12,8 +12,6 @@ const DateRangePicker = ({
   handleEndDateChange,
   handleSearch
 }) => {
-  const defaultDate = subMonths(new Date(), 1)
-
   return (
     <div className='date-range-picker-container'>
       <Row className='justify-content-center'>

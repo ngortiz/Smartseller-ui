@@ -61,13 +61,13 @@
   display: flexbox;
   text-align: center;
   margin-top: 5%;
-  margin-bottom: 5%;
+  margin-bottom: 4%;
   margin-right: 5%;
 }
 .date-picker-container {
   display: flex;
   text-align: center;
-  margin-top: 5%;
+  margin-top: 15px;
   margin-bottom: 0%;
-  margin-right: 22%;
+  margin-right: 25%;
 }
