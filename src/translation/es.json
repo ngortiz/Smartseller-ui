@@ -2,7 +2,11 @@
   "buy Method": "Forma de compra",
 
   "bankPaymentsPage": {
-    "header": "Pagos vía Banco o en Sucursal"
+    "header": "Pagos vía Banco o en Sucursal",
+    "Pending": "Pendiente",
+    "Not completed": "No completado",
+    "Completed": "Completado",
+    "Cancelled": "Cancelado"
   },
   "buyMethods": {
     "credit_card": "Tarjeta de Crédito",
