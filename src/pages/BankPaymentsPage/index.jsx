@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import './style.css'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -8,6 +7,8 @@ const BankPaymentsPage = () => {
   const [selectedOption, setSelectedOption] = useState('all')
   const [payments, setPayments] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
+  const [showPaymentModal, setShowPaymentModal] = useState(false)
+  const [selectedPayment, setSelectedPayment] = useState(null)
   const { t } = useTranslation()
 
   const listPayments = [
@@ -123,6 +124,15 @@ const BankPaymentsPage = () => {
     setPayments([])
   }
 
+  const handlePaymentClick = payment => {
+    setSelectedPayment(payment)
+    setShowPaymentModal(true) // Mostrar la ventana emergente
+  }
+
+  const handleCloseModal = () => {
+    setShowPaymentModal(false) // Ocultar la ventana emergente
+  }
+
   return (
     <div>
       <header className='bank-header'>{t('bankPaymentsPage.header')}</header>
@@ -156,6 +166,23 @@ const BankPaymentsPage = () => {
         </div>
       </div>
 
+      {showPaymentModal && (
+        <div className='payment-modal'>
+          <div className='payment-modal-content'>
+            <p>
+              {t('bankPaymentsPage.client')}: {selectedPayment.client}
+            </p>
+            <p>
+              {t('bankPaymentsPage.orderNumber')}: {selectedPayment.orderNumber}
+            </p>
+            {/* Agregar aquí los campos para registrar el pago y cargar la imagen del comprobante */}
+            <button onClick={handleCloseModal}>
+              {t('bankPaymentsPage.close')}
+            </button>
+          </div>
+        </div>
+      )}
+
       <table className='bank-table'>
         <thead>
           <tr>
@@ -166,7 +193,7 @@ const BankPaymentsPage = () => {
             <th>Estado del Pago</th>
             <th>Forma de Pago</th>
             <th>Fecha de Creación</th>
-            <th>Fecha de Expiracion</th>
+            <th>Fecha de Expiración</th>
             <th>Total</th>
             <th>Registrar Pago</th>
           </tr>
@@ -191,7 +218,7 @@ const BankPaymentsPage = () => {
               <td>
                 <button
                   className='btn-pagar'
-                  onClick={() => handlePaymentRegistration(payment.id)}
+                  onClick={() => handlePaymentClick(payment)}
                 >
                   Pagar
                 </button>
