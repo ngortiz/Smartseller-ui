@@ -1,19 +1,26 @@
 {
-  "credit_card": "Credit Card",
-  "bank_transference": "Bank_transference",
-  "bank_deposit": "Bank_deposit",
-  "in_branch": "In_branch",
-  "issued": "Issued",
-  "preparing": "Preparing",
-  "prepared": "Prepared",
-  "dispatched": "Dispatched",
-  "new": "New",
-  "delivering": "Delivering",
-  "ready to pickup": "ready to pickup",
   "order Status": "Order Status",
   "payment Status": "Payment Status",
   "Buy Method": "Buy Method",
-  "pending": "Pending",
-  "completed": "completed",
-  "cancelled": "Cancelado"
+
+  "buyMethods": {
+    "credit_card": "Credit Card",
+    "bank_transference": "Bank_transference",
+    "bank_deposit": "Bank_deposit",
+    "in_branch": "In_branch"
+  },
+  "paymentStatus": {
+    "pending": "Pending",
+    "completed": "completed",
+    "cancelled": "Cancelado"
+  },
+  "orderStatus": {
+    "issued": "Issued",
+    "preparing": "Preparing",
+    "prepared": "Prepared",
+    "dispatched": "Dispatched",
+    "new": "New",
+    "delivering": "Delivering",
+    "ready to pickup": "ready to pickup"
+  }
 }

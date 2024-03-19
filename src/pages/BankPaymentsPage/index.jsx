@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 
 import './style.css'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const BankPaymentsPage = () => {
   const [selectedOption, setSelectedOption] = useState('all')
   const [payments, setPayments] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
+  const { t } = useTranslation()
 
   const listPayments = [
     {
@@ -123,7 +125,7 @@ const BankPaymentsPage = () => {
 
   return (
     <div>
-      <header className='bank-header'>Pagos vía Banco o en Sucursal</header>
+      <header className='bank-header'>{t('bankPaymentsPage.header')}</header>
 
       <div className='bank-flex-container'>
         <div className='bank-container'>

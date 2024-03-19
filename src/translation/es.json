@@ -1,19 +1,32 @@
 {
-  "credit_card": "Tarjeta de Crédito",
-  "bank_transference": "Transferencia Bancaria",
-  "bank_deposit": "Deposito Bancario",
-  "in_branch": "En sucursal",
-  "issued": "No Atendido",
-  "preparing": "Preparando",
-  "prepared": "Preparado",
-  "dispatched": "Atendido",
-  "new": "Recientes",
-  "delivering": "Enviando",
-  "ready_to_pickup": "Sucursal",
-  "order Status": "Estado de Pedido",
-  "payment Status": "Estado de Pago",
   "buy Method": "Forma de compra",
-  "pending": "Pendiente",
-  "completed": "Completado",
-  "cancelled": "cancelled"
+
+  "bankPaymentsPage": {
+    "header": "Pagos vía Banco o en Sucursal",
+    "Pending": "Pendiente",
+    "Not completed": "No completado",
+    "Completed": "Completado",
+    "Cancelled": "Cancelado"
+  },
+  "buyMethods": {
+    "credit_card": "Tarjeta de Crédito",
+    "bank_transference": "Transferencia Bancaria",
+    "bank_deposit": "Deposito Bancario",
+    "in_branch": "En sucursal"
+  },
+  "paymentStatus": {
+    "pending": "Pendiente",
+    "completed": "Completado",
+    "cancelled": "cancelled"
+  },
+  "orderStatus": {
+    "issued": "No Atendido",
+    "preparing": "Preparando",
+    "prepared": "Preparado",
+    "dispatched": "Atendido",
+    "new": "Recientes",
+    "delivering": "Enviando",
+    "ready_to_pickup": "Sucursal",
+    "order Status": "Estado de Pedido"
+  }
 }
