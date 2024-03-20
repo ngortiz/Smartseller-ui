@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './style.css'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import PaymentModal from '../PaymentsModal/PaymentModal' // Importa el componente PaymentModal
 
 const BankPaymentsPage = () => {
   const [selectedOption, setSelectedOption] = useState('all')
@@ -119,18 +120,25 @@ const BankPaymentsPage = () => {
     setPayments(filteredPayments)
   }
 
+  const handlePaymentClick = payment => {
+    setSelectedPayment(payment)
+    setShowPaymentModal(true)
+  }
+
+  const handleCloseModal = () => {
+    setShowPaymentModal(false)
+  }
+
   const handleBackButtonClick = () => {
     setSelectedOption('all')
     setPayments([])
   }
 
-  const handlePaymentClick = payment => {
-    setSelectedPayment(payment)
-    setShowPaymentModal(true) // Mostrar la ventana emergente
-  }
-
-  const handleCloseModal = () => {
-    setShowPaymentModal(false) // Ocultar la ventana emergente
+  const handlePaymentRegistration = paymentData => {
+    // Implementa la lógica para registrar el pago aquí
+    console.log('Datos del pago:', paymentData)
+    // Luego puedes cerrar el modal si es necesario
+    setShowPaymentModal(false)
   }
 
   return (
@@ -166,21 +174,13 @@ const BankPaymentsPage = () => {
         </div>
       </div>
 
+      {/* Modal de pago */}
       {showPaymentModal && (
-        <div className='payment-modal'>
-          <div className='payment-modal-content'>
-            <p>
-              {t('bankPaymentsPage.client')}: {selectedPayment.client}
-            </p>
-            <p>
-              {t('bankPaymentsPage.orderNumber')}: {selectedPayment.orderNumber}
-            </p>
-            {/* Agregar aquí los campos para registrar el pago y cargar la imagen del comprobante */}
-            <button onClick={handleCloseModal}>
-              {t('bankPaymentsPage.close')}
-            </button>
-          </div>
-        </div>
+        <PaymentModal
+          payment={selectedPayment}
+          onClose={handleCloseModal}
+          onPaymentRegister={handlePaymentRegistration}
+        />
       )}
 
       <table className='bank-table'>

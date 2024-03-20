@@ -1,0 +1,41 @@
+.payment-modal {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  width: 35%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5%;
+}
+
+.payment-modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 100%;
+}
+
+.payment-modal-content p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.payment-modal-content button {
+  background-color: #262c40;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  align-items: center;
+}
+
+.payment-modal-content button:hover {
+  background-color: #50657c;
+}
