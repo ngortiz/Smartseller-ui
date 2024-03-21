@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './style.css'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import PaymentModal from '../PaymentsModal/PaymentModal' // Importa el componente PaymentModal
+import PaymentModal from '../PaymentsModal/PaymentModal'
 
 const BankPaymentsPage = () => {
   const [selectedOption, setSelectedOption] = useState('all')
@@ -135,9 +135,8 @@ const BankPaymentsPage = () => {
   }
 
   const handlePaymentRegistration = paymentData => {
-    // Implementa la lógica para registrar el pago aquí
     console.log('Datos del pago:', paymentData)
-    // Luego puedes cerrar el modal si es necesario
+
     setShowPaymentModal(false)
   }
 
@@ -174,7 +173,6 @@ const BankPaymentsPage = () => {
         </div>
       </div>
 
-      {/* Modal de pago */}
       {showPaymentModal && (
         <PaymentModal
           payment={selectedPayment}

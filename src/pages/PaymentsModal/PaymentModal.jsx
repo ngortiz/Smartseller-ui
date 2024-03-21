@@ -27,6 +27,7 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
     <div className='payment-modal'>
       <div className='payment-modal-content'>
         <h2>Detalles del Pago</h2>
+
         <p>Cliente: {payment.client}</p>
         <p>Número de Pedido: {payment.orderNumber}</p>
         <Row>
@@ -44,7 +45,9 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
             value={receiptNumber}
             onChange={e => setReceiptNumber(e.target.value)}
           />
-          <label htmlFor='paymentDate'>Fecha de Pago:</label>
+          <label className='payment-date' htmlFor='paymentDate'>
+            Fecha de Pago:
+          </label>
           <input
             type='date'
             id='paymentDate'
