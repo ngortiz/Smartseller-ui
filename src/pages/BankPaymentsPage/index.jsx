@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './style.css'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import PaymentModal from '../PaymentsModal/PaymentModal'
+import PaymentModal from '../../components/PaymentModal/index'
 
 const BankPaymentsPage = () => {
   const [selectedOption, setSelectedOption] = useState('all')
