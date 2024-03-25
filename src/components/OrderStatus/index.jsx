@@ -23,7 +23,7 @@ const GET_ORDERS_BY_STATE_QUERY = gql`
 
 const OrderStatus = ({ color, amount, status, onSearchClick }) => {
   const { t } = useTranslation()
- 
+
   const [handleSearch, { loading, error, data }] = useLazyQuery(
     GET_ORDERS_BY_STATE_QUERY
   )
@@ -38,7 +38,7 @@ const OrderStatus = ({ color, amount, status, onSearchClick }) => {
       <Card style={{ background: color }} data-testid='order-status-card'>
         <Card.Body>
           <Card.Title>{amount}</Card.Title>
-          <Card.Text>{t(`${status}`)}</Card.Text>
+          <Card.Text>{t(`orderStatus.${status}`)}</Card.Text>
           <div className='icon-container'>
             <i className='bi bi-handbag'></i>
           </div>

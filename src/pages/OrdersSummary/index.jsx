@@ -5,7 +5,6 @@ import DateRangePicker from '../../components/DateRangePicker'
 import DataTable from '../../components/DataTable/index'
 import { useQuery, gql } from '@apollo/client'
 import { subMonths } from 'date-fns'
-import { useTranslation } from 'react-i18next'
 
 import './style.css'
 
@@ -13,7 +12,7 @@ const OrdersSummary = () => {
   const [startDate, setStartDate] = useState(subMonths(new Date(), 1))
   const [endDate, setEndDate] = useState(new Date())
   const [orders, setOrders] = useState([])
-  const { t } = useTranslation()
+  const [ordersAmountGroupByState, setOrdersAmountGroupByState] = useState([])
 
   const GET_ORDERS_QUERY = gql`
     query GetOrdersQuery {
@@ -42,8 +41,8 @@ const OrdersSummary = () => {
     }
   `
 
-  const { loading, data } = useQuery(GET_ORDERS_QUERY)
-  const { loadingOrdersAmount, error, ordersAmountData } = useQuery(
+  const { loading: ordersLoading, data: ordersData } = useQuery(GET_ORDERS_QUERY)
+  const { loading: ordersAmountLoading, data: ordersAmountData } = useQuery(
     GET_ORDERS_AMOUNT_GROUP_BY_STATE_QUERY,
     {
       variables: {
@@ -54,15 +53,14 @@ const OrdersSummary = () => {
   )
 
   useEffect(() => {
-    if (data) {
-      setOrders(data.getOrders)
+    if (ordersData) {
+      setOrders(ordersData.getOrders)
     }
-    console.log('hola hola')
-    console.log(error)
+ 
     if (ordersAmountData) {
-      console.log(ordersAmountData)
+      setOrdersAmountGroupByState(ordersAmountData.getOrdersAmountGroupByState)
     }
-  }, [loading, loadingOrdersAmount, ordersAmountData])
+  }, [ordersLoading, ordersAmountLoading])
 
   const handleStartDateChange = date => {
     setStartDate(date)
@@ -75,7 +73,11 @@ const OrdersSummary = () => {
   const handleOrdersUpdate = newOrders => {
     setOrders(newOrders)
   }
-  const handleSearch = () => {}
+  const handleSearch = () => {
+    console.log('search')
+    console.log(startDate)
+    console.log(endDate)
+  }
 
   return (
     <Container fluid>
@@ -91,65 +93,67 @@ const OrdersSummary = () => {
         handleEndDateChange={handleEndDateChange}
         handleSearch={handleSearch}
       />
-      <Row>
+      {
+        ordersAmountGroupByState.length > 0 && <Row>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
           <OrderStatus
-            status={t('Recientes')}
-            amount={4}
+            status='new'
+            amount={ordersAmountGroupByState[0].amount}
             color='#00c0ef'
             onSearchClick={handleOrdersUpdate}
           />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
           <OrderStatus
-            status={t('No atendido')}
-            amount={4}
+            status='issued'
+            amount={ordersAmountGroupByState[1].amount}
             color='#f56954'
             onSearchClick={handleOrdersUpdate}
           />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
           <OrderStatus
-            status={t('Preparando')}
-            amount={3}
+            status='preparing'
+            amount={ordersAmountGroupByState[2].amount}
             color='#00a65a'
             onSearchClick={handleOrdersUpdate}
           />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
           <OrderStatus
-            status={t('Preparado')}
-            amount={1}
+            status='prepared'
+            amount={ordersAmountGroupByState[3].amount}
             color='#0073b7'
             onSearchClick={handleOrdersUpdate}
           />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
           <OrderStatus
-            status={t('Enviando')}
-            amount={3}
+            status='delivering'
+            amount={ordersAmountGroupByState[4].amount}
             color='#ff851b'
             onSearchClick={handleOrdersUpdate}
           />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
           <OrderStatus
-            status={t('Sucursal')}
-            amount={3}
+            status='ready_to_pickup'
+            amount={ordersAmountGroupByState[5].amount}
             color='#f39c12'
             onSearchClick={handleOrdersUpdate}
           />
         </Col>
         <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
           <OrderStatus
-            status={t('Atendidos')}
-            amount={1}
+            status='dispatched'
+            amount={ordersAmountGroupByState[6].amount}
             color='#222222'
             onSearchClick={handleOrdersUpdate}
           />
         </Col>
       </Row>
-
+      }
+      
       <Row>
         <Col>
           <DataTable orders={orders} />

@@ -18,7 +18,7 @@ const DateRangePicker = ({
         <Col xs={12} sm={8} md={6} lg={4} className='date-picker-container '>
           <h1 className='custom-label'>Desde: </h1>
           <CustomDatePicker
-            selectedDate={startDate || defaultDate}
+            selectedDate={startDate}
             handleChange={handleStartDateChange}
           />
 
