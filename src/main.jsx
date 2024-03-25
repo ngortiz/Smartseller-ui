@@ -20,7 +20,7 @@ import OrderBoardPage from './pages/OrderBoardPage'
 import CreditCardPayments from './pages/CreditCardPayments'
 import BankPaymentsPage from './pages/BankPaymentsPage'
 
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider } from 'react-i18next'
 import i18n from './utils/i18n'
 
 const httpLink = createHttpLink({
@@ -61,7 +61,10 @@ createRoot(document.getElementById('root')).render(
                     element={<CreditCardPayments />}
                   />
                   <Route path='/bank-payments' element={<BankPaymentsPage />} />
-                  <Route path='/orders/:id' element={<OrderInformationPage />} />
+                  <Route
+                    path='/orders/:id'
+                    element={<OrderInformationPage />}
+                  />
                 </Routes>
               </Col>
             </Row>

@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-
 import './style.css'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import PaymentModal from '../../components/PaymentModal/index'
 
 const BankPaymentsPage = () => {
   const [selectedOption, setSelectedOption] = useState('all')
   const [payments, setPayments] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
+  const [showPaymentModal, setShowPaymentModal] = useState(false)
+  const [selectedPayment, setSelectedPayment] = useState(null)
   const { t } = useTranslation()
 
   const listPayments = [
@@ -118,9 +120,24 @@ const BankPaymentsPage = () => {
     setPayments(filteredPayments)
   }
 
+  const handlePaymentClick = payment => {
+    setSelectedPayment(payment)
+    setShowPaymentModal(true)
+  }
+
+  const handleCloseModal = () => {
+    setShowPaymentModal(false)
+  }
+
   const handleBackButtonClick = () => {
     setSelectedOption('all')
     setPayments([])
+  }
+
+  const handlePaymentRegistration = paymentData => {
+    console.log('Datos del pago:', paymentData)
+
+    setShowPaymentModal(false)
   }
 
   return (
@@ -156,6 +173,14 @@ const BankPaymentsPage = () => {
         </div>
       </div>
 
+      {showPaymentModal && (
+        <PaymentModal
+          payment={selectedPayment}
+          onClose={handleCloseModal}
+          onPaymentRegister={handlePaymentRegistration}
+        />
+      )}
+
       <table className='bank-table'>
         <thead>
           <tr>
@@ -166,7 +191,7 @@ const BankPaymentsPage = () => {
             <th>Estado del Pago</th>
             <th>Forma de Pago</th>
             <th>Fecha de Creación</th>
-            <th>Fecha de Expiracion</th>
+            <th>Fecha de Expiración</th>
             <th>Total</th>
             <th>Registrar Pago</th>
           </tr>
@@ -191,7 +216,7 @@ const BankPaymentsPage = () => {
               <td>
                 <button
                   className='btn-pagar'
-                  onClick={() => handlePaymentRegistration(payment.id)}
+                  onClick={() => handlePaymentClick(payment)}
                 >
                   Pagar
                 </button>
