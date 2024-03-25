@@ -87,8 +87,8 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
           <Form.Label>Cuenta</Form.Label>
           <Form.Control
             as='select'
-            value={paymentMethod}
-            onChange={e => setPaymentMethod(e.target.value)}
+            value={accountType}
+            onChange={e => setAccountType(e.target.value)}
           >
             <option>Seleccione...</option>
             <option>$USD</option>
