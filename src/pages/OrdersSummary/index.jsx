@@ -12,6 +12,7 @@ const OrdersSummary = () => {
   const [startDate, setStartDate] = useState(subMonths(new Date(), 1))
   const [endDate, setEndDate] = useState(new Date())
   const [orders, setOrders] = useState([])
+  const [ordersAmountGroupByState, setOrdersAmountGroupByState] = useState([])
 
   const GET_ORDERS_QUERY = gql`
     query GetOrdersQuery {
@@ -28,14 +29,38 @@ const OrdersSummary = () => {
       }
     }
   `
-
-  const { loading, data } = useQuery(GET_ORDERS_QUERY)
-
-  useEffect(() => {
-    if (data) {
-      setOrders(data.getOrders)
+  const GET_ORDERS_AMOUNT_GROUP_BY_STATE_QUERY = gql`
+    query getOrdersAmountGroupByState(
+      $startDate: AWSDateTime!
+      $endDate: AWSDateTime
+    ) {
+      getOrdersAmountGroupByState(startDate: $startDate, endDate: $endDate) {
+        amount
+        orderState
+      }
     }
-  }, [loading, data])
+  `
+
+  const { loading: ordersLoading, data: ordersData } =
+    useQuery(GET_ORDERS_QUERY)
+
+  const { loading: ordersAmountLoading, data: ordersAmountData } = useQuery(
+    GET_ORDERS_AMOUNT_GROUP_BY_STATE_QUERY,
+    {
+      variables: {
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString()
+      }
+    }
+  )
+  useEffect(() => {
+    if (ordersData) {
+      setOrders(ordersData.getOrders)
+    }
+    if (ordersAmountData) {
+      setOrdersAmountGroupByState(ordersAmountData.getOrdersAmountGroupByState)
+    }
+  }, [ordersLoading, ordersAmountLoading])
 
   const handleStartDateChange = date => {
     setStartDate(date)
@@ -64,65 +89,66 @@ const OrdersSummary = () => {
         handleEndDateChange={handleEndDateChange}
         handleSearch={handleSearch}
       />
-      <Row>
-        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus
-            status='new'
-            amount={4}
-            color='#00c0ef'
-            onSearchClick={handleOrdersUpdate}
-          />
-        </Col>
-        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus
-            status='issued'
-            amount={4}
-            color='#f56954'
-            onSearchClick={handleOrdersUpdate}
-          />
-        </Col>
-        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus
-            status='preparing'
-            amount={3}
-            color='#00a65a'
-            onSearchClick={handleOrdersUpdate}
-          />
-        </Col>
-        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus
-            status='prepared'
-            amount={1}
-            color='#0073b7'
-            onSearchClick={handleOrdersUpdate}
-          />
-        </Col>
-        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus
-            status='delivering'
-            amount={3}
-            color='#ff851b'
-            onSearchClick={handleOrdersUpdate}
-          />
-        </Col>
-        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus
-            status='ready_to_pickup'
-            amount={3}
-            color='#f39c12'
-            onSearchClick={handleOrdersUpdate}
-          />
-        </Col>
-        <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-          <OrderStatus
-            status='dispatched'
-            amount={1}
-            color='#222222'
-            onSearchClick={handleOrdersUpdate}
-          />
-        </Col>
-      </Row>
-
+      {ordersAmountGroupByState.length > 0 && (
+        <Row>
+          <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+            <OrderStatus
+              status='new'
+              amount={ordersAmountGroupByState[0].amount}
+              color='#00c0ef'
+              onSearchClick={handleOrdersUpdate}
+            />
+          </Col>
+          <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+            <OrderStatus
+              status='issued'
+              amount={ordersAmountGroupByState[1].amount}
+              color='#f56954'
+              onSearchClick={handleOrdersUpdate}
+            />
+          </Col>
+          <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+            <OrderStatus
+              status='preparing'
+              amount={ordersAmountGroupByState[2].amount}
+              color='#00a65a'
+              onSearchClick={handleOrdersUpdate}
+            />
+          </Col>
+          <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+            <OrderStatus
+              status='prepared'
+              amount={ordersAmountGroupByState[3].amount}
+              color='#0073b7'
+              onSearchClick={handleOrdersUpdate}
+            />
+          </Col>
+          <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+            <OrderStatus
+              status='delivering'
+              amount={ordersAmountGroupByState[4].amount}
+              color='#ff851b'
+              onSearchClick={handleOrdersUpdate}
+            />
+          </Col>
+          <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+            <OrderStatus
+              status='ready_to_pickup'
+              amount={ordersAmountGroupByState[5].amount}
+              color='#f39c12'
+              onSearchClick={handleOrdersUpdate}
+            />
+          </Col>
+          <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
+            <OrderStatus
+              status='dispatched'
+              amount={ordersAmountGroupByState[6].amount}
+              color='#222222'
+              onSearchClick={handleOrdersUpdate}
+            />
+          </Col>
+        </Row>
+      )}
       <Row>
         <Col>
           <DataTable orders={orders} />
