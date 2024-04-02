@@ -42,12 +42,7 @@ const OrdersSummary = () => {
   `
 
   const [handleSearchByDate, { loading: ordersLoading, data: ordersData }] =
-    useLazyQuery(GET_ORDERS_QUERY, {
-      variables: {
-        startDate: startDate.toISOString(),
-        endDate: endDate.toISOString()
-      }
-    })
+    useLazyQuery(GET_ORDERS_QUERY)
 
   const { loading: ordersAmountLoading, data: ordersAmountData } = useQuery(
     GET_ORDERS_AMOUNT_GROUP_BY_STATE_QUERY,
@@ -59,14 +54,13 @@ const OrdersSummary = () => {
     }
   )
   useEffect(() => {
-    if (ordersData && !ordersLoading) {
-      console.log('f')
+    if (ordersData) {
       setOrders(ordersData.getOrders)
     }
     if (ordersAmountData) {
       setOrdersAmountGroupByState(ordersAmountData.getOrdersAmountGroupByState)
     }
-  }, [ordersData, ordersAmountLoading])
+  }, [ordersLoading, ordersAmountLoading])
 
   const handleStartDateChange = date => {
     setStartDate(date)
@@ -77,13 +71,15 @@ const OrdersSummary = () => {
   }
 
   const handleOrdersUpdate = newOrders => {
-    console.log('H')
     setOrders(newOrders)
   }
   const handleSearch = () => {
-    console.log('entro')
-
-    handleSearchByDate()
+    handleSearchByDate({
+      variables: {
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString()
+      }
+    })
   }
 
   return (
