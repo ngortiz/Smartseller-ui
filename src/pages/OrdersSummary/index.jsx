@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import OrderStatus from '../../components/OrderStatus/index'
 import DateRangePicker from '../../components/DateRangePicker'
 import DataTable from '../../components/DataTable/index'
-import { useQuery, gql } from '@apollo/client'
+import { useQuery, gql, useLazyQuery } from '@apollo/client'
 import { subMonths } from 'date-fns'
 
 import './style.css'
@@ -15,8 +15,8 @@ const OrdersSummary = () => {
   const [ordersAmountGroupByState, setOrdersAmountGroupByState] = useState([])
 
   const GET_ORDERS_QUERY = gql`
-    query GetOrdersQuery {
-      getOrders {
+    query GetOrdersQuery($startDate: AWSDateTime!, $endDate: AWSDateTime!) {
+      getOrders(startDate: $startDate, endDate: $endDate) {
         buyMethod
         number
         username
@@ -41,8 +41,8 @@ const OrdersSummary = () => {
     }
   `
 
-  const { loading: ordersLoading, data: ordersData } =
-    useQuery(GET_ORDERS_QUERY)
+  const [handleSearchByDate, { loading: ordersLoading, data: ordersData }] =
+    useLazyQuery(GET_ORDERS_QUERY)
 
   const { loading: ordersAmountLoading, data: ordersAmountData } = useQuery(
     GET_ORDERS_AMOUNT_GROUP_BY_STATE_QUERY,
@@ -73,7 +73,14 @@ const OrdersSummary = () => {
   const handleOrdersUpdate = newOrders => {
     setOrders(newOrders)
   }
-  const handleSearch = () => {}
+  const handleSearch = () => {
+    handleSearchByDate({
+      variables: {
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString()
+      }
+    })
+  }
 
   return (
     <Container fluid>
