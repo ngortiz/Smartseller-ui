@@ -104,6 +104,8 @@ const OrdersSummary = () => {
               amount={ordersAmountGroupByState[0].amount}
               color='#00c0ef'
               onSearchClick={handleOrdersUpdate}
+              startDate={startDate}
+              endDate={endDate}
             />
           </Col>
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
@@ -112,6 +114,8 @@ const OrdersSummary = () => {
               amount={ordersAmountGroupByState[1].amount}
               color='#f56954'
               onSearchClick={handleOrdersUpdate}
+              startDate={startDate}
+              endDate={endDate}
             />
           </Col>
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
@@ -120,6 +124,8 @@ const OrdersSummary = () => {
               amount={ordersAmountGroupByState[2].amount}
               color='#00a65a'
               onSearchClick={handleOrdersUpdate}
+              startDate={startDate}
+              endDate={endDate}
             />
           </Col>
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
@@ -128,6 +134,8 @@ const OrdersSummary = () => {
               amount={ordersAmountGroupByState[3].amount}
               color='#0073b7'
               onSearchClick={handleOrdersUpdate}
+              startDate={startDate}
+              endDate={endDate}
             />
           </Col>
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
@@ -136,6 +144,8 @@ const OrdersSummary = () => {
               amount={ordersAmountGroupByState[4].amount}
               color='#ff851b'
               onSearchClick={handleOrdersUpdate}
+              startDate={startDate}
+              endDate={endDate}
             />
           </Col>
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
@@ -144,6 +154,8 @@ const OrdersSummary = () => {
               amount={ordersAmountGroupByState[5].amount}
               color='#f39c12'
               onSearchClick={handleOrdersUpdate}
+              startDate={startDate}
+              endDate={endDate}
             />
           </Col>
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
@@ -152,6 +164,8 @@ const OrdersSummary = () => {
               amount={ordersAmountGroupByState[6].amount}
               color='#222222'
               onSearchClick={handleOrdersUpdate}
+              startDate={startDate}
+              endDate={endDate}
             />
           </Col>
         </Row>
