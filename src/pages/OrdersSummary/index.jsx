@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Spinner } from 'react-bootstrap'
 import OrderStatus from '../../components/OrderStatus/index'
 import DateRangePicker from '../../components/DateRangePicker'
 import DataTable from '../../components/DataTable/index'
@@ -13,6 +14,7 @@ const OrdersSummary = () => {
   const [endDate, setEndDate] = useState(new Date())
   const [orders, setOrders] = useState([])
   const [ordersAmountGroupByState, setOrdersAmountGroupByState] = useState([])
+  const [loading, setLoading] = useState(false) 
 
   const GET_ORDERS_QUERY = gql`
     query GetOrdersQuery($startDate: AWSDateTime!, $endDate: AWSDateTime!) {
@@ -29,6 +31,7 @@ const OrdersSummary = () => {
       }
     }
   `
+
   const GET_ORDERS_AMOUNT_GROUP_BY_STATE_QUERY = gql`
     query getOrdersAmountGroupByState(
       $startDate: AWSDateTime!
@@ -53,9 +56,11 @@ const OrdersSummary = () => {
       }
     }
   )
+  
   useEffect(() => {
     if (ordersData) {
       setOrders(ordersData.getOrders)
+      setLoading(false) 
     }
     if (ordersAmountData) {
       setOrdersAmountGroupByState(ordersAmountData.getOrdersAmountGroupByState)
@@ -74,11 +79,14 @@ const OrdersSummary = () => {
     setOrders(newOrders)
   }
   const handleSearch = () => {
+    setLoading(true)
     handleSearchByDate({
       variables: {
         startDate: startDate.toISOString(),
-        endDate: endDate.toISOString()
+        endDate: endDate.toISOString(),
+        
       }
+      
     })
   }
 
@@ -170,9 +178,15 @@ const OrdersSummary = () => {
           </Col>
         </Row>
       )}
-      <Row>
+     <Row>
         <Col>
-          <DataTable orders={orders} />
+          {loading ? ( 
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          ) : (
+            <DataTable orders={orders} loading={loading} /> 
+          )}
         </Col>
       </Row>
     </Container>

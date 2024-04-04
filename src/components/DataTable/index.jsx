@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { Table, Form } from 'react-bootstrap'
-import moment from 'moment'
-import './style.css'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Table, Form, Spinner } from 'react-bootstrap';
+import moment from 'moment';
+import './style.css';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-const DataTable = ({ orders }) => {
-  const [searchTerm, setSearchTerm] = useState('')
-  const { t } = useTranslation()
+const DataTable = ({ orders, loading }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const { t } = useTranslation();
 
   const filteredOrders = orders.filter(order => {
     return (
       order.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.number.toString().includes(searchTerm)
-    )
-  })
+    );
+  });
 
   return (
     <div>
@@ -43,31 +43,40 @@ const DataTable = ({ orders }) => {
           </tr>
         </thead>
         <tbody>
-          {filteredOrders.map((order, item) => (
-            <tr key={order.id}>
-              <td>{item + 1}</td>
-              <td>
-                <Link to={`/orders/${order.id}`}>{order.number}</Link>
-              </td>
-              <td>{order.username}</td>
-              <td>{t(`orderStatus.${order.orderState}`)}</td>
-              <td>{t(`paymentStatus.${order.paymentState}`)}</td>
-              <td>{t(`buyMethods.${order.buyMethod}`)}</td>
-              <td>{moment(order.createdAt).format('DD-MM-YYYY HH:mm')}</td>
-
-              <td>{moment(order.updatedAt).format('DD-MM-YYYY HH:mm')}</td>
-
-              <td>{order.total}</td>
-            </tr>
-          ))}
+          {loading ? (
+            <tr>
+            <td colSpan="9" className="spinner-container">
+            <Spinner animation="border" role="status" variant="primary" style={{ width: '3rem', height: '3rem' }}>
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            </td>
+          </tr>
+          ) : (
+            filteredOrders.map((order, index) => (
+              <tr key={order.id}>
+                <td>{index + 1}</td>
+                <td>
+                  <Link to={`/orders/${order.id}`}>{order.number}</Link>
+                </td>
+                <td>{order.username}</td>
+                <td>{t(`orderStatus.${order.orderState}`)}</td>
+                <td>{t(`paymentStatus.${order.paymentState}`)}</td>
+                <td>{t(`buyMethods.${order.buyMethod}`)}</td>
+                <td>{moment(order.createdAt).format('DD-MM-YYYY HH:mm')}</td>
+                <td>{moment(order.updatedAt).format('DD-MM-YYYY HH:mm')}</td>
+                <td>{order.total}</td>
+              </tr>
+            ))
+          )}
         </tbody>
       </Table>
     </div>
-  )
-}
+  );
+};
 
 DataTable.propTypes = {
-  orders: PropTypes.array.isRequired
-}
+  orders: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 
-export default DataTable
+export default DataTable;
