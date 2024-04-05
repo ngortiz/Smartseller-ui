@@ -1,16 +1,13 @@
 .bank-header {
   margin: 10px 0 20px 0;
   text-align: left;
-  margin-bottom: 20px;
   background-color: inherit;
   border-bottom: 1px solid #eeee;
   padding: 5px;
-  margin-bottom: 3%;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 18px;
   font-weight: bold;
   color: #333;
-  margin-top: -1%;
 }
 
 .heard-state {
@@ -19,6 +16,7 @@
   display: block;
   font-size: 15px;
 }
+
 .heard-number {
   margin-bottom: -10px;
   font-weight: 700;
@@ -34,7 +32,7 @@
 
 .bank-select {
   width: 100%;
-  padding: 10px;
+  padding: 8px;
   margin-top: 5px;
   border: 2px solid #ccc;
   border-radius: 0px;
@@ -42,24 +40,17 @@
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 12px;
   color: #333333;
+  
 }
 
 .bank-table {
   width: 100%;
   margin-top: 1%;
   color: #354052;
-  border-spacing: 0 10px;
+  border-collapse: collapse;
 }
 
-.bank-table th {
-  background-color: #354052;
-  color: #fff;
-  border: 1px solid #566168;
-  padding: 6px;
-  text-align: center;
-  font-size: 15px;
-}
-
+.bank-table th,
 .bank-table td {
   border: 1px solid #bdc3c7;
   padding: 12px;
@@ -68,14 +59,14 @@
   text-align: center;
 }
 
-.bank-table {
-  width: 101%;
-  margin-top: 1%;
-  color: #354052;
-  border-spacing: 0 10px;
+.bank-table th {
+  background-color: #354052;
+  color: #fff;
+  padding: 10px;
 }
 
-.bank-btn {
+.bank-btn,
+.btn-pagar {
   color: #fff;
   padding: 10px 20px;
   font-size: 14px;
@@ -86,35 +77,31 @@
   margin-top: 5px;
 }
 
-.bank-btn:hover {
+.bank-btn:hover,
+.btn-pagar:hover {
   background-color: #50657c;
 }
 
 .bank-input {
-  margin: 0px;
-  margin-top: 0px;
-  font-family: inherit;
-  font-size: 12px;
-  line-height: inherit;
-  margin-top: 5px;
   width: 100%;
-  padding: 7px 5px;
-  background-color: #f9f9f9;
-  margin-left: 15%;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  padding: 0px;
+  margin-top: 5px;
+  background-color: #f2f2f2; 
   border: 2px solid #bdc3c7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 12px;
+  color: #333333;
+  margin-left: 3%;
+  border-radius: 4px;
+  
 }
+
 .bank-flex-container {
   display: flex;
 }
 
-.btn-pagar {
-  color: #fff;
-  padding: 10px 15px;
-  font-size: 14px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  background-color: #262c40;
-  margin-top: 5px;
+.heard-number {
+  margin-right: 8px;
+  
 }
