@@ -65,6 +65,7 @@ createRoot(document.getElementById('root')).render(
                     path='/orders/:id'
                     element={<OrderInformationPage />}
                   />
+                  <Route path='/' element={<OrdersSummary />} />
                 </Routes>
               </Col>
             </Row>
