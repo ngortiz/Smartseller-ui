@@ -36,7 +36,7 @@
 .bank-select {
   width: 100%;
   padding: 10px;
-  margin-top: 5px;
+  margin-top: 11%;
   border: 2px solid #ccc;
   border-radius: 2px;
   background-color: #f9f9f9;
@@ -97,8 +97,8 @@
   font-family: inherit;
   font-size: 12px;
   line-height: inherit;
-  margin-top: 7px;
-  width: 100%;
+  margin-top: 10%;
+  width: 120%;
   padding: 9px 5px;
   background-color: #f9f9f9;
   margin-left: 8%;
