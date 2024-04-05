@@ -47,7 +47,7 @@ const DataTable = ({ orders, loading }) => {
             <tr>
             <td colSpan="9" className="spinner-container">
             <Spinner animation="border" role="status" variant="primary" style={{ width: '3rem', height: '3rem' }}>
-                <span className="sr-only">Loading...</span>
+                <span className="sr-only"></span>
               </Spinner>
             </td>
           </tr>

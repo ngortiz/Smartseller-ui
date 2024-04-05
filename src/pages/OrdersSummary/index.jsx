@@ -14,7 +14,8 @@ const OrdersSummary = () => {
   const [endDate, setEndDate] = useState(new Date())
   const [orders, setOrders] = useState([])
   const [ordersAmountGroupByState, setOrdersAmountGroupByState] = useState([])
-  const [loading, setLoading] = useState(false) 
+  const [firstLoading, setFirstLoading]= useState(true)
+ 
 
   const GET_ORDERS_QUERY = gql`
     query GetOrdersQuery($startDate: AWSDateTime!, $endDate: AWSDateTime!) {
@@ -47,24 +48,24 @@ const OrdersSummary = () => {
   const [handleSearchByDate, { loading: ordersLoading, data: ordersData }] =
     useLazyQuery(GET_ORDERS_QUERY)
 
-  const { loading: ordersAmountLoading, data: ordersAmountData } = useQuery(
-    GET_ORDERS_AMOUNT_GROUP_BY_STATE_QUERY,
-    {
-      variables: {
-        startDate: startDate.toISOString(),
-        endDate: endDate.toISOString()
-      }
-    }
+  const[handleSearchAmountsByDate, { loading: ordersAmountLoading, data: ordersAmountData }] = useLazyQuery(
+    GET_ORDERS_AMOUNT_GROUP_BY_STATE_QUERY
   )
+
+ 
   
   useEffect(() => {
     if (ordersData) {
       setOrders(ordersData.getOrders)
-      setLoading(false) 
     }
     if (ordersAmountData) {
       setOrdersAmountGroupByState(ordersAmountData.getOrdersAmountGroupByState)
     }
+    if (firstLoading){
+      handleSearch()
+      setFirstLoading(false)
+    }
+
   }, [ordersLoading, ordersAmountLoading])
 
   const handleStartDateChange = date => {
@@ -79,17 +80,21 @@ const OrdersSummary = () => {
     setOrders(newOrders)
   }
   const handleSearch = () => {
-    setLoading(true)
     handleSearchByDate({
       variables: {
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString(),
-        
       }
-      
     })
-  }
 
+    handleSearchAmountsByDate({
+        variables: {
+          startDate: startDate.toISOString(),
+          endDate: endDate.toISOString()
+        }
+      }
+    )
+  }
   return (
     <Container fluid>
       <Row className='title-container'>
@@ -104,12 +109,22 @@ const OrdersSummary = () => {
         handleEndDateChange={handleEndDateChange}
         handleSearch={handleSearch}
       />
-      {ordersAmountGroupByState.length > 0 && (
+      { ordersAmountLoading ?  
+        (
+        <Row>
+          <Col xs={12} className="spinner-container">
+          <Spinner animation="border" role="status" variant="primary" style={{ width: '3rem', height: '3rem' }}>
+          <span className="sr-only"></span>
+        </Spinner>
+          </Col>
+        </Row>
+        
+         ) : (
         <Row>
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
             <OrderStatus
               status='new'
-              amount={ordersAmountGroupByState[0].amount}
+              amount={ordersAmountGroupByState[0] ? ordersAmountGroupByState[0].amount : 0 }
               color='#00c0ef'
               onSearchClick={handleOrdersUpdate}
               startDate={startDate}
@@ -119,7 +134,7 @@ const OrdersSummary = () => {
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
             <OrderStatus
               status='issued'
-              amount={ordersAmountGroupByState[1].amount}
+              amount={ordersAmountGroupByState[1] ? ordersAmountGroupByState[1].amount : 0}
               color='#f56954'
               onSearchClick={handleOrdersUpdate}
               startDate={startDate}
@@ -129,7 +144,7 @@ const OrdersSummary = () => {
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
             <OrderStatus
               status='preparing'
-              amount={ordersAmountGroupByState[2].amount}
+              amount={ordersAmountGroupByState[2] ? ordersAmountGroupByState[2].amount : 0}
               color='#00a65a'
               onSearchClick={handleOrdersUpdate}
               startDate={startDate}
@@ -139,7 +154,7 @@ const OrdersSummary = () => {
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
             <OrderStatus
               status='prepared'
-              amount={ordersAmountGroupByState[3].amount}
+              amount={ordersAmountGroupByState[3] ? ordersAmountGroupByState[3].amount : 0}
               color='#0073b7'
               onSearchClick={handleOrdersUpdate}
               startDate={startDate}
@@ -149,7 +164,7 @@ const OrdersSummary = () => {
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
             <OrderStatus
               status='delivering'
-              amount={ordersAmountGroupByState[4].amount}
+              amount={ordersAmountGroupByState[4] ? ordersAmountGroupByState[4].amount : 0}
               color='#ff851b'
               onSearchClick={handleOrdersUpdate}
               startDate={startDate}
@@ -159,7 +174,7 @@ const OrdersSummary = () => {
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
             <OrderStatus
               status='ready_to_pickup'
-              amount={ordersAmountGroupByState[5].amount}
+              amount={ordersAmountGroupByState[5] ? ordersAmountGroupByState[5].amount : 0}
               color='#f39c12'
               onSearchClick={handleOrdersUpdate}
               startDate={startDate}
@@ -169,24 +184,18 @@ const OrdersSummary = () => {
           <Col xs={12} sm={6} md={4} lg={3} className='px-2'>
             <OrderStatus
               status='dispatched'
-              amount={ordersAmountGroupByState[6].amount}
+              amount={ordersAmountGroupByState[6] ? ordersAmountGroupByState[6].amount : 0}
               color='#222222'
               onSearchClick={handleOrdersUpdate}
               startDate={startDate}
               endDate={endDate}
             />
-          </Col>
+          </Col> 
         </Row>
       )}
      <Row>
         <Col>
-          {loading ? ( 
-            <Spinner animation="border" role="status">
-              <span className="sr-only">Loading...</span>
-            </Spinner>
-          ) : (
-            <DataTable orders={orders} loading={loading} /> 
-          )}
+            <DataTable orders={orders} loading={ordersLoading} />   
         </Col>
       </Row>
     </Container>
