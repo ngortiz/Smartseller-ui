@@ -1,27 +1,26 @@
-import React, { useState } from 'react'
-import { Button, Form, Modal } from 'react-bootstrap'
-import PropTypes from 'prop-types'
-import './style.css'
+import React, { useRef } from 'react';
+import { Button, Form, Modal } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import './style.css';
 
 const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
-  const [paymentAmount, setPaymentAmount] = useState(0)
-  const [paymentMethod, setPaymentMethod] = useState('')
-  const [voucherNumber, setVoucherNumber] = useState('')
-  const [paymentDate, setPaymentDate] = useState('')
-  const [accountType, setAccountType] = useState('')
+  const paymentAmountRef = useRef(null);
+  const paymentMethodRef = useRef(null);
+  const voucherNumberRef = useRef(null);
+  const paymentDateRef = useRef(null);
+  const accountTypeRef = useRef(null);
 
   const handlePaymentSubmit = () => {
     const paymentData = {
       orderId: payment.id,
-      amount: paymentAmount,
-      method: paymentMethod,
-      receipt: receiptImage,
-      voucherNumber: voucherNumber,
-      paymentDate: paymentDate,
-      accountType: accountType
-    }
-    onPaymentRegister(paymentData)
-  }
+      amount: paymentAmountRef.current.value,
+      method: paymentMethodRef.current.value,
+      voucherNumber: voucherNumberRef.current.value,
+      paymentDate: paymentDateRef.current.value,
+      accountType: accountTypeRef.current.value
+    };
+    onPaymentRegister(paymentData);
+  };
 
   return (
     <Modal show={true} onHide={onClose}>
@@ -47,16 +46,14 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
           <Form.Control
             type='text'
             placeholder='Ingrese el número de comprobante'
-            value={voucherNumber}
-            onChange={e => setVoucherNumber(e.target.value)}
+            ref={voucherNumberRef}
           />
         </Form.Group>
         <Form.Group controlId='formPaymentDate'>
           <Form.Label>Fecha de Pago</Form.Label>
           <Form.Control
             type='date'
-            value={paymentDate}
-            onChange={e => setPaymentDate(e.target.value)}
+            ref={paymentDateRef}
           />
         </Form.Group>
         <Form.Group controlId='formPaymentAmount'>
@@ -64,16 +61,14 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
           <Form.Control
             type='text'
             placeholder='Ingrese el monto del pago'
-            value={paymentAmount}
-            onChange={e => setPaymentAmount(e.target.value)}
+            ref={paymentAmountRef}
           />
         </Form.Group>
         <Form.Group controlId='formPaymentMethod'>
           <Form.Label>Método de Pago</Form.Label>
           <Form.Control
             as='select'
-            value={paymentMethod}
-            onChange={e => setPaymentMethod(e.target.value)}
+            ref={paymentMethodRef}
           >
             <option>Seleccione...</option>
             <option>Efectivo</option>
@@ -87,8 +82,7 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
           <Form.Label>Cuenta</Form.Label>
           <Form.Control
             as='select'
-            value={accountType}
-            onChange={e => setAccountType(e.target.value)}
+            ref={accountTypeRef}
           >
             <option>Seleccione...</option>
             <option>$USD</option>
@@ -117,12 +111,13 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
         </Button>
       </Modal.Footer>
     </Modal>
-  )
-}
+  );
+};
+
 PaymentModal.propTypes = {
   payment: PropTypes.object.isRequired,
   onClose: PropTypes.func.isRequired,
   onPaymentRegister: PropTypes.func.isRequired
-}
+};
 
-export default PaymentModal
+export default PaymentModal;
