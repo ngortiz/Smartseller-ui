@@ -65,7 +65,6 @@ const OrderInformationPage = () => {
 
   useEffect(() => {
     if (data && data.getOrder) {
-      console.log(data.getOrder)
       setOrder(data.getOrder);
     }
   }, [loading]);
