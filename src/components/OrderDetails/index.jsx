@@ -1,16 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import './style.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import './style.css';
 
 const OrderDetails = ({
-  orderItems,
-  shippingCost,
+  orderDetails,
+  deliverCost,
   subtotal,
   discountCoupon,
   totalAmount,
-  liquidationIVA5,
-  liquidationIVA10,
-  totalIVA
+  iva5=0 ,
+  iva10,
+  totalIVA,
 }) => {
   return (
     <div className='comprobante'>
@@ -29,15 +29,15 @@ const OrderDetails = ({
           </tr>
         </thead>
         <tbody>
-          {orderItems.map((item, index) => (
+          {orderDetails.map((item, index) => (
             <tr key={index}>
-              <td>{item.quantity}</td>
-              <td>{item.internalCode}</td>
-              <td>{item.productName}</td>
-              <td>US${item.unitPrice}</td>
-              <td>Ninguno{item.descuento}</td>
-              <td>US${item.offerPrice}</td>
-              <td>US${item.exempt}</td>
+              <td>{item.amount}</td>
+              <td>{item.productVariant.internalCode}</td>
+              <td>{item.productVariant.name}</td>
+              <td>US${item.price}</td>
+              <td>Ninguno</td>
+              <td>US${item.sellPrice}</td>
+              <td>US${item.exenta}</td>
               <td>US${item.iva10}</td>
               <td>US${item.iva5}</td>
             </tr>
@@ -51,7 +51,7 @@ const OrderDetails = ({
             <td className='summary-cell' colSpan='4'>
               Costo de Envío
             </td>
-            <td className='summary-value'>US${shippingCost}</td>
+            <td className='summary-value'>US${deliverCost}</td>
           </tr>
           <tr>
             <td className='summary-cell' colSpan='4'>
@@ -78,26 +78,27 @@ const OrderDetails = ({
         <table>
           <thead>
             <tr>
-              <th>Liquidación Del IVA (5%): US$ {liquidationIVA5}</th>
-              <th>Liquidación Del IVA (10%): US$ {liquidationIVA10}</th>
+              <th>Liquidación Del IVA (5%): US$ {iva5}</th>
+              <th>Liquidación Del IVA (10%): US$ {iva10}</th>
               <th>Total Del IVA: US$ {totalIVA}</th>
             </tr>
           </thead>
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
 OrderDetails.propTypes = {
-  orderItems: PropTypes.array.isRequired,
-  shippingCost: PropTypes.number.isRequired,
+  orderDetails: PropTypes.array.isRequired,
+  deliverCost: PropTypes.number.isRequired,
   subtotal: PropTypes.number.isRequired,
   discountCoupon: PropTypes.string.isRequired,
   totalAmount: PropTypes.number.isRequired,
-  liquidationIVA5: PropTypes.number.isRequired,
-  liquidationIVA10: PropTypes.number.isRequired,
-  totalIVA: PropTypes.number.isRequired
-}
+  iva5: PropTypes.number.isRequired,
+  iva10: PropTypes.number.isRequired,
+  totalIVA: PropTypes.number.isRequired,
+};
 
-export default OrderDetails
+export default OrderDetails;
+
