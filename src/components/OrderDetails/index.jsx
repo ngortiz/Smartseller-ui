@@ -1,17 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import './style.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import {Spinner } from 'react-bootstrap';
+import './style.css';
 
 const OrderDetails = ({
-  orderItems,
-  shippingCost,
-  subtotal,
-  discountCoupon,
-  totalAmount,
-  liquidationIVA5,
-  liquidationIVA10,
-  totalIVA
+  order
+  
 }) => {
+  if (order=== null){
+    return <Spinner animation="border" role="status" variant="primary" style={{ width: '3rem', height: '3rem' }}>
+    <span className="sr-only"></span>
+  </Spinner>
+  }
+  const{orderDetails, deliverCost, total } = order
+
+  
   return (
     <div className='comprobante'>
       <table className='order-table'>
@@ -21,7 +24,7 @@ const OrderDetails = ({
             <th>Cod. Interno</th>
             <th>Producto</th>
             <th>Precio Unitario</th>
-            <th>Descuento</th>
+            <th>Descuento</th> 
             <th>Precio Venta</th>
             <th>Exenta</th>
             <th>IVA 10%</th>
@@ -29,17 +32,17 @@ const OrderDetails = ({
           </tr>
         </thead>
         <tbody>
-          {orderItems.map((item, index) => (
+          {orderDetails.map((item, index) => (
             <tr key={index}>
-              <td>{item.quantity}</td>
-              <td>{item.internalCode}</td>
-              <td>{item.productName}</td>
-              <td>US${item.unitPrice}</td>
-              <td>Ninguno{item.descuento}</td>
-              <td>US${item.offerPrice}</td>
-              <td>US${item.exempt}</td>
+              <td>{item.amount}</td>
+              <td>{item.productVariant.internalCode}</td>
+              <td>{item.productVariant.name}</td>
+              <td>US${item.price}</td>
+              <td>Ninguno</td>
+              <td>US${item.sellPrice}</td>
+              <td>US${item.exenta}</td>
               <td>US${item.iva10}</td>
-              <td>US${item.iva5}</td>
+              <td>US${item.iva5 || 0}</td>
             </tr>
           ))}
         </tbody>
@@ -51,25 +54,25 @@ const OrderDetails = ({
             <td className='summary-cell' colSpan='4'>
               Costo de Envío
             </td>
-            <td className='summary-value'>US${shippingCost}</td>
+            <td className='summary-value'>US${deliverCost}</td>
           </tr>
           <tr>
             <td className='summary-cell' colSpan='4'>
               Subtotal
             </td>
-            <td className='summary-value'>US${subtotal}</td>
+            <td className='summary-value'>US${total}</td>
           </tr>
           <tr>
             <td className='summary-cell' colSpan='4'>
               Cupón de Descuento
             </td>
-            <td className='summary-value'>{discountCoupon}</td>
+            <td className='summary-value'>Ninguno</td>
           </tr>
           <tr>
             <td className='summary-cell' colSpan='4'>
               Total a Pagar
             </td>
-            <td className='summary-value'>US${totalAmount}</td>
+            <td className='summary-value'>US${total}</td>
           </tr>
         </tbody>
       </table>
@@ -78,26 +81,29 @@ const OrderDetails = ({
         <table>
           <thead>
             <tr>
-              <th>Liquidación Del IVA (5%): US$ {liquidationIVA5}</th>
-              <th>Liquidación Del IVA (10%): US$ {liquidationIVA10}</th>
-              <th>Total Del IVA: US$ {totalIVA}</th>
+              <th>Liquidación Del IVA (5%): US$ 0</th>
+              <th>Liquidación Del IVA (10%): US$ 0</th>
+              <th>Total Del IVA: US$ 0 </th>
             </tr>
           </thead>
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
 OrderDetails.propTypes = {
-  orderItems: PropTypes.array.isRequired,
-  shippingCost: PropTypes.number.isRequired,
+  order: PropTypes.object.isRequired,
+ /*** orderDetails: PropTypes.array.isRequired,
+  deliverCost: PropTypes.number.isRequired,
   subtotal: PropTypes.number.isRequired,
   discountCoupon: PropTypes.string.isRequired,
   totalAmount: PropTypes.number.isRequired,
-  liquidationIVA5: PropTypes.number.isRequired,
-  liquidationIVA10: PropTypes.number.isRequired,
-  totalIVA: PropTypes.number.isRequired
-}
+  iva5: PropTypes.number.isRequired,
+  iva10: PropTypes.number.isRequired,
+  totalIVA: PropTypes.number.isRequired,?***/
 
-export default OrderDetails
+};
+
+export default OrderDetails;
+

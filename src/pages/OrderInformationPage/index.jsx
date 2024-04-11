@@ -1,40 +1,78 @@
-import React from 'react'
-import { Container, Row, Col, Button } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useQuery, gql } from '@apollo/client';
+import OrderClientInformation from '../../components/OrderClientInformation';
+import OrderData from '../../components/OrderData';
+import OrderPayment from '../../components/OrderPayment';
+import OrderDetails from '../../components/OrderDetails';
 
-import './style.css'
-import OrderClientInformation from '../../components/OrderClientInformation'
-import OrderData from '../../components/OrderData'
-import OrderPayment from '../../components/OrderPayment'
-import OrderDetails from '../../components/OrderDetails'
+
 
 const OrderInformationPage = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { orderId } = useParams();
+  console.log(orderId)
+  const [order, setOrder] = useState(null);
 
-  const handleGoBack = () => {
-    navigate(-1)
-  }
-
-  const orderItems = [
-    {
-      quantity: 1,
-      internalCode: '001',
-      productName: 'Producto 1',
-      unitPrice: 10.0,
-      offerPrice: 8.0,
-      exempt: 0.0,
-      iva10: 1.0,
-      iva5: 0.5
+  const GET_ORDER = gql`
+  query getOrder($orderId: Int!) {
+    getOrder(orderId: $orderId) {
+      id
+      address
+      buyMethod
+      contactPhone
+      createdAt
+      orderDetails {
+        productVariant {
+          createdAt
+          id
+          name
+          updatedAt
+          internalCode
+        }
+        amount
+        createdAt
+        exenta
+        id
+        iva10
+        iva5
+        orderId
+        price
+        sellPrice
+        subTotal
+        updatedAt
+      }
+      orderState
+      paymentState
+      ruc
+      total
+      totalDebt
+      totalPaid
+      updatedAt
+      username
+      email
+      number
+      deliverCost
+      totalGs
     }
-  ]
+  }
+`;
 
-  const shippingCost = 8.0
-  const subtotal = 8.0
-  const discountCoupon = 'Ninguno'
-  const totalAmount = 8.0
-  const liquidationIVA5 = 0.0
-  const liquidationIVA10 = 0.0
-  const totalIVA = 0.0
+  const { loading, error, data } = useQuery(GET_ORDER, {
+    variables: { orderId: parseInt(orderId) }
+  });
+
+  useEffect(() => {
+    if (data && data.getOrder) {
+      console.log(data.getOrder)
+      setOrder(data.getOrder);
+    }
+  }, [loading]);
+ 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
   return (
     <Container>
@@ -44,47 +82,37 @@ const OrderInformationPage = () => {
       <Row className='justify-content-center'>
         <Col>
           <OrderClientInformation
-            client='Juan Vera'
-            address='Encarnacion, Paraguay'
-            phone='111111111'
-            ruc='1111111'
+            client={order?.username || ''}
+            address={order?.address || ''}
+            phone={order?.contactPhone ||''}
+            ruc={order?.ruc || ''}
             color='#ffA500'
           />
         </Col>
         <Col>
           <OrderData
-            number='11111111'
-            voucher='1111'
-            state='atendido'
-            date='12:10 2024-01-26'
+            number={order?.number.toString() || ''}
+            voucher={order?.number.toString() || ''}
+            state={order?.orderState || ''}
+            date={order?.createdAt || ''}
           />
         </Col>
-
         <Col>
-          <OrderPayment
-            paymentState='completado(T.C)'
-            total='US$ 15.5'
-            totalPaid='US$ 10.5'
-            totalDebt='US$ 0.00'
+        <OrderPayment
+            paymentState={order?.paymentState || ''}
+            total={`US$ ${order?.total || 0}`}
+            totalPaid={`US$ ${order?.totalPaid || 0}`}
+            totalDebt={`US$ ${order?.totalDebt || 0}`}
           />
         </Col>
       </Row>
-
       <Row className='justify-content-center'>
         <Col>
-          <OrderDetails
-            orderItems={orderItems}
-            shippingCost={shippingCost}
-            subtotal={subtotal}
-            discountCoupon={discountCoupon}
-            totalAmount={totalAmount}
-            liquidationIVA5={liquidationIVA5}
-            liquidationIVA10={liquidationIVA10}
-            totalIVA={totalIVA}
-          />
+        <OrderDetails
+        order={order}
+        />
         </Col>
       </Row>
-
       <Row className='mt-4'>
         <Col className='button-container'>
           <Button className='back-button' onClick={handleGoBack}>
@@ -96,7 +124,7 @@ const OrderInformationPage = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default OrderInformationPage
+export default OrderInformationPage;

@@ -62,7 +62,7 @@ createRoot(document.getElementById('root')).render(
                   />
                   <Route path='/bank-payments' element={<BankPaymentsPage />} />
                   <Route
-                    path='/orders/:id'
+                    path='/orders/:orderId'
                     element={<OrderInformationPage />}
                   />
                   <Route path='/' element={<OrdersSummary />} />
