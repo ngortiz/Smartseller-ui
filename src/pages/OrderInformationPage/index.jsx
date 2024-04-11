@@ -82,39 +82,34 @@ const OrderInformationPage = () => {
       <Row className='justify-content-center'>
         <Col>
           <OrderClientInformation
-            client={order ? order.username : ''}
-            address={order ? order.address : ''}
-            phone={order ? order.contactPhone : ''}
-            ruc={order ? order.ruc : ''}
+            client={order?.username || ''}
+            address={order?.address || ''}
+            phone={order?.contactPhone ||''}
+            ruc={order?.ruc || ''}
             color='#ffA500'
           />
         </Col>
         <Col>
           <OrderData
-            number={order ? order.number.toString() : ''}
-            voucher={order ? order.number.toString() : ''}
-            state={order ? order.orderState : ''}
-            date={order ? order.createdAt : ''}
+            number={order?.number.toString() || ''}
+            voucher={order?.number.toString() || ''}
+            state={order?.orderState || ''}
+            date={order?.createdAt || ''}
           />
         </Col>
         <Col>
         <OrderPayment
-            paymentState={order ? order.paymentState : ''}
-            total={`US$ ${order ? order.total : 0}`}
-            totalPaid={`US$ ${order ? order.totalPaid : 0}`}
-            totalDebt={`US$ ${order ? order.totalDebt : 0}`}
+            paymentState={order?.paymentState || ''}
+            total={`US$ ${order?.total || 0}`}
+            totalPaid={`US$ ${order?.totalPaid || 0}`}
+            totalDebt={`US$ ${order?.totalDebt || 0}`}
           />
         </Col>
       </Row>
       <Row className='justify-content-center'>
         <Col>
         <OrderDetails
-         orderDetails= {order ? order.orderDetails : []}
-         deliverCost={order ? order.deliverCost : 0}
-         subtotal={order && order.subtotal !== undefined ? order.subtotal : 0}
-         iva10={order ? order.iva10 : 0}
-         iva5={order ? order.iva5 : 0}
-         totalIva={order ? order.totalIva : 0}
+        order={order}
         />
         </Col>
       </Row>
