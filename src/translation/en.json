@@ -1,73 +1,56 @@
 {
-  "order Status": "Order Status",
-  "payment Status": "Payment Status",
-  "Buy Method": "Buy Method",
+	"order Status": "Order Status",
+	"payment Status": "Payment Status",
+	"Buy Method": "Buy Method",
 
-  "buyMethods": {
-    "credit_card": "Credit Card",
-    "bank_transference": "Bank_transference",
-    "bank_deposit": "Bank_deposit",
-    "in_branch": "In_branch"
-  },
-  "paymentStatus": {
-    "pending": "Pending",
-    "completed": "completed",
-    "cancelled": "Cancelado"
-  },
-  "orderStatus": {
-    "issued": "Issued",
-    "preparing": "Preparing",
-    "prepared": "Prepared",
-    "dispatched": "Dispatched",
-    "new": "New",
-    "delivering": "Delivering",
-    "ready to pickup": "ready to pickup",
-    "payment State" : "Payment State",
-    "order State": "Order State"
-  },
-  
-    "orderInformationPage": {
-      "title": "Order View",
-      "backButton": "Go back",
-      "printButton": "Print"
-    },
-    "orderDetails": {
-      "title": "Order Details",
-      "deliveryCost": "Delivery Cost",
-      "subtotal": "Subtotal",
-      "coupon": "Coupon",
-      "totalToPay": "Total to Pay"
-     
-    },
-    "orderPayment": {
-      "title": "Payment",
-      "orderPayment": {
-        "paymentState": "Payment State",
-        "total": "Total",
-        "totalPaid": "Total Paid",
-        "totalDebt": "Total Debt",
-        "states": {
-          "completed": "Completed",
-          "cancelled": "Cancelled",
-          "pending": "Pending"
-        }
-    },
+	"buyMethods": {
+		"credit_card": "Credit Card",
+		"bank_transference": "Bank_transference",
+		"bank_deposit": "Bank_deposit",
+		"in_branch": "In_branch"
+	},
+	"paymentStatus": {
+		"pending": "Pending",
+		"completed": "completed",
+		"cancelled": "Cancelado"
+	},
+	"orderStatus": {
+		"issued": "Issued",
+		"preparing": "Preparing",
+		"prepared": "Prepared",
+		"dispatched": "Dispatched",
+		"new": "New",
+		"delivering": "Delivering",
+		"ready to pickup": "ready to pickup",
+		"payment State": "Payment State",
+		"order State": "Order State"
+	},
 
-  "orderData": {
-    "number": "Order Number",
-    "voucher": "Voucher Number",
-    "state": {
-      "issued": "Issued",
-      "preparing": "Preparing",
-      "prepared": "Prepared",
-      "dispatched": "Dispatched",
-      "new": "New",
-      "delivering": "Delivering",
-      "ready to pickup": "ready to pickup"
-    },
-    "date": "Order Date"
-  }
-      }
+	"orderInformationPage": {
+		"title": "Order View",
+		"backButton": "Go back",
+		"printButton": "Print"
+	},
+	"orderDetails": {
+		"title": "Order Details",
+		"deliveryCost": "Delivery Cost",
+		"subtotal": "Subtotal",
+		"coupon": "Coupon",
+		"totalToPay": "Total to Pay"
+	},
+	"orderPayment": {
+		"title": "Payment",
+		"paymentState": "Payment State",
+		"total": "Total",
+		"totalPaid": "Total Paid",
+		"totalDebt": "Total Debt"
+	},
 
-  
+	"orderData": {
+		"title": "Order",
+		"number": "Order Number",
+		"voucher": "Voucher Number",
+		"state": "State",
+		"date": "Order Date"
+	}
 }
