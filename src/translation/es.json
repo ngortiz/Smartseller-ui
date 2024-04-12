@@ -41,7 +41,10 @@
 		"deliveryCost": "Costo de Envío",
 		"subtotal": "Subtotal",
 		"coupon": "Cupón",
-		"totalToPay": "Total a Pagar"
+		"totalToPay": "Total a Pagar",
+		"iva5Total": "Total del IVA (5%)",
+		"iva10Total": "Total del IVA (10%)",
+		"totalIVA": "Total del IVA"
 	},
 	"orderData": {
 		"title": "Pedido",
