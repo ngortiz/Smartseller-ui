@@ -29,7 +29,6 @@
 		"ready_to_pickup": "Sucursal",
 		"order Status": "Estado de Pedido"
 	},
-
 	"orderInformationPage": {
 		"title": "Visualizacion de Pedido",
 		"backButton": "Volver atrás",
@@ -37,7 +36,6 @@
 		"payment State": "Estado de Pago",
 		"order State": "Estado del Pedido"
 	},
-
 	"orderDetails": {
 		"title": "Detalles del Pedido",
 		"deliveryCost": "Costo de Envío",
@@ -45,7 +43,6 @@
 		"coupon": "Cupón",
 		"totalToPay": "Total a Pagar"
 	},
-
 	"orderData": {
 		"title": "Pedido",
 		"number": "Número de Pedido",
@@ -53,7 +50,6 @@
 		"state": "Estado del Pedido",
 		"date": "Fecha del Pedido"
 	},
-
 	"orderPayment": {
 		"title": "Pago",
 		"paymentState": "Estado de Pago",

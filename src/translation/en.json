@@ -25,7 +25,6 @@
 		"payment State": "Payment State",
 		"order State": "Order State"
 	},
-
 	"orderInformationPage": {
 		"title": "Order View",
 		"backButton": "Go back",
@@ -45,7 +44,6 @@
 		"totalPaid": "Total Paid",
 		"totalDebt": "Total Debt"
 	},
-
 	"orderData": {
 		"title": "Order",
 		"number": "Order Number",
