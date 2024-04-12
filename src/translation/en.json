@@ -21,6 +21,53 @@
     "dispatched": "Dispatched",
     "new": "New",
     "delivering": "Delivering",
-    "ready to pickup": "ready to pickup"
+    "ready to pickup": "ready to pickup",
+    "payment State" : "Payment State",
+    "order State": "Order State"
+  },
+  
+    "orderInformationPage": {
+      "title": "Order View",
+      "backButton": "Go back",
+      "printButton": "Print"
+    },
+    "orderDetails": {
+      "title": "Order Details",
+      "deliveryCost": "Delivery Cost",
+      "subtotal": "Subtotal",
+      "coupon": "Coupon",
+      "totalToPay": "Total to Pay"
+     
+    },
+    "orderPayment": {
+      "title": "Payment",
+      "orderPayment": {
+        "paymentState": "Payment State",
+        "total": "Total",
+        "totalPaid": "Total Paid",
+        "totalDebt": "Total Debt",
+        "states": {
+          "completed": "Completed",
+          "cancelled": "Cancelled",
+          "pending": "Pending"
+        }
+    },
+
+  "orderData": {
+    "number": "Order Number",
+    "voucher": "Voucher Number",
+    "state": {
+      "issued": "Issued",
+      "preparing": "Preparing",
+      "prepared": "Prepared",
+      "dispatched": "Dispatched",
+      "new": "New",
+      "delivering": "Delivering",
+      "ready to pickup": "ready to pickup"
+    },
+    "date": "Order Date"
   }
+      }
+
+  
 }

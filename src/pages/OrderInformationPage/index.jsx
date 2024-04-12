@@ -2,62 +2,69 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
+import { useTranslation } from 'react-i18next'; 
 import OrderClientInformation from '../../components/OrderClientInformation';
 import OrderData from '../../components/OrderData';
 import OrderPayment from '../../components/OrderPayment';
 import OrderDetails from '../../components/OrderDetails';
-
-
+import './style.css'
 
 const OrderInformationPage = () => {
+  const { t } = useTranslation(); 
   const navigate = useNavigate();
   const { orderId } = useParams();
-  console.log(orderId)
   const [order, setOrder] = useState(null);
+  <div>
+  <p>
+    <strong>{t('orderStatus.orderState')}:</strong>{' '}
+    {order ? t(`orderStatus.${order.orderState}`) : ''}
+  </p>
+
+</div>
 
   const GET_ORDER = gql`
-  query getOrder($orderId: Int!) {
-    getOrder(orderId: $orderId) {
-      id
-      address
-      buyMethod
-      contactPhone
-      createdAt
-      orderDetails {
-        productVariant {
-          createdAt
-          id
-          name
-          updatedAt
-          internalCode
-        }
-        amount
-        createdAt
-        exenta
+    query getOrder($orderId: Int!) {
+      getOrder(orderId: $orderId) {
         id
-        iva10
-        iva5
-        orderId
-        price
-        sellPrice
-        subTotal
+        address
+        buyMethod
+        contactPhone
+        createdAt
+        orderDetails {
+          productVariant {
+            createdAt
+            id
+            name
+            updatedAt
+            internalCode
+          }
+          amount
+          createdAt
+          exenta
+          id
+          iva10
+          iva5
+          orderId
+          price
+          sellPrice
+          subTotal
+          updatedAt
+        }
+        orderState
+        paymentState
+        ruc
+        total
+        totalDebt
+        totalPaid
         updatedAt
+        username
+        email
+        number
+        deliverCost
+        totalGs
       }
-      orderState
-      paymentState
-      ruc
-      total
-      totalDebt
-      totalPaid
-      updatedAt
-      username
-      email
-      number
-      deliverCost
-      totalGs
     }
-  }
-`;
+  `;
 
   const { loading, error, data } = useQuery(GET_ORDER, {
     variables: { orderId: parseInt(orderId) }
@@ -65,11 +72,10 @@ const OrderInformationPage = () => {
 
   useEffect(() => {
     if (data && data.getOrder) {
-      console.log(data.getOrder)
       setOrder(data.getOrder);
     }
   }, [loading]);
- 
+
   const handleGoBack = () => {
     navigate(-1);
   };
@@ -77,14 +83,14 @@ const OrderInformationPage = () => {
   return (
     <Container>
       <header>
-        <h1 className='order-view'>Visualización del Pedido</h1>
+        <h1 className='order-view'>{t('orderInformationPage.title')}</h1>
       </header>
       <Row className='justify-content-center'>
         <Col>
           <OrderClientInformation
             client={order?.username || ''}
             address={order?.address || ''}
-            phone={order?.contactPhone ||''}
+            phone={order?.contactPhone || ''}
             ruc={order?.ruc || ''}
             color='#ffA500'
           />
@@ -98,7 +104,7 @@ const OrderInformationPage = () => {
           />
         </Col>
         <Col>
-        <OrderPayment
+          <OrderPayment
             paymentState={order?.paymentState || ''}
             total={`US$ ${order?.total || 0}`}
             totalPaid={`US$ ${order?.totalPaid || 0}`}
@@ -108,9 +114,9 @@ const OrderInformationPage = () => {
       </Row>
       <Row className='justify-content-center'>
         <Col>
-        <OrderDetails
-        order={order}
-        />
+          <OrderDetails
+            order={order}
+          />
         </Col>
       </Row>
       <Row className='mt-4'>
@@ -124,6 +130,7 @@ const OrderInformationPage = () => {
         </Col>
       </Row>
     </Container>
+    
   );
 };
 

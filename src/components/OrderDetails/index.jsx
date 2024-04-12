@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Spinner } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import './style.css';
 
 const OrderDetails = ({
@@ -8,11 +9,16 @@ const OrderDetails = ({
   
 }) => {
   if (order=== null){
-    return <Spinner animation="border" role="status" variant="primary" style={{ width: '3rem', height: '3rem' }}>
-    <span className="sr-only"></span>
-  </Spinner>
+    return (
+      <div className="spinner-cont">
+        <Spinner animation="border" role="status" variant="primary">
+          <span className="sr-only"></span>
+        </Spinner>
+      </div>
+    );
   }
   const{orderDetails, deliverCost, total } = order
+  const { t } = useTranslation();
 
   
   return (
@@ -94,14 +100,7 @@ const OrderDetails = ({
 
 OrderDetails.propTypes = {
   order: PropTypes.object.isRequired,
- /*** orderDetails: PropTypes.array.isRequired,
-  deliverCost: PropTypes.number.isRequired,
-  subtotal: PropTypes.number.isRequired,
-  discountCoupon: PropTypes.string.isRequired,
-  totalAmount: PropTypes.number.isRequired,
-  iva5: PropTypes.number.isRequired,
-  iva10: PropTypes.number.isRequired,
-  totalIVA: PropTypes.number.isRequired,?***/
+ 
 
 };
 
