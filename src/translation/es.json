@@ -1,32 +1,60 @@
 {
-  "buy Method": "Forma de compra",
+	"buy Method": "Forma de compra",
 
-  "bankPaymentsPage": {
-    "header": "Pagos vía Banco o en Sucursal",
-    "Pending": "Pendiente",
-    "Not completed": "No completado",
-    "Completed": "Completado",
-    "Cancelled": "Cancelado"
-  },
-  "buyMethods": {
-    "credit_card": "Tarjeta de Crédito",
-    "bank_transference": "Transferencia Bancaria",
-    "bank_deposit": "Deposito Bancario",
-    "in_branch": "En sucursal"
-  },
-  "paymentStatus": {
-    "pending": "Pendiente",
-    "completed": "Completado",
-    "cancelled": "cancelled"
-  },
-  "orderStatus": {
-    "issued": "No Atendido",
-    "preparing": "Preparando",
-    "prepared": "Preparado",
-    "dispatched": "Atendido",
-    "new": "Recientes",
-    "delivering": "Enviando",
-    "ready_to_pickup": "Sucursal",
-    "order Status": "Estado de Pedido"
-  }
+	"bankPaymentsPage": {
+		"header": "Pagos vía Banco o en Sucursal",
+		"Pending": "Pendiente",
+		"Not completed": "No completado",
+		"Completed": "Completado",
+		"Cancelled": "Cancelado"
+	},
+	"buyMethods": {
+		"credit_card": "Tarjeta de Crédito",
+		"bank_transference": "Transferencia Bancaria",
+		"bank_deposit": "Deposito Bancario",
+		"in_branch": "En sucursal"
+	},
+	"paymentStatus": {
+		"pending": "Pendiente",
+		"completed": "Completado",
+		"cancelled": "cancelled"
+	},
+	"orderStatus": {
+		"issued": "No Atendido",
+		"preparing": "Preparando",
+		"prepared": "Preparado",
+		"dispatched": "Atendido",
+		"new": "Recientes",
+		"delivering": "Enviando",
+		"ready_to_pickup": "Sucursal",
+		"order Status": "Estado de Pedido"
+	},
+	"orderInformationPage": {
+		"title": "Visualizacion de Pedido",
+		"backButton": "Volver atrás",
+		"printButton": "Imprimir",
+		"payment State": "Estado de Pago",
+		"order State": "Estado del Pedido"
+	},
+	"orderDetails": {
+		"title": "Detalles del Pedido",
+		"deliveryCost": "Costo de Envío",
+		"subtotal": "Subtotal",
+		"coupon": "Cupón",
+		"totalToPay": "Total a Pagar"
+	},
+	"orderData": {
+		"title": "Pedido",
+		"number": "Número de Pedido",
+		"voucher": "Número de Comprobante",
+		"state": "Estado del Pedido",
+		"date": "Fecha del Pedido"
+	},
+	"orderPayment": {
+		"title": "Pago",
+		"paymentState": "Estado de Pago",
+		"total": "Total",
+		"totalPaid": "Total Pagado",
+		"totalDebt": "Total Deuda"
+	}
 }
