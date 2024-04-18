@@ -3,6 +3,8 @@ import { Col, Row } from 'react-bootstrap';
 import DateRangePicker from '../../components/DateRangePicker';
 import './style.css';
 import { useLazyQuery, gql } from '@apollo/client';
+import moment from 'moment';
+import { useTranslation } from 'react-i18next';
 
 import OrderCard from '../../components/OrderCard';
 import { DndContext } from '@dnd-kit/core';
@@ -27,12 +29,13 @@ const GET_ORDERS_QUERY = gql`
 
 const OrderBoardPage = () => {
 	const [orders, setOrders] = useState([]);
+	const { t } = useTranslation();
 
 	const [getOrders, { loading, error, data }] = useLazyQuery(GET_ORDERS_QUERY);
 
-	const defaultDate = new Date();
+	const defaultDate = moment().subtract(1, 'months').toDate();
 	const [startDate, setStartDate] = useState(defaultDate);
-	const [endDate, setEndDate] = useState(defaultDate);
+	const [endDate, setEndDate] = useState(new Date());
 
 	const handleStartDateChange = date => {
 		setStartDate(date);
@@ -47,7 +50,6 @@ const OrderBoardPage = () => {
 
 	useEffect(() => {
 		if (data && data.getOrders) {
-			console.log(data);
 			setOrders(data.getOrders);
 		}
 	}, [loading]);
@@ -121,9 +123,18 @@ const OrderBoardPage = () => {
 											order.orderState === column.filterState && (
 												<OrderDraggable key={order.id} id={order.id}>
 													<OrderCard
-														order={order}
+														order={{
+															...order,
+															buyMethod:
+																order.buyMethod === 'bank_deposit'
+																	? 'Deposito'
+																	: order.buyMethod,
+														}}
 														getClassForState={getClassForState}
 														column={column}
+														createdDate={moment(order.createdAt).format(
+															'DD/MM/YYYY HH:mm',
+														)}
 													/>
 												</OrderDraggable>
 											),

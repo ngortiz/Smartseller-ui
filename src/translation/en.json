@@ -6,7 +6,7 @@
 	"buyMethods": {
 		"credit_card": "Credit Card",
 		"bank_transference": "Bank_transference",
-		"bank_deposit": "Bank_deposit",
+
 		"in_branch": "In_branch"
 	},
 	"paymentStatus": {
