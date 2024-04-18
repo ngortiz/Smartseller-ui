@@ -96,21 +96,12 @@ const OrderBoardPage = () => {
 			updateOrderState(orderId, newState);
 		}
 	};
-	if (loading) {
-		return (
-			<div className='spinner-cont'>
-				<Spinner animation='border' role='status' variant='primary'>
-					<span className='sr-only'></span>
-				</Spinner>
-			</div>
-		);
-	}
-
+	
 	return (
 		<DndContext onDragEnd={handleDragEnd}>
 			<div className='order-control-container'>
 				<header className='order-control-header'>Control de Pedidos</header>
-				<Row className='row-cols'>
+				<Row>
 					<Col className='order-date-col'>
 						<DateRangePicker
 							startDate={startDate}
@@ -119,18 +110,18 @@ const OrderBoardPage = () => {
 							handleEndDateChange={handleEndDateChange}
 							handleSearch={handleSearch}
 						/>
-
-						{loading && (
-							<div className='spinner'>
-								<Spinner animation='border' role='status' variant='primary'>
-									<span className='sr-only'></span>
-								</Spinner>
-							</div>
-						)}
 					</Col>
 				</Row>
 
-				<Row className='row-cols'>
+        { loading && <Row  >
+          <Col style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
+            <Spinner animation='border' role='status' variant='primary'  >
+              <span className='sr-only'></span>
+            </Spinner>
+          </Col>
+        </Row>
+        }
+				<Row>
 					{orderColumns.map((column, index) => (
 						<Col key={index} md={2} className='column-card'>
 							<div className='column-with-card'>

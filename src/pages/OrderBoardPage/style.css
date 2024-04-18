@@ -33,11 +33,9 @@
 
 /* Style for date columns*/
 .order-date-col {
-	margin-bottom: 7%;
 	margin-right: 5%;
 	margin-left: 8%;
 	text-align: center;
-	display: flex;
 	font-weight: bold;
 }
 
