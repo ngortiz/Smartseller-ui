@@ -36,6 +36,7 @@ const OrderBoardPage = () => {
 	const defaultDate = moment().subtract(1, 'months').toDate();
 	const [startDate, setStartDate] = useState(defaultDate);
 	const [endDate, setEndDate] = useState(new Date());
+	const [firstLoading, setFirstLoading] = useState(true);
 
 	const handleStartDateChange = date => {
 		setStartDate(date);
@@ -51,6 +52,10 @@ const OrderBoardPage = () => {
 	useEffect(() => {
 		if (data && data.getOrders) {
 			setOrders(data.getOrders);
+		}
+		if (firstLoading) {
+			handleSearch();
+			setFirstLoading(false);
 		}
 	}, [loading]);
 
@@ -96,7 +101,7 @@ const OrderBoardPage = () => {
 			updateOrderState(orderId, newState);
 		}
 	};
-	
+
 	return (
 		<DndContext onDragEnd={handleDragEnd}>
 			<div className='order-control-container'>
@@ -113,14 +118,22 @@ const OrderBoardPage = () => {
 					</Col>
 				</Row>
 
-        { loading && <Row  >
-          <Col style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
-            <Spinner animation='border' role='status' variant='primary'  >
-              <span className='sr-only'></span>
-            </Spinner>
-          </Col>
-        </Row>
-        }
+				{loading && (
+					<Row>
+						<Col
+							style={{
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								marginBottom: '20px',
+							}}
+						>
+							<Spinner animation='border' role='status' variant='primary'>
+								<span className='sr-only'></span>
+							</Spinner>
+						</Col>
+					</Row>
+				)}
 				<Row>
 					{orderColumns.map((column, index) => (
 						<Col key={index} md={2} className='column-card'>
