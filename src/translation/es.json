@@ -11,7 +11,13 @@
 	"buyMethods": {
 		"credit_card": "Tarjeta de Crédito",
 		"bank_transference": "Transferencia Bancaria",
-		"bank_deposit": "Deposito Bancario",
+		"bank_deposit": "Deposito",
+		"in_branch": "En sucursal"
+	},
+	"buyMethodsShort": {
+		"credit_card": "T.C",
+		"bank_transference": "Transferencia",
+		"bank_deposit": "Depósito",
 		"in_branch": "En sucursal"
 	},
 	"paymentStatus": {
