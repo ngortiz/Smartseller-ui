@@ -11,17 +11,6 @@ const OrderCard = ({ order, getClassForState, column }) => {
 	const formattedDate = moment(order.createdAt).format('DD/MM/YYYY HH:mm');
 	const { t } = useTranslation();
 
-	const formatBuyMethod = buyMethod => {
-		switch (buyMethod) {
-			case 'credit_card':
-				return 'T.C';
-			case 'bank_transference':
-				return 'Transferencia';
-			default:
-				return t(`buyMethods.${buyMethod}`, { defaultValue: buyMethod });
-		}
-	};
-
 	return (
 		<div>
 			<Card
@@ -46,7 +35,7 @@ const OrderCard = ({ order, getClassForState, column }) => {
 
 						<span className='texto-spam'>
 							<i className='bi bi-credit-card'></i>
-							{formatBuyMethod(order.buyMethod)}{' '}
+							{t(`buyMethodsShort.${order.buyMethod}`)}
 						</span>
 						<span className='texto-spam'>
 							<i className='bi bi-credit-card'></i>

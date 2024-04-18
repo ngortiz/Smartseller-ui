@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Spinner } from 'react-bootstrap';
 import DateRangePicker from '../../components/DateRangePicker';
 import './style.css';
 import { useLazyQuery, gql } from '@apollo/client';
@@ -55,12 +55,12 @@ const OrderBoardPage = () => {
 	}, [loading]);
 
 	const orderColumns = [
-		{ title: 'No Atendidos', filterState: 'issued' },
-		{ title: 'Preparando', filterState: 'preparing' },
-		{ title: 'Preparados', filterState: 'prepared' },
-		{ title: 'Enviando', filterState: 'delivering' },
-		{ title: 'Sucursal', filterState: 'ready_to_pickup' },
-		{ title: 'Atendidos', filterState: 'dispatched' },
+		{ title: t('orderStatus.issued'), filterState: 'issued' },
+		{ title: t('orderStatus.preparing'), filterState: 'preparing' },
+		{ title: t('orderStatus.prepared'), filterState: 'prepared' },
+		{ title: t('orderStatus.delivering'), filterState: 'delivering' },
+		{ title: t('orderStatus.ready_to_pickup'), filterState: 'ready_to_pickup' },
+		{ title: t('orderStatus.dispatched'), filterState: 'dispatched' },
 	];
 
 	const getClassForState = state => {
@@ -96,6 +96,15 @@ const OrderBoardPage = () => {
 			updateOrderState(orderId, newState);
 		}
 	};
+	if (loading) {
+		return (
+			<div className='spinner-cont'>
+				<Spinner animation='border' role='status' variant='primary'>
+					<span className='sr-only'></span>
+				</Spinner>
+			</div>
+		);
+	}
 
 	return (
 		<DndContext onDragEnd={handleDragEnd}>
@@ -123,13 +132,7 @@ const OrderBoardPage = () => {
 											order.orderState === column.filterState && (
 												<OrderDraggable key={order.id} id={order.id}>
 													<OrderCard
-														order={{
-															...order,
-															buyMethod:
-																order.buyMethod === 'bank_deposit'
-																	? 'Deposito'
-																	: order.buyMethod,
-														}}
+														order={order}
 														getClassForState={getClassForState}
 														column={column}
 														createdDate={moment(order.createdAt).format(
