@@ -119,8 +119,17 @@ const OrderBoardPage = () => {
 							handleEndDateChange={handleEndDateChange}
 							handleSearch={handleSearch}
 						/>
+
+						{loading && (
+							<div className='spinner'>
+								<Spinner animation='border' role='status' variant='primary'>
+									<span className='sr-only'></span>
+								</Spinner>
+							</div>
+						)}
 					</Col>
 				</Row>
+
 				<Row className='row-cols'>
 					{orderColumns.map((column, index) => (
 						<Col key={index} md={2} className='column-card'>
