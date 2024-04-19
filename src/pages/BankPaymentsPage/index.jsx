@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useQuery, gql } from '@apollo/client';
 import PaymentModal from '../../components/PaymentModal/index';
 
 const BankPaymentsPage = () => {
@@ -12,112 +13,49 @@ const BankPaymentsPage = () => {
 	const [selectedPayment, setSelectedPayment] = useState(null);
 	const { t } = useTranslation();
 
-	const listPayments = [
-		{
-			id: 3,
-			orderNumber: '103',
-			invoiceNumber: 'INV-003',
-			amount: '20.00 US$',
-			client: 'Ana Rodríguez',
-			paymentMethod: 'Depósito',
-			paymentDate: '2024-02-27',
-			dueDate: '2024-03-12',
-			paid: false,
-			cancelled: false,
-			creationDate: '2024-02-22',
-			orderState: 'Preparando',
-			paymentState: 'Pendiente',
-		},
-		{
-			id: 4,
-			orderNumber: '104',
-			invoiceNumber: 'INV-004',
-			amount: '25.50 US$',
-			client: 'Pedro Martinez',
-			paymentMethod: 'Transferencia',
-			paymentDate: '2024-02-28',
-			dueDate: '2024-03-13',
-			paid: false,
-			cancelled: false,
-			creationDate: '2024-02-23',
-			orderState: 'No atendido',
-			paymentState: 'Pendiente',
-		},
-		{
-			id: 5,
-			orderNumber: '105',
-			invoiceNumber: 'INV-005',
-			amount: '18.75 US$',
-			client: 'María López',
-			paymentMethod: 'Sucursal',
-			paymentDate: '2024-02-28',
-			dueDate: '2024-03-13',
-			paid: false,
-			cancelled: false,
-			creationDate: '2024-02-23',
-			orderState: 'No atendido',
-			paymentState: 'Cancelado',
-		},
-		{
-			id: 6,
-			orderNumber: '106',
-			invoiceNumber: 'INV-006',
-			amount: '18.75 US$',
-			client: 'María López',
-			paymentMethod: 'Sucursal',
-			paymentDate: '2024-02-28',
-			dueDate: '2024-03-13',
-			paid: true,
-			cancelled: true,
-			creationDate: '2024-02-23',
-			orderState: 'Atendido',
-			paymentState: 'Completado',
-		},
-		{
-			id: 7,
-			orderNumber: '107',
-			invoiceNumber: 'INV-007',
-			amount: '18.75 US$',
-			client: 'María Vera',
-			paymentMethod: 'Sucursal',
-			paymentDate: '2024-02-28',
-			dueDate: '2024-03-13',
-			paid: true,
-			cancelled: true,
-			creationDate: '2024-02-23',
-			orderState: 'No atendido',
-			paymentState: 'No completado',
-		},
-	];
+	const GET_ORDERS_BY_PAYMENT_STATE_QUERY = gql`
+		query GetOrdersByPaymentStateQuery(
+			$state: PaymentState!
+			$paidViaCreditCard: Boolean!
+		) {
+			getOrdersByPaymentState(
+				state: $state
+				paidViaCreditCard: $paidViaCreditCard
+			) {
+				buyMethod
+				number
+				username
+				id
+				orderState
+				paymentState
+				updatedAt
+				createdAt
+				total
+			}
+		}
+	`;
+
+	const { loading, error, data } = useQuery(GET_ORDERS_BY_PAYMENT_STATE_QUERY, {
+		variables: { state: selectedOption, paidViaCreditCard: false },
+	});
+
+	useEffect(() => {
+		console.log('Estado de pago:', selectedOption);
+
+		if (data && data.getOrdersByPaymentState) {
+			console.log(data);
+			setPayments(data.getOrdersByPaymentState);
+			console.log(data);
+		}
+	}, [loading]);
 
 	const handleSelectorChange = e => {
 		const selectedValue = e.target.value;
 		setSelectedOption(selectedValue);
-
-		let filteredPayments = [...listPayments];
-
-		if (selectedValue !== 'all') {
-			filteredPayments = filteredPayments.filter(
-				payment =>
-					payment.paymentState.toLowerCase() === selectedValue.toLowerCase(),
-			);
-		}
-		setPayments(filteredPayments);
 	};
 
 	const handleOrderNumberChange = e => {
-		const search = e.target.value;
-		let filteredPayments = [...listPayments];
-		if (search.trim() !== '') {
-			const searchTermLowerCase = search.trim().toLowerCase();
-			filteredPayments = filteredPayments.filter(
-				payment =>
-					payment.orderNumber.includes(searchTermLowerCase) ||
-					payment.invoiceNumber.toLowerCase().includes(searchTermLowerCase),
-			);
-		}
-		setSearchTerm(search);
-		setPayments(filteredPayments);
+		setSearchTerm(e.target.value);
 	};
 
 	const handlePaymentClick = payment => {
@@ -131,13 +69,7 @@ const BankPaymentsPage = () => {
 
 	const handleBackButtonClick = () => {
 		setSelectedOption('all');
-		setPayments([]);
-	};
-
-	const handlePaymentRegistration = paymentData => {
-		console.log('Datos del pago:', paymentData);
-
-		setShowPaymentModal(false);
+		setSearchTerm('');
 	};
 
 	return (
@@ -177,7 +109,7 @@ const BankPaymentsPage = () => {
 				<PaymentModal
 					payment={selectedPayment}
 					onClose={handleCloseModal}
-					onPaymentRegister={handlePaymentRegistration}
+					onPaymentRegister={() => {}}
 				/>
 			)}
 
@@ -201,25 +133,25 @@ const BankPaymentsPage = () => {
 						<tr key={payment.id}>
 							<td>{index + 1}</td>
 							<td>
-								<Link to={`/orders/${payment.orderNumber}`}>
-									{payment.orderNumber}
-								</Link>
+								<Link to={`/orders/${payment.number}`}>{payment.number}</Link>
 							</td>
-
-							<td>{payment.client}</td>
-							<td> {payment.orderState}</td>
+							<td>{payment.username}</td>
+							<td>{payment.orderState}</td>
 							<td>{payment.paymentState}</td>
-							<td>{payment.paymentMethod}</td>
-							<td>{payment.creationDate}</td>
-							<td>{payment.dueDate}</td>
-							<td>{payment.amount}</td>
+							<td>{payment.buyMethod}</td>
+							<td>{payment.createdAt}</td>
+							<td>{payment.updatedAt}</td>
+							<td>{payment.total}</td>
 							<td>
-								<button
-									className='btn-pagar'
-									onClick={() => handlePaymentClick(payment)}
-								>
-									Pagar
-								</button>
+								{(payment.paymentState === 'Pendiente' ||
+									payment.paymentState === 'No completado') && (
+									<button
+										className='btn-pagar'
+										onClick={() => handlePaymentClick(payment)}
+									>
+										Pagar
+									</button>
+								)}
 							</td>
 						</tr>
 					))}
