@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import './style.css';
 
 const OrderDetails = ({ order }) => {
-	if (order === null || !order.orderDetails) {
+	if (order === null || order === undefined || !order.orderDetails) {
 		return (
 			<div className='spinner-cont'>
 				<Spinner animation='border' role='status' variant='primary'>
@@ -107,7 +107,7 @@ const OrderDetails = ({ order }) => {
 };
 
 OrderDetails.propTypes = {
-	order: PropTypes.object.isRequired,
+	order: PropTypes.object,
 };
 
 export default OrderDetails;

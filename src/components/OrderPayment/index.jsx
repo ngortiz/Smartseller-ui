@@ -11,8 +11,9 @@ export const OrderPayment = ({ paymentState, total, totalPaid, totalDebt }) => {
 			<h2 className='title'>{t('orderPayment.title')}</h2>
 			<p>
 				<strong>{t('orderPayment.paymentState')}:</strong>
-				{t(`paymentStatus.${paymentState.toLowerCase()}`)}
+				{paymentState ? t(`paymentStatus.${paymentState.toLowerCase()}`) : ''}
 			</p>
+
 			<p>
 				<strong>{t('orderPayment.total')}:</strong>{' '}
 				<label>{total.replace(/"/g, '')}</label>

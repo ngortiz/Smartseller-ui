@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery, gql } from '@apollo/client';
 import PaymentModal from '../../components/PaymentModal/index';
+import moment from 'moment';
+import Spinner from 'react-bootstrap/Spinner';
 
 const BankPaymentsPage = () => {
 	const [selectedOption, setSelectedOption] = useState('all');
@@ -71,6 +73,9 @@ const BankPaymentsPage = () => {
 		setSelectedOption('all');
 		setSearchTerm('');
 	};
+	const formatDateTime = dateTime => {
+		return moment(dateTime).format('DD-MM-YYYY HH:mm');
+	};
 
 	return (
 		<div>
@@ -85,11 +90,10 @@ const BankPaymentsPage = () => {
 						value={selectedOption}
 						onChange={handleSelectorChange}
 					>
-						<option value='all'>Seleccionar</option>
-						<option value='Pendiente'>Pendiente</option>
-						<option value='No completado'>No completado</option>
-						<option value='Completado'>Completado</option>
-						<option value='Cancelado'>Cancelado</option>
+						<option value='pending'>Pendiente</option>
+						<option value='no_completed'>No completado</option>
+						<option value='completed'>Completado</option>
+						<option value='cancelled'>Cancelado</option>
 					</select>
 				</div>
 
@@ -104,6 +108,15 @@ const BankPaymentsPage = () => {
 					/>
 				</div>
 			</div>
+			{loading && (
+				<div className='spinner-cont'>
+					<Spinner animation='border' role='status' variant='primary'>
+						<span className='sr-only'></span>
+					</Spinner>
+				</div>
+			)}
+
+			{!loading && <table className='bank-table'>{}</table>}
 
 			{showPaymentModal && (
 				<PaymentModal
@@ -116,16 +129,16 @@ const BankPaymentsPage = () => {
 			<table className='bank-table'>
 				<thead>
 					<tr>
-						<th>Item</th>
-						<th>Número</th>
-						<th>Cliente</th>
-						<th>Estado del Pedido</th>
-						<th>Estado del Pago</th>
-						<th>Forma de Pago</th>
-						<th>Fecha de Creación</th>
-						<th>Fecha de Expiración</th>
-						<th>Total</th>
-						<th>Registrar Pago</th>
+						<th>{t('bankPaymentsPage.item')}</th>
+						<th>{t('bankPaymentsPage.number')}</th>
+						<th>{t('bankPaymentsPage.client')}</th>
+						<th>{t('bankPaymentsPage.orderState')}</th>
+						<th>{t('bankPaymentsPage.paymentState')}</th>
+						<th>{t('bankPaymentsPage.paymentMethod')}</th>
+						<th>{t('bankPaymentsPage.createdAt')}</th>
+						<th>{t('bankPaymentsPage.updatedAt')}</th>
+						<th>{t('bankPaymentsPage.total')}</th>
+						<th>{t('bankPaymentsPage.registerPayment')}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -133,15 +146,16 @@ const BankPaymentsPage = () => {
 						<tr key={payment.id}>
 							<td>{index + 1}</td>
 							<td>
-								<Link to={`/orders/${payment.number}`}>{payment.number}</Link>
+								<Link to={`/orders/${payment.id}`}>{payment.number}</Link>
 							</td>
 							<td>{payment.username}</td>
-							<td>{payment.orderState}</td>
-							<td>{payment.paymentState}</td>
-							<td>{payment.buyMethod}</td>
-							<td>{payment.createdAt}</td>
-							<td>{payment.updatedAt}</td>
-							<td>{payment.total}</td>
+							<td>{t(`orderStatus.${payment.orderState}`)}</td>
+							<td>{t(`paymentStatus.${payment.paymentState}`)}</td>
+							<td>{t(`buyMethods.${payment.buyMethod}`)}</td>
+
+							<td>{formatDateTime(payment.createdAt)}</td>
+							<td>{formatDateTime(payment.updatedAt)}</td>
+							<td>US$ {payment.total}</td>
 							<td>
 								{(payment.paymentState === 'Pendiente' ||
 									payment.paymentState === 'No completado') && (
