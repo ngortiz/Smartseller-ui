@@ -14,14 +14,15 @@ export const OrderPayment = ({ paymentState, total, totalPaid, totalDebt }) => {
 				{t(`paymentStatus.${paymentState.toLowerCase()}`)}
 			</p>
 			<p>
-				<strong>{t('orderPayment.total')}:</strong> <label>{total}</label>
+				<strong>{t('orderPayment.total')}:</strong>{' '}
+				<label>{total.replace(/"/g, '')}</label>
 			</p>
 			<p>
-				<strong>{t('orderPayment.totalPaid')}:</strong>{' '}
+				<strong>{t('orderPayment.totalPaid')}:</strong>
 				<label>{totalPaid}</label>
 			</p>
 			<p>
-				<strong>{t('orderPayment.totalDebt')}:</strong>{' '}
+				<strong>{t('orderPayment.totalDebt')}:</strong>
 				<label>{totalDebt}</label>
 			</p>
 		</div>

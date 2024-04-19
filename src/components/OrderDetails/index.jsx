@@ -34,8 +34,8 @@ const OrderDetails = ({ order }) => {
 						<th>Descuento</th>
 						<th>Precio Venta</th>
 						<th>Exenta</th>
-						<th>IVA 10%</th>
 						<th>IVA 5%</th>
+						<th>IVA 10%</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -44,12 +44,12 @@ const OrderDetails = ({ order }) => {
 							<td>{item.amount}</td>
 							<td>{item.productVariant.internalCode}</td>
 							<td>{item.productVariant.name}</td>
-							<td>US${item.price}</td>
+							<td>US$ {item.price}</td>
 							<td>Ninguno</td>
-							<td>US${item.sellPrice}</td>
-							<td>US${item.exenta}</td>
-							<td>US${item.iva10}</td>
-							<td>US${item.iva5 || 0}</td>
+							<td>US$ {item.sellPrice}</td>
+							<td>US$ {item.exenta || 0}</td>
+							<td>US$ {item.iva5 || 0}</td>
+							<td>US$ {item.iva10}</td>
 						</tr>
 					))}
 				</tbody>
@@ -61,13 +61,13 @@ const OrderDetails = ({ order }) => {
 						<td className='summary-cell' colSpan='4'>
 							Costo de Envío
 						</td>
-						<td className='summary-value'>US${deliverCost}</td>
+						<td className='summary-value'>US$ {deliverCost}</td>
 					</tr>
 					<tr>
 						<td className='summary-cell' colSpan='4'>
 							Subtotal
 						</td>
-						<td className='summary-value'>US${total}</td>
+						<td className='summary-value'>US$ {total}</td>
 					</tr>
 					<tr>
 						<td className='summary-cell' colSpan='4'>
@@ -79,7 +79,7 @@ const OrderDetails = ({ order }) => {
 						<td className='summary-cell' colSpan='4'>
 							Total a Pagar
 						</td>
-						<td className='summary-value'>US${total}</td>
+						<td className='summary-value'>US$ {total}</td>
 					</tr>
 				</tbody>
 			</table>

@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Col } from 'react-bootstrap';
+import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 
 export const OrderData = ({ number, voucher, state, date }) => {
 	const { t } = useTranslation();
+
+	const formattedDate = moment(date).format('DD-MM-YYYY HH:mm');
 
 	return (
 		<div className='column-content'>
@@ -17,11 +20,11 @@ export const OrderData = ({ number, voucher, state, date }) => {
 					<strong>{t('orderData.voucher')}:</strong> <label>{voucher}</label>
 				</p>
 				<p>
-					<strong>{t('orderData.state')}:</strong>
+					<strong>{t('orderData.state')}:</strong>{' '}
 					{state ? t(`orderStatus.${state}`) : ''}
 				</p>
 				<p>
-					<strong>{t('orderData.date')}:</strong> <label>{date}</label>
+					<strong>{t('orderData.date')}:</strong> <label>{formattedDate}</label>
 				</p>
 			</Col>
 		</div>

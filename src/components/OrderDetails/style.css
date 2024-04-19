@@ -37,7 +37,7 @@
 	background-color: #f2f2f2;
 	padding: 8px;
 	text-align: right;
-	width: 98%;
+	width: 93%;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 15px;
 }
@@ -45,7 +45,7 @@
 .summary-value {
 	padding: 8px;
 	text-align: right;
-	width: 2%;
+	width: 7%;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 15px;
 }
