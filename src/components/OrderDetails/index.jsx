@@ -34,8 +34,8 @@ const OrderDetails = ({ order }) => {
 						<th>Descuento</th>
 						<th>Precio Venta</th>
 						<th>Exenta</th>
-						<th>IVA 10%</th>
 						<th>IVA 5%</th>
+						<th>IVA 10%</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -47,9 +47,9 @@ const OrderDetails = ({ order }) => {
 							<td>US$ {item.price}</td>
 							<td>Ninguno</td>
 							<td>US$ {item.sellPrice}</td>
-							<td>US$ {item.exenta}</td>
-							<td>US$ {item.iva10}</td>
+							<td>US$ {item.exenta || 0}</td>
 							<td>US$ {item.iva5 || 0}</td>
+							<td>US$ {item.iva10}</td>
 						</tr>
 					))}
 				</tbody>
