@@ -17,7 +17,11 @@ const OrderInformationPage = () => {
 	<div>
 		<p>
 			<strong>{t('orderStatus.orderState')}:</strong>{' '}
-			{order ? t(`orderStatus.${order.orderState}`) : ''}
+			{order
+				? t(`orderStatus.${order.orderState}`, {
+						defaultValue: order.orderState,
+					})
+				: ''}
 		</p>
 	</div>;
 

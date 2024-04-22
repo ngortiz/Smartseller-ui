@@ -6,8 +6,24 @@
 		"Pending": "Pendiente",
 		"Not completed": "No completado",
 		"Completed": "Completado",
-		"Cancelled": "Cancelado"
+		"Cancelled": "Cancelado",
+		"all": "Seleccionar",
+		"orderNumber": "Número de Orden:",
+		"searchPlaceholder": "Buscar por número de pedido",
+		"item": "Item",
+		"number": "Número",
+		"client": "Cliente",
+		"orderState": "Estado del Pedido",
+		"paymentState": "Estado del Pago",
+		"paymentMethod": "Forma de Pago",
+		"createdAt": "Fecha de Creación",
+		"updatedAt": "Fecha de Actualización",
+		"total": "Total",
+		"registerPayment": "Registrar Pago",
+		"back": "Atrás",
+		"pay": "Pagar"
 	},
+
 	"buyMethods": {
 		"credit_card": "Tarjeta de Crédito",
 		"bank_transference": "Transferencia Bancaria",
@@ -33,8 +49,9 @@
 		"new": "Recientes",
 		"delivering": "Enviando",
 		"ready_to_pickup": "Sucursal",
-		"order Status": "Estado de Pedido"
+		"orderState": "Estado de Pedido"
 	},
+
 	"orderInformationPage": {
 		"title": "Visualizacion de Pedido",
 		"backButton": "Volver atrás",
