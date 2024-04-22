@@ -90,19 +90,23 @@ const BankPaymentsPage = () => {
 						value={selectedOption}
 						onChange={handleSelectorChange}
 					>
-						<option value='pending'>Pendiente</option>
-						<option value='no_completed'>No completado</option>
-						<option value='completed'>Completado</option>
-						<option value='cancelled'>Cancelado</option>
+						<option value='pending'>{t('bankPaymentsPage.pending')}</option>
+						<option value='no_completed'>
+							{t('bankPaymentsPage.notCompleted')}
+						</option>
+						<option value='completed'>{t('bankPaymentsPage.completed')}</option>
+						<option value='cancelled'>{t('bankPaymentsPage.cancelled')}</option>
 					</select>
 				</div>
 
 				<div className='bank-container'>
-					<span className='heard-number'>Número de Orden:</span>
+					<span className='heard-number'>
+						{t('bankPaymentsPage.orderNumber')}:
+					</span>
 					<input
 						type='text'
 						className='bank-input'
-						placeholder='Buscar por número de pedido'
+						placeholder={t('bankPaymentsPage.searchPlaceholder')}
 						value={searchTerm}
 						onChange={handleOrderNumberChange}
 					/>
@@ -157,13 +161,13 @@ const BankPaymentsPage = () => {
 							<td>{formatDateTime(payment.updatedAt)}</td>
 							<td>US$ {payment.total}</td>
 							<td>
-								{(payment.paymentState === 'pending' ||
-									payment.paymentState === 'no _completed') && (
+								{(payment.paymentState === 'Pendiente' ||
+									payment.paymentState === 'No completado') && (
 									<button
 										className='btn-pagar'
 										onClick={() => handlePaymentClick(payment)}
 									>
-										Pagar
+										{t('bankPaymentsPage.pay')}
 									</button>
 								)}
 							</td>
@@ -172,7 +176,7 @@ const BankPaymentsPage = () => {
 				</tbody>
 			</table>
 			<button className='bank-btn' onClick={handleBackButtonClick}>
-				Atrás
+				{t('bankPaymentsPage.back')}
 			</button>
 		</div>
 	);
