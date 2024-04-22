@@ -8,7 +8,7 @@ import moment from 'moment';
 import Spinner from 'react-bootstrap/Spinner';
 
 const BankPaymentsPage = () => {
-	const [selectedOption, setSelectedOption] = useState('all');
+	const [selectedOption, setSelectedOption] = useState('pending');
 	const [payments, setPayments] = useState([]);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -70,7 +70,7 @@ const BankPaymentsPage = () => {
 	};
 
 	const handleBackButtonClick = () => {
-		setSelectedOption('all');
+		setSelectedOption('pending');
 		setSearchTerm('');
 	};
 	const formatDateTime = dateTime => {
@@ -157,8 +157,8 @@ const BankPaymentsPage = () => {
 							<td>{formatDateTime(payment.updatedAt)}</td>
 							<td>US$ {payment.total}</td>
 							<td>
-								{(payment.paymentState === 'Pendiente' ||
-									payment.paymentState === 'No completado') && (
+								{(payment.paymentState === 'pending' ||
+									payment.paymentState === 'no _completed') && (
 									<button
 										className='btn-pagar'
 										onClick={() => handlePaymentClick(payment)}
