@@ -161,8 +161,8 @@ const BankPaymentsPage = () => {
 							<td>{formatDateTime(payment.updatedAt)}</td>
 							<td>US$ {payment.total}</td>
 							<td>
-								{(payment.paymentState === 'Pendiente' ||
-									payment.paymentState === 'No completado') && (
+								{(payment.paymentState === 'pending' ||
+									payment.paymentState === 'not_completed') && (
 									<button
 										className='btn-pagar'
 										onClick={() => handlePaymentClick(payment)}
