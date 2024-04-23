@@ -162,7 +162,7 @@ const BankPaymentsPage = () => {
 							<td>US$ {payment.total}</td>
 							<td>
 								{(payment.paymentState === 'pending' ||
-									payment.paymentState === 'not_completed') && (
+									payment.paymentState === 'no_completed') && (
 									<button
 										className='btn-pagar'
 										onClick={() => handlePaymentClick(payment)}
