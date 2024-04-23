@@ -40,19 +40,15 @@ const BankPaymentsPage = () => {
 	const { loading, error, data } = useQuery(GET_ORDERS_BY_PAYMENT_STATE_QUERY, {
 		variables: { state: selectedOption, paidViaCreditCard: false },
 	});
-
 	useEffect(() => {
-		console.log('Estado de pago:', selectedOption);
-
 		if (data && data.getOrdersByPaymentState) {
-			console.log(data);
 			setPayments(data.getOrdersByPaymentState);
-			console.log(data);
 		}
-	}, [loading]);
+	}, [data]);
 
 	const handleSelectorChange = e => {
 		const selectedValue = e.target.value;
+
 		setSelectedOption(selectedValue);
 	};
 
@@ -69,40 +65,45 @@ const BankPaymentsPage = () => {
 		setShowPaymentModal(false);
 	};
 
-	const handleBackButtonClick = () => {
-		setSelectedOption('pending');
-		setSearchTerm('');
-	};
 	const formatDateTime = dateTime => {
 		return moment(dateTime).format('DD-MM-YYYY HH:mm');
 	};
-
+	const filterePayments =
+		searchTerm.length <= 0
+			? payments
+			: payments.filter(payment => {
+					return payment.number.toString().includes(searchTerm);
+				});
 	return (
 		<div>
 			<header className='bank-header'>{t('bankPaymentsPage.header')}</header>
 
 			<div className='bank-flex-container'>
 				<div className='bank-container'>
-					<span className='heard-state'>Estado:</span>
+					<span className='heard-state'>{t('bankPaymentsPage.state')}:</span>
 					<select
 						className='bank-select'
 						aria-label='large-select-example'
 						value={selectedOption}
 						onChange={handleSelectorChange}
 					>
-						<option value='pending'>Pendiente</option>
-						<option value='no_completed'>No completado</option>
-						<option value='completed'>Completado</option>
-						<option value='cancelled'>Cancelado</option>
+						<option value='pending'>{t('bankPaymentsPage.pending')}</option>
+						<option value='no_completed'>
+							{t('bankPaymentsPage.notCompleted')}
+						</option>
+						<option value='completed'>{t('bankPaymentsPage.completed')}</option>
+						<option value='cancelled'>{t('bankPaymentsPage.cancelled')}</option>
 					</select>
 				</div>
 
 				<div className='bank-container'>
-					<span className='heard-number'>Número de Orden:</span>
+					<span className='heard-number'>
+						{t('bankPaymentsPage.orderNumber')}:
+					</span>
 					<input
 						type='text'
 						className='bank-input'
-						placeholder='Buscar por número de pedido'
+						placeholder={t('bankPaymentsPage.searchPlaceholder')}
 						value={searchTerm}
 						onChange={handleOrderNumberChange}
 					/>
@@ -142,7 +143,7 @@ const BankPaymentsPage = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{payments.map((payment, index) => (
+					{filterePayments.map((payment, index) => (
 						<tr key={payment.id}>
 							<td>{index + 1}</td>
 							<td>
@@ -158,12 +159,12 @@ const BankPaymentsPage = () => {
 							<td>US$ {payment.total}</td>
 							<td>
 								{(payment.paymentState === 'pending' ||
-									payment.paymentState === 'no _completed') && (
+									payment.paymentState === 'no_completed') && (
 									<button
 										className='btn-pagar'
 										onClick={() => handlePaymentClick(payment)}
 									>
-										Pagar
+										{t('bankPaymentsPage.pay')}
 									</button>
 								)}
 							</td>
@@ -171,9 +172,6 @@ const BankPaymentsPage = () => {
 					))}
 				</tbody>
 			</table>
-			<button className='bank-btn' onClick={handleBackButtonClick}>
-				Atrás
-			</button>
 		</div>
 	);
 };

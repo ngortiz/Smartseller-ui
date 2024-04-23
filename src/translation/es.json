@@ -3,12 +3,12 @@
 
 	"bankPaymentsPage": {
 		"header": "Pagos vía Banco o en Sucursal",
-		"Pending": "Pendiente",
-		"Not completed": "No completado",
-		"Completed": "Completado",
-		"Cancelled": "Cancelado",
+		"pending": "Pendiente",
+		"notCompleted": "No completado",
+		"completed": "Completado",
+		"cancelled": "Cancelado",
 		"all": "Seleccionar",
-		"orderNumber": "Número de Orden:",
+		"orderNumber": "Número de Orden",
 		"searchPlaceholder": "Buscar por número de pedido",
 		"item": "Item",
 		"number": "Número",
@@ -21,13 +21,14 @@
 		"total": "Total",
 		"registerPayment": "Registrar Pago",
 		"back": "Atrás",
-		"pay": "Pagar"
+		"pay": "Pagar",
+		"state": "Estado"
 	},
 
 	"buyMethods": {
 		"credit_card": "Tarjeta de Crédito",
 		"bank_transference": "Transferencia Bancaria",
-		"bank_deposit": "Deposito",
+		"bank_deposit": "Depósito",
 		"in_branch": "En sucursal"
 	},
 	"buyMethodsShort": {
@@ -82,5 +83,46 @@
 		"total": "Total",
 		"totalPaid": "Total Pagado",
 		"totalDebt": "Total Deuda"
+	},
+	"dateRangePicker": {
+		"from": "Desde",
+		"to": "Hasta",
+		"search": "Buscar"
+	},
+	"leftNav": {
+		"ordersOnline": "Pedidos Online",
+		"summary": "Resumen",
+		"orderControl": "Control Pedido",
+		"reports": "Reportes",
+		"orderPayments": "Pagos de Pedido",
+		"bankPayments": "Pagos vía Banco o en Sucursal",
+		"creditCardPayments": "Por Tarjeta Credito/Debito",
+		"buys": "Compras",
+		"registrationFrom": "Registro Planilla",
+		"registerBuy": "Registrar Compra",
+		"createFrom": " Crear Planilla",
+		"productSheet": " Planilla de Productos",
+		"searchVariant": "Buscar Variante",
+		"imageUpload": "Carga de imagenes",
+		"stockReport": "Reporte de Stock",
+		"sales": "Ventas",
+		"registerSale": "Registrar Venta",
+		"salesList": "Lista Ventas",
+		"promotions": "Promociones",
+		"category": "Categoria",
+		"quotes": "Cotizaciones",
+		"coupons": "Cupones",
+		"client": "Cliente",
+		"clients": "Clientes",
+		"subscribers": "Suscriptores",
+		"stats": " Estadisticas",
+		"platformAnalytics": "Analitica de Plataforma",
+		"onlineSales": "Ventas Online",
+		"productsSoldOnline": "Productos vendidos Online",
+		"internalTasks": "Tareas Internas",
+		"productsPage": "Pagina de Productos",
+		"startPage": "Pagina de Inicio",
+		"changePassword": "Cambiar Contraseña ",
+		"go out": "Salir"
 	}
 }
