@@ -8,7 +8,7 @@
 		"completed": "Completado",
 		"cancelled": "Cancelado",
 		"all": "Seleccionar",
-		"orderNumber": "Número de Orden:",
+		"orderNumber": "Número de Orden",
 		"searchPlaceholder": "Buscar por número de pedido",
 		"item": "Item",
 		"number": "Número",
@@ -21,13 +21,14 @@
 		"total": "Total",
 		"registerPayment": "Registrar Pago",
 		"back": "Atrás",
-		"pay": "Pagar"
+		"pay": "Pagar",
+		"state": "Estado"
 	},
 
 	"buyMethods": {
 		"credit_card": "Tarjeta de Crédito",
 		"bank_transference": "Transferencia Bancaria",
-		"bank_deposit": "Deposito",
+		"bank_deposit": "Depósito",
 		"in_branch": "En sucursal"
 	},
 	"buyMethodsShort": {

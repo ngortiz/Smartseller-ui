@@ -40,19 +40,15 @@ const BankPaymentsPage = () => {
 	const { loading, error, data } = useQuery(GET_ORDERS_BY_PAYMENT_STATE_QUERY, {
 		variables: { state: selectedOption, paidViaCreditCard: false },
 	});
-
 	useEffect(() => {
-		console.log('Estado de pago:', selectedOption);
-
 		if (data && data.getOrdersByPaymentState) {
-			console.log(data);
 			setPayments(data.getOrdersByPaymentState);
-			console.log(data);
 		}
-	}, [loading]);
+	}, [data]);
 
 	const handleSelectorChange = e => {
 		const selectedValue = e.target.value;
+
 		setSelectedOption(selectedValue);
 	};
 
@@ -69,21 +65,22 @@ const BankPaymentsPage = () => {
 		setShowPaymentModal(false);
 	};
 
-	const handleBackButtonClick = () => {
-		setSelectedOption('pending');
-		setSearchTerm('');
-	};
 	const formatDateTime = dateTime => {
 		return moment(dateTime).format('DD-MM-YYYY HH:mm');
 	};
-
+	const filterePayments =
+		searchTerm.length <= 0
+			? payments
+			: payments.filter(payment => {
+					return payment.number.toString().includes(searchTerm);
+				});
 	return (
 		<div>
 			<header className='bank-header'>{t('bankPaymentsPage.header')}</header>
 
 			<div className='bank-flex-container'>
 				<div className='bank-container'>
-					<span className='heard-state'>Estado:</span>
+					<span className='heard-state'>{t('bankPaymentsPage.state')}:</span>
 					<select
 						className='bank-select'
 						aria-label='large-select-example'
@@ -146,7 +143,7 @@ const BankPaymentsPage = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{payments.map((payment, index) => (
+					{filterePayments.map((payment, index) => (
 						<tr key={payment.id}>
 							<td>{index + 1}</td>
 							<td>
@@ -175,9 +172,6 @@ const BankPaymentsPage = () => {
 					))}
 				</tbody>
 			</table>
-			<button className='bank-btn' onClick={handleBackButtonClick}>
-				{t('bankPaymentsPage.back')}
-			</button>
 		</div>
 	);
 };
