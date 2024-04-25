@@ -17,12 +17,37 @@
 		"paymentState": "Estado del Pago",
 		"paymentMethod": "Forma de Pago",
 		"createdAt": "Fecha de Creación",
-		"updatedAt": "Fecha de Actualización",
+		"updatedAt": "Fecha de Pago",
 		"total": "Total",
 		"registerPayment": "Registrar Pago",
 		"back": "Atrás",
 		"pay": "Pagar",
 		"state": "Estado"
+	},
+
+	"creditCardPayment": {
+		"header": "Transacciones hechas por tarjetas de crédito",
+		"cancelled": "Cancelado",
+		"all": "Todas las transacciones",
+		"orderNumber": "Número de Orden",
+		"searchPlaceholder": "Buscar por número de pedido",
+		"item": "Item",
+		"number": "Número",
+		"client": "Cliente",
+		"orderState": "Estado del Pedido",
+		"paymentState": "Estado del Pago",
+		"paymentMethod": "Forma de Pago",
+		"createdAt": "Fecha de Creación",
+		"updatedAt": "Fecha de Pago",
+		"total": "Total",
+		"registerPayment": "Registrar Pago",
+		"back": "Atrás",
+		"pay": "Pagado",
+		"state": "Estado",
+		"amount": "Importe",
+		"voucher": "Nro.Comprobante",
+		"rejectedTransaction": "Transacciones Rechazadas",
+		"acceptedTransaction": "Transacciones Aceptadas"
 	},
 
 	"buyMethods": {
