@@ -1,131 +1,149 @@
-import './style.css'
-
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-
-const allPayments = [
-  {
-    id: 1,
-    orderNumber: 'ORD-001',
-    invoiceNumber: 'INV-001',
-    amount: '10.00 US$',
-    client: 'Juan Valdez',
-    paymentMethod: 'TC',
-    paymentDate: '2024-02-25',
-    dueDate: '2024-03-10',
-    paid: true,
-    cancelled: false,
-    creationDate: '2024-02-20'
-  },
-  {
-    id: 2,
-    orderNumber: 'ORD-002',
-    invoiceNumber: 'INV-002',
-    amount: '15.20 US$',
-    client: 'Valeria Ortiz',
-    paymentMethod: 'TC',
-    paymentDate: '2024-02-26',
-    dueDate: '2024-03-11',
-    paid: false,
-    cancelled: true,
-    creationDate: '2024-02-21'
-  }
-]
+import './style.css';
+import { gql, useLazyQuery } from '@apollo/client';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner';
+import moment from 'moment';
+import { useTranslation } from 'react-i18next';
 
 const CreditCardPayments = () => {
-  const [selectedOption, setSelectedOption] = useState('')
-  const [payments, setPayments] = useState(allPayments)
+	const [selectedOption, setSelectedOption] = useState('all');
+	const [payments, setPayments] = useState([]);
+	const [firstLoading, setFirstLoading] = useState(true);
+	const { t } = useTranslation();
 
-  const filterPayments = (payments, selectedOption) => {
-    if (selectedOption === 'all') {
-      return allPayments
-    }
-    const isPaid = selectedOption === 'acceptedTransactions'
-    const filteredPayments = payments.filter(payment => payment.paid === isPaid)
-    console.log(filteredPayments)
-    return filteredPayments
-  }
+	const GET_ORDERS_BY_PAYMENT_STATE_QUERY = gql`
+		query GetOrdersByPaymentStateQuery(
+			$state: PaymentState!
+			$paidViaCreditCard: Boolean!
+		) {
+			getOrdersByPaymentState(
+				state: $state
+				paidViaCreditCard: $paidViaCreditCard
+			) {
+				buyMethod
+				number
+				username
+				id
+				orderState
+				paymentState
+				updatedAt
+				createdAt
+				total
+				pagoparTransaction {
+					paid
+					cancelled
+					paymentDate
+					id
+					amount
+				}
+			}
+		}
+	`;
 
-  const handleSelectorChange = e => {
-    const selectedValue = e.target.value
-    setSelectedOption(selectedValue)
-    const filteredPayments = filterPayments(allPayments, selectedValue)
-    setPayments(filteredPayments)
-  }
+	const [handleSearch, { loading, error, data }] = useLazyQuery(
+		GET_ORDERS_BY_PAYMENT_STATE_QUERY,
+	);
 
-  const handleBackButtonClick = () => {
-    setSelectedOption('all')
-    setPayments(allPayments)
-  }
+	useEffect(() => {
+		console.log('data:', data);
+		if (data && data.getOrdersByPaymentState) {
+			console.log(data);
+			setPayments(data.getOrdersByPaymentState);
+		}
+		if (firstLoading) {
+			handleSearch({
+				variables: { state: selectedOption, paidViaCreditCard: true },
+			});
+			setFirstLoading(false);
+		}
+	}, [data]);
 
-  return (
-    <div>
-      <header className='payment-header'>
-        Transacciones hechas por tarjetas de crédito
-      </header>
+	const handleSelectorChange = e => {
+		handleSearch({
+			variables: { state: e.target.value, paidViaCreditCard: true },
+		});
+		setSelectedOption(e.target.value);
+		console.log(e.target.value);
+	};
 
-      <div className='search-container'>
-        <select
-          className='form-select-lg'
-          aria-label='large-select-example'
-          value={selectedOption}
-          onChange={handleSelectorChange}
-        >
-          <option value='all' className='transacciones-body'>
-            Todas las transacciones
-          </option>
-          <option value='rejectedTransactions' className='transacciones-body'>
-            Transacciones Rechazadas
-          </option>
-          <option value='acceptedTransactions' className='transacciones-body'>
-            Transacciones Aceptadas
-          </option>
-        </select>
-      </div>
+	const formatDateTime = dateTime => {
+		return moment(dateTime).format('DD-MM-YYYY HH:mm');
+	};
 
-      <table className='table'>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Nro Pedido</th>
-            <th>Nro Comprobante</th>
-            <th>Importe</th>
-            <th>Cliente</th>
-            <th>Método Pago</th>
-            <th>Fecha Pago</th>
-            <th>Vencimiento</th>
-            <th>Pagado</th>
-            <th>Cancelado</th>
-            <th>Fecha Creación</th>
-          </tr>
-        </thead>
-        <tbody>
-          {payments.map((payment, index) => (
-            <tr key={payment.id}>
-              <td>{index + 1}</td>
-              <td>
-                <Link to={`/orders/${payment.orderNumber}`}>
-                  {payment.orderNumber}
-                </Link>
-              </td>
-              <td>{payment.invoiceNumber}</td>
-              <td>{payment.amount}</td>
-              <td>{payment.client}</td>
-              <td>{payment.paymentMethod}</td>
-              <td>{payment.paymentDate}</td>
-              <td>{payment.dueDate}</td>
-              <td>{payment.paid ? 'Sí' : 'No'}</td>
-              <td>{payment.cancelled ? 'Sí' : 'No'}</td>
-              <td>{payment.creationDate}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button className='button-back' onClick={handleBackButtonClick}>
-        Atrás
-      </button>
-    </div>
-  )
-}
+	return (
+		<div>
+			<header className='payment-header'>
+				{t('creditCardPayment.header')}
+			</header>
+			<div className='search-container'>
+				<select
+					className='form-select-lg'
+					aria-label='large-select-example'
+					value={selectedOption}
+					onChange={handleSelectorChange}
+				>
+					<option value='all' className='transacciones-body'>
+						{t('creditCardPayment.all')}
+					</option>
+					<option value='rejected_transaction' className='transacciones-body'>
+						{t('creditCardPayment.rejectedTransaction')}
+					</option>
+					<option value='accepted_transaction' className='transacciones-body'>
+						{t('creditCardPayment.acceptedTransaction')}
+					</option>
+				</select>
+			</div>
+			{loading && (
+				<div className='spinner-cont'>
+					<Spinner animation='border' role='status' variant='primary'>
+						<span className='sr-only'></span>
+					</Spinner>
+				</div>
+			)}
 
-export default CreditCardPayments
+			<table className='table'>
+				<thead>
+					<tr>
+						<th>{t('creditCardPayment.item')}</th>
+						<th>{t('creditCardPayment.number')}</th>
+						<th>{t('creditCardPayment.voucher')}</th>
+						<th>{t('creditCardPayment.amount')}</th>
+						<th>{t('creditCardPayment.client')}</th>
+						<th>{t('creditCardPayment.paymentMethod')}</th>
+						<th>{t('creditCardPayment.updatedAt')}</th>
+						<th>{t('creditCardPayment.pay')}</th>
+						<th>{t('creditCardPayment.cancelled')}</th>
+						<th>{t('creditCardPayment.createdAt')}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{payments.map((payment, index) => (
+						<tr key={payment.id}>
+							<td>{index + 1}</td>
+							<td>
+								<Link to={`/orders/${payment.id}`}>{payment.number}</Link>
+							</td>
+							<td>Comprobante</td>
+							<td>US$ {payment.total}</td>
+
+							<td>{payment.username}</td>
+							<td>{t(`buyMethods.${payment.buyMethod}`)}</td>
+							<td>
+								{formatDateTime(
+									payment.pagoparTransaction?.paymentDate ||
+										payment.paymentDate,
+								)}
+							</td>
+							<td>{payment.pagoparTransaction?.paid ? 'Sí' : 'No'}</td>
+							<td>{payment.pagoparTransaction?.cancelled ? 'Sí' : 'No'}</td>
+							<td>{formatDateTime(payment.createdAt)}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+	);
+};
+
+export default CreditCardPayments;
