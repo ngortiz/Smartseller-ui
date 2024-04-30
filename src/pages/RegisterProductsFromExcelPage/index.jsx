@@ -1,21 +1,41 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import './style.css';
 
 const RegisterProductsFromExcelPage = () => {
+	const { t } = useTranslation();
+
+	const COLUMN_NAMES = [
+		t('columnNames.name'),
+		t('columnNames.productId'),
+		t('columnNames.internalCode'),
+		t('columnNames.mainProduct'),
+		t('columnNames.description'),
+		t('columnNames.lastSupplier'),
+		t('columnNames.totalStock'),
+		t('columnNames.category'),
+		t('columnNames.price1'),
+		t('columnNames.price2'),
+	];
+
 	const handleUpload = () => {};
+
 	return (
 		<div className='unique-register-products-page'>
+			<header className='unique-title-header'>
+				{t('headers.massiveincome')}
+			</header>
 			<header className='unique-page-header'>
-				Ingreso Masivo de Productos
+				Ingresar planilla para cargar productos
 			</header>
 			<Form className='unique-form'>
 				<Form.Group controlId='formExcelFile' className='mb-3'>
-					<Form.Label>Seleccionar archivo de Excel</Form.Label>
+					<Form.Label>{t('labels.selectExcelFile')}:</Form.Label>
 					<Form.Control type='file' accept='.xlsx, .xls' />
 				</Form.Group>
 				<Form.Group controlId='formZipFile' className='mb-3'>
-					<Form.Label>Seleccionar archivo ZIP</Form.Label>
+					<Form.Label>{t('labels.selectZIPFile')}:</Form.Label>
 					<Form.Control type='file' accept='.zip' />
 				</Form.Group>
 			</Form>
@@ -24,64 +44,96 @@ const RegisterProductsFromExcelPage = () => {
 				onClick={handleUpload}
 				className='unique-button'
 			>
-				Cargar
+				{t('buttons.charge')}
 			</Button>
 			<Row>
 				<Col>
-					<header className='unique-subHeard'>Columnas obligatorias</header>
+					<header className='unique-subHeard'>
+						{t('headers.requiredcolumns')}
+					</header>
 					<Card className='unique-card'>
 						<Card.Body>
-							<Card.Title className='unique-card-title'>Nombre</Card.Title>
+							<Card.Title className='unique-card-title'>
+								{t('headers.name')}
+							</Card.Title>
 							<ul className='unique-list'>
-								<li className='unique-list-item'>Producto Id</li>
-								<li className='unique-list-item'>Internal Code</li>
-								<li className='unique-list-item'>Producto Principal</li>
-								<li className='unique-list-item'>Descripcion</li>
-								<li className='unique-list-item'>Último proveedor</li>
-								<li className='unique-list-item'>Total Stock</li>
-								<li className='unique-list-item'>Categoria</li>
-								<li className='unique-list-item'>Precio 1</li>
-								<li className='unique-list-item'>Precio 2</li>
+								{COLUMN_NAMES.map((name, index) => (
+									<li key={index} className='unique-list-item'>
+										{name}
+									</li>
+								))}
 							</ul>
 						</Card.Body>
 					</Card>
 				</Col>
 				<Col>
 					<header className='unique-subHeard'>
-						Tipo de Impuestos Disponibles
+						{t('headers.availableTaxType')}
 					</header>
 					<Card className='unique-card'>
 						<Card.Body>
-							<Card.Title className='unique-card-title'>Nombre</Card.Title>
+							<Card.Title className='unique-card-title'>
+								{t('columnNames.name')}
+							</Card.Title>
 							<ul className='unique-list'>
-								<li className='unique-list-item'>IVA10%</li>
-								<li className='unique-list-item'>IVA5%</li>
-								<li className='unique-list-item'>EXENTA</li>
+								<li className='unique-list-item'>{t('columnNames.iva10')}</li>
+								<li className='unique-list-item'>{t('columnNames.iva5')}</li>
+								<li className='unique-list-item'>{t('columnNames.exempt')}</li>
 							</ul>
 						</Card.Body>
 					</Card>
 				</Col>
 				<Col>
-					<header className='unique-subHeard'>Categoria Disponibles</header>
+					<header className='unique-subHeard'>
+						{t('headers.availableCategories')}
+					</header>
 					<Card className='unique-card'>
 						<Card.Body>
-							<Card.Title className='unique-card-title'>Nombre</Card.Title>
+							<Card.Title className='unique-card-title'>
+								{t('columnNames.name')}
+							</Card.Title>
 							<ul className='unique-list'>
-								<li className='unique-list-item'>AUTOMOTORES</li>
-								<li className='unique-list-item'>BAZAR</li>
-								<li className='unique-list-item'>COTILLON</li>
-								<li className='unique-list-item'>ELECTRODOMESTICO</li>
-								<li className='unique-list-item'>FERRETERIA</li>
-								<li className='unique-list-item'>HOGAR</li>
-								<li className='unique-list-item'>ILUMINARIAS</li>
-								<li className='unique-list-item'>JUGUETERIA</li>
-								<li className='unique-list-item'>LIBRERIA</li>
-								<li className='unique-list-item'>PLAYAS,CAMPING, OUTDOORS</li>
-								<li className='unique-list-item'>ROPERIA</li>
-								<li className='unique-list-item'>ACCESORIOS INDUMENTARIAS</li>
-								<li className='unique-list-item'>MEGA SHOP</li>
-								<li className='unique-list-item'>ELECTRODOMESTICO</li>
-								<li className='unique-list-item'>ARTICULOS NAVIDEÑOS</li>
+								<li className='unique-list-item'>{t('columnNames.bazaar')}</li>
+								<li className='unique-list-item'>
+									{t('columnNames.hardwareStore')}
+								</li>
+								<li className='unique-list-item'>{t('columnNames.home')}</li>
+								<li className='unique-list-item'>
+									{t('columnNames.illuminaries')}
+								</li>
+								<li className='unique-list-item'>
+									{t('columnNames.toyStore')}
+								</li>
+								<li className='unique-list-item'>
+									{t('columnNames.bookshop')}
+								</li>
+								<li className='unique-list-item'>
+									{t('columnNames.christmasItems')}
+								</li>
+								<li className='unique-list-item'>
+									{t('columnNames.beachesCampingOutdoors')}
+								</li>
+								<li className='unique-list-item'>
+									{t('columnNames.automobiles')}
+								</li>
+
+								<li className='unique-list-item'>
+									{t('columnNames.cotillon')}
+								</li>
+								<li className='unique-list-item'>
+									{t('columnNames.appliance')}
+								</li>
+								<li className='unique-list-item'>{t('columnNames.closet')}</li>
+								<li className='unique-list-item'>
+									{t('columnNames.cosmetic')}
+								</li>
+
+								<li className='unique-list-item'>
+									{t('columnNames.cleaningProduct')}
+								</li>
+								<li className='unique-list-item'>
+									{t('columnNames.accessories')}
+								</li>
 							</ul>
 						</Card.Body>
 					</Card>

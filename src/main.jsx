@@ -68,7 +68,7 @@ createRoot(document.getElementById('root')).render(
 									/>
 									<Route path='/' element={<OrdersSummary />} />
 									<Route
-										path='Register-Products-From-Excel'
+										path='register-products-from-excel'
 										element={<RegisterProductsFromExcelPage />}
 									/>
 								</Routes>

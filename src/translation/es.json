@@ -126,7 +126,7 @@
 		"registrationFrom": "Registro Planilla",
 		"registerBuy": "Registrar Compra",
 		"createFrom": " Crear Planilla",
-		"productSheet": " Planilla de Productos",
+		"registerFromExcel": " Registrar desde Excel",
 		"searchVariant": "Buscar Variante",
 		"imageUpload": "Carga de imagenes",
 		"stockReport": "Reporte de Stock",
@@ -149,5 +149,50 @@
 		"startPage": "Pagina de Inicio",
 		"changePassword": "Cambiar Contraseña ",
 		"go out": "Salir"
+	},
+
+	"headers": {
+		"massiveincome": "Ingreso Masivo de Productos",
+		"requiredcolumns": "Columnas obligatorias",
+		"availableTaxType": "Tipo de Impuestos Disponibles",
+		"availableCategories": "Categorías Disponibles",
+		"name": "Nombre"
+	},
+	"labels": {
+		"selectExcelFile": "Seleccionar archivo de Excel",
+		"selectZIPFile": "Seleccionar archivo ZIP"
+	},
+	"buttons": {
+		"charge": "Cargar"
+	},
+	"columnNames": {
+		"name": "Nombre",
+		"productId": "Producto Id",
+		"internalCode": "Código interno",
+		"mainProduct": "Producto principal",
+		"description": "Descripción",
+		"lastSupplier": "Último proveedor",
+		"totalStock": "Total Stock",
+		"category": "Categoría",
+		"price1": "Precio 1",
+		"price2": "Precio 2",
+		"iva10": "IVA 10%",
+		"iva5": "IVA 5%",
+		"exempt": "EXENTA",
+		"automobiles": "AUTOMOTORES",
+		"bazaar": "BAZAR",
+		"cotillon": "COTILLON",
+		"appliance": "ELECTRODOMÉSTICO",
+		"hardwareStore": "FERRETERÍA",
+		"home": "HOGAR",
+		"illuminaries": "ILUMINARIAS",
+		"toyStore": "JUGUETERÍA",
+		"bookshop": "LIBRERÍA",
+		"beachesCampingOutdoors": "PLAYAS, CAMPING, OUTDOORS",
+		"closet": "ROPERÍA",
+		"accessories": "ACCESORIOS",
+		"cosmetic": "COSMETICO",
+		"cleaningProduct": "PRODUCTO DE LIMPIEZA",
+		"christmasItems": "ARTÍCULOS NAVIDEÑOS"
 	}
 }
