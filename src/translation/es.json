@@ -151,21 +151,15 @@
 		"go out": "Salir"
 	},
 
-	"headers": {
-		"massiveincome": "Ingreso Masivo de Productos",
-		"requiredcolumns": "Columnas obligatorias",
+	"registerProductsFromExcel": {
+		"enterFormToLoadProducts": "Ingresar planilla para cargar productos",
+		"massiveIncome": "Ingreso Masivo de Productos",
+		"requiredColumns": "Columnas obligatorias",
 		"availableTaxType": "Tipo de Impuestos Disponibles",
 		"availableCategories": "Categorías Disponibles",
-		"name": "Nombre"
-	},
-	"labels": {
 		"selectExcelFile": "Seleccionar archivo de Excel",
-		"selectZIPFile": "Seleccionar archivo ZIP"
-	},
-	"buttons": {
-		"charge": "Cargar"
-	},
-	"columnNames": {
+		"selectZIPFile": "Seleccionar archivo ZIP",
+		"charge": "Cargar",
 		"name": "Nombre",
 		"productId": "Producto Id",
 		"internalCode": "Código interno",

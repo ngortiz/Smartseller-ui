@@ -7,16 +7,16 @@ const RegisterProductsFromExcelPage = () => {
 	const { t } = useTranslation();
 
 	const COLUMN_NAMES = [
-		t('columnNames.name'),
-		t('columnNames.productId'),
-		t('columnNames.internalCode'),
-		t('columnNames.mainProduct'),
-		t('columnNames.description'),
-		t('columnNames.lastSupplier'),
-		t('columnNames.totalStock'),
-		t('columnNames.category'),
-		t('columnNames.price1'),
-		t('columnNames.price2'),
+		t('registerProductsFromExcel.name'),
+		t('registerProductsFromExcel.productId'),
+		t('registerProductsFromExcel.internalCode'),
+		t('registerProductsFromExcel.mainProduct'),
+		t('registerProductsFromExcel.description'),
+		t('registerProductsFromExcel.lastSupplier'),
+		t('registerProductsFromExcel.totalStock'),
+		t('registerProductsFromExcel.category'),
+		t('registerProductsFromExcel.price1'),
+		t('registerProductsFromExcel.price2'),
 	];
 
 	const handleUpload = () => {};
@@ -24,18 +24,22 @@ const RegisterProductsFromExcelPage = () => {
 	return (
 		<div className='unique-register-products-page'>
 			<header className='unique-title-header'>
-				{t('headers.massiveincome')}
+				{t('registerProductsFromExcel.massiveIncome')}
 			</header>
 			<header className='unique-page-header'>
-				Ingresar planilla para cargar productos
+				{t('registerProductsFromExcel.enterFormToLoadProducts')}
 			</header>
 			<Form className='unique-form'>
 				<Form.Group controlId='formExcelFile' className='mb-3'>
-					<Form.Label>{t('labels.selectExcelFile')}:</Form.Label>
+					<Form.Label>
+						{t('registerProductsFromExcel.selectExcelFile')}:
+					</Form.Label>
 					<Form.Control type='file' accept='.xlsx, .xls' />
 				</Form.Group>
 				<Form.Group controlId='formZipFile' className='mb-3'>
-					<Form.Label>{t('labels.selectZIPFile')}:</Form.Label>
+					<Form.Label>
+						{t('registerProductsFromExcel.selectZIPFile')}:
+					</Form.Label>
 					<Form.Control type='file' accept='.zip' />
 				</Form.Group>
 			</Form>
@@ -44,17 +48,17 @@ const RegisterProductsFromExcelPage = () => {
 				onClick={handleUpload}
 				className='unique-button'
 			>
-				{t('buttons.charge')}
+				{t('registerProductsFromExcel.charge')}
 			</Button>
 			<Row>
 				<Col>
 					<header className='unique-subHeard'>
-						{t('headers.requiredcolumns')}
+						{t('registerProductsFromExcel.requiredColumns')}
 					</header>
 					<Card className='unique-card'>
 						<Card.Body>
 							<Card.Title className='unique-card-title'>
-								{t('headers.name')}
+								{t('registerProductsFromExcel.name')}
 							</Card.Title>
 							<ul className='unique-list'>
 								{COLUMN_NAMES.map((name, index) => (
@@ -68,71 +72,83 @@ const RegisterProductsFromExcelPage = () => {
 				</Col>
 				<Col>
 					<header className='unique-subHeard'>
-						{t('headers.availableTaxType')}
+						{t('registerProductsFromExcel.availableTaxType')}
 					</header>
 					<Card className='unique-card'>
 						<Card.Body>
 							<Card.Title className='unique-card-title'>
-								{t('columnNames.name')}
+								{t('registerProductsFromExcel.name')}
 							</Card.Title>
 							<ul className='unique-list'>
-								<li className='unique-list-item'>{t('columnNames.iva10')}</li>
-								<li className='unique-list-item'>{t('columnNames.iva5')}</li>
-								<li className='unique-list-item'>{t('columnNames.exempt')}</li>
+								<li className='unique-list-item'>
+									{t('registerProductsFromExcel.iva10')}
+								</li>
+								<li className='unique-list-item'>
+									{t('registerProductsFromExcel.iva5')}
+								</li>
+								<li className='unique-list-item'>
+									{t('registerProductsFromExcel.exempt')}
+								</li>
 							</ul>
 						</Card.Body>
 					</Card>
 				</Col>
 				<Col>
 					<header className='unique-subHeard'>
-						{t('headers.availableCategories')}
+						{t('registerProductsFromExcel.availableCategories')}
 					</header>
 					<Card className='unique-card'>
 						<Card.Body>
 							<Card.Title className='unique-card-title'>
-								{t('columnNames.name')}
+								{t('registerProductsFromExcel.name')}
 							</Card.Title>
 							<ul className='unique-list'>
-								<li className='unique-list-item'>{t('columnNames.bazaar')}</li>
 								<li className='unique-list-item'>
-									{t('columnNames.hardwareStore')}
-								</li>
-								<li className='unique-list-item'>{t('columnNames.home')}</li>
-								<li className='unique-list-item'>
-									{t('columnNames.illuminaries')}
+									{t('registerProductsFromExcel.bazaar')}
 								</li>
 								<li className='unique-list-item'>
-									{t('columnNames.toyStore')}
+									{t('registerProductsFromExcel.hardwareStore')}
 								</li>
 								<li className='unique-list-item'>
-									{t('columnNames.bookshop')}
+									{t('registerProductsFromExcel.home')}
 								</li>
 								<li className='unique-list-item'>
-									{t('columnNames.christmasItems')}
+									{t('registerProductsFromExcel.illuminaries')}
 								</li>
 								<li className='unique-list-item'>
-									{t('columnNames.beachesCampingOutdoors')}
+									{t('registerProductsFromExcel.toyStore')}
 								</li>
 								<li className='unique-list-item'>
-									{t('columnNames.automobiles')}
-								</li>
-
-								<li className='unique-list-item'>
-									{t('columnNames.cotillon')}
+									{t('registerProductsFromExcel.bookshop')}
 								</li>
 								<li className='unique-list-item'>
-									{t('columnNames.appliance')}
+									{t('registerProductsFromExcel.christmasItems')}
 								</li>
-								<li className='unique-list-item'>{t('columnNames.closet')}</li>
 								<li className='unique-list-item'>
-									{t('columnNames.cosmetic')}
+									{t('registerProductsFromExcel.beachesCampingOutdoors')}
+								</li>
+								<li className='unique-list-item'>
+									{t('registerProductsFromExcel.automobiles')}
 								</li>
 
 								<li className='unique-list-item'>
-									{t('columnNames.cleaningProduct')}
+									{t('registerProductsFromExcel.cotillon')}
 								</li>
 								<li className='unique-list-item'>
-									{t('columnNames.accessories')}
+									{t('registerProductsFromExcel.appliance')}
+								</li>
+								<li className='unique-list-item'>
+									{t('registerProductsFromExcel.closet')}
+								</li>
+								<li className='unique-list-item'>
+									{t('registerProductsFromExcel.cosmetic')}
+								</li>
+
+								<li className='unique-list-item'>
+									{t('registerProductsFromExcel.cleaningProduct')}
+								</li>
+								<li className='unique-list-item'>
+									{t('registerProductsFromExcel.accessories')}
 								</li>
 							</ul>
 						</Card.Body>
