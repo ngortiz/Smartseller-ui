@@ -104,7 +104,7 @@ const RegisterProductsFromExcelPage = () => {
 							</Card.Title>
 							<ul className='unique-list'>
 								<li className='unique-list-item'>
-									{t('registerProductsFromExcel.bazaar')}
+									{t('registerProductsFromExcel.bazar')}
 								</li>
 								<li className='unique-list-item'>
 									{t('registerProductsFromExcel.hardwareStore')}
