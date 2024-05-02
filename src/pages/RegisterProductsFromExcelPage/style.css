@@ -75,7 +75,7 @@
 	border-radius: 3px;
 	font-size: 18px;
 	background-color: #00a65a;
-	border-color: #082c1b;
+	border-color: #00a65a;
 	cursor: pointer;
 	left: 45%;
 	margin-top: 10px;
@@ -108,5 +108,4 @@
 
 .unique-form .form-control:focus {
 	border-color: #00a65a;
-	box-shadow: 0 0 0 0.2rem rgba(0, 166, 90, 0.25);
 }

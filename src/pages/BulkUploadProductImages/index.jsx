@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import './style.css';
 
@@ -11,7 +11,9 @@ const BulkUploadProductImages = () => {
 		setForceOverwrite(!forceOverwrite);
 	};
 
-	const handleUpload = () => {};
+	const handleUpload = () => {
+		// Lógica para manejar la carga masiva de imágenes
+	};
 
 	return (
 		<div className='unique-bulk-upload-product-images'>

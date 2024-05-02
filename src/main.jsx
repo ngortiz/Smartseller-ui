@@ -72,7 +72,7 @@ createRoot(document.getElementById('root')).render(
 										element={<RegisterProductsFromExcelPage />}
 									/>
 									<Route
-										path='bulkU-pload-product-images'
+										path='bulk-upload-product-images'
 										element={<BulkUploadProductImages />}
 									/>
 								</Routes>
