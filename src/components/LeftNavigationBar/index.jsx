@@ -69,8 +69,8 @@ const LeftNavigationBar = () => {
 						{t('leftNav.createFrom')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='#action/3.5'>
-						{t('leftNav.productSheet')}
+					<NavDropdown.Item href='/register-products-from-excel'>
+						{t('leftNav.registerFromExcel')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
 					<NavDropdown.Item href='#action/3.6'>
