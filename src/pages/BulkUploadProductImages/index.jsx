@@ -31,9 +31,9 @@ const BulkUploadProductImages = () => {
 				<Form.Group controlId='formForceOverwrite' className='mb-3'>
 					<Form.Check
 						type='checkbox'
-						label={t('bulkUploadProductImages.forceOverWriteImage')}
 						checked={forceOverwrite}
 						onChange={handleToggle}
+						label={t('bulkUploadProductImages.forceOverWriteImage')}
 					/>
 				</Form.Group>
 			</Form>
