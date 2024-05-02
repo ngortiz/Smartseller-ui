@@ -1,0 +1,68 @@
+/* style.css */
+
+.unique-bulk-upload-product-images {
+	padding: 20px;
+	font-family: Arial, sans-serif;
+	background-color: white;
+}
+
+.bulk-page-header {
+	margin: 10px 0 20px 0;
+	text-align: left;
+	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #eeee;
+	padding: 6px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	color: #333;
+}
+
+.unique-form {
+	margin-bottom: 20px;
+}
+
+.unique-form-label {
+	font-weight: bold;
+	color: #555;
+}
+
+.unique-button {
+	background-color: #00a65a;
+	border-color: #007bff;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.unique-button:hover {
+	background-color: #262c40;
+	border-color: #262c40;
+}
+
+.unique-h2 {
+	margin: 10px 0 20px 0;
+	text-align: left;
+	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #eeee;
+	padding: 6px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+	color: #333;
+}
+label {
+	color: #354052;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+.form-check-input:checked {
+	background-color: #00a65a;
+	border-color: #40755d;
+}

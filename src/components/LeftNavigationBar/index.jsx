@@ -77,7 +77,7 @@ const LeftNavigationBar = () => {
 						{t('leftNav.searchVariant')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='#action/3.7'>
+					<NavDropdown.Item href='/bulkU-pload-product-images'>
 						{t('leftNav.imageUpload')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />

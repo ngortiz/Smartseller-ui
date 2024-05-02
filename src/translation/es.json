@@ -188,5 +188,13 @@
 		"cosmetic": "COSMETICO",
 		"cleaningProduct": "PRODUCTO DE LIMPIEZA",
 		"christmasItems": "ARTÍCULOS NAVIDEÑOS"
+	},
+
+	"bulkUploadProductImages": {
+		"charge": "Cargar",
+		"selectZIPFile": "Seleccionar archivo ZIP",
+		"massIngressiveProductImages": "Ingresivo Masivo de Imagenes de Productos",
+		"forceOverWriteImage": "Forzar sobre escritura de imagen",
+		"enterZIPOfImages": "Ingresar ZIP de imagenes"
 	}
 }
