@@ -11,18 +11,14 @@ const BulkUploadProductImages = () => {
 		setForceOverwrite(!forceOverwrite);
 	};
 
-	const handleUpload = () => {
-		// Lógica para manejar la carga masiva de imágenes
-	};
+	const handleUpload = () => {};
 
 	return (
 		<div className='unique-bulk-upload-product-images'>
 			<header className='bulk-page-header'>
 				{t('bulkUploadProductImages.massIngressiveProductImages')}
 			</header>
-			<header className='unique-h2'>
-				{t('bulkUploadProductImages.enterZIPOfImages')}
-			</header>
+
 			<Form className='unique-form'>
 				<Form.Group controlId='formZipFile' className='mb-3'>
 					<Form.Label>{t('bulkUploadProductImages.selectZIPFile')}:</Form.Label>
