@@ -20,7 +20,7 @@ import OrderBoardPage from './pages/OrderBoardPage';
 import CreditCardPayments from './pages/CreditCardPayments';
 import BankPaymentsPage from './pages/BankPaymentsPage';
 import RegisterProductsFromExcelPage from './pages/RegisterProductsFromExcelPage';
-
+import BulkUploadProductImages from './pages/BulkUploadProductImages';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './utils/i18n';
 
@@ -70,6 +70,10 @@ createRoot(document.getElementById('root')).render(
 									<Route
 										path='register-products-from-excel'
 										element={<RegisterProductsFromExcelPage />}
+									/>
+									<Route
+										path='bulk-upload-product-images'
+										element={<BulkUploadProductImages />}
 									/>
 								</Routes>
 							</Col>

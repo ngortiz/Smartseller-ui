@@ -1,0 +1,70 @@
+.unique-bulk-upload-product-images {
+	padding: 20px;
+	font-family: Arial, sans-serif;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bulk-page-header,
+.unique-h2 {
+	margin: 10px 0 20px 0;
+	text-align: left;
+	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #eeee;
+	padding: 10px 20px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: bold;
+	color: #333;
+}
+
+.unique-form {
+	margin-bottom: 20px;
+}
+
+.unique-form-label {
+	font-weight: bold;
+	color: #555;
+}
+
+.unique-button {
+	background-color: #0e2a5d;
+	border: 2px solid #18211d;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition:
+		background-color 0.3s,
+		border-color 0.3s,
+		color 0.3s;
+}
+
+.unique-button:hover {
+	background-color: grey;
+}
+
+label {
+	color: #354052;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+.form-check .form-check-input {
+	float: right;
+	background-color: #0e2a5d;
+	border-color: #0d6efd;
+}
+
+.form-check-input {
+	margin-right: 79%;
+	background-color: lightgray;
+}
+.form-check-label {
+	display: flex;
+	align-items: center;
+	margin: 2%;
+}
