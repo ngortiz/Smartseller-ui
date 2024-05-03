@@ -73,7 +73,7 @@ const LeftNavigationBar = () => {
 						{t('leftNav.registerFromExcel')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='#action/3.6'>
+					<NavDropdown.Item href='product-searcher-page'>
 						{t('leftNav.searchVariant')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
