@@ -64,7 +64,7 @@ const ProductSearcherPage = () => {
 	return (
 		<Container id='product-searcher-page'>
 			<Row className='mt-4'>
-				<header className='product-heard'>Buscar Producto de Variante</header>
+				<header className='product-heard'>Buscar Productos de Variante</header>
 			</Row>
 			<Row className='mt-4'>
 				<p className='product-title'>Ingrese datos para búsqueda:</p>
@@ -106,8 +106,7 @@ const ProductSearcherPage = () => {
 						onChange={e => setDescription(e.target.value)}
 					/>
 				</Form.Group>
-			</Row>
-			<Row>
+
 				<Form.Group as={Col} controlId='formSubcategory'>
 					<Form.Label>Subcategoría:</Form.Label>
 					<Form.Select
@@ -121,14 +120,20 @@ const ProductSearcherPage = () => {
 						))}
 					</Form.Select>
 				</Form.Group>
-				<Form.Group as={Col} controlId='formCheckbox' className='mt-3'>
+				<Form.Group
+					as={Col}
+					controlId='formCheckbox'
+					className='product-frominput'
+				>
 					<Form.Check
 						type='checkbox'
 						label='Publicar'
 						checked={checked}
 						onChange={e => setChecked(e.target.checked)}
+						className=' product-check-input'
 					/>
 				</Form.Group>
+
 				<Col className='mt-3'>
 					<Button
 						variant='primary'

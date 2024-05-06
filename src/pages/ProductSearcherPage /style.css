@@ -1,6 +1,14 @@
+#product-searcher-page .form-check .form-check-input {
+	display: inline-block;
+	margin-right: 76%;
+	margin-bottom: 5%;
+	margin-block: 24%;
+}
+
 #product-searcher-page .table {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
+	margin-top: 5%;
 }
 
 #product-searcher-page .table th,
@@ -23,16 +31,26 @@
 	background-color: #dddddd;
 }
 
-.product-form-control {
+.form-control {
 	display: block;
-	width: 54%;
+	width: 100%;
 	padding: 0.375rem 0.75rem;
-	font-size: 1rem;
+	font-size: 14px;
 	font-weight: 400;
 	line-height: 1.5;
+	border-radius: 0%;
 }
 
-.product-heard,
+.product-heard {
+	margin: 10px 0 20px 0;
+	text-align: left;
+	margin-bottom: 20px;
+	background-color: inherit;
+	border-bottom: 1px solid #eeee;
+	padding: 5px;
+	margin-bottom: 15px;
+}
+
 .product-title {
 	margin: 10px 0 20px 0;
 	text-align: left;
@@ -46,9 +64,9 @@
 }
 
 .product-form-select {
-	width: 32%;
-	padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-	font-size: 1rem;
+	width: 30%;
+	padding: 0.375rem 0.75rem;
+	font-size: 14px;
 	font-weight: 400;
 	line-height: 1.5;
 	color: var(--bs-body-color);
@@ -61,7 +79,7 @@
 	color: #fff;
 	font-size: 16px;
 	font-weight: bold;
-	padding: 10px 20px;
+	padding: 5px 10px;
 	border-radius: 5px;
 	cursor: pointer;
 	transition:
