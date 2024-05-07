@@ -1,14 +1,15 @@
 #product-searcher-page .form-check .form-check-input {
 	display: inline-block;
 	margin-right: 76%;
-	margin-bottom: 5%;
-	margin-block: 24%;
+	margin-bottom: 6%;
+	margin-block: 20%;
+	padding: 13px 15px;
 }
 
 #product-searcher-page .table {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
-	margin-top: 5%;
+	margin-top: -1%;
 }
 
 #product-searcher-page .table th,
@@ -31,17 +32,30 @@
 	background-color: #dddddd;
 }
 
-.form-control {
+/* Estilo para los elementos del formulario */
+.product-form-control {
 	display: block;
 	width: 100%;
 	padding: 0.375rem 0.75rem;
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 1.5;
-	border-radius: 0%;
+	border-radius: 0;
 }
 
-.product-heard {
+.product-input-from {
+	display: inline-block;
+	margin-bottom: 10px;
+	margin-left: 66%;
+	width: 35%;
+	margin-top: 3%;
+	border-radius: 1px;
+	background-color: #f5f5f5;
+	padding: 5px;
+}
+
+.product-heard,
+.product-title {
 	margin: 10px 0 20px 0;
 	text-align: left;
 	margin-bottom: 20px;
@@ -51,29 +65,19 @@
 	margin-bottom: 15px;
 }
 
-.product-title {
-	margin: 10px 0 20px 0;
-	text-align: left;
-	margin-bottom: 20px;
-	background-color: #f5f5f5;
-	border-bottom: 1px solid #eeee;
-	padding: 6px;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-weight: bold;
-	color: #333;
-}
-
 .product-form-select {
-	width: 30%;
+	width: 90%;
 	padding: 0.375rem 0.75rem;
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 1.5;
 	color: var(--bs-body-color);
+	border-radius: 0px;
 }
 
-.product-button {
-	width: auto;
+.product-button,
+.product-button-edit,
+.product-button-delete {
 	background-color: #0e2a5d;
 	border: 2px solid #18211d;
 	color: #fff;
@@ -87,4 +91,21 @@
 		border-color 0.3s,
 		color 0.3s;
 	margin-top: inherit;
+}
+
+.product-button-edit {
+	background-color: #007bff;
+	border-color: #007bff;
+}
+
+.product-button-delete {
+	background-color: #dc3545;
+	border-color: #dc3545;
+}
+
+.product-button:hover,
+.product-button-edit:hover,
+.product-button-delete:hover {
+	background-color: #0056b3;
+	border-color: #0056b3;
 }

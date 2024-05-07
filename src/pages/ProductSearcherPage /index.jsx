@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
 import './style.css';
+import { useTranslation } from 'react-i18next';
 
 const ProductSearcherPage = () => {
 	const [internalCode, setInternalCode] = useState('');
@@ -8,13 +9,14 @@ const ProductSearcherPage = () => {
 	const [description, setDescription] = useState('');
 	const [subcategory, setSubcategory] = useState('');
 	const [checked, setChecked] = useState(false);
+	const { t } = useTranslation();
 	const [products, setProducts] = useState([
 		{
 			id: 1,
-			productCode: 'PROD001',
-			internalCode: 'INT001',
+			productCode: '001',
+			internalCode: '001',
 			barcode: '123456789',
-			mainProduct: 'Producto 2',
+			mainProduct: 'Producto 1',
 			description: '',
 			stock: 100,
 			category: 'Categoria',
@@ -26,10 +28,10 @@ const ProductSearcherPage = () => {
 		},
 		{
 			id: 2,
-			productCode: 'PROD002',
-			internalCode: 'INT002',
+			productCode: '002',
+			internalCode: '002',
 			barcode: '987654321',
-			mainProduct: 'Producto 1',
+			mainProduct: 'Producto 2',
 			description: '',
 			stock: 50,
 			category: 'Categoria',
@@ -40,6 +42,7 @@ const ProductSearcherPage = () => {
 			specification: '',
 		},
 	]);
+	const [productCode, setProductCode] = useState('');
 
 	const subcategoryOptions = [
 		'BAZAR',
@@ -60,14 +63,24 @@ const ProductSearcherPage = () => {
 	];
 
 	const handleSearch = () => {};
+	const handleSearchByProductCode = event => {
+		event.preventDefault();
+	};
+	const handleEditProduct = productId => {};
+
+	const handleDeleteProduct = productId => {};
 
 	return (
 		<Container id='product-searcher-page'>
 			<Row className='mt-4'>
-				<header className='product-heard'>Buscar Productos de Variante</header>
+				<header className='product-heard'>
+					{t('productSearcherPage.searchVariantProducts')}
+				</header>
 			</Row>
 			<Row className='mt-4'>
-				<p className='product-title'>Ingrese datos para búsqueda:</p>
+				<p className='product-title'>
+					{t('productSearcherPage.enterDataForSearch')}:
+				</p>
 			</Row>
 			<Row className='mt-4'>
 				<Form.Group
@@ -75,12 +88,13 @@ const ProductSearcherPage = () => {
 					controlId='formInternalCode'
 					className='product-form-control'
 				>
-					<Form.Label>Código Interno:</Form.Label>
+					<Form.Label>{t('productSearcherPage.internoCode')}:</Form.Label>
 					<Form.Control
 						type='text'
 						placeholder='Ingrese el código interno'
 						value={internalCode}
 						onChange={e => setInternalCode(e.target.value)}
+						className='product-form-control'
 					/>
 				</Form.Group>
 				<Form.Group
@@ -88,33 +102,36 @@ const ProductSearcherPage = () => {
 					controlId='formBarcode'
 					className='product-form-control'
 				>
-					<Form.Label>Código de Barras:</Form.Label>
+					<Form.Label>{t('productSearcherPage.barCode')}:</Form.Label>
 					<Form.Control
 						type='text'
 						placeholder='Ingrese el código de barras'
 						value={barcode}
 						onChange={e => setBarcode(e.target.value)}
+						className='product-form-control'
 					/>
 				</Form.Group>
 
 				<Form.Group as={Col} controlId='formDescription'>
-					<Form.Label>Descripción:</Form.Label>
+					<Form.Label>{t('productSearcherPage.description')}:</Form.Label>
 					<Form.Control
 						type='text'
 						placeholder='Ingrese la descripción'
 						value={description}
 						onChange={e => setDescription(e.target.value)}
+						className='product-form-control'
 					/>
 				</Form.Group>
 
 				<Form.Group as={Col} controlId='formSubcategory'>
-					<Form.Label>Subcategoría:</Form.Label>
+					<Form.Label>{t('productSearcherPage.subCategory')}:</Form.Label>
 					<Form.Select
 						aria-label='Subcategoría'
 						value={subcategory}
 						onChange={e => setSubcategory(e.target.value)}
+						className='product-form-select'
 					>
-						<option>Seleccionar...</option>
+						<option>{t('productSearcherPage.select')}...</option>
 						{subcategoryOptions.map(option => (
 							<option key={option}>{option}</option>
 						))}
@@ -140,29 +157,42 @@ const ProductSearcherPage = () => {
 						onClick={handleSearch}
 						className='product-button'
 					>
-						<i className='bi bi-search'></i> Buscar
+						<i className='bi bi-search'></i> {t('productSearcherPage.searcher')}
 					</Button>
 				</Col>
+			</Row>
+			<Row className='mt-4'>
+				<Form onSubmit={handleSearchByProductCode}>
+					<Form.Group controlId='formProductCode'>
+						<Form.Control
+							type='text'
+							placeholder='Ingrese el código de producto'
+							value={productCode}
+							onChange={e => setProductCode(e.target.value)}
+							className='product-input-from'
+						/>
+					</Form.Group>
+				</Form>
 			</Row>
 
 			<Row className='mt-4'>
 				<Table striped bordered hover>
 					<thead>
 						<tr>
-							<th>cod. Producto</th>
-							<th>cod. Interno</th>
-							<th>Cod. Barra</th>
-							<th>Producto Principal</th>
-							<th>Descripcion</th>
-							<th>Stock</th>
-							<th>Categoria</th>
-							<th>Subcategoria</th>
-							<th>Precio Costo</th>
-							<th>Precio Venta</th>
-							<th>En Oferta</th>
-							<th>Especificacion</th>
-							<th>Editar</th>
-							<th>Borrar</th>
+							<th>{t('productSearcherPage.productCode')}</th>
+							<th>{t('productSearcherPage.internalCode')}</th>
+							<th>{t('productSearcherPage.barCode')}</th>
+							<th>{t('productSearcherPage.mainProduct')}</th>
+							<th>{t('productSearcherPage.description')}</th>
+							<th>{t('productSearcherPage.stock')}</th>
+							<th>{t('productSearcherPage.category')}</th>
+							<th>{t('productSearcherPage.subCategory')}</th>
+							<th>{t('productSearcherPage.costPrice')}</th>
+							<th>{t('productSearcherPage.salePrice')}</th>
+							<th>{t('productSearcherPage.inOffer')}</th>
+							<th>{t('productSearcherPage.specification')}</th>
+							<th>{t('productSearcherPage.edit')}</th>
+							<th>{t('productSearcherPage.delete')}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -176,12 +206,28 @@ const ProductSearcherPage = () => {
 								<td>{product.stock}</td>
 								<td>{product.category}</td>
 								<td>{product.subcategory}</td>
-								<td>{product.costPrice}</td>
-								<td>{product.salePrice}</td>
+								<td>US$ {product.costPrice}</td>
+								<td>US$ {product.salePrice}</td>
 								<td>{product.onSale ? 'Sí' : 'No'}</td>
 								<td>{product.specification}</td>
-								<td>Editar</td>
-								<td>Borrar</td>
+								<td>
+									<Button
+										variant='info'
+										onClick={() => handleEditProduct(product.id)}
+										className='product-button-edit'
+									>
+										<i className='bi bi-pencil-square'></i>
+									</Button>
+								</td>
+								<td>
+									<Button
+										className='product-button-delete '
+										variant='danger'
+										onClick={() => handleDeleteProduct(product.id)}
+									>
+										<i className='bi bi-trash3'></i>
+									</Button>
+								</td>
 							</tr>
 						))}
 					</tbody>
