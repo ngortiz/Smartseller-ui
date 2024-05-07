@@ -196,5 +196,28 @@
 		"massIngressiveProductImages": "Ingresivo Masivo de Imagenes de Productos",
 		"forceOverWriteImage": "Forzar sobre escritura de imagen",
 		"enterZIPOfImages": "Ingresar ZIP de imagenes"
+	},
+
+	"productSearcherPage": {
+		"productCode": "Cod. Producto",
+		"internalCode": "Cod. Interno",
+		"internoCode": "Código Interno",
+		"barCode": "Cod. Barra",
+		"baCode": "Código Barra",
+		"mainProduct": "Producto Principal",
+		"description": "Descripción",
+		"stock": "Stock",
+		"category": "Categoria",
+		"subCategory": "Sub Categoria",
+		"costPrice": "Precio Costo",
+		"salePrice": "Precio Venta",
+		"inOffer": "En Oferta",
+		"specification": "Especificación",
+		"edit": "Editar",
+		"delete": "Borrar",
+		"enterDataForSearch": "Ingrese datos para búsqueda",
+		"searchVariantProducts": "Buscar Productos de Variante",
+		"searcher": "Buscar",
+		"select": "Seleccionar"
 	}
 }
