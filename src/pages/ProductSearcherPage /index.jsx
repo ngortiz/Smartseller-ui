@@ -161,19 +161,6 @@ const ProductSearcherPage = () => {
 					</Button>
 				</Col>
 			</Row>
-			<Row className='mt-4'>
-				<Form onSubmit={handleSearchByProductCode}>
-					<Form.Group controlId='formProductCode'>
-						<Form.Control
-							type='text'
-							placeholder='Ingrese el código de producto'
-							value={productCode}
-							onChange={e => setProductCode(e.target.value)}
-							className='product-input-from'
-						/>
-					</Form.Group>
-				</Form>
-			</Row>
 
 			<Row className='mt-4'>
 				<Table striped bordered hover>
