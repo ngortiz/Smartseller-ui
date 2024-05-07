@@ -200,12 +200,12 @@
 
 	"productSearcherPage": {
 		"productCode": "Cod. Producto",
-		"internalCode": "cod. Interno",
+		"internalCode": "Cod. Interno",
 		"internoCode": "Código Interno",
 		"barCode": "Cod. Barra",
-		"baCode": "Codigo Barra",
+		"baCode": "Código Barra",
 		"mainProduct": "Producto Principal",
-		"description": "Descripcion",
+		"description": "Descripción",
 		"stock": "Stock",
 		"category": "Categoria",
 		"subCategory": "Sub Categoria",

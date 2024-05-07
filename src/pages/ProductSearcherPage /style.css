@@ -3,7 +3,7 @@
 	margin-right: 76%;
 	margin-bottom: 6%;
 	margin-block: 20%;
-	padding: 13px 15px;
+	padding: 14px 15px;
 }
 
 #product-searcher-page .table {
@@ -32,7 +32,6 @@
 	background-color: #dddddd;
 }
 
-/* Estilo para los elementos del formulario */
 .product-form-control {
 	display: block;
 	width: 100%;
@@ -54,7 +53,15 @@
 	padding: 5px;
 }
 
-.product-heard,
+.product-heard {
+	margin: 10px 0 20px 0;
+	text-align: left;
+	margin-bottom: 20px;
+	background-color: inherit;
+	border-bottom: 1px solid #eeee;
+	padding: 5px;
+	margin-bottom: 15px;
+}
 .product-title {
 	margin: 10px 0 20px 0;
 	text-align: left;
@@ -63,6 +70,8 @@
 	border-bottom: 1px solid #eeee;
 	padding: 5px;
 	margin-bottom: 15px;
+	font-weight: bold;
+	color: #333;
 }
 
 .product-form-select {

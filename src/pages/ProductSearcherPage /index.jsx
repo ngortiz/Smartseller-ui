@@ -102,7 +102,7 @@ const ProductSearcherPage = () => {
 					controlId='formBarcode'
 					className='product-form-control'
 				>
-					<Form.Label>{t('productSearcherPage.barCode')}:</Form.Label>
+					<Form.Label>{t('productSearcherPage.baCode')}:</Form.Label>
 					<Form.Control
 						type='text'
 						placeholder='Ingrese el código de barras'
