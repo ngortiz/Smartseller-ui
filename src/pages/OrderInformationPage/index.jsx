@@ -15,15 +15,6 @@ const OrderInformationPage = () => {
 	const { orderId } = useParams();
 	const [order, setOrder] = useState(null);
 
-	<p>
-		<strong>{t('orderStatus.orderState')}:</strong>{' '}
-		{order
-			? t(`orderStatus.${order.orderState}`, {
-					defaultValue: order.orderState,
-				})
-			: ''}
-	</p>;
-
 	const GET_ORDER = gql`
 		query getOrder($orderId: Int!) {
 			getOrder(orderId: $orderId) {
