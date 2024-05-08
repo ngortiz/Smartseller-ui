@@ -78,11 +78,6 @@ const ProductSearcherPage = () => {
 				</header>
 			</Row>
 			<Row className='mt-4'>
-				<p className='product-title'>
-					{t('productSearcherPage.enterDataForSearch')}:
-				</p>
-			</Row>
-			<Row className='mt-4'>
 				<Form.Group
 					as={Col}
 					controlId='formInternalCode'

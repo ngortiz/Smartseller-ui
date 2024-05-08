@@ -14,16 +14,6 @@ const OrderInformationPage = () => {
 	const navigate = useNavigate();
 	const { orderId } = useParams();
 	const [order, setOrder] = useState(null);
-	<div>
-		<p>
-			<strong>{t('orderStatus.orderState')}:</strong>{' '}
-			{order
-				? t(`orderStatus.${order.orderState}`, {
-						defaultValue: order.orderState,
-					})
-				: ''}
-		</p>
-	</div>;
 
 	const GET_ORDER = gql`
 		query getOrder($orderId: Int!) {
@@ -77,7 +67,7 @@ const OrderInformationPage = () => {
 		if (data && data.getOrder) {
 			setOrder(data.getOrder);
 		}
-	}, [loading]);
+	}, [data]);
 
 	const handleGoBack = () => {
 		navigate(-1);
@@ -123,10 +113,11 @@ const OrderInformationPage = () => {
 			<Row className='mt-4'>
 				<Col className='button-container'>
 					<Button className='back-button' onClick={handleGoBack}>
-						<i className='bi bi-arrow-left-circle'></i> Volver atrás
+						<i className='bi bi-arrow-left-circle'></i>{' '}
+						{t('orderInformationPage.goBack')}
 					</Button>
 					<Button className='print-button'>
-						<i className='bi bi-printer'></i> Imprimir
+						<i className='bi bi-printer'></i> {t('orderInformationPage.print')}
 					</Button>
 				</Col>
 			</Row>

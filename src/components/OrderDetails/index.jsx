@@ -5,7 +5,8 @@ import { useTranslation } from 'react-i18next';
 import './style.css';
 
 const OrderDetails = ({ order }) => {
-	if (order === null || order === undefined || !order.orderDetails) {
+	const { t } = useTranslation();
+	if (!order || !order.orderDetails) {
 		return (
 			<div className='spinner-cont'>
 				<Spinner animation='border' role='status' variant='primary'>
@@ -16,7 +17,6 @@ const OrderDetails = ({ order }) => {
 	}
 
 	const { orderDetails, deliverCost, total } = order;
-	const { t } = useTranslation();
 
 	const iva10Total = total / 11;
 	const iva5Total = 0;
@@ -27,15 +27,15 @@ const OrderDetails = ({ order }) => {
 			<table className='order-table'>
 				<thead>
 					<tr>
-						<th>Cantidad</th>
-						<th>Cod. Interno</th>
-						<th>Producto</th>
-						<th>Precio Unitario</th>
-						<th>Descuento</th>
-						<th>Precio Venta</th>
-						<th>Exenta</th>
-						<th>IVA 5%</th>
-						<th>IVA 10%</th>
+						<th>{t('orderDetails.amount')}</th>
+						<th>{t('orderDetails.internalCode')}</th>
+						<th>{t('orderDetails.product')}</th>
+						<th>{t('orderDetails.unitPrice')}</th>
+						<th>{t('orderDetails.discount')}</th>
+						<th>{t('orderDetails.salePrice')}</th>
+						<th>{t('orderDetails.exempt')}</th>
+						<th>{t('orderDetails.VAT5%')}</th>
+						<th>{t('orderDetails.VAT10%')}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -45,7 +45,7 @@ const OrderDetails = ({ order }) => {
 							<td>{item.productVariant.internalCode}</td>
 							<td>{item.productVariant.name}</td>
 							<td>US$ {item.price}</td>
-							<td>Ninguno</td>
+							<td>{t('orderDetails.none')}</td>
 							<td>US$ {item.sellPrice}</td>
 							<td>US$ {item.exenta || 0}</td>
 							<td>US$ {item.iva5 || 0}</td>
@@ -59,25 +59,25 @@ const OrderDetails = ({ order }) => {
 				<tbody>
 					<tr>
 						<td className='summary-cell' colSpan='4'>
-							Costo de Envío
+							{t('orderDetails.deliveryCost')}
 						</td>
 						<td className='summary-value'>US$ {deliverCost}</td>
 					</tr>
 					<tr>
 						<td className='summary-cell' colSpan='4'>
-							Subtotal
+							{t('orderDetails.subtotal')}
 						</td>
 						<td className='summary-value'>US$ {total}</td>
 					</tr>
 					<tr>
 						<td className='summary-cell' colSpan='4'>
-							Cupón de Descuento
+							{t('orderDetails.discountCoupon')}
 						</td>
 						<td className='summary-value'>Ninguno</td>
 					</tr>
 					<tr>
 						<td className='summary-cell' colSpan='4'>
-							Total a Pagar
+							{t('orderDetails.totalToPay')}
 						</td>
 						<td className='summary-value'>US$ {total}</td>
 					</tr>
