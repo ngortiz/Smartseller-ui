@@ -83,17 +83,29 @@
 		"backButton": "Volver atrás",
 		"printButton": "Imprimir",
 		"payment State": "Estado de Pago",
-		"order State": "Estado del Pedido"
+		"order State": "Estado del Pedido",
+		"goBack": "Volver Atras",
+		"print": "Imprimir"
 	},
 	"orderDetails": {
 		"title": "Detalles del Pedido",
 		"deliveryCost": "Costo de Envío",
 		"subtotal": "Subtotal",
-		"coupon": "Cupón",
+		"discountCoupon": "Cupón de Descuento",
 		"totalToPay": "Total a Pagar",
 		"iva5Total": "Total del IVA (5%)",
 		"iva10Total": "Total del IVA (10%)",
-		"totalIVA": "Total del IVA"
+		"totalIVA": "Total del IVA",
+		"amount": "Cantidad",
+		"internalCode": "Cod. Interno",
+		"product": "Producto",
+		"unitPrice": "Precio Unitario",
+		"discount": "Descuento",
+		"salePrice": "Precio Venta",
+		"exempt": "Exenta",
+		"VAT10%": "IVA 10%",
+		"VAT5%": "IVA 5%",
+		"none": "Ninguno"
 	},
 	"orderData": {
 		"title": "Pedido",
@@ -219,5 +231,11 @@
 		"searchVariantProducts": "Buscar Productos de Variante",
 		"searcher": "Buscar",
 		"select": "Seleccionar"
+	},
+	"orderClientInformation": {
+		"client": "Cliente",
+		"address": "Dirección",
+		"cellPhone": "Celular",
+		"rucOrCI": "RUC./CI"
 	}
 }
