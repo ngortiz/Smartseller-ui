@@ -22,6 +22,7 @@ import BankPaymentsPage from './pages/BankPaymentsPage';
 import RegisterProductsFromExcelPage from './pages/RegisterProductsFromExcelPage';
 import BulkUploadProductImages from './pages/BulkUploadProductImages';
 import ProductSearcherPage from './pages/ProductSearcherPage ';
+import CategoriesPage from './pages/CategoriesPage';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './utils/i18n';
 
@@ -80,6 +81,7 @@ createRoot(document.getElementById('root')).render(
 										path='product-searcher-page'
 										element={<ProductSearcherPage />}
 									/>
+									<Route path='categories-page' element={<CategoriesPage />} />
 								</Routes>
 							</Col>
 						</Row>
