@@ -1,6 +1,5 @@
 import React from 'react';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { NavLink } from 'react-router-dom';
 import './style.css';
 import icon from './images/icon.png';
 import { useTranslation } from 'react-i18next';
@@ -104,20 +103,28 @@ const LeftNavigationBar = () => {
 				</NavDropdown>
 			</ul>
 			<ul>
-				<NavDropdown
-					title={
-						<span>
-							<i className='bi bi-list-columns'></i> {t('leftNav.category')}
-						</span>
-					}
-					id='category-dropdown'
-				>
-					<NavDropdown.Item href='/categories-page'>
-						{t('leftNav.category')}
-					</NavDropdown.Item>
-				</NavDropdown>
+				<h2>
+					<span>
+						<i className='bi bi-megaphone-fill'></i> {t('leftNav.promotions')}
+					</span>
+				</h2>
 			</ul>
-
+			<ul>
+				<ul>
+					<NavDropdown
+						title={
+							<span>
+								<i className='bi bi-list-columns'></i> {t('leftNav.category')}
+							</span>
+						}
+						id='category-dropdown'
+					>
+						<NavDropdown.Item href='/categories-page'>
+							{t('leftNav.category')}
+						</NavDropdown.Item>
+					</NavDropdown>
+				</ul>
+			</ul>
 			<ul>
 				<h2>
 					<span>

@@ -71,7 +71,6 @@ const CategoriesPage = () => {
 									<option value=''>Seleccione categoria</option>
 									<option value='BAZAR'>BAZAR</option>
 									<option value='FERRETERÍA'>FERRETERÍA</option>
-									{/* Agrega más opciones aquí */}
 								</Form.Control>
 							</Form.Group>
 							<Form.Group>
