@@ -1,16 +1,12 @@
-/* styles.css */
-
 .categories-page-container {
 	margin-top: 50px;
 }
 
 .categories-page-header {
-	margin: 10px 0 20px 0;
 	text-align: left;
-	margin-bottom: 20px;
 	background-color: inherit;
 	border-bottom: 1px solid #eeee;
-	padding: 5px;
+	padding: 10px 5px;
 	margin-bottom: 15px;
 }
 
@@ -31,11 +27,12 @@
 
 .category-input,
 .subcategory-input {
-	width: 30%;
+	width: 40%;
 	padding: 10px;
 	margin-bottom: 20px;
 	border-radius: 5px;
 	border: 1px solid #ced4da;
+	box-sizing: border-box;
 }
 
 .save-category-checkbox {
@@ -49,7 +46,7 @@
 .add-category-btn,
 .add-subcategory-btn {
 	width: auto;
-	padding: 10px;
+	padding: 10px 20px;
 	background-color: #007bff;
 	border: none;
 	border-radius: 5px;
@@ -61,4 +58,88 @@
 .add-category-btn:hover,
 .add-subcategory-btn:hover {
 	background-color: #0056b3;
+}
+
+.additional-interface-section {
+	border: 1px solid #ccc;
+	border-radius: 15px;
+	padding: 20px;
+	margin-bottom: 20px;
+	background-color: #f8f9fa;
+}
+
+.additional-interface-section h3 {
+	font-size: 1.5rem;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #ccc;
+}
+
+.category-list {
+	list-style: none;
+	padding-left: 0;
+}
+
+.category-list-col {
+	margin-bottom: 20px;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px;
+}
+
+.category-list li span {
+	cursor: pointer;
+	display: block;
+	font-size: 18px;
+	color: #7d3131;
+}
+
+.category-buttons {
+	float: right;
+}
+
+.category-btn-edit {
+	color: #0056b3;
+	margin-left: 10px;
+	border-radius: 5px;
+	padding: 6px;
+	font-weight: bold;
+	margin-bottom: 10%;
+	margin-right: 5px;
+}
+.category-controls {
+	display: flex;
+	align-items: center;
+}
+
+.category-controls button {
+	margin-right: 5px;
+}
+
+.category-btn-delete {
+	color: red;
+	border-radius: 5px;
+	padding: 6px;
+	font-weight: bold;
+	margin-bottom: 10%;
+	margin-right: 5px;
+}
+.category-checkbox {
+	background-color: #b3003f;
+}
+
+.subcategory-list {
+	list-style: none;
+	padding-left: 20px;
+}
+
+.subcategory-list li {
+	margin-bottom: 0px;
+	background-color: #f0f0f0;
+	width: 85%;
+	font-weight: 100;
+	box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+	padding-right: 2%;
+}
+.heard-tible-categoria {
+	background-color: #f0f0f0;
+	padding: 10px;
 }
