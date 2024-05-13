@@ -3,11 +3,17 @@
 }
 
 .categories-page-header {
+	margin: 10px 0 20px 0;
 	text-align: left;
+	margin-bottom: 20px;
 	background-color: inherit;
-	border-bottom: 1px solid #eeee;
-	padding: 10px 5px;
+	border-bottom: 1px solid #eee;
+	padding: 5px;
 	margin-bottom: 15px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	color: #333;
 }
 
 .add-category-section,
@@ -40,7 +46,8 @@
 }
 
 .save-category-checkbox label {
-	font-weight: 500;
+	font-weight: bold;
+	color: #333;
 }
 
 .add-category-btn,
@@ -96,34 +103,22 @@
 	float: right;
 }
 
-.category-btn-edit {
-	color: #0056b3;
-	margin-left: 10px;
+.category-btn-edit,
+.category-btn-delete {
+	color: #fff;
 	border-radius: 5px;
 	padding: 6px;
 	font-weight: bold;
 	margin-bottom: 10%;
 	margin-right: 5px;
 }
-.category-controls {
-	display: flex;
-	align-items: center;
-}
 
-.category-controls button {
-	margin-right: 5px;
+.category-btn-edit {
+	background-color: #0056b3;
 }
 
 .category-btn-delete {
-	color: red;
-	border-radius: 5px;
-	padding: 6px;
-	font-weight: bold;
-	margin-bottom: 10%;
-	margin-right: 5px;
-}
-.category-checkbox {
-	background-color: #b3003f;
+	background-color: red;
 }
 
 .subcategory-list {
@@ -139,7 +134,48 @@
 	box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
 	padding-right: 2%;
 }
-.heard-tible-categoria {
+
+.heard-title-categoria {
 	background-color: #f0f0f0;
 	padding: 10px;
+}
+
+.custom-checkbox {
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 23px;
+	background-color: #fff;
+	border: 2px solid #666;
+	border-radius: 1.25em;
+	transition:
+		background-color 0.3s,
+		border-color 0.3s;
+	cursor: pointer;
+}
+
+.custom-checkbox:checked {
+	background-color: #009688;
+	border-color: #009688;
+}
+
+.checkmark {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 8px;
+	height: 14px;
+	border-bottom: 2px solid #fff;
+	border-right: 2px solid #fff;
+	transform-origin: bottom left;
+	opacity: 1;
+	transition:
+		opacity 0.3s,
+		transform 0.3s;
+}
+
+.custom-checkbox:checked .checkmark {
+	opacity: 2;
+	transform: translate(-50%, -50%) rotate(45deg);
 }
