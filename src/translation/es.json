@@ -237,5 +237,17 @@
 		"address": "Dirección",
 		"cellPhone": "Celular",
 		"rucOrCI": "RUC./CI"
+	},
+	"categoriesPage": {
+		"edit": "Editar",
+		"delete": "Borrar",
+		"category": "Categoría",
+		"categories": "Categorías",
+		"name": "Nombre",
+		"save": "Guardar",
+		"add": "Agregar",
+		"createSubcategory": "Crear Subcategoría",
+		"categoryAndSubcatery": "Categorías y Sub Categorías",
+		"selectCategory": "Seleccione Categoría"
 	}
 }

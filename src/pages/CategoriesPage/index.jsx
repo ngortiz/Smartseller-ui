@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './style.css';
+import { useTranslation } from 'react-i18next';
 
 const DATA = [
 	{
@@ -21,6 +22,7 @@ const DATA = [
 	},
 ];
 const CategoriesPage = () => {
+	const { t } = useTranslation();
 	const [categoria, setCategoria] = useState('');
 	const [subcategoria, setSubcategoria] = useState('');
 	const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
@@ -50,7 +52,9 @@ const CategoriesPage = () => {
 		<Container className='categories-page-container'>
 			<Row>
 				<Col>
-					<h1 className='categories-page-header'>Categoria</h1>
+					<h1 className='categories-page-header'>
+						{t('categoriesPage.categories')}
+					</h1>
 				</Col>
 			</Row>
 			<Row>
@@ -58,7 +62,7 @@ const CategoriesPage = () => {
 					<div className='add-category-section'>
 						<Form>
 							<Form.Group>
-								<Form.Label>Nombre:*</Form.Label>
+								<Form.Label>{t('categoriesPage.name')}:*</Form.Label>
 								<Form.Control
 									className='category-input'
 									type='text'
@@ -71,7 +75,7 @@ const CategoriesPage = () => {
 								<Form.Check
 									className='save-category-checkbox'
 									type='checkbox'
-									label='Publicar'
+									label='Publicar:*'
 								/>
 							</Form.Group>
 							<Button
@@ -79,7 +83,7 @@ const CategoriesPage = () => {
 								variant='primary'
 								onClick={handleGuardarCategoria}
 							>
-								Guardar
+								{t('categoriesPage.save')}
 							</Button>
 						</Form>
 					</div>
@@ -89,24 +93,24 @@ const CategoriesPage = () => {
 			<Row>
 				<Col>
 					<div className='add-subcategory-section'>
-						<h3>Crear Subcategoria</h3>
+						<h3>{t('categoriesPage.createSubcategory')}</h3>
 						<Form>
 							<Form.Group>
-								<Form.Label>Categoría:*</Form.Label>
+								<Form.Label>{t('categoriesPage.category')}:*</Form.Label>
 								<Form.Control
 									className='subcategory-input'
 									as='select'
 									value={categoriaSeleccionada}
 									onChange={e => setCategoriaSeleccionada(e.target.value)}
 								>
-									<option value=''>Seleccione categoria</option>
+									<option value=''>{t('categoriesPage.selectCategory')}</option>
 									{categories.map(({ categoryName }) => (
 										<option value={categoryName}>{categoryName}</option>
 									))}
 								</Form.Control>
 							</Form.Group>
 							<Form.Group>
-								<Form.Label>Nombre:*</Form.Label>
+								<Form.Label>{t('categoriesPage.name')}:*</Form.Label>
 								<Form.Control
 									className='subcategory-input'
 									type='text'
@@ -120,7 +124,7 @@ const CategoriesPage = () => {
 								variant='primary'
 								onClick={handleAgregarSubcategoria}
 							>
-								Agregar
+								{t('categoriesPage.add')}
 							</Button>
 						</Form>
 					</div>
@@ -132,7 +136,7 @@ const CategoriesPage = () => {
 					<div className='additional-interface-section'>
 						<header className='heard-tible-categoria'>
 							{' '}
-							Categoría y Subcategoría
+							{t('categoriesPage.categoryAndSubcatery')}
 						</header>
 
 						<ul className='subcategory-list'>
@@ -143,12 +147,16 @@ const CategoriesPage = () => {
 										{categoryName}
 									</span>
 									<div className='category-buttons'>
-										<Button className='category-btn-edit'>Editar</Button>{' '}
-										<Button className='category-btn-delete'>Borrar</Button>{' '}
+										<Button className='category-btn-edit'>
+											{t('categoriesPage.edit')}
+										</Button>{' '}
+										<Button className='category-btn-delete'>
+											{t('categoriesPage.delete')}
+										</Button>{' '}
 										<input
 											type='checkbox'
 											id={id}
-											className='category-checkbox'
+											className='category-checkbox custom-checkbox'
 										/>
 									</div>
 									{isCategoryExpanded(`${categoryName}`) && (
