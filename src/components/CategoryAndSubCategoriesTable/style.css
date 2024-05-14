@@ -1,0 +1,76 @@
+.category-btn-edit,
+.category-btn-delete {
+	color: #fff;
+	border-radius: 5px;
+	padding: 6px;
+	font-weight: bold;
+	margin-bottom: 10%;
+	margin-right: 5px;
+}
+
+.category-btn-edit {
+	background-color: #0056b3;
+}
+
+.category-btn-delete {
+	background-color: red;
+}
+
+.subcategory-list {
+	list-style: none;
+	padding-left: 20px;
+}
+
+.subcategory-list li {
+	margin-bottom: 0px;
+	background-color: #f0f0f0;
+	width: 85%;
+	font-weight: 100;
+	box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+	padding-right: 2%;
+}
+
+.heard-title-categoria {
+	background-color: #f0f0f0;
+	padding: 10px;
+}
+
+.custom-checkbox {
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 23px;
+	background-color: #fff;
+	border: 2px solid #666;
+	border-radius: 1.25em;
+	transition:
+		background-color 0.3s,
+		border-color 0.3s;
+	cursor: pointer;
+}
+
+.custom-checkbox:checked {
+	background-color: #009688;
+	border-color: #009688;
+}
+
+.checkmark {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 8px;
+	height: 14px;
+	border-bottom: 2px solid #fff;
+	border-right: 2px solid #fff;
+	transform-origin: bottom left;
+	opacity: 1;
+	transition:
+		opacity 0.3s,
+		transform 0.3s;
+}
+
+.custom-checkbox:checked .checkmark {
+	opacity: 2;
+	transform: translate(-50%, -50%) rotate(45deg);
+}
