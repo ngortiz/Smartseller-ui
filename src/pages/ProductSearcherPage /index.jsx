@@ -20,7 +20,7 @@ const ProductSearcherPage = () => {
 			description: '',
 			stock: 100,
 			category: 'Categoria',
-			subcategory: 'Subcategoria',
+			subcategory: 'Subcategoría',
 			costPrice: 10.5,
 			salePrice: 15.99,
 			onSale: true,
@@ -35,7 +35,7 @@ const ProductSearcherPage = () => {
 			description: '',
 			stock: 50,
 			category: 'Categoria',
-			subcategory: 'Subcategoria',
+			subcategory: 'Subcategoría',
 			costPrice: 8.75,
 			salePrice: 12.49,
 			onSale: false,
@@ -86,7 +86,7 @@ const ProductSearcherPage = () => {
 					<Form.Label>{t('productSearcherPage.internoCode')}:</Form.Label>
 					<Form.Control
 						type='text'
-						placeholder='Ingrese el código interno'
+						placeholder={t('productSearcherPage.enterTheInternalCode')}
 						value={internalCode}
 						onChange={e => setInternalCode(e.target.value)}
 						className='product-form-control'
@@ -100,7 +100,7 @@ const ProductSearcherPage = () => {
 					<Form.Label>{t('productSearcherPage.baCode')}:</Form.Label>
 					<Form.Control
 						type='text'
-						placeholder='Ingrese el código de barras'
+						placeholder={t('productSearcherPage.enterBarCode')}
 						value={barcode}
 						onChange={e => setBarcode(e.target.value)}
 						className='product-form-control'
@@ -111,7 +111,7 @@ const ProductSearcherPage = () => {
 					<Form.Label>{t('productSearcherPage.description')}:</Form.Label>
 					<Form.Control
 						type='text'
-						placeholder='Ingrese la descripción'
+						placeholder={t('productSearcherPage.enterDescription')}
 						value={description}
 						onChange={e => setDescription(e.target.value)}
 						className='product-form-control'
@@ -119,9 +119,9 @@ const ProductSearcherPage = () => {
 				</Form.Group>
 
 				<Form.Group as={Col} controlId='formSubcategory'>
-					<Form.Label>{t('productSearcherPage.subCategory')}:</Form.Label>
+					<Form.Label>{t('productSearcherPage.category')}:</Form.Label>
 					<Form.Select
-						aria-label='Subcategoría'
+						aria-label={t('productSearcherPage.category')}
 						value={subcategory}
 						onChange={e => setSubcategory(e.target.value)}
 						className='product-form-select'
@@ -139,7 +139,7 @@ const ProductSearcherPage = () => {
 				>
 					<Form.Check
 						type='checkbox'
-						label='Publicar'
+						label={t('productSearcherPage.post')}
 						checked={checked}
 						onChange={e => setChecked(e.target.checked)}
 						className=' product-check-input'

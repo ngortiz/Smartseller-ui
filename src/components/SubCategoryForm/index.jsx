@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import './style.css';
 
 const SubCategoryForm = ({
-	categoriaSeleccionada,
-	setCategoriaSeleccionada,
-	subcategoria,
-	setSubcategoria,
-	handleAgregarSubcategoria,
+	selectedCategory,
+	setSelectedCategory,
+	subcategory,
+	setSubCategory,
+	handleAddSubCategory,
 	categories,
 }) => {
 	const { t } = useTranslation();
@@ -22,8 +22,8 @@ const SubCategoryForm = ({
 					<Form.Control
 						className='subcategory-input'
 						as='select'
-						value={categoriaSeleccionada}
-						onChange={e => setCategoriaSeleccionada(e.target.value)}
+						value={selectedCategory}
+						onChange={e => setSelectedCategory(e.target.value)}
 					>
 						<option value=''>{t('categoriesPage.selectCategory')}</option>
 						{categories.map(({ categoryName }) => (
@@ -38,15 +38,15 @@ const SubCategoryForm = ({
 					<Form.Control
 						className='subcategory-input'
 						type='text'
-						placeholder='Ingrese el nombre de la subcategoría'
-						value={subcategoria}
-						onChange={e => setSubcategoria(e.target.value)}
+						placeholder={t('categoriesPage.enterTheSubcategoryName')}
+						value={subcategory}
+						onChange={e => setSubCategory(e.target.value)}
 					/>
 				</Form.Group>
 				<Button
 					className='add-subcategory-btn'
 					variant='primary'
-					onClick={handleAgregarSubcategoria}
+					onClick={handleAddSubCategory}
 				>
 					{t('categoriesPage.add')}
 				</Button>
@@ -56,11 +56,11 @@ const SubCategoryForm = ({
 };
 
 SubCategoryForm.propTypes = {
-	categoriaSeleccionada: PropTypes.string.isRequired,
-	setCategoriaSeleccionada: PropTypes.func.isRequired,
-	subcategoria: PropTypes.string.isRequired,
-	setSubcategoria: PropTypes.func.isRequired,
-	handleAgregarSubcategoria: PropTypes.func.isRequired,
+	selectedCategory: PropTypes.string.isRequired,
+	setselectedCategory: PropTypes.func.isRequired,
+	subcategory: PropTypes.string.isRequired,
+	setSubCategory: PropTypes.func.isRequired,
+	handleAddSubCategory: PropTypes.func.isRequired,
 	categories: PropTypes.array.isRequired,
 };
 

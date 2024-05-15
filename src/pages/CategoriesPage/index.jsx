@@ -26,9 +26,9 @@ const DATA = [
 ];
 const CategoriesPage = () => {
 	const { t } = useTranslation();
-	const [categoria, setCategoria] = useState('');
-	const [subcategoria, setSubcategoria] = useState('');
-	const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
+	const [category, setCategory] = useState('');
+	const [subcategory, setSubCategory] = useState('');
+	const [selectedCategory, setselectedCategory] = useState('');
 	const [expandedCategories, setExpandedCategories] = useState([]);
 	const [categories, setCategories] = useState(DATA);
 
@@ -44,11 +44,9 @@ const CategoriesPage = () => {
 		return expandedCategories.includes(category);
 	};
 
-	const handleGuardarCategoria = () => {
-		console.log('Categoría guardada:', categoria);
-	};
+	const handleSaveCategory = () => {};
 
-	const handleAgregarSubcategoria = () => {};
+	const handleAddSubCategory = () => {};
 	return (
 		<Container className='categories-page-container'>
 			<Row>
@@ -59,17 +57,17 @@ const CategoriesPage = () => {
 				</Col>
 			</Row>
 			<CategoryForm
-				categoria={categoria}
-				setCategoria={setCategoria}
-				handleGuardarCategoria={handleGuardarCategoria}
+				category={category}
+				setCategory={setCategory}
+				handleSaveCategory={handleSaveCategory}
 			/>
 			<SubCategoryForm
 				categories={categories}
-				categoriaSeleccionada={categoriaSeleccionada}
-				setCategoriaSeleccionada={setCategoriaSeleccionada}
-				subcategoria={subcategoria}
-				setSubcategoria={setSubcategoria}
-				handleAgregarSubcategoria={handleAgregarSubcategoria}
+				selectedCategory={selectedCategory}
+				setselectedCategory={setselectedCategory}
+				subcategory={subcategory}
+				setSubCategory={setSubCategory}
+				handleAddSubCategory={handleAddSubCategory}
 			/>
 			<CategoryAndSubCategoriesTable
 				categories={categories}

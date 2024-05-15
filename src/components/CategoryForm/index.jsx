@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import './style.css';
 
-const CategoryForm = ({ categoria, setCategoria, handleGuardarCategoria }) => {
+const CategoryForm = ({ category, setCategory, handleSaveCategory }) => {
 	const { t } = useTranslation();
 	return (
 		<div className='add-category-section'>
@@ -14,22 +14,22 @@ const CategoryForm = ({ categoria, setCategoria, handleGuardarCategoria }) => {
 					<Form.Control
 						className='category-input'
 						type='text'
-						placeholder='Ingrese el nombre de la categoría'
-						value={categoria}
-						onChange={e => setCategoria(e.target.value)}
+						placeholder={t('categoriesPage.enterTheCategoryName')}
+						value={category}
+						onChange={e => setCategory(e.target.value)}
 					/>
 				</Form.Group>
 				<Form.Group>
 					<Form.Check
 						className='save-category-checkbox'
 						type='checkbox'
-						label='Publicar:*'
+						label={t('categoriesPage.post')}
 					/>
 				</Form.Group>
 				<Button
 					className='add-category-btn'
 					variant='primary'
-					onClick={handleGuardarCategoria}
+					onClick={handleSaveCategory}
 				>
 					{t('categoriesPage.save')}
 				</Button>
@@ -38,9 +38,9 @@ const CategoryForm = ({ categoria, setCategoria, handleGuardarCategoria }) => {
 	);
 };
 CategoryForm.propTypes = {
-	categoria: PropTypes.string.isRequired,
-	setCategoria: PropTypes.func.isRequired,
-	handleGuardarCategoria: PropTypes.func.isRequired,
+	category: PropTypes.string.isRequired,
+	setCategory: PropTypes.func.isRequired,
+	handleSaveCategory: PropTypes.func.isRequired,
 };
 
 export default CategoryForm;

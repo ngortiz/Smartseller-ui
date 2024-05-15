@@ -6,7 +6,6 @@ import './style.css';
 
 const CategoryAndSubCategoriesTable = ({
 	categories,
-	expandedCategories,
 	toggleCategory,
 	isCategoryExpanded,
 	handleEditCategory,
@@ -65,7 +64,6 @@ const CategoryAndSubCategoriesTable = ({
 
 CategoryAndSubCategoriesTable.propTypes = {
 	categories: PropTypes.array.isRequired,
-	expandedCategories: PropTypes.array.isRequired,
 	toggleCategory: PropTypes.func.isRequired,
 	isCategoryExpanded: PropTypes.func.isRequired,
 	handleEditCategory: PropTypes.func,
