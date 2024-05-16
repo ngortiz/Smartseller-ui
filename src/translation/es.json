@@ -211,16 +211,17 @@
 	},
 
 	"productSearcherPage": {
-		"productCode": "Cod. Producto",
-		"internalCode": "Cod. Interno",
+		"productCode": "Cód. Producto",
+		"internalCode": "Cód. Interno",
 		"internoCode": "Código Interno",
-		"barCode": "Cod. Barra",
+		"barCode": "Cód. Barra",
 		"baCode": "Código Barra",
 		"mainProduct": "Producto Principal",
 		"description": "Descripción",
 		"stock": "Stock",
-		"category": "Categoria",
-		"subCategory": "Sub Categoria",
+		"categories": "Categorías",
+		"category": "Categoría",
+		"subCategory": "Sub Categoría",
 		"costPrice": "Precio Costo",
 		"salePrice": "Precio Venta",
 		"inOffer": "En Oferta",
@@ -230,7 +231,11 @@
 		"enterDataForSearch": "Ingrese datos para búsqueda",
 		"searchVariantProducts": "Buscar Productos de Variante",
 		"searcher": "Buscar",
-		"select": "Seleccionar"
+		"select": "Seleccionar",
+		"enterBarCode": "Ingrese el código de barras",
+		"enterTheInternalCode": "Ingrese el código interno",
+		"enterDescription": "Ingrese la descripción",
+		"post": "Publicar"
 	},
 	"orderClientInformation": {
 		"client": "Cliente",
@@ -246,8 +251,11 @@
 		"name": "Nombre",
 		"save": "Guardar",
 		"add": "Agregar",
+		"post": "Publicar:*",
 		"createSubcategory": "Crear Subcategoría",
 		"categoryAndSubcatery": "Categorías y Sub Categorías",
-		"selectCategory": "Seleccione Categoría"
+		"selectCategory": "Seleccione Categoría",
+		"enterTheCategoryName": "Ingrese el nombre de la categoría",
+		"enterTheSubcategoryName": "Ingrese el nombre de la subcategoría"
 	}
 }
