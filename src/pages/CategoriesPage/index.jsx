@@ -1,58 +1,58 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import './style.css';
-import { useTranslation } from 'react-i18next';
-import SubCategoryForm from '../../components/SubCategoryForm/index';
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { useQuery, gql } from '@apollo/client';
 import CategoryForm from '../../components/CategoryForm/index';
+import SubCategoryForm from '../../components/SubCategoryForm/index';
+import { useTranslation } from 'react-i18next';
 import CategoryAndSubCategoriesTable from '../../components/CategoryAndSubCategoriesTable/index';
+import './style.css';
 
-const DATA = [
-	{
-		id: 1,
-		categoryName: 'Accesorios',
-		subCategories: [
-			{ id: 100, subCategoryName: 'Bolsos, Carteras o Mochila' },
-			{ id: 101, subCategoryName: 'Ùtiles Escolares' },
-		],
-	},
-	{
-		id: 2,
-		categoryName: 'Bazar',
-		subCategories: [
-			{ id: 102, subCategoryName: 'Plásticos' },
-			{ id: 103, subCategoryName: 'Ollas y Sartenes' },
-		],
-	},
-];
+const GET_CATEGORIES_QUERY = gql`
+	query GetCategories {
+		getCategories {
+			id
+			name
+			subCategories {
+				id
+				name
+			}
+		}
+	}
+`;
+
 const CategoriesPage = () => {
 	const { t } = useTranslation();
 	const [category, setCategory] = useState('');
-	const [subcategory, setSubCategory] = useState('');
-	const [selectedCategory, setselectedCategory] = useState('');
-	const [expandedCategories, setExpandedCategories] = useState([]);
-	const [categories, setCategories] = useState(DATA);
+	const [subCategories, setSubCategories] = useState('');
+	const [selectedCategory, setSelectedCategory] = useState('');
+	const [expandedCategory, setExpandedCategory] = useState(null);
+	const [categories, setCategories] = useState([]);
 
-	const toggleCategory = category => {
-		if (expandedCategories.includes(category)) {
-			setExpandedCategories(expandedCategories.filter(cat => cat !== category));
+	const { loading, error, data } = useQuery(GET_CATEGORIES_QUERY);
+
+	useEffect(() => {
+		if (data && data.getCategories) {
+			setCategories(data.getCategories);
+		}
+	}, [data]);
+
+	const toggleCategory = categoryName => {
+		if (expandedCategory === categoryName) {
+			setExpandedCategory(null);
 		} else {
-			setExpandedCategories([...expandedCategories, category]);
+			setExpandedCategory(categoryName);
 		}
 	};
 
-	const isCategoryExpanded = category => {
-		return expandedCategories.includes(category);
-	};
-
 	const handleSaveCategory = () => {};
+	const handleAddSubCategories = () => {};
 
-	const handleAddSubCategory = () => {};
 	return (
 		<Container className='categories-page-container'>
 			<Row>
 				<Col>
 					<h1 className='categories-page-header'>
-						{t('categoriesPage.categories')}
+						{t('categoriesPage.category')}
 					</h1>
 				</Col>
 			</Row>
@@ -62,18 +62,19 @@ const CategoriesPage = () => {
 				handleSaveCategory={handleSaveCategory}
 			/>
 			<SubCategoryForm
-				categories={categories}
 				selectedCategory={selectedCategory}
-				setselectedCategory={setselectedCategory}
-				subcategory={subcategory}
-				setSubCategory={setSubCategory}
-				handleAddSubCategory={handleAddSubCategory}
+				setSelectedCategory={setSelectedCategory}
+				subCategories={subCategories}
+				setSubCategories={setSubCategories}
+				handleAddSubCategories={handleAddSubCategories}
+				categories={categories}
+				loading={loading}
 			/>
 			<CategoryAndSubCategoriesTable
 				categories={categories}
-				expandedCategories={expandedCategories}
 				toggleCategory={toggleCategory}
-				isCategoryExpanded={isCategoryExpanded}
+				isCategoryExpanded={name => expandedCategory === name}
+				loading={loading}
 			/>
 		</Container>
 	);

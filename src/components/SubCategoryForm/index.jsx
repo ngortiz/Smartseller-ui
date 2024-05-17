@@ -7,10 +7,11 @@ import './style.css';
 const SubCategoryForm = ({
 	selectedCategory,
 	setSelectedCategory,
-	subcategory,
-	setSubCategory,
-	handleAddSubCategory,
+	subCategories,
+	setSubCategories,
+	handleAddSubCategories,
 	categories,
+	loading,
 }) => {
 	const { t } = useTranslation();
 	return (
@@ -24,13 +25,20 @@ const SubCategoryForm = ({
 						as='select'
 						value={selectedCategory}
 						onChange={e => setSelectedCategory(e.target.value)}
+						disabled={loading}
 					>
-						<option value=''>{t('categoriesPage.selectCategory')}</option>
-						{categories.map(({ categoryName }) => (
-							<option key={categoryName} value={categoryName}>
-								{categoryName}
-							</option>
-						))}
+						{loading ? (
+							<option value=''>{t('categoriesPage.loading')}</option>
+						) : (
+							<>
+								<option value=''>{t('categoriesPage.selectCategory')}</option>
+								{categories.map(({ id, name }) => (
+									<option key={id} value={name}>
+										{name}
+									</option>
+								))}
+							</>
+						)}
 					</Form.Control>
 				</Form.Group>
 				<Form.Group>
@@ -39,14 +47,15 @@ const SubCategoryForm = ({
 						className='subcategory-input'
 						type='text'
 						placeholder={t('categoriesPage.enterTheSubcategoryName')}
-						value={subcategory}
-						onChange={e => setSubCategory(e.target.value)}
+						value={subCategories}
+						onChange={e => setSubCategories(e.target.value)}
 					/>
 				</Form.Group>
 				<Button
 					className='add-subcategory-btn'
 					variant='primary'
-					onClick={handleAddSubCategory}
+					onClick={handleAddSubCategories}
+					disabled={loading}
 				>
 					{t('categoriesPage.add')}
 				</Button>
@@ -57,11 +66,12 @@ const SubCategoryForm = ({
 
 SubCategoryForm.propTypes = {
 	selectedCategory: PropTypes.string.isRequired,
-	setselectedCategory: PropTypes.func.isRequired,
-	subcategory: PropTypes.string.isRequired,
-	setSubCategory: PropTypes.func.isRequired,
-	handleAddSubCategory: PropTypes.func.isRequired,
+	setSelectedCategory: PropTypes.func.isRequired,
+	subCategories: PropTypes.string.isRequired,
+	setSubCategories: PropTypes.func.isRequired,
+	handleAddSubCategories: PropTypes.func.isRequired,
 	categories: PropTypes.array.isRequired,
+	loading: PropTypes.bool.isRequired,
 };
 
 export default SubCategoryForm;

@@ -119,7 +119,7 @@ const ProductSearcherPage = () => {
 				</Form.Group>
 
 				<Form.Group as={Col} controlId='formSubcategory'>
-					<Form.Label>{t('productSearcherPage.category')}:</Form.Label>
+					<Form.Label>{t('productSearcherPage.categories')}:</Form.Label>
 					<Form.Select
 						aria-label={t('productSearcherPage.category')}
 						value={subcategory}
