@@ -7,9 +7,8 @@ import './style.css';
 const SubCategoryForm = ({
 	selectedCategory,
 	setSelectedCategory,
-	subcategory,
-	setSubCategory,
-	handleAddSubCategory,
+	subCategories,
+	handleAddSubCategories,
 	categories,
 }) => {
 	const { t } = useTranslation();
@@ -26,9 +25,9 @@ const SubCategoryForm = ({
 						onChange={e => setSelectedCategory(e.target.value)}
 					>
 						<option value=''>{t('categoriesPage.selectCategory')}</option>
-						{categories.map(({ categoryName }) => (
-							<option key={categoryName} value={categoryName}>
-								{categoryName}
+						{categories.map(({ id, name }) => (
+							<option key={id} value={name}>
+								{name}
 							</option>
 						))}
 					</Form.Control>
@@ -39,14 +38,14 @@ const SubCategoryForm = ({
 						className='subcategory-input'
 						type='text'
 						placeholder={t('categoriesPage.enterTheSubcategoryName')}
-						value={subcategory}
-						onChange={e => setSubCategory(e.target.value)}
+						value={subCategories}
+						onChange={e => setsubCategories(e.target.value)}
 					/>
 				</Form.Group>
 				<Button
 					className='add-subcategory-btn'
 					variant='primary'
-					onClick={handleAddSubCategory}
+					onClick={handleAddSubCategories}
 				>
 					{t('categoriesPage.add')}
 				</Button>
@@ -57,10 +56,9 @@ const SubCategoryForm = ({
 
 SubCategoryForm.propTypes = {
 	selectedCategory: PropTypes.string.isRequired,
-	setselectedCategory: PropTypes.func.isRequired,
-	subcategory: PropTypes.string.isRequired,
-	setSubCategory: PropTypes.func.isRequired,
-	handleAddSubCategory: PropTypes.func.isRequired,
+	setSelectedCategory: PropTypes.func.isRequired,
+	subCategories: PropTypes.string.isRequired,
+	handleAddSubCategories: PropTypes.func.isRequired,
 	categories: PropTypes.array.isRequired,
 };
 

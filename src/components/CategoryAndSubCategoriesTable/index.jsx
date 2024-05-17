@@ -20,17 +20,17 @@ const CategoryAndSubCategoriesTable = ({
 						{t('categoriesPage.categoryAndSubcatery')}
 					</header>
 					<ul className='subcategory-list'>
-						{categories.map(({ categoryName, subCategories, id }) => (
-							<Col className='category-list-col' key={categoryName}>
-								<span onClick={() => toggleCategory(categoryName)}>
+						{categories.map(({ name, id, subCategories }) => (
+							<Col className='category-list-col' key={id}>
+								<span onClick={() => toggleCategory(name)}>
 									<i className='bi bi-caret-down-fill'></i>
-									{categoryName}
+									{name}
 								</span>
 								<div className='category-buttons'>
 									<Button
 										className='category-btn-edit'
 										onClick={() =>
-											handleEditCategory && handleEditCategory(categoryName)
+											handleEditCategory && handleEditCategory(name)
 										}
 									>
 										{t('categoriesPage.edit')}
@@ -38,7 +38,7 @@ const CategoryAndSubCategoriesTable = ({
 									<Button
 										className='category-btn-delete'
 										onClick={() =>
-											handleDeleteCategory && handleDeleteCategory(categoryName)
+											handleDeleteCategory && handleDeleteCategory(name)
 										}
 									>
 										{t('categoriesPage.delete')}
@@ -46,11 +46,13 @@ const CategoryAndSubCategoriesTable = ({
 									<input type='checkbox' id={id} className='custom-checkbox' />
 									<span className='checkmark'></span>
 								</div>
-								{isCategoryExpanded(categoryName) && (
+								{isCategoryExpanded(name) && (
 									<ul className='subcategory-list'>
-										{subCategories.map(({ subCategoryName }) => (
-											<li key={subCategoryName}>{subCategoryName}</li>
-										))}
+										{subCategories.map(
+											({ id: subCategoryId, name: subCategoryName }) => (
+												<li key={subCategoryId}>{subCategoryName}</li>
+											),
+										)}
 									</ul>
 								)}
 							</Col>
@@ -63,7 +65,18 @@ const CategoryAndSubCategoriesTable = ({
 };
 
 CategoryAndSubCategoriesTable.propTypes = {
-	categories: PropTypes.array.isRequired,
+	categories: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string.isRequired,
+			name: PropTypes.string.isRequired,
+			subCategories: PropTypes.arrayOf(
+				PropTypes.shape({
+					id: PropTypes.string.isRequired,
+					name: PropTypes.string.isRequired,
+				}),
+			).isRequired,
+		}),
+	).isRequired,
 	toggleCategory: PropTypes.func.isRequired,
 	isCategoryExpanded: PropTypes.func.isRequired,
 	handleEditCategory: PropTypes.func,
