@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import {
+	Container,
+	Row,
+	Col,
+	Form,
+	Button,
+	Table,
+	Spinner,
+} from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
+import { gql, useQuery } from '@apollo/client';
+
+export const GET_CATEGORIES_QUERY = gql`
+	query GetCategories {
+		getCategories {
+			name
+			id
+		}
+	}
+`;
 
 const ProductSearcherPage = () => {
 	const [internalCode, setInternalCode] = useState('');
 	const [barcode, setBarcode] = useState('');
 	const [description, setDescription] = useState('');
 	const [subcategory, setSubcategory] = useState('');
+	const [category, setCategory] = useState('');
 	const [checked, setChecked] = useState(false);
 	const { t } = useTranslation();
 	const [products, setProducts] = useState([
@@ -44,23 +63,13 @@ const ProductSearcherPage = () => {
 	]);
 	const [productCode, setProductCode] = useState('');
 
-	const subcategoryOptions = [
-		'BAZAR',
-		'FERRETERÍA',
-		'HOGAR',
-		'ILUMINARIAS',
-		'JUGUETERÍA',
-		'LIBRERÍA',
-		'ARTÍCULOS NAVIDEÑOS',
-		'PLAYAS, CAMPING, OUTDOORS',
-		'AUTOMOTORES',
-		'COTILLON',
-		'ELECTRODOMÉSTICO',
-		'ROPERÍA',
-		'COSMETICO',
-		'PRODUCTO DE LIMPIEZA',
-		'ACCESORIOS',
-	];
+	const { loading, error, data } = useQuery(GET_CATEGORIES_QUERY);
+
+	useEffect(() => {
+		if (data && data.getCategories) {
+			setCategory(data.getCategories);
+		}
+	}, [data]);
 
 	const handleSearch = () => {};
 	const handleSearchByProductCode = event => {
@@ -126,10 +135,18 @@ const ProductSearcherPage = () => {
 						onChange={e => setSubcategory(e.target.value)}
 						className='product-form-select'
 					>
-						<option>{t('productSearcherPage.select')}...</option>
-						{subcategoryOptions.map(option => (
-							<option key={option}>{option}</option>
-						))}
+						{loading ? (
+							<option>{t('productSearcherPage.loading')}</option>
+						) : (
+							<>
+								<option>{t('productSearcherPage.select')}...</option>
+								{data.getCategories.map(category => (
+									<option key={category.id} value={category.id}>
+										{category.name}
+									</option>
+								))}
+							</>
+						)}
 					</Form.Select>
 				</Form.Group>
 				<Form.Group

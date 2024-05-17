@@ -235,7 +235,8 @@
 		"enterBarCode": "Ingrese el código de barras",
 		"enterTheInternalCode": "Ingrese el código interno",
 		"enterDescription": "Ingrese la descripción",
-		"post": "Publicar"
+		"post": "Publicar",
+		"loading": "Cargando..."
 	},
 	"orderClientInformation": {
 		"client": "Cliente",
