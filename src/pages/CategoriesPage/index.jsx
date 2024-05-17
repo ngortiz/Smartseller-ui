@@ -1,5 +1,4 @@
-// CategoriesPage.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useQuery, gql } from '@apollo/client';
 import CategoryForm from '../../components/CategoryForm/index';
@@ -27,13 +26,15 @@ const CategoriesPage = () => {
 	const [subCategories, setSubCategories] = useState('');
 	const [selectedCategory, setSelectedCategory] = useState('');
 	const [expandedCategory, setExpandedCategory] = useState(null);
+	const [categories, setCategories] = useState([]);
+
 	const { loading, error, data } = useQuery(GET_CATEGORIES_QUERY);
 
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error loading categories: {error.message}</p>;
-	console.log(data);
-
-	const { getCategories } = data;
+	useEffect(() => {
+		if (data && data.getCategories) {
+			setCategories(data.getCategories);
+		}
+	}, [data]);
 
 	const toggleCategory = categoryName => {
 		if (expandedCategory === categoryName) {
@@ -66,12 +67,14 @@ const CategoriesPage = () => {
 				subCategories={subCategories}
 				setSubCategories={setSubCategories}
 				handleAddSubCategories={handleAddSubCategories}
-				categories={getCategories}
+				categories={categories}
+				loading={loading}
 			/>
 			<CategoryAndSubCategoriesTable
-				categories={getCategories}
+				categories={categories}
 				toggleCategory={toggleCategory}
 				isCategoryExpanded={name => expandedCategory === name}
+				loading={loading}
 			/>
 		</Container>
 	);

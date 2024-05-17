@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import './style.css';
 
@@ -10,54 +10,73 @@ const CategoryAndSubCategoriesTable = ({
 	isCategoryExpanded,
 	handleEditCategory,
 	handleDeleteCategory,
+	loading,
 }) => {
 	const { t } = useTranslation();
+
 	return (
 		<Row>
 			<Col>
 				<div className='additional-interface-section'>
-					<header className='heard-tible-categoria'>
+					<header className='heard-title-categoria'>
 						{t('categoriesPage.categoryAndSubcatery')}
 					</header>
-					<ul className='subcategory-list'>
-						{categories.map(({ name, id, subCategories }) => (
-							<Col className='category-list-col' key={id}>
-								<span onClick={() => toggleCategory(name)}>
-									<i className='bi bi-caret-down-fill'></i>
-									{name}
-								</span>
-								<div className='category-buttons'>
-									<Button
-										className='category-btn-edit'
-										onClick={() =>
-											handleEditCategory && handleEditCategory(name)
-										}
-									>
-										{t('categoriesPage.edit')}
-									</Button>{' '}
-									<Button
-										className='category-btn-delete'
-										onClick={() =>
-											handleDeleteCategory && handleDeleteCategory(name)
-										}
-									>
-										{t('categoriesPage.delete')}
-									</Button>{' '}
-									<input type='checkbox' id={id} className='custom-checkbox' />
-									<span className='checkmark'></span>
-								</div>
-								{isCategoryExpanded(name) && (
-									<ul className='subcategory-list'>
-										{subCategories.map(
-											({ id: subCategoryId, name: subCategoryName }) => (
-												<li key={subCategoryId}>{subCategoryName}</li>
-											),
-										)}
-									</ul>
-								)}
-							</Col>
-						))}
-					</ul>
+					{loading ? (
+						<div className='spinner-container'>
+							<Spinner
+								animation='border'
+								role='status'
+								variant='primary'
+								style={{ width: '3rem', height: '3rem' }}
+							>
+								<span className='sr-only'></span>
+							</Spinner>
+						</div>
+					) : (
+						<ul className='subcategory-list'>
+							{categories.map(({ name, id, subCategories }) => (
+								<Col className='category-list-col' key={id}>
+									<span onClick={() => toggleCategory(name)}>
+										<i className='bi bi-caret-down-fill'></i>
+										{name}
+									</span>
+									<div className='category-buttons'>
+										<Button
+											className='category-btn-edit'
+											onClick={() =>
+												handleEditCategory && handleEditCategory(name)
+											}
+										>
+											{t('categoriesPage.edit')}
+										</Button>{' '}
+										<Button
+											className='category-btn-delete'
+											onClick={() =>
+												handleDeleteCategory && handleDeleteCategory(name)
+											}
+										>
+											{t('categoriesPage.delete')}
+										</Button>{' '}
+										<input
+											type='checkbox'
+											id={id}
+											className='custom-checkbox'
+										/>
+										<span className='checkmark'></span>
+									</div>
+									{isCategoryExpanded(name) && (
+										<ul className='subcategory-list'>
+											{subCategories.map(
+												({ id: subCategoryId, name: subCategoryName }) => (
+													<li key={subCategoryId}>{subCategoryName}</li>
+												),
+											)}
+										</ul>
+									)}
+								</Col>
+							))}
+						</ul>
+					)}
 				</div>
 			</Col>
 		</Row>
@@ -81,6 +100,7 @@ CategoryAndSubCategoriesTable.propTypes = {
 	isCategoryExpanded: PropTypes.func.isRequired,
 	handleEditCategory: PropTypes.func,
 	handleDeleteCategory: PropTypes.func,
+	loading: PropTypes.bool.isRequired,
 };
 
 export default CategoryAndSubCategoriesTable;

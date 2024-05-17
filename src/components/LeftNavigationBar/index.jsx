@@ -87,11 +87,11 @@ const LeftNavigationBar = () => {
 					</NavDropdown.Item>
 				</NavDropdown>
 			</ul>
-			<ul>
+			<ul className='category'>
 				<NavDropdown
 					title={
 						<span>
-							<i className='bi bi-arrow-down-circle-fill'></i>{' '}
+							<i className='bi bi-arrow-down-circle-fill'></i>
 							{t('leftNav.sales')}
 						</span>
 					}
@@ -117,7 +117,7 @@ const LeftNavigationBar = () => {
 								<i className='bi bi-list-columns'></i> {t('leftNav.category')}
 							</span>
 						}
-						id='category-dropdown'
+						id='basic-nav-dropdown'
 					>
 						<NavDropdown.Item href='/categories-page'>
 							{t('leftNav.category')}

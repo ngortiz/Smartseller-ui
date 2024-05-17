@@ -16,31 +16,6 @@
 	color: #333;
 }
 
-.add-category-section,
-.add-subcategory-section {
-	background-color: #f8f9fa;
-	border-radius: 10px;
-	padding: 20px;
-	margin-bottom: 30px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.add-category-section h3,
-.add-subcategory-section h3 {
-	font-size: 1.5rem;
-	margin-bottom: 20px;
-}
-
-.category-input,
-.subcategory-input {
-	width: 40%;
-	padding: 10px;
-	margin-bottom: 20px;
-	border-radius: 5px;
-	border: 1px solid #ced4da;
-	box-sizing: border-box;
-}
-
 .save-category-checkbox {
 	margin-bottom: 20px;
 }
@@ -48,37 +23,6 @@
 .save-category-checkbox label {
 	font-weight: bold;
 	color: #333;
-}
-
-.add-category-btn,
-.add-subcategory-btn {
-	width: auto;
-	padding: 10px 20px;
-	background-color: #007bff;
-	border: none;
-	border-radius: 5px;
-	color: #fff;
-	font-size: 1rem;
-	cursor: pointer;
-}
-
-.add-category-btn:hover,
-.add-subcategory-btn:hover {
-	background-color: #0056b3;
-}
-
-.additional-interface-section {
-	border: 1px solid #ccc;
-	border-radius: 15px;
-	padding: 20px;
-	margin-bottom: 20px;
-	background-color: #f8f9fa;
-}
-
-.additional-interface-section h3 {
-	font-size: 1.5rem;
-	margin-bottom: 20px;
-	border-bottom: 1px solid #ccc;
 }
 
 .category-list {
@@ -101,81 +45,4 @@
 
 .category-buttons {
 	float: right;
-}
-
-.category-btn-edit,
-.category-btn-delete {
-	color: #fff;
-	border-radius: 5px;
-	padding: 6px;
-	font-weight: bold;
-	margin-bottom: 10%;
-	margin-right: 5px;
-}
-
-.category-btn-edit {
-	background-color: #0056b3;
-}
-
-.category-btn-delete {
-	background-color: red;
-}
-
-.subcategory-list {
-	list-style: none;
-	padding-left: 20px;
-}
-
-.subcategory-list li {
-	margin-bottom: 0px;
-	background-color: #f0f0f0;
-	width: 85%;
-	font-weight: 100;
-	box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
-	padding-right: 2%;
-}
-
-.heard-title-categoria {
-	background-color: #f0f0f0;
-	padding: 10px;
-}
-
-.custom-checkbox {
-	position: relative;
-	display: inline-block;
-	width: 50px;
-	height: 23px;
-	background-color: #fff;
-	border: 2px solid #666;
-	border-radius: 1.25em;
-	transition:
-		background-color 0.3s,
-		border-color 0.3s;
-	cursor: pointer;
-}
-
-.custom-checkbox:checked {
-	background-color: #009688;
-	border-color: #009688;
-}
-
-.checkmark {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 8px;
-	height: 14px;
-	border-bottom: 2px solid #fff;
-	border-right: 2px solid #fff;
-	transform-origin: bottom left;
-	opacity: 1;
-	transition:
-		opacity 0.3s,
-		transform 0.3s;
-}
-
-.custom-checkbox:checked .checkmark {
-	opacity: 2;
-	transform: translate(-50%, -50%) rotate(45deg);
 }
