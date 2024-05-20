@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-	Container,
-	Row,
-	Col,
-	Form,
-	Button,
-	Table,
-	Spinner,
-} from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
 import { gql, useQuery } from '@apollo/client';
@@ -70,6 +62,7 @@ const ProductSearcherPage = () => {
 			setCategory(data.getCategories);
 		}
 	}, [data]);
+	console.log(data);
 
 	const handleSearch = () => {};
 	const handleSearchByProductCode = event => {
