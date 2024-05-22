@@ -4,7 +4,7 @@ import './style.css';
 import { useTranslation } from 'react-i18next';
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
 
-export const GET_CATEGORIES_QUERY = gql`
+const GET_CATEGORIES_QUERY = gql`
 	query GetCategories {
 		getCategories {
 			name
@@ -13,7 +13,7 @@ export const GET_CATEGORIES_QUERY = gql`
 	}
 `;
 
-export const SEARCH_QUERY = gql`
+const SEARCH_QUERY = gql`
 	query SearchQuery(
 		$offset: Int!
 		$limit: Int!
@@ -37,27 +37,29 @@ export const SEARCH_QUERY = gql`
 				id
 				name
 				internalCode
-				barcode
-				description
-				quantity
-				costPrice
-				salePrice
-				onSale
-				productAttributes
+				offered
 				product {
 					id
 					name
 					code
 					description
-					category {
+					subCategory {
 						id
 						name
-					}
-					subcategory {
-						id
-						name
+						category {
+							id
+							name
+						}
 					}
 				}
+				productAttributes
+				published
+				sellPrice
+				updatedAt
+				createdAt
+				costPrice
+				code
+				amount
 			}
 		}
 	}
@@ -68,7 +70,7 @@ const ProductSearcherPage = () => {
 	const [barcode, setBarcode] = useState('');
 	const [description, setDescription] = useState('');
 	const [category, setCategory] = useState('');
-	const [checked, setChecked] = useState(false);
+	const [checked, setChecked] = useState(true);
 	const { t } = useTranslation();
 	const [products, setProducts] = useState([]);
 
@@ -83,7 +85,7 @@ const ProductSearcherPage = () => {
 
 	useEffect(() => {
 		if (categoriesData && categoriesData.getCategories) {
-			setCategory(''); // Reseteamos la categoría seleccionada
+			setCategory('');
 		}
 	}, [categoriesData]);
 
@@ -106,7 +108,6 @@ const ProductSearcherPage = () => {
 
 		searchProducts({ variables });
 
-		// Reseteamos los campos del formulario después de la búsqueda
 		setInternalCode('');
 		setBarcode('');
 		setDescription('');
@@ -244,16 +245,17 @@ const ProductSearcherPage = () => {
 								<tr key={product.id}>
 									<td>{product.code}</td>
 									<td>{product.internalCode}</td>
-									<td>{product.barcode}</td>
+									<td>{product.$barcode}</td>
 									<td>{product.name}</td>
-									<td>{product.description}</td>
-									<td>{product.quantity}</td>
-									<td>{product.product.category?.name}</td>
-									<td>{product.product.subcategory?.name}</td>
+									<td>{product.product.$description}</td>
+
+									<td>{product.amount}</td>
+									<td>{product.product.subCategory?.category?.name}</td>
+									<td>{product.product.subCategory?.name}</td>
 									<td>US$ {product.costPrice}</td>
-									<td>US$ {product.salePrice}</td>
-									<td>{product.onSale ? 'Sí' : 'No'}</td>
-									<td>{product.specification}</td>
+									<td>US$ {product.sellPrice}</td>
+									<td>{product.offered ? 'Sí' : 'No'}</td>
+									<td>{product.productAttributes}</td>
 									<td>
 										<Button
 											variant='info'
