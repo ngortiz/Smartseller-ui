@@ -1,3 +1,7 @@
+#product-searcher-page {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
 #product-searcher-page .form-check .form-check-input {
 	display: inline-block;
 	margin-right: 76%;
@@ -6,30 +10,38 @@
 	padding: 14px 15px;
 }
 
-#product-searcher-page .table {
-	font-family: 'Roboto', sans-serif;
-	font-size: 14px;
-	margin-top: 2%;
+.product-table {
+	width: 90%;
+	border-collapse: collapse;
+	margin-top: 10px;
 }
 
-#product-searcher-page .table th,
-#product-searcher-page .table td {
-	border: 1px solid #ddd;
-	padding: 8px;
-	text-align: center;
-}
-
-#product-searcher-page .table th {
+.product-table th {
 	background-color: #0e2a5d;
 	color: #fff;
+	font-weight: 700;
+}
+.product-table td {
+	border: 1px solid #ddd;
+	padding: 12px;
+	text-align: center;
+	color: #333;
+	font-weight: 500;
+	font-size: 12px;
 }
 
-#product-searcher-page .table tbody tr:nth-child(even) {
-	background-color: #322020;
+.product-table th {
+	background-color: #0e2a5d;
+	color: #fff;
+	font-weight: 700;
 }
 
-#product-searcher-page .table tbody tr:hover {
-	background-color: #dddddd;
+.product-table tbody tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+.product-table tbody tr:hover {
+	background-color: #f1f1f1;
 }
 
 .product-form-control {

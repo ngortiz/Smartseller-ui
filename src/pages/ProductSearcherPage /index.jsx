@@ -46,10 +46,10 @@ const SEARCH_QUERY = gql`
 					subCategory {
 						id
 						name
-						category {
-							id
-							name
-						}
+					}
+					category {
+						id
+						name
 					}
 				}
 				productAttributes
@@ -118,6 +118,10 @@ const ProductSearcherPage = () => {
 	const handleEditProduct = productId => {};
 
 	const handleDeleteProduct = productId => {};
+
+	const getColorAttribute = attributes => {
+		return attributes && attributes.color ? attributes.color : '';
+	};
 
 	return (
 		<Container id='product-searcher-page'>
@@ -216,7 +220,7 @@ const ProductSearcherPage = () => {
 			</Row>
 
 			<Row className='mt-4'>
-				<Table striped bordered hover>
+				<Table striped bordered hover className='product-table'>
 					<thead>
 						<tr>
 							<th>{t('productSearcherPage.productCode')}</th>
@@ -241,25 +245,24 @@ const ProductSearcherPage = () => {
 								<td colSpan='14'>{t('productSearcherPage.loading')}</td>
 							</tr>
 						) : (
-							products.map(product => (
-								<tr key={product.id}>
-									<td>{product.code}</td>
-									<td>{product.internalCode}</td>
-									<td>{product.$barcode}</td>
-									<td>{product.name}</td>
-									<td>{product.product.$description}</td>
-
-									<td>{product.amount}</td>
-									<td>{product.product.subCategory?.category?.name}</td>
-									<td>{product.product.subCategory?.name}</td>
-									<td>US$ {product.costPrice}</td>
-									<td>US$ {product.sellPrice}</td>
-									<td>{product.offered ? 'Sí' : 'No'}</td>
-									<td>{product.productAttributes}</td>
+							products.map(variant => (
+								<tr key={variant.id}>
+									<td>{variant.product.code}</td>
+									<td>{variant.internalCode}</td>
+									<td>{variant.code}</td>
+									<td>{variant.product.name}</td>
+									<td>{variant.name}</td>
+									<td>{variant.amount}</td>
+									<td>{variant.product?.category?.name || ''}</td>
+									<td>{variant.product?.subCategory?.name || ''}</td>
+									<td>US$ {variant.costPrice}</td>
+									<td>US$ {variant.sellPrice}</td>
+									<td>{variant.offered ? 'Sí' : 'No'}</td>
+									<td>{getColorAttribute(variant.productAttributes)}</td>
 									<td>
 										<Button
 											variant='info'
-											onClick={() => handleEditProduct(product.id)}
+											onClick={() => handleEditProduct(variant.id)}
 											className='product-button-edit'
 										>
 											<i className='bi bi-pencil-square'></i>
@@ -267,9 +270,9 @@ const ProductSearcherPage = () => {
 									</td>
 									<td>
 										<Button
-											className='product-button-delete '
+											className='product-button-delete'
 											variant='danger'
-											onClick={() => handleDeleteProduct(product.id)}
+											onClick={() => handleDeleteProduct(variant.id)}
 										>
 											<i className='bi bi-trash3'></i>
 										</Button>
