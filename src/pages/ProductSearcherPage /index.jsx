@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery, useLazyQuery } from '@apollo/client';
 
-export const GET_CATEGORIES_QUERY = gql`
+const GET_CATEGORIES_QUERY = gql`
 	query GetCategories {
 		getCategories {
 			name
@@ -13,70 +13,133 @@ export const GET_CATEGORIES_QUERY = gql`
 	}
 `;
 
+const SEARCH_QUERY = gql`
+	query SearchQuery(
+		$offset: Int!
+		$limit: Int!
+		$published: Boolean!
+		$internalCode: String
+		$barcode: String
+		$description: String
+		$categoryId: Int
+	) {
+		searchProductVariants(
+			offset: $offset
+			limit: $limit
+			published: $published
+			internalCode: $internalCode
+			barcode: $barcode
+			description: $description
+			categoryId: $categoryId
+		) {
+			count
+			rows {
+				id
+				name
+				internalCode
+				offered
+				product {
+					id
+					name
+					code
+					description
+					subCategory {
+						id
+						name
+					}
+					category {
+						id
+						name
+					}
+				}
+				productAttributes
+				published
+				sellPrice
+				updatedAt
+				createdAt
+				costPrice
+				code
+				amount
+			}
+		}
+	}
+`;
+
 const ProductSearcherPage = () => {
 	const [internalCode, setInternalCode] = useState('');
 	const [barcode, setBarcode] = useState('');
 	const [description, setDescription] = useState('');
-	const [subcategory, setSubcategory] = useState('');
 	const [category, setCategory] = useState('');
-	const [checked, setChecked] = useState(false);
+	const [checked, setChecked] = useState(true);
 	const { t } = useTranslation();
-	const [products, setProducts] = useState([
-		{
-			id: 1,
-			productCode: '001',
-			internalCode: '001',
-			barcode: '123456789',
-			mainProduct: 'Producto 1',
-			description: '',
-			stock: 100,
-			category: 'Categoria',
-			subcategory: 'Subcategoría',
-			costPrice: 10.5,
-			salePrice: 15.99,
-			onSale: true,
-			specification: '',
-		},
-		{
-			id: 2,
-			productCode: '002',
-			internalCode: '002',
-			barcode: '987654321',
-			mainProduct: 'Producto 2',
-			description: '',
-			stock: 50,
-			category: 'Categoria',
-			subcategory: 'Subcategoría',
-			costPrice: 8.75,
-			salePrice: 12.49,
-			onSale: false,
-			specification: '',
-		},
-	]);
-	const [productCode, setProductCode] = useState('');
+	const [products, setProducts] = useState([]);
 
-	const { loading, error, data } = useQuery(GET_CATEGORIES_QUERY);
+	const {
+		loading: categoriesLoading,
+		error: categoriesError,
+		data: categoriesData,
+	} = useQuery(GET_CATEGORIES_QUERY);
+
+	const [searchProducts, { loading: searchLoading, data: searchData }] =
+		useLazyQuery(SEARCH_QUERY);
 
 	useEffect(() => {
-		if (data && data.getCategories) {
-			setCategory(data.getCategories);
+		if (categoriesData && categoriesData.getCategories) {
+			setCategory('');
 		}
-	}, [data]);
-	console.log(data);
+	}, [categoriesData]);
 
-	const handleSearch = () => {};
-	const handleSearchByProductCode = event => {
-		event.preventDefault();
+	useEffect(() => {
+		if (searchData && searchData.searchProductVariants) {
+			setProducts(searchData.searchProductVariants.rows);
+		}
+	}, [searchData]);
+
+	const handleSearch = () => {
+		const variables = {
+			offset: 0,
+			limit: 25,
+			published: checked,
+			internalCode: internalCode || undefined,
+			barcode: barcode || undefined,
+			description: description || undefined,
+			categoryId: category ? parseInt(category) : undefined,
+		};
+
+		searchProducts({ variables });
+
+		setInternalCode('');
+		setBarcode('');
+		setDescription('');
+		setCategory('');
+		setChecked(true);
 	};
+
 	const handleEditProduct = productId => {};
 
 	const handleDeleteProduct = productId => {};
 
+	const getVariantAttributes = attributes => {
+		return Object.entries(JSON.parse(attributes)).map(
+			([attributeName, attributeValue], index) => {
+				if (attributeValue.length > 0) {
+					return (
+						<div key={index}>
+							<strong>{attributeName}:</strong>
+							{attributeValue}
+							<br></br>
+						</div>
+					);
+				}
+			},
+		);
+	};
+
 	return (
 		<Container id='product-searcher-page'>
 			<Row className='mt-4'>
-				<header className='product-heard'>
-					{t('productSearcherPage.searchVariantProducts')}
+				<header className='product-header'>
+					{t('productSearcherPage.searchVariant')}
 				</header>
 			</Row>
 			<Row className='mt-4'>
@@ -120,24 +183,25 @@ const ProductSearcherPage = () => {
 					/>
 				</Form.Group>
 
-				<Form.Group as={Col} controlId='formSubcategory'>
+				<Form.Group as={Col} controlId='formCategory'>
 					<Form.Label>{t('productSearcherPage.categories')}:</Form.Label>
 					<Form.Select
 						aria-label={t('productSearcherPage.category')}
-						value={subcategory}
-						onChange={e => setSubcategory(e.target.value)}
+						value={category}
+						onChange={e => setCategory(e.target.value)}
 						className='product-form-select'
 					>
-						{loading ? (
+						{categoriesLoading ? (
 							<option>{t('productSearcherPage.loading')}</option>
 						) : (
 							<>
-								<option>{t('productSearcherPage.select')}...</option>
-								{data.getCategories.map(category => (
-									<option key={category.id} value={category.id}>
-										{category.name}
-									</option>
-								))}
+								<option value=''>{t('productSearcherPage.select')}...</option>
+								{categoriesData &&
+									categoriesData.getCategories.map(category => (
+										<option key={category.id} value={category.id}>
+											{category.name}
+										</option>
+									))}
 							</>
 						)}
 					</Form.Select>
@@ -145,14 +209,14 @@ const ProductSearcherPage = () => {
 				<Form.Group
 					as={Col}
 					controlId='formCheckbox'
-					className='product-frominput'
+					className='product-form-input'
 				>
 					<Form.Check
 						type='checkbox'
 						label={t('productSearcherPage.post')}
 						checked={checked}
 						onChange={e => setChecked(e.target.checked)}
-						className=' product-check-input'
+						className='product-check-input'
 					/>
 				</Form.Group>
 
@@ -168,7 +232,7 @@ const ProductSearcherPage = () => {
 			</Row>
 
 			<Row className='mt-4'>
-				<Table striped bordered hover>
+				<Table striped bordered hover className='product-table'>
 					<thead>
 						<tr>
 							<th>{t('productSearcherPage.productCode')}</th>
@@ -188,40 +252,46 @@ const ProductSearcherPage = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{products.map(product => (
-							<tr key={product.id}>
-								<td>{product.productCode}</td>
-								<td>{product.internalCode}</td>
-								<td>{product.barcode}</td>
-								<td>{product.mainProduct}</td>
-								<td>{product.description}</td>
-								<td>{product.stock}</td>
-								<td>{product.category}</td>
-								<td>{product.subcategory}</td>
-								<td>US$ {product.costPrice}</td>
-								<td>US$ {product.salePrice}</td>
-								<td>{product.onSale ? 'Sí' : 'No'}</td>
-								<td>{product.specification}</td>
-								<td>
-									<Button
-										variant='info'
-										onClick={() => handleEditProduct(product.id)}
-										className='product-button-edit'
-									>
-										<i className='bi bi-pencil-square'></i>
-									</Button>
-								</td>
-								<td>
-									<Button
-										className='product-button-delete '
-										variant='danger'
-										onClick={() => handleDeleteProduct(product.id)}
-									>
-										<i className='bi bi-trash3'></i>
-									</Button>
-								</td>
+						{searchLoading ? (
+							<tr>
+								<td colSpan='14'>{t('productSearcherPage.loading')}</td>
 							</tr>
-						))}
+						) : (
+							products.map(variant => (
+								<tr key={variant.id}>
+									<td>{variant.product.code}</td>
+									<td>{variant.internalCode}</td>
+									<td>{variant.code}</td>
+									<td>{variant.product.name}</td>
+									<td>{variant.name}</td>
+									<td>{variant.amount}</td>
+									<td>{variant.product?.category?.name || ''}</td>
+									<td>{variant.product?.subCategory?.name || ''}</td>
+									<td>US$ {variant.costPrice}</td>
+									<td>US$ {variant.sellPrice}</td>
+									<td>{variant.offered ? 'Sí' : 'No'}</td>
+									<td>{getColorAttribute(variant.productAttributes)}</td>
+									<td>
+										<Button
+											variant='info'
+											onClick={() => handleEditProduct(variant.id)}
+											className='product-button-edit'
+										>
+											<i className='bi bi-pencil-square'></i>
+										</Button>
+									</td>
+									<td>
+										<Button
+											className='product-button-delete'
+											variant='danger'
+											onClick={() => handleDeleteProduct(variant.id)}
+										>
+											<i className='bi bi-trash3'></i>
+										</Button>
+									</td>
+								</tr>
+							))
+						)}
 					</tbody>
 				</Table>
 			</Row>
