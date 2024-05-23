@@ -139,7 +139,7 @@ const ProductSearcherPage = () => {
 		<Container id='product-searcher-page'>
 			<Row className='mt-4'>
 				<header className='product-header'>
-					{t('productSearcherPage.searchVariantProducts')}
+					{t('productSearcherPage.searchVariant')}
 				</header>
 			</Row>
 			<Row className='mt-4'>
