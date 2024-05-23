@@ -112,7 +112,7 @@ const ProductSearcherPage = () => {
 		setBarcode('');
 		setDescription('');
 		setCategory('');
-		setChecked(true);
+		setChecked(false);
 	};
 
 	const handleEditProduct = productId => {};
@@ -120,7 +120,19 @@ const ProductSearcherPage = () => {
 	const handleDeleteProduct = productId => {};
 
 	const getColorAttribute = attributes => {
-		return attributes && attributes.color ? attributes.color : '';
+		return Object.entries(JSON.parse(attributes)).map(
+			([attributeName, attributeValue], index) => {
+				if (attributeValue.length > 0) {
+					return (
+						<div key={index}>
+							<strong>{attributeName}:</strong>
+							{attributeValue}
+							<br></br>
+						</div>
+					);
+				}
+			},
+		);
 	};
 
 	return (
