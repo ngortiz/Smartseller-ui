@@ -119,7 +119,7 @@ const ProductSearcherPage = () => {
 
 	const handleDeleteProduct = productId => {};
 
-	const getColorAttribute = attributes => {
+	const getVariantAttributes = attributes => {
 		return Object.entries(JSON.parse(attributes)).map(
 			([attributeName, attributeValue], index) => {
 				if (attributeValue.length > 0) {
