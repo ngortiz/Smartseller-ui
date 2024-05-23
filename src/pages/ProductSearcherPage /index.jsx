@@ -112,7 +112,7 @@ const ProductSearcherPage = () => {
 		setBarcode('');
 		setDescription('');
 		setCategory('');
-		setChecked(false);
+		setChecked(true);
 	};
 
 	const handleEditProduct = productId => {};
