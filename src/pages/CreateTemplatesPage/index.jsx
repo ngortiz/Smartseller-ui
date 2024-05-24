@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
-import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
+import {
+	Container,
+	Row,
+	Col,
+	Form,
+	Button,
+	Table,
+	Spinner,
+} from 'react-bootstrap';
 import './style.css';
 
 const GET_TEMPLATES_QUERY = gql`
@@ -52,7 +60,18 @@ const CreateTemplatesPage = () => {
 		setTemplates(newTemplates);
 	};
 
-	if (loading) return <p>Loading...</p>;
+	if (loading)
+		return (
+			<Container
+				className='d-flex justify-content-center align-items-center'
+				style={{ height: '100vh' }}
+			>
+				<Spinner animation='border' role='status'>
+					<span className='visually-hidden'>Loading...</span>
+				</Spinner>
+			</Container>
+		);
+
 	if (error) return <p>Error: {error.message}</p>;
 
 	return (
@@ -69,7 +88,7 @@ const CreateTemplatesPage = () => {
 							</Form.Label>
 							<Form.Control
 								type='text'
-								placeholder='Ingrese el nombre de la plantilla'
+								placeholder={t('createTemplates.enterTemplateName')}
 								value={templateName}
 								onChange={e => setTemplateName(e.target.value)}
 							/>
@@ -80,7 +99,7 @@ const CreateTemplatesPage = () => {
 							</Form.Label>
 							<Form.Control
 								type='text'
-								placeholder='Ingrese el nombre del atributo'
+								placeholder={t('createTemplates.enterAttributesName')}
 								value={attributeName}
 								onChange={e => setAttributeName(e.target.value)}
 							/>
