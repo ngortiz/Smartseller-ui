@@ -1,0 +1,74 @@
+.create-templates-container {
+	background-color: #f8f9fa;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-templates-header {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #343a40;
+	margin-bottom: 20px;
+}
+
+.create-templates-form-label {
+	font-weight: bold;
+	color: #495057;
+}
+
+.create-templates-button {
+	background-color: #0e2a5d;
+	border: 2px solid #18211d;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition:
+		background-color 0.3s,
+		border-color 0.3s,
+		color 0.3s;
+	margin-top: inherit;
+	margin-bottom: -3%;
+}
+
+.create-templates-attributes-list {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.create-templates-attributes-list li {
+	background-color: #e9ecef;
+	padding: 10px;
+	margin-bottom: 5px;
+	border-radius: 4px;
+}
+
+.create-templates-table th {
+	background-color: #0e2a5d;
+	padding: 16px;
+	color: #fff;
+	font-weight: 700;
+	text-align: center;
+	vertical-align: middle;
+	border-bottom-width: 2px;
+}
+.create-templates-table td {
+	text-align: left;
+	vertical-align: middle;
+	border-bottom-width: 1px;
+	font-size: 16px;
+}
+
+.create-templates-delete-button {
+	background-color: #dc3545;
+	border: 2px solid #dc3545;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 5px 10px;
+	border-radius: 5px;
+	margin-left: 40%;
+}

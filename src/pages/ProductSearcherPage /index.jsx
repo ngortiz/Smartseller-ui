@@ -270,7 +270,7 @@ const ProductSearcherPage = () => {
 									<td>US$ {variant.costPrice}</td>
 									<td>US$ {variant.sellPrice}</td>
 									<td>{variant.offered ? 'Sí' : 'No'}</td>
-									<td>{getColorAttribute(variant.productAttributes)}</td>
+									<td>{getVariantAttributes(variant.productAttributes)}</td>
 									<td>
 										<Button
 											variant='info'
