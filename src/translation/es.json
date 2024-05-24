@@ -259,5 +259,14 @@
 		"selectCategory": "Seleccione Categoría",
 		"enterTheCategoryName": "Ingrese el nombre de la categoría",
 		"enterTheSubcategoryName": "Ingrese el nombre de la subcategoría"
+	},
+	"createTemplates": {
+		"template": "Planilla",
+		"attributes": "Atributos",
+		"delete": "Eliminar",
+		"add": "Agregar",
+		"createTemplate": "Crear Planilla",
+		"templateName": "Nombre de la Plantilla",
+		"attributesName": "Atributos"
 	}
 }

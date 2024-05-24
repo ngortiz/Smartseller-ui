@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
 import './style.css';
+import { useTranslation } from 'react-i18next';
 
 const CreateTemplatesPage = () => {
 	const [templateName, setTemplateName] = useState('');
 	const [attributeName, setAttributeName] = useState('');
 	const [attributes, setAttributes] = useState([]);
+	const { t } = useTranslation();
 	const [templates, setTemplates] = useState([
 		{
 			name: 'Ropa',
@@ -37,11 +39,13 @@ const CreateTemplatesPage = () => {
 		<Container className='create-templates-container'>
 			<Row className='mt-4'>
 				<Col>
-					<header className='create-templates-header'>Crear Plantilla</header>
+					<header className='create-templates-header'>
+						{t('createTemplates.createTemplate')}
+					</header>
 					<Form>
 						<Form.Group controlId='formTemplateName'>
 							<Form.Label className='create-templates-form-label'>
-								Nombre de la Plantilla
+								{t('createTemplates.templateName')}
 							</Form.Label>
 							<Form.Control
 								type='text'
@@ -52,7 +56,7 @@ const CreateTemplatesPage = () => {
 						</Form.Group>
 						<Form.Group controlId='formAttributeName' className='mt-3'>
 							<Form.Label className='create-templates-form-label'>
-								Nombre del Atributo
+								{t('createTemplates.attributesName')}
 							</Form.Label>
 							<Form.Control
 								type='text'
@@ -65,7 +69,7 @@ const CreateTemplatesPage = () => {
 								className='mt-2 create-templates-button'
 								onClick={handleAddAttribute}
 							>
-								Agregar
+								{t('createTemplates.add')}
 							</Button>
 						</Form.Group>
 						<div className='mt-3'>
@@ -83,9 +87,9 @@ const CreateTemplatesPage = () => {
 					<Table striped bordered hover className='create-templates-table'>
 						<thead>
 							<tr>
-								<th>Plantilla</th>
-								<th>Atributos</th>
-								<th>Eliminar</th>
+								<th>{t('createTemplates.template')}</th>
+								<th>{t('createTemplates.attributes')}</th>
+								<th>{t('createTemplates.delete')}</th>
 							</tr>
 						</thead>
 						<tbody>
