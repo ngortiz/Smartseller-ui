@@ -137,7 +137,7 @@
 		"buys": "Compras",
 		"registrationFrom": "Registro Planilla",
 		"registerBuy": "Registrar Compra",
-		"createFrom": " Crear Planilla",
+		"createFrom": " Crear Plantilla",
 		"registerFromExcel": " Registrar desde Excel",
 		"searchVariant": "Buscar Variante",
 		"imageUpload": "Carga de imagenes",
@@ -259,5 +259,16 @@
 		"selectCategory": "Seleccione Categoría",
 		"enterTheCategoryName": "Ingrese el nombre de la categoría",
 		"enterTheSubcategoryName": "Ingrese el nombre de la subcategoría"
+	},
+	"createTemplates": {
+		"template": "Plantilla",
+		"attributes": "Atributos",
+		"delete": "Eliminar",
+		"add": "Agregar",
+		"createTemplate": "Crear Plantilla",
+		"templateName": "Nombre de la Plantilla",
+		"attributesName": "Atributos",
+		"enterAttributesName": "Ingrese el nombre del atributos",
+		"enterTemplateName": "Ingrese Nombre de la Plantilla"
 	}
 }

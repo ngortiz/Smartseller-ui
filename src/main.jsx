@@ -23,6 +23,7 @@ import RegisterProductsFromExcelPage from './pages/RegisterProductsFromExcelPage
 import BulkUploadProductImages from './pages/BulkUploadProductImages';
 import ProductSearcherPage from './pages/ProductSearcherPage ';
 import CategoriesPage from './pages/CategoriesPage';
+import CreateTemplatesPage from './pages/CreateTemplatesPage';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './utils/i18n';
 
@@ -82,6 +83,11 @@ createRoot(document.getElementById('root')).render(
 										element={<ProductSearcherPage />}
 									/>
 									<Route path='categories-page' element={<CategoriesPage />} />
+
+									<Route
+										path='create-templates-page'
+										element={<CreateTemplatesPage />}
+									/>
 								</Routes>
 							</Col>
 						</Row>
