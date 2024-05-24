@@ -60,20 +60,6 @@ const CreateTemplatesPage = () => {
 		setTemplates(newTemplates);
 	};
 
-	if (loading)
-		return (
-			<Container
-				className='d-flex justify-content-center align-items-center'
-				style={{ height: '100vh' }}
-			>
-				<Spinner animation='border' role='status'>
-					<span className='visually-hidden'>Loading...</span>
-				</Spinner>
-			</Container>
-		);
-
-	if (error) return <p>Error: {error.message}</p>;
-
 	return (
 		<Container className='create-templates-container'>
 			<Row className='mt-4'>
@@ -131,20 +117,36 @@ const CreateTemplatesPage = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{templates.map((template, index) => (
-								<tr key={template.id || index}>
-									<td>{template.name}</td>
-									<td>{template.format}</td>
-									<td>
-										<Button
-											className='create-templates-delete-button'
-											onClick={() => handleDeleteTemplate(index)}
-										>
-											<i className='bi bi-trash3'></i>
-										</Button>
+							{loading ? (
+								<tr>
+									<td colSpan='3' className='text-center'>
+										<Spinner animation='border' role='status'>
+											<span className='visually-hidden'>Loading...</span>
+										</Spinner>
 									</td>
 								</tr>
-							))}
+							) : error ? (
+								<tr>
+									<td colSpan='3' className='text-center text-danger'>
+										{t('createTemplates.error')}: {error.message}
+									</td>
+								</tr>
+							) : (
+								templates.map((template, index) => (
+									<tr key={template.id || index}>
+										<td>{template.name}</td>
+										<td>{template.format}</td>
+										<td>
+											<Button
+												className='create-templates-delete-button'
+												onClick={() => handleDeleteTemplate(index)}
+											>
+												<i className='bi bi-trash3'></i>
+											</Button>
+										</td>
+									</tr>
+								))
+							)}
 						</tbody>
 					</Table>
 				</Col>
