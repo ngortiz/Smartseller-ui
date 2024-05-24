@@ -1,27 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useQuery, gql } from '@apollo/client';
+import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
 import './style.css';
-import { useTranslation } from 'react-i18next';
+
+const GET_TEMPLATES_QUERY = gql`
+	query GetTemplates {
+		getTemplates {
+			format
+			id
+			name
+		}
+	}
+`;
 
 const CreateTemplatesPage = () => {
+	const { loading, error, data } = useQuery(GET_TEMPLATES_QUERY);
 	const [templateName, setTemplateName] = useState('');
 	const [attributeName, setAttributeName] = useState('');
 	const [attributes, setAttributes] = useState([]);
 	const { t } = useTranslation();
-	const [templates, setTemplates] = useState([
-		{
-			name: 'Ropa',
-			attributes: ['Color', 'Talla', 'Material'],
-		},
-		{
-			name: 'Electrónicos',
-			attributes: ['Marca', 'Modelo', 'Garantía'],
-		},
-		{
-			name: 'Bazar',
-			attributes: ['Marca', 'Modelo', 'Garantía'],
-		},
-	]);
+	const [templates, setTemplates] = useState([]);
+
+	useEffect(() => {
+		if (data && data.getTemplates) {
+			setTemplates(data.getTemplates);
+		}
+	}, [data]);
 
 	const handleAddAttribute = () => {
 		if (attributeName.trim()) {
@@ -30,10 +35,25 @@ const CreateTemplatesPage = () => {
 		}
 	};
 
+	const handleCreateTemplate = () => {
+		if (templateName.trim() && attributes.length > 0) {
+			const newTemplate = {
+				name: templateName,
+				format: attributes.join(', '),
+			};
+			setTemplates([...templates, newTemplate]);
+			setTemplateName('');
+			setAttributes([]);
+		}
+	};
+
 	const handleDeleteTemplate = index => {
 		const newTemplates = templates.filter((_, i) => i !== index);
 		setTemplates(newTemplates);
 	};
+
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error.message}</p>;
 
 	return (
 		<Container className='create-templates-container'>
@@ -64,13 +84,6 @@ const CreateTemplatesPage = () => {
 								value={attributeName}
 								onChange={e => setAttributeName(e.target.value)}
 							/>
-							<Button
-								variant='primary'
-								className='mt-2 create-templates-button'
-								onClick={handleAddAttribute}
-							>
-								{t('createTemplates.add')}
-							</Button>
 						</Form.Group>
 						<div className='mt-3'>
 							<ul className='create-templates-attributes-list'>
@@ -79,6 +92,12 @@ const CreateTemplatesPage = () => {
 								))}
 							</ul>
 						</div>
+						<Button
+							className='create-templates-button'
+							onClick={handleCreateTemplate}
+						>
+							{t('createTemplates.add')}
+						</Button>
 					</Form>
 				</Col>
 			</Row>
@@ -94,13 +113,12 @@ const CreateTemplatesPage = () => {
 						</thead>
 						<tbody>
 							{templates.map((template, index) => (
-								<tr key={index}>
+								<tr key={template.id || index}>
 									<td>{template.name}</td>
-									<td>{template.attributes.join(', ')}</td>
+									<td>{template.format}</td>
 									<td>
 										<Button
 											className='create-templates-delete-button'
-											variant='danger'
 											onClick={() => handleDeleteTemplate(index)}
 										>
 											<i className='bi bi-trash3'></i>
