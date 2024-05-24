@@ -8,7 +8,7 @@ const CreateTemplatesPage = () => {
 	const [attributes, setAttributes] = useState([]);
 	const [templates, setTemplates] = useState([
 		{
-			name: 'Ropa Deportiva',
+			name: 'Ropa',
 			attributes: ['Color', 'Talla', 'Material'],
 		},
 		{
@@ -25,18 +25,6 @@ const CreateTemplatesPage = () => {
 		if (attributeName.trim()) {
 			setAttributes([...attributes, attributeName]);
 			setAttributeName('');
-		}
-	};
-
-	const handleCreateTemplate = () => {
-		if (templateName.trim() && attributes.length > 0) {
-			const newTemplate = {
-				name: templateName,
-				attributes: [...attributes],
-			};
-			setTemplates([...templates, newTemplate]);
-			setTemplateName('');
-			setAttributes([]);
 		}
 	};
 
