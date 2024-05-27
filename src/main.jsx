@@ -24,6 +24,7 @@ import BulkUploadProductImages from './pages/BulkUploadProductImages';
 import ProductSearcherPage from './pages/ProductSearcherPage ';
 import CategoriesPage from './pages/CategoriesPage';
 import CreateTemplatesPage from './pages/CreateTemplatesPage';
+import MarketRatePage from './pages/MarketRatePage';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './utils/i18n';
 
@@ -88,6 +89,7 @@ createRoot(document.getElementById('root')).render(
 										path='create-templates-page'
 										element={<CreateTemplatesPage />}
 									/>
+									<Route path='market-rate-page' element={<MarketRatePage />} />
 								</Routes>
 							</Col>
 						</Row>
