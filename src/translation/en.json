@@ -50,5 +50,16 @@
 		"voucher": "Voucher Number",
 		"state": "State",
 		"date": "Order Date"
+	},
+	"marketRatePage": {
+		"quotes": "Cotizaciones",
+		"enterQuoteValues": "Ingresar los valores de la cotización",
+		"typeOfCurrency": "Tipo de Moneda",
+		"selectCurrency": "Seleccionar moneda...",
+		"purchasePrice": "Precio de Compra",
+		"salePrice": "Precio de Venta",
+		"search": "Buscar",
+		"date": "Fecha",
+		"currency": "Moneda"
 	}
 }
