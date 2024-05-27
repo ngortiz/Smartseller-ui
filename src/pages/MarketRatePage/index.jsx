@@ -20,7 +20,6 @@ const MarketRatePage = () => {
 	const [marketRates, setMarketRates] = useState([]);
 
 	useEffect(() => {
-		// Simulate data fetching
 		setTimeout(() => {
 			setMarketRates([
 				{
@@ -31,7 +30,7 @@ const MarketRatePage = () => {
 				},
 			]);
 			setLoading(false);
-		}, 2000); // Simulating a 2-second data fetch
+		}, 2000);
 	}, []);
 
 	const handleSearch = () => {};
