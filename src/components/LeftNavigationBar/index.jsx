@@ -141,20 +141,7 @@ const LeftNavigationBar = () => {
 					</NavDropdown>
 				</ul>
 			</ul>
-			<ul>
-				<h2>
-					<span>
-						<i className='bi bi-database-fill'></i> {t('leftNav.quotes')}
-					</span>
-				</h2>
-			</ul>
-			<ul>
-				<h2>
-					<span>
-						<i className='bi bi-aspect-ratio'></i> {t('leftNav.coupons')}
-					</span>
-				</h2>
-			</ul>
+
 			<ul>
 				<NavDropdown
 					title={

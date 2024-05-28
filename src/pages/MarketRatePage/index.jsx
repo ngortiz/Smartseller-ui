@@ -24,7 +24,7 @@ const MarketRatePage = () => {
 			setMarketRates([
 				{
 					date: '2024-05-30',
-					currency: 'USD',
+					money: { id: 1, name: 'Dolar', symbol: 'USD' },
 					buyPrice: 7284.05,
 					sellPrice: 7300.2,
 				},
@@ -82,7 +82,7 @@ const MarketRatePage = () => {
 							</Col>
 							<Col md={3}>
 								<Button className='market-rate-button' onClick={handleSearch}>
-									{t('marketRatePage.search')}
+									{t('marketRatePage.save')}
 								</Button>
 							</Col>
 						</Row>
@@ -102,7 +102,7 @@ const MarketRatePage = () => {
 							<thead>
 								<tr>
 									<th>{t('marketRatePage.date')}</th>
-									<th>{t('marketRatePage.currency')}</th>
+									<th>{t('marketRatePage.money')}</th>
 									<th>{t('marketRatePage.purchasePrice')}</th>
 									<th>{t('marketRatePage.salePrice')}</th>
 								</tr>

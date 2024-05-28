@@ -58,8 +58,8 @@
 		"selectCurrency": "Seleccionar moneda...",
 		"purchasePrice": "Precio de Compra",
 		"salePrice": "Precio de Venta",
-		"search": "Buscar",
+		"save": "Guardar",
 		"date": "Fecha",
-		"currency": "Moneda"
+		"money": "Moneda"
 	}
 }
