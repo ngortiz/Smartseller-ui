@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useQuery, gql } from '@apollo/client';
 import {
 	Container,
 	Row,
@@ -11,37 +12,41 @@ import {
 import { useTranslation } from 'react-i18next';
 import './style.css';
 
+const GET_MARKET_RATES = gql`
+	query GetMarketRates {
+		getMarketRates {
+			id
+			money {
+				id
+				name
+				symbol
+			}
+			priceBuy
+			priceSell
+		}
+	}
+`;
+
 const MarketRatePage = () => {
+	const { t } = useTranslation();
+	const { loading, error, data } = useQuery(GET_MARKET_RATES);
 	const [currencyType, setCurrencyType] = useState('');
 	const [buyPrice, setBuyPrice] = useState('');
 	const [sellPrice, setSellPrice] = useState('');
-	const [loading, setLoading] = useState(true);
-	const { t } = useTranslation();
-	const [marketRates, setMarketRates] = useState([]);
-
-	useEffect(() => {
-		setTimeout(() => {
-			setMarketRates([
-				{
-					date: '2024-05-30',
-					money: { id: 1, name: 'Dolar', symbol: 'USD' },
-					buyPrice: 7284.05,
-					sellPrice: 7300.2,
-				},
-			]);
-			setLoading(false);
-		}, 2000);
-	}, []);
 
 	const handleSearch = () => {};
 
 	return (
 		<Container className='market-rate-container'>
-			<Row className='market-rate-header'>
-				<header>{t('marketRatePage.quotes')}</header>
+			<Row>
+				<header className='market-rate-header'>
+					{t('marketRatePage.quotes')}
+				</header>
 			</Row>
-			<Row className='market-header2'>
-				<header>{t('marketRatePage.enterQuoteValues')}</header>
+			<Row>
+				<header className='market-header2'>
+					{t('marketRatePage.enterQuoteValues')}
+				</header>
 			</Row>
 
 			<Row>
@@ -97,23 +102,23 @@ const MarketRatePage = () => {
 								<span className='visually-hidden'>Loading...</span>
 							</Spinner>
 						</div>
+					) : error ? (
+						<p>Error: {error.message}</p>
 					) : (
 						<Table striped bordered hover>
 							<thead>
 								<tr>
-									<th>{t('marketRatePage.date')}</th>
 									<th>{t('marketRatePage.money')}</th>
 									<th>{t('marketRatePage.purchasePrice')}</th>
 									<th>{t('marketRatePage.salePrice')}</th>
 								</tr>
 							</thead>
 							<tbody>
-								{marketRates.map((rate, index) => (
-									<tr key={index}>
-										<td>{rate.date}</td>
-										<td>{rate.currency}</td>
-										<td>{rate.buyPrice}</td>
-										<td>{rate.sellPrice}</td>
+								{data.getMarketRates.map((rate, index) => (
+									<tr key={rate.id}>
+										<td>{rate.money.name}</td>
+										<td>{rate.priceBuy}</td>
+										<td>{rate.priceSell}</td>
 									</tr>
 								))}
 							</tbody>
