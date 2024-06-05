@@ -1,0 +1,18 @@
+.general-discount-container {
+	margin-top: 20px;
+}
+
+.general-discount-header,
+.general-discount-subheader {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.general-discount-form {
+	display: flex;
+	align-items: flex-end;
+}
+
+.general-discount-form .form-group {
+	margin-right: 10px;
+}
