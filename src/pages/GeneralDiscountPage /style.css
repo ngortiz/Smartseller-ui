@@ -1,18 +1,87 @@
 .general-discount-container {
-	margin-top: 20px;
+	background-color: #f9f9f9;
+	border-radius: 0px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin: 1%;
+	width: 100%;
+
+	padding: 10px 10px;
+	margin-bottom: 10px;
 }
 
-.general-discount-header,
-.general-discount-subheader {
-	text-align: center;
+.general-discount-header {
+	margin: 0.1rem;
+	text-align: left;
 	margin-bottom: 20px;
+	background-color: inherit;
+	padding: -6px;
+	margin-bottom: 15px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
 }
 
-.general-discount-form {
-	display: flex;
-	align-items: flex-end;
+.general-discount-subheader {
+	margin: 1%;
+	text-align: left;
+	margin-bottom: 10px;
+	background-color: inherit;
+	border-bottom: 1px solid #eeee;
+	padding: 5px;
+	margin-bottom: 15px;
+	margin-top: auto;
 }
 
 .general-discount-form .form-group {
-	margin-right: 10px;
+	margin-bottom: 25px;
+}
+
+.general-discount-form .form-control {
+	border-radius: 0px;
+	border: 1px solid #ced4da;
+	padding: 10px;
+	font-size: 1rem;
+	width: 100%;
+}
+
+.general-discount-form .form-check-group {
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: center;
+	margin-bottom: 0;
+	padding: 15px 20px;
+}
+
+.general-discount-form .form-check-input {
+	margin-top: 5px;
+	background-color: #0056b3;
+	padding: 15px 15px;
+}
+
+.general-discount-form .form-check-label {
+	margin-bottom: 9px;
+	text-align: center;
+	margin: -1%;
+}
+
+.general-discount-form .update-button {
+	background-color: #0056b3;
+	border-bottom: 1px solid #333;
+	color: white;
+	text-align: center;
+	padding: 10px 20px;
+	font-size: 15px;
+	border-radius: 0px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	width: 15%;
+	margin: 1%;
+}
+
+.general-discount-form .update-button:hover {
+	background-color: #0056b3;
+}
+.align-self-center {
+	margin-right: 0%;
 }

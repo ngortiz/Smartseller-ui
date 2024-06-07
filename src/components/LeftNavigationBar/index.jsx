@@ -91,7 +91,7 @@ const LeftNavigationBar = () => {
 				<NavDropdown
 					title={
 						<span>
-							<i className='bi bi-arrow-down-circle-fill'></i>
+							<i className='bi bi-arrow-down-circle-fill'> </i>
 							{t('leftNav.sales')}
 						</span>
 					}
@@ -145,7 +145,7 @@ const LeftNavigationBar = () => {
 				<NavDropdown
 					title={
 						<span>
-							<i className='bi bi-arrow-down-circle-fill'></i>
+							<i className='bi bi-arrow-down-circle-fill'> </i>
 							{t('leftNav.discount')}
 						</span>
 					}

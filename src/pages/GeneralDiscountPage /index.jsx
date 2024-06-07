@@ -15,43 +15,50 @@ const GeneralDiscountPage = () => {
 	};
 
 	return (
-		<Container className='general-discount-container'>
+		<>
 			<Row className='general-discount-header'>
-				<Col>
-					<h1>{t('generalDiscount.generalDiscount')}</h1>
-				</Col>
+				<header className='general-discount-header'>
+					{t('generalDiscount.generalDiscount')}
+				</header>
 			</Row>
-			<Row className='general-discount-subheader'>
-				<Col>
-					<h2>{t('generalDiscount.discountRate')}</h2>
-				</Col>
-			</Row>
-			<Row className='general-discount-form'>
-				<Col md={6}>
-					<Form.Group controlId='formDiscount'>
-						<Form.Label>{t('generalDiscount.discount')}</Form.Label>
-						<Form.Control
-							type='number'
-							value={discount}
-							onChange={e => setDiscount(e.target.value)}
-						/>
-					</Form.Group>
-				</Col>
-				<Col md={2} className='align-self-end'>
-					<Form.Group controlId='formIsChecked'>
-						<Form.Check
-							type='checkbox'
-							label={t('generalDiscount.enable')}
-							checked={isChecked}
-							onChange={e => setIsChecked(e.target.checked)}
-						/>
-					</Form.Group>
-				</Col>
-				<Col md={4} className='align-self-end'>
-					<Button onClick={handleUpdate}>{t('generalDiscount.update')}</Button>
-				</Col>
-			</Row>
-		</Container>
+			<Container className='general-discount-container'>
+				<Row className='general-discount-subheader'>
+					<Col>
+						<header>{t('generalDiscount.discountRate')}</header>
+					</Col>
+				</Row>
+				<Row className='general-discount-form'>
+					<Col md={3}>
+						<Form.Group controlId='formDiscount'>
+							<Form.Label>{t('generalDiscount.discount')}</Form.Label>
+							<Form.Control
+								type='number'
+								value={discount}
+								onChange={e => setDiscount(e.target.value)}
+							/>
+						</Form.Group>
+					</Col>
+					<Col md={2} className='align-self-center'>
+						<Form.Group controlId='formIsChecked' className='form-check-group'>
+							<Form.Label className='form-check-label'>
+								{t('generalDiscount.enable')}
+							</Form.Label>
+							<Form.Check
+								type='checkbox'
+								checked={isChecked}
+								onChange={e => setIsChecked(e.target.checked)}
+								className='discount-check-input'
+							/>
+						</Form.Group>
+					</Col>
+					<Col md={7} className='align-self-end'>
+						<Button onClick={handleUpdate} className='update-button'>
+							{t('generalDiscount.update')}
+						</Button>
+					</Col>
+				</Row>
+			</Container>
+		</>
 	);
 };
 
