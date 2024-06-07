@@ -8,11 +8,7 @@ const GeneralDiscountPage = () => {
 	const [discount, setDiscount] = useState('');
 	const [isChecked, setIsChecked] = useState(false);
 
-	const handleUpdate = () => {
-		// Aquí puedes agregar la lógica para actualizar el descuento
-		console.log('Descuento:', discount);
-		console.log('Activado:', isChecked);
-	};
+	const handleUpdate = () => {};
 
 	return (
 		<>
