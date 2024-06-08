@@ -160,7 +160,12 @@
 		"productsPage": "Pagina de Productos",
 		"startPage": "Pagina de Inicio",
 		"changePassword": "Cambiar Contraseña ",
-		"go out": "Salir"
+		"go out": "Salir",
+		"discount": "Descuento",
+		"general": "General",
+		"byOffer": "Por Oferta",
+		"byCategories": "Por Categorias",
+		"byCoupons": "Por Cupones"
 	},
 
 	"registerProductsFromExcel": {
@@ -270,5 +275,12 @@
 		"attributesName": "Atributos",
 		"enterAttributesName": "Ingrese el nombre del atributos",
 		"enterTemplateName": "Ingrese Nombre de la Plantilla"
+	},
+	"generalDiscount": {
+		"generalDiscount": "Descuento General",
+		"discountRate": "Porcentaje de descuento",
+		"discount": "Descuento",
+		"enable": "Habilitar",
+		"update": "Actualizar"
 	}
 }

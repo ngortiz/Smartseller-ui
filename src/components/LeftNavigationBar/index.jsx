@@ -91,7 +91,7 @@ const LeftNavigationBar = () => {
 				<NavDropdown
 					title={
 						<span>
-							<i className='bi bi-arrow-down-circle-fill'></i>
+							<i className='bi bi-arrow-down-circle-fill'> </i>
 							{t('leftNav.sales')}
 						</span>
 					}
@@ -140,6 +140,28 @@ const LeftNavigationBar = () => {
 						</NavDropdown.Item>
 					</NavDropdown>
 				</ul>
+			</ul>
+			<ul>
+				<NavDropdown
+					title={
+						<span>
+							<i className='bi bi-arrow-down-circle-fill'> </i>
+							{t('leftNav.discount')}
+						</span>
+					}
+					id='basic-nav-dropdown'
+				>
+					<NavDropdown.Item href='/general-discount-page'>
+						{t('leftNav.general')}
+					</NavDropdown.Item>
+					<NavDropdown.Divider />
+					<NavDropdown.Item>{t('leftNav.byOffer')}</NavDropdown.Item>
+					<NavDropdown.Divider />
+					<NavDropdown.Item>{t('leftNav.byCategories')}</NavDropdown.Item>
+					<NavDropdown.Divider />
+					<NavDropdown.Item>{t('leftNav.byCoupons')}</NavDropdown.Item>
+					<NavDropdown.Divider />
+				</NavDropdown>
 			</ul>
 
 			<ul>
