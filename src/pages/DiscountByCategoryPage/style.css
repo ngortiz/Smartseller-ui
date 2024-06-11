@@ -1,0 +1,149 @@
+/* General Container */
+.category-discount-container {
+	margin: 1%;
+	background-color: #f9f9f9;
+	border-radius: 0px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin: 1%;
+	width: 100%;
+
+	padding: 10px 10px;
+	margin-bottom: 10px;
+}
+
+/* Header Styles */
+.category-discount-header h1 {
+	margin: 0;
+	text-align: left;
+	margin-bottom: 20px;
+	background-color: inherit;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+}
+
+.category-discount-subheader h2 {
+	margin: 0;
+	text-align: left;
+	margin-bottom: 20px;
+	background-color: inherit;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 20px;
+	font-weight: normal;
+	color: #666;
+}
+
+/* Form Styles */
+.category-discount-form .form-group {
+	margin-bottom: 25px;
+}
+
+.category-discount-form .form-control {
+	border-radius: 5px;
+	border: 1px solid #ced4da;
+	padding: 10px;
+	font-size: 1rem;
+	width: 100%;
+	padding: 10px;
+}
+
+.category-discount-form .form-check-group {
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: center;
+	margin-bottom: 0;
+	padding: 15px 20px;
+}
+
+.category-discount-form .form-check-input {
+	margin-top: 5px;
+	background-color: #0e2a5d;
+	padding: 15px 15px;
+}
+
+.category-discount-form .form-check-label {
+	margin-bottom: 9px;
+	text-align: center;
+	margin: -1%;
+}
+
+.category-discount-form .update-button {
+	background-color: #0e2a5d;
+	border: none;
+	color: white;
+	text-align: center;
+	padding: 10px 20px;
+	font-size: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	margin: 1%;
+}
+
+.category-discount-form .update-button:hover {
+	background-color: #004494;
+}
+.category-discount-category {
+	display: block;
+	width: 69%;
+}
+
+/* Align Center */
+.align-self-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Spinner Container */
+.spinner-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+/* Additional Fields Styles */
+.form-category {
+	margin-bottom: 25px;
+}
+
+.form-amount {
+	margin-bottom: 25px;
+}
+/* Additional Fields Styles */
+.form-category,
+.form-amount {
+	margin-bottom: 25px;
+}
+
+/* Table Styles */
+.discount-table {
+	margin-top: 30px;
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+.discount-table th,
+.discount-table td {
+	padding: 12px;
+	border: 1px solid #dee2e6;
+}
+
+.discount-table th {
+	background-color: #0e2a5d;
+}
+
+.discount-table tbody tr:hover {
+	background-color: #f9f9f9;
+}
+
+.delete-button {
+	background-color: #dc3545;
+}

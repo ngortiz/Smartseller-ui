@@ -23,7 +23,7 @@
 }
 
 .general-discount-subheader {
-	margin: -1%;
+	margin: 1%;
 	text-align: left;
 	margin-bottom: 10px;
 	background-color: inherit;
@@ -56,7 +56,7 @@
 
 .general-discount-form .form-check-input {
 	margin-top: 5px;
-	background-color: #0e2a5d;
+	background-color: #0056b3;
 	padding: 15px 15px;
 }
 
@@ -67,7 +67,7 @@
 }
 
 .general-discount-form .update-button {
-	background-color: #0e2a5d;
+	background-color: #0056b3;
 	border-bottom: 1px solid #333;
 	color: white;
 	text-align: center;
