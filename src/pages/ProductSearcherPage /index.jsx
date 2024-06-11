@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
+import {
+	Container,
+	Row,
+	Col,
+	Form,
+	Button,
+	Table,
+	Spinner,
+} from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
@@ -254,7 +262,11 @@ const ProductSearcherPage = () => {
 					<tbody>
 						{searchLoading ? (
 							<tr>
-								<td colSpan='14'>{t('productSearcherPage.loading')}</td>
+								<td colSpan='14' className='text-center'>
+									<Spinner animation='border' role='status'>
+										<span className='visually-hidden'>Loading...</span>
+									</Spinner>
+								</td>
 							</tr>
 						) : (
 							products.map(variant => (
