@@ -155,7 +155,9 @@ const LeftNavigationBar = () => {
 						{t('leftNav.general')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item>{t('leftNav.byOffer')}</NavDropdown.Item>
+					<NavDropdown.Item href='/offer-discount-page'>
+						{t('leftNav.byOffer')}
+					</NavDropdown.Item>
 					<NavDropdown.Divider />
 					<NavDropdown.Item>{t('leftNav.byCategories')}</NavDropdown.Item>
 					<NavDropdown.Divider />
