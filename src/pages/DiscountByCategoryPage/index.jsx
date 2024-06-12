@@ -10,6 +10,30 @@ import {
 } from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
+import { useQuery, gql } from '@apollo/client';
+
+const GET_DISCOUNTS_BY_CATEGORY = gql`
+	query GetDiscountByCategory {
+		getDiscountByCategory {
+			amount
+			discount
+			id
+			category {
+				name
+				id
+			}
+		}
+	}
+`;
+
+const GET_CATEGORIES = gql`
+	query GetCategories {
+		getCategories {
+			name
+			id
+		}
+	}
+`;
 
 const DiscountByCategoryPage = () => {
 	const { t } = useTranslation();
@@ -17,16 +41,19 @@ const DiscountByCategoryPage = () => {
 	const [category, setCategory] = useState('');
 	const [quantity, setQuantity] = useState('');
 	const [isChecked, setIsChecked] = useState(false);
-	const [loading, setLoading] = useState(true);
-	const [discounts, setDiscounts] = useState([
-		{ category: 'Bazar', discount: 10, quantity: 100, isChecked: true },
-		{ category: 'Ferreteria', discount: 15, quantity: 200, isChecked: false },
-		{ category: 'Hogar', discount: 20, quantity: 150, isChecked: true },
-	]);
+	const { loading: loadingDiscounts, data: discountsData } = useQuery(
+		GET_DISCOUNTS_BY_CATEGORY,
+	);
+	const { loading: loadingCategories, data: categoriesData } =
+		useQuery(GET_CATEGORIES);
+
+	const [discounts, setDiscounts] = useState([]);
 
 	useEffect(() => {
-		setTimeout(() => setLoading(false), 2000);
-	}, []);
+		if (discountsData) {
+			setDiscounts(discountsData.getDiscountByCategory);
+		}
+	}, [discountsData]);
 
 	const handleUpdate = () => {
 		const newDiscount = {
@@ -49,9 +76,9 @@ const DiscountByCategoryPage = () => {
 
 	const handleEdit = index => {
 		const discountToEdit = discounts[index];
-		setCategory(discountToEdit.category);
+		setCategory(discountToEdit.category.name);
 		setDiscount(discountToEdit.discount);
-		setQuantity(discountToEdit.quantity);
+		setQuantity(discountToEdit.amount);
 		setIsChecked(discountToEdit.isChecked);
 		handleDelete(index);
 	};
@@ -66,7 +93,7 @@ const DiscountByCategoryPage = () => {
 				</Col>
 			</Row>
 			<Container className='category-discount-container'>
-				{loading ? (
+				{loadingDiscounts || loadingCategories ? (
 					<div className='spinner-container'>
 						<Spinner animation='border' role='status'>
 							<span className='visually-hidden'>Loading...</span>
@@ -92,9 +119,11 @@ const DiscountByCategoryPage = () => {
 										className='category-discount-category'
 									>
 										<option value=''>{t('discountPage.selectCategory')}</option>
-										<option value='BAZAR'>BAZAR</option>
-										<option value='FERRETERIA'>FERRETERIA</option>
-										<option value='HOGAR'>HOGAR</option>
+										{categoriesData.getCategories.map(cat => (
+											<option key={cat.id} value={cat.id}>
+												{cat.name}
+											</option>
+										))}
 									</Form.Select>
 								</Form.Group>
 							</Col>
@@ -154,9 +183,9 @@ const DiscountByCategoryPage = () => {
 								<tbody>
 									{discounts.map((d, index) => (
 										<tr key={index}>
-											<td>{d.category}</td>
+											<td>{d.category.name}</td>
 											<td>{d.discount}</td>
-											<td>{d.quantity}</td>
+											<td>{d.amount}</td>
 											<td>
 												{d.isChecked
 													? t('discountPage.yes')
@@ -171,11 +200,11 @@ const DiscountByCategoryPage = () => {
 													<i className='bi bi-pencil-square'></i>
 												</Button>
 												<Button
+													className='product-button-delete'
 													variant='danger'
 													onClick={() => handleDelete(index)}
-													className='product-button-delete'
 												>
-													<i className='bi bi-trash'></i>
+													<i className='bi bi-trash3'></i>
 												</Button>
 											</td>
 										</tr>
