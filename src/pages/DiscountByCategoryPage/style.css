@@ -11,7 +11,7 @@
 }
 
 .category-discount-header h1 {
-	margin: 10px 0 20px 0;
+	margin: 1%;
 	text-align: left;
 	margin-bottom: 20px;
 	background-color: inherit;
@@ -43,7 +43,7 @@
 	padding: 10px;
 	font-size: 1rem;
 	width: 100%;
-	padding: 8px;
+	padding: 7px;
 }
 
 .category-discount-form .form-check-group {

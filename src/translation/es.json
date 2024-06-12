@@ -164,7 +164,7 @@
 		"discount": "Descuento",
 		"general": "General",
 		"byOffer": "Por Oferta",
-		"byCategories": "Por Categorias",
+		"byCategories": "Por Categorías",
 		"byCoupons": "Por Cupones"
 	},
 
@@ -292,7 +292,7 @@
 		"update": "Actualizar"
 	},
 	"discountPage": {
-		"discountByCategory": "Descuento por categoria",
+		"discountByCategory": "Descuento por categoría",
 		"selectCategory": "Seleccione Categoría",
 		"enterDiscountPerCategory": "Permite aplicar un porcentaje de descuento por categoría",
 		"category": "Categoría",
