@@ -19,9 +19,9 @@ const DiscountByCategoryPage = () => {
 	const [isChecked, setIsChecked] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [discounts, setDiscounts] = useState([
-		{ category: 'Category 1', discount: 10, quantity: 100, isChecked: true },
-		{ category: 'Category 2', discount: 15, quantity: 200, isChecked: false },
-		{ category: 'Category 3', discount: 20, quantity: 150, isChecked: true },
+		{ category: 'Bazar', discount: 10, quantity: 100, isChecked: true },
+		{ category: 'Ferreteria', discount: 15, quantity: 200, isChecked: false },
+		{ category: 'Hogar', discount: 20, quantity: 150, isChecked: true },
 	]);
 
 	useEffect(() => {
@@ -45,6 +45,15 @@ const DiscountByCategoryPage = () => {
 	const handleDelete = index => {
 		const newDiscounts = discounts.filter((_, i) => i !== index);
 		setDiscounts(newDiscounts);
+	};
+
+	const handleEdit = index => {
+		const discountToEdit = discounts[index];
+		setCategory(discountToEdit.category);
+		setDiscount(discountToEdit.discount);
+		setQuantity(discountToEdit.quantity);
+		setIsChecked(discountToEdit.isChecked);
+		handleDelete(index);
 	};
 
 	return (
@@ -83,9 +92,9 @@ const DiscountByCategoryPage = () => {
 										className='category-discount-category'
 									>
 										<option value=''>{t('discountPage.selectCategory')}</option>
-										<option value='category1'>Category 1</option>
-										<option value='category2'>Category 2</option>
-										{/* Agregar más categorías según sea necesario */}
+										<option value='BAZAR'>BAZAR</option>
+										<option value='FERRETERIA'>FERRETERIA</option>
+										<option value='HOGAR'>HOGAR</option>
 									</Form.Select>
 								</Form.Group>
 							</Col>
@@ -147,28 +156,26 @@ const DiscountByCategoryPage = () => {
 										<tr key={index}>
 											<td>{d.category}</td>
 											<td>{d.discount}</td>
-											<td>{d.amount}</td>
+											<td>{d.quantity}</td>
 											<td>
 												{d.isChecked
 													? t('discountPage.yes')
 													: t('discountPage.no')}
 											</td>
 											<td>
-												{' '}
 												<Button
-													className='category-btn-edit'
-													onClick={() =>
-														handleEditCategory && handleEditCategory(name)
-													}
+													variant='info'
+													onClick={() => handleEdit(index)}
+													className='product-button-edit'
 												>
-													{t('categoriesPage.edit')}
-												</Button>{' '}
+													<i className='bi bi-pencil-square'></i>
+												</Button>
 												<Button
 													variant='danger'
 													onClick={() => handleDelete(index)}
-													className='delete-button'
+													className='product-button-delete'
 												>
-													{t('discountPage.delete')}
+													<i className='bi bi-trash'></i>
 												</Button>
 											</td>
 										</tr>
