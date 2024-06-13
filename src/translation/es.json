@@ -164,7 +164,7 @@
 		"discount": "Descuento",
 		"general": "General",
 		"byOffer": "Por Oferta",
-		"byCategories": "Por Categorias",
+		"byCategories": "Por Categorías",
 		"byCoupons": "Por Cupones"
 	},
 
@@ -290,5 +290,20 @@
 		"discount": "% Descuento",
 		"enable": "Habilitar",
 		"update": "Actualizar"
+	},
+	"discountPage": {
+		"discountByCategory": "Descuento por categoría",
+		"selectCategory": "Seleccione Categoría",
+		"enterDiscountPerCategory": "Permite aplicar un porcentaje de descuento por categoría",
+		"category": "Categoría",
+		"discount": "% Descuento",
+		"amount": "Cantidad",
+		"enable": "Habilitar",
+		"save": "Guardar",
+		"actions": "Acciones",
+		"delete": "Borrar",
+		"edit": "Editar",
+		"yes": "Si",
+		"no": "No"
 	}
 }

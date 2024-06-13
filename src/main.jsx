@@ -27,6 +27,7 @@ import CreateTemplatesPage from './pages/CreateTemplatesPage';
 import MarketRatePage from './pages/MarketRatePage';
 import GeneralDiscountPage from './pages/GeneralDiscountPage ';
 import OfferDiscountPage from './pages/OfferDiscountPage';
+import DiscountByCategoryPage from './pages/DiscountByCategoryPage';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './utils/i18n';
 
@@ -101,6 +102,10 @@ createRoot(document.getElementById('root')).render(
 										path='offer-discount-page'
 										element={<OfferDiscountPage />}
 									/>
+									<Route
+										path='discount-by-category-page'
+										element={<DiscountByCategoryPage />}
+									/>
 								</Routes>
 							</Col>
 						</Row>
@@ -110,3 +115,4 @@ createRoot(document.getElementById('root')).render(
 		</React.StrictMode>
 	</BrowserRouter>,
 );
+DiscountByCategoryPage;

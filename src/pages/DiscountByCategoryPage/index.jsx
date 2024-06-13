@@ -43,12 +43,9 @@ const DiscountByCategoryPage = () => {
 	const [isChecked, setIsChecked] = useState(false);
 	const { loading: loadingDiscounts, data: discountsData } = useQuery(
 		GET_DISCOUNTS_BY_CATEGORY,
-		{ client },
 	);
-	const { loading: loadingCategories, data: categoriesData } = useQuery(
-		GET_CATEGORIES,
-		{ client },
-	);
+	const { loading: loadingCategories, data: categoriesData } =
+		useQuery(GET_CATEGORIES);
 
 	const [discounts, setDiscounts] = useState([]);
 
