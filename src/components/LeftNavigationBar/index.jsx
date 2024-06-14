@@ -179,9 +179,11 @@ const LeftNavigationBar = () => {
 					}
 					id='basic-nav-dropdown'
 				>
-					<NavDropdown.Item>{t('leftNav.clients')}</NavDropdown.Item>
+					<NavDropdown.Item href='/customers-page'>
+						{t('leftNav.clients')}
+					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item>S{t('leftNav.subscribers')}</NavDropdown.Item>
+					<NavDropdown.Item>{t('leftNav.subscribers')}</NavDropdown.Item>
 				</NavDropdown>
 			</ul>
 			<ul>
