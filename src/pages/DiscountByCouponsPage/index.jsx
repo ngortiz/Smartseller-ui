@@ -10,20 +10,22 @@ import {
 } from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
-import { format, subMonths, addMonths } from 'date-fns';
+import { format, subMonths } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { BiCalendar } from 'react-icons/bi'; // Importa el ícono de Bootstrap Icons
+import { BiCalendar } from 'react-icons/bi';
 
 const DiscountByCouponsPage = () => {
 	const { t } = useTranslation();
 	const [client, setClient] = useState('');
 	const [discount, setDiscount] = useState('');
-	const [selectedDate, setSelectedDate] = useState(subMonths(new Date(), 1));
+	const [expirationDate, setExpirationDate] = useState(
+		subMonths(new Date(), 1),
+	);
 	const [loading, setLoading] = useState(true);
 	const [coupons, setCoupons] = useState([
 		{
-			client: 'uno',
+			client: 'Florinda Meza',
 			email: 'nana@gmail.com',
 			used: false,
 			expirationDate: '2023-12-31',
@@ -33,7 +35,6 @@ const DiscountByCouponsPage = () => {
 		},
 	]);
 
-	// Lista de clientes de ejemplo
 	const clients = [
 		{ name: 'Client 1', email: 'client1@example.com' },
 		{ name: 'Client 2', email: 'client2@example.com' },
@@ -49,7 +50,7 @@ const DiscountByCouponsPage = () => {
 			client,
 			email: 'nana@gmail.com',
 			used: false,
-			expirationDate: selectedDate.toISOString(), // Guarda la fecha seleccionada
+			expirationDate,
 			discount,
 			code: 9999,
 			category: 'Category 1',
@@ -57,7 +58,7 @@ const DiscountByCouponsPage = () => {
 		setCoupons([...coupons, newCoupon]);
 		setClient('');
 		setDiscount('');
-		setSelectedDate(subMonths(new Date(), 1)); // Reinicia el calendario a un mes antes
+		setExpirationDate(subMonths(new Date(), 1));
 	};
 
 	const handleDelete = index => {
@@ -69,7 +70,7 @@ const DiscountByCouponsPage = () => {
 		const couponToEdit = coupons[index];
 		setClient(couponToEdit.client);
 		setDiscount(couponToEdit.discount);
-		setSelectedDate(new Date(couponToEdit.expirationDate)); // Establece la fecha para edición
+		setExpirationDate(new Date(couponToEdit.expirationDate));
 		handleDelete(index);
 	};
 
@@ -80,20 +81,20 @@ const DiscountByCouponsPage = () => {
 		setClient(selectedClient.name);
 	};
 
-	const handleDateChange = date => {
-		setSelectedDate(date); // Actualiza la fecha seleccionada
+	const handleExpirationDateChange = date => {
+		setExpirationDate(date);
 	};
 
 	return (
 		<>
-			<Row className='category-discount-header'>
+			<Row className='coupons-discount-header'>
 				<Col>
 					<h1 className='category-discount-header'>
 						{t('discountByCoupons.discountCoupons')}
 					</h1>
 				</Col>
 			</Row>
-			<Container className='category-discount-container'>
+			<Container className='coupons-discount-container'>
 				{loading ? (
 					<div className='spinner-container'>
 						<Spinner animation='border' role='status'>
@@ -102,20 +103,20 @@ const DiscountByCouponsPage = () => {
 					</div>
 				) : (
 					<>
-						<Row className='category-discount-subheader'>
+						<Row className='coupons-discount-subheader'>
 							<Col>
 								<h2 className='category-discount-subheader'>
 									{t('discountByCoupons.uniqueCouponsForCustomers')}
 								</h2>
 							</Col>
 						</Row>
-						<Row className='category-discount-form align-items-center'>
+						<Row className='coupons-discount-form align-items-center'>
 							<Col md={3}>
 								<Form.Group controlId='formClient'>
 									<Form.Select
 										value={client}
 										onChange={handleClientChange}
-										className='category-discount-category'
+										className='coupons-discount-select'
 									>
 										<option value=''>
 											{t('discountByCoupons.selectClient')}
@@ -138,17 +139,14 @@ const DiscountByCouponsPage = () => {
 								</Form.Group>
 							</Col>
 
-							<Col md={2}>
-								<Form.Group controlId='formExpirationDate'>
-									<DatePicker
-										selected={selectedDate}
-										onChange={handleDateChange}
-										className='form-control'
-										dateFormat='yyyy-MM-dd'
-									/>
-									<BiCalendar className='bi bi-calendar-icon' />{' '}
-									{/* Ícono del calendario */}
-								</Form.Group>
+							<Col md={2} className='d-flex align-items-center'>
+								<BiCalendar className='bi-bi-calendar3' />
+								<DatePicker
+									selected={expirationDate}
+									onChange={handleExpirationDateChange}
+									className='form-control'
+									dateFormat='yyyy-MM-dd'
+								/>
 							</Col>
 
 							<Col md={1} className='align-self-end'>

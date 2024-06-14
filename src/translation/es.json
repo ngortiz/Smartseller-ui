@@ -305,5 +305,20 @@
 		"edit": "Editar",
 		"yes": "Si",
 		"no": "No"
+	},
+	"discountByCoupons": {
+		"discountCoupons": "Cupones de descuento",
+		"uniqueCouponsForCustomers": "Cupones únicos por clientes",
+		"date": "Fecha",
+		"selectClient": "Seleccionar Cliente",
+		"generar": "Generar",
+		"client": "Cliente",
+		"email": "Email",
+		"used": "Usado",
+		"discount": "% Descuento",
+		"expirationDate": "Fecha Expiracion",
+		"code": "Código",
+		"yes": "Si",
+		"no": "No"
 	}
 }
