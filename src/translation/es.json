@@ -320,5 +320,15 @@
 		"code": "Código",
 		"yes": "Si",
 		"no": "No"
+	},
+	"customersPage": {
+		"client": "Cliente",
+		"clientsList": "Lista de Clientes",
+		"email": "Email",
+		"search": "Buscar",
+		"user": "Usuario",
+		"ruc/CI": "RUC/CI",
+		"registrationDate": "Fecha de Registro",
+		"qty.LoginToTheSystem": "Cant. Ingreso al Sistema"
 	}
 }

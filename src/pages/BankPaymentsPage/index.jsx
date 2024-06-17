@@ -1,200 +1,179 @@
 import React, { useState, useEffect } from 'react';
-import {
-	Container,
-	Row,
-	Col,
-	Form,
-	Button,
-	Spinner,
-	Table,
-} from 'react-bootstrap';
 import './style.css';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
+import PaymentModal from '../../components/PaymentModal/index';
+import moment from 'moment';
+import Spinner from 'react-bootstrap/Spinner';
 
-// Definición de la consulta GraphQL
-const GET_DISCOUNTS_BY_CATEGORY = gql`
-	query GetDiscountByCategory {
-		getDiscountByCategory {
-			amount
-			discount
-			id
-			category {
-				name
+const BankPaymentsPage = () => {
+	const [selectedOption, setSelectedOption] = useState('pending');
+	const [payments, setPayments] = useState([]);
+	const [searchTerm, setSearchTerm] = useState('');
+	const [showPaymentModal, setShowPaymentModal] = useState(false);
+	const [selectedPayment, setSelectedPayment] = useState(null);
+	const { t } = useTranslation();
+
+	const GET_ORDERS_BY_PAYMENT_STATE_QUERY = gql`
+		query GetOrdersByPaymentStateQuery(
+			$state: PaymentState!
+			$paidViaCreditCard: Boolean!
+		) {
+			getOrdersByPaymentState(
+				state: $state
+				paidViaCreditCard: $paidViaCreditCard
+			) {
+				buyMethod
+				number
+				username
 				id
+				orderState
+				paymentState
+				updatedAt
+				createdAt
+				total
 			}
 		}
-	}
-`;
+	`;
 
-const DiscountByCategoryPage = () => {
-	const { t } = useTranslation();
-	const { loading, error, data } = useQuery(GET_DISCOUNTS_BY_CATEGORY);
-
-	const [discount, setDiscount] = useState('');
-	const [category, setCategory] = useState('');
-	const [quantity, setQuantity] = useState('');
-	const [isChecked, setIsChecked] = useState(false);
-	const [discounts, setDiscounts] = useState([]);
-
+	const { loading, error, data } = useQuery(GET_ORDERS_BY_PAYMENT_STATE_QUERY, {
+		variables: { state: selectedOption, paidViaCreditCard: false },
+	});
 	useEffect(() => {
-		if (data) {
-			setDiscounts(data.getDiscountByCategory);
+		if (data && data.getOrdersByPaymentState) {
+			setPayments(data.getOrdersByPaymentState);
 		}
 	}, [data]);
 
-	const handleUpdate = () => {
-		const newDiscount = {
-			category,
-			discount,
-			quantity,
-			isChecked,
-		};
-		setDiscounts([...discounts, newDiscount]);
-		setCategory('');
-		setDiscount('');
-		setQuantity('');
-		setIsChecked(false);
+	const handleSelectorChange = e => {
+		const selectedValue = e.target.value;
+
+		setSelectedOption(selectedValue);
 	};
 
-	const handleDelete = index => {
-		const newDiscounts = discounts.filter((_, i) => i !== index);
-		setDiscounts(newDiscounts);
+	const handleOrderNumberChange = e => {
+		setSearchTerm(e.target.value);
 	};
 
-	const handleEdit = index => {
-		const discountToEdit = discounts[index];
-		setCategory(discountToEdit.category);
-		setDiscount(discountToEdit.discount);
-		setQuantity(discountToEdit.quantity);
-		setIsChecked(discountToEdit.isChecked);
-		handleDelete(index);
+	const handlePaymentClick = payment => {
+		setSelectedPayment(payment);
+		setShowPaymentModal(true);
 	};
 
-	if (loading)
-		return (
-			<Spinner animation='border' role='status'>
-				<span className='visually-hidden'>Loading...</span>
-			</Spinner>
-		);
-	if (error) return <p>Error: {error.message}</p>;
+	const handleCloseModal = () => {
+		setShowPaymentModal(false);
+	};
 
+	const formatDateTime = dateTime => {
+		return moment(dateTime).format('DD-MM-YYYY HH:mm');
+	};
+	const filterePayments =
+		searchTerm.length <= 0
+			? payments
+			: payments.filter(payment => {
+					return payment.number.toString().includes(searchTerm);
+				});
 	return (
-		<>
-			<Row className='category-discount-header'>
-				<Col>
-					<h1 className='category-discount-header'>
-						{t('discountPage.discountByCategory')}
-					</h1>
-				</Col>
-			</Row>
-			<Container className='category-discount-container'>
-				<Row className='category-discount-subheader'>
-					<Col>
-						<h2 className='category-discount-subheader'>
-							{t('discountPage.enterDiscountPerCategory')}
-						</h2>
-					</Col>
-				</Row>
-				<Row className='category-discount-form align-items-center'>
-					<Col md={3}>
-						<Form.Group controlId='formCategory'>
-							<Form.Label>{t('discountPage.category')}</Form.Label>
-							<Form.Select
-								aria-label={t('discountPage.selectCategory')}
-								value={category}
-								onChange={e => setCategory(e.target.value)}
-								className='category-discount-category'
-							>
-								<option value=''>{t('discountPage.selectCategory')}</option>
-								<option value='category1'>Category 1</option>
-								<option value='category2'>Category 2</option>
-							</Form.Select>
-						</Form.Group>
-					</Col>
-					<Col md={2}>
-						<Form.Group controlId='formDiscount'>
-							<Form.Label>{t('discountPage.discount')}</Form.Label>
-							<Form.Control
-								type='number'
-								value={discount}
-								onChange={e => setDiscount(e.target.value)}
-							/>
-						</Form.Group>
-					</Col>
-					<Col md={2}>
-						<Form.Group controlId='formQuantity'>
-							<Form.Label>{t('discountPage.amount')}</Form.Label>
-							<Form.Control
-								type='number'
-								value={quantity}
-								onChange={e => setQuantity(e.target.value)}
-							/>
-						</Form.Group>
-					</Col>
-					<Col md={2} className='align-self-center'>
-						<Form.Group controlId='formIsChecked' className='form-check-group'>
-							<Form.Label className='form-check-label'>
-								{t('discountPage.enable')}
-							</Form.Label>
-							<Form.Check
-								type='checkbox'
-								checked={isChecked}
-								onChange={e => setIsChecked(e.target.checked)}
-								className='discount-check-input'
-							/>
-						</Form.Group>
-					</Col>
-					<Col md={3} className='align-self-end'>
-						<Button onClick={handleUpdate} className='update-button'>
-							{t('discountPage.save')}
-						</Button>
-					</Col>
-				</Row>
-				<Row>
-					<Table striped bordered hover className='discount-table'>
-						<thead>
-							<tr>
-								<th>{t('discountPage.category')}</th>
-								<th>{t('discountPage.discount')}</th>
-								<th>{t('discountPage.amount')}</th>
-								<th>{t('discountPage.enable')}</th>
-								<th>{t('discountPage.actions')}</th>
-							</tr>
-						</thead>
-						<tbody>
-							{discounts.map((d, index) => (
-								<tr key={index}>
-									<td>{d.category.name}</td>
-									<td>{d.discount}</td>
-									<td>{d.amount}</td>
-									<td>
-										{d.isChecked ? t('discountPage.yes') : t('discountPage.no')}
-									</td>
-									<td>
-										<Button
-											variant='info'
-											onClick={() => handleEdit(index)}
-											className='product-button-edit'
-										>
-											<i className='bi bi-pencil-square'></i>
-										</Button>{' '}
-										<Button
-											variant='danger'
-											onClick={() => handleDelete(index)}
-											className='product-button-delete'
-										>
-											<i className='bi bi-trash3'></i>
-										</Button>
-									</td>
-								</tr>
-							))}
-						</tbody>
-					</Table>
-				</Row>
-			</Container>
-		</>
+		<div>
+			<header className='bank-header'>{t('bankPaymentsPage.header')}</header>
+
+			<div className='bank-flex-container'>
+				<div className='bank-container'>
+					<span className='heard-state'>{t('bankPaymentsPage.state')}:</span>
+					<select
+						className='bank-select'
+						aria-label='large-select-example'
+						value={selectedOption}
+						onChange={handleSelectorChange}
+					>
+						<option value='pending'>{t('bankPaymentsPage.pending')}</option>
+						<option value='no_completed'>
+							{t('bankPaymentsPage.notCompleted')}
+						</option>
+						<option value='completed'>{t('bankPaymentsPage.completed')}</option>
+						<option value='cancelled'>{t('bankPaymentsPage.cancelled')}</option>
+					</select>
+				</div>
+
+				<div className='bank-container'>
+					<span className='heard-number'>
+						{t('bankPaymentsPage.orderNumber')}:
+					</span>
+					<input
+						type='text'
+						className='bank-input'
+						placeholder={t('bankPaymentsPage.searchPlaceholder')}
+						value={searchTerm}
+						onChange={handleOrderNumberChange}
+					/>
+				</div>
+			</div>
+			{loading && (
+				<div className='spinner-cont'>
+					<Spinner animation='border' role='status' variant='primary'>
+						<span className='sr-only'></span>
+					</Spinner>
+				</div>
+			)}
+
+			{!loading && <table className='bank-table'>{}</table>}
+
+			{showPaymentModal && (
+				<PaymentModal
+					payment={selectedPayment}
+					onClose={handleCloseModal}
+					onPaymentRegister={() => {}}
+				/>
+			)}
+
+			<table className='bank-table'>
+				<thead>
+					<tr>
+						<th>{t('bankPaymentsPage.item')}</th>
+						<th>{t('bankPaymentsPage.number')}</th>
+						<th>{t('bankPaymentsPage.client')}</th>
+						<th>{t('bankPaymentsPage.orderState')}</th>
+						<th>{t('bankPaymentsPage.paymentState')}</th>
+						<th>{t('bankPaymentsPage.paymentMethod')}</th>
+						<th>{t('bankPaymentsPage.createdAt')}</th>
+						<th>{t('bankPaymentsPage.updatedAt')}</th>
+						<th>{t('bankPaymentsPage.total')}</th>
+						<th>{t('bankPaymentsPage.registerPayment')}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{filterePayments.map((payment, index) => (
+						<tr key={payment.id}>
+							<td>{index + 1}</td>
+							<td>
+								<Link to={`/orders/${payment.id}`}>{payment.number}</Link>
+							</td>
+							<td>{payment.username}</td>
+							<td>{t(`orderStatus.${payment.orderState}`)}</td>
+							<td>{t(`paymentStatus.${payment.paymentState}`)}</td>
+							<td>{t(`buyMethods.${payment.buyMethod}`)}</td>
+
+							<td>{formatDateTime(payment.createdAt)}</td>
+							<td>{formatDateTime(payment.updatedAt)}</td>
+							<td>US$ {payment.total}</td>
+							<td>
+								{(payment.paymentState === 'pending' ||
+									payment.paymentState === 'no_completed') && (
+									<button
+										className='btn-pagar'
+										onClick={() => handlePaymentClick(payment)}
+									>
+										{t('bankPaymentsPage.pay')}
+									</button>
+								)}
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
 	);
 };
 
-export default DiscountByCategoryPage;
+export default BankPaymentsPage;
