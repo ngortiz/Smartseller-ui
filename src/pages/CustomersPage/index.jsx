@@ -64,7 +64,7 @@ const CustomersPage = () => {
 				style={{ height: '100vh' }}
 			>
 				<Spinner animation='border' role='status'>
-					<span className='sr-only'>Loading...</span>
+					<span className='sr-only'></span>
 				</Spinner>
 			</Container>
 		);
