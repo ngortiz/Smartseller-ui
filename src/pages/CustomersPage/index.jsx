@@ -1,39 +1,39 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Table, Spinner } from 'react-bootstrap';
+import {
+	Container,
+	Row,
+	Col,
+	Form,
+	Table,
+	Spinner,
+	Button,
+} from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './style.css';
 import { useTranslation } from 'react-i18next';
+import { useQuery, gql } from '@apollo/client';
+
+const GET_USERS_QUERY = gql`
+	query getUsers {
+		getUsers {
+			createdAt
+			email
+			id
+			updatedAt
+			username
+			ruc
+			sign_in_count
+		}
+	}
+`;
 
 const CustomersPage = () => {
+	const { t } = useTranslation();
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showEntries, setShowEntries] = useState(5);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [loading, setLoading] = useState(false);
-	const { t } = useTranslation();
 
-	const customers = [
-		{
-			username: 'johndoe',
-			email: 'john@example.com',
-			ruc_ci: '1234567890',
-			registrationDate: '2023-01-01',
-			loginCount: 5,
-		},
-		{
-			username: 'janedoe',
-			email: 'jane@example.com',
-			ruc_ci: '0987654321',
-			registrationDate: '2023-02-15',
-			loginCount: 10,
-		},
-		{
-			username: 'mikesmith',
-			email: 'mike@example.com',
-			ruc_ci: '5678901234',
-			registrationDate: '2023-03-20',
-			loginCount: 7,
-		},
-	];
+	const { loading, error, data } = useQuery(GET_USERS_QUERY);
 
 	const handleSearchChange = e => {
 		setSearchTerm(e.target.value);
@@ -45,30 +45,41 @@ const CustomersPage = () => {
 	};
 
 	const handleNextPage = () => {
-		setLoading(true);
-		setTimeout(() => {
-			if (currentPage < totalPages) {
-				setCurrentPage(currentPage + 1);
-			}
-			setLoading(false);
-		}, 1000);
+		if (currentPage < totalPages) {
+			setCurrentPage(currentPage + 1);
+		}
 	};
 
 	const handlePreviousPage = () => {
-		setLoading(true);
-		setTimeout(() => {
-			if (currentPage > 1) {
-				setCurrentPage(currentPage - 1);
-			}
-			setLoading(false);
-		}, 1000);
+		if (currentPage > 1) {
+			setCurrentPage(currentPage - 1);
+		}
 	};
+
+	if (loading) {
+		return (
+			<Container
+				fluid
+				className='d-flex justify-content-center align-items-center'
+				style={{ height: '100vh' }}
+			>
+				<Spinner animation='border' role='status'>
+					<span className='sr-only'></span>
+				</Spinner>
+			</Container>
+		);
+	}
+
+	if (error) {
+		return <p>Error fetching customers: {error.message}</p>;
+	}
+
+	const customers = data.getUsers;
 
 	const filteredCustomers = customers.filter(
 		customer =>
 			customer.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			customer.ruc_ci.includes(searchTerm),
+			customer.email.toLowerCase().includes(searchTerm.toLowerCase()),
 	);
 
 	const indexOfLastCustomer = currentPage * showEntries;
@@ -139,25 +150,15 @@ const CustomersPage = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{loading ? (
-								<tr>
-									<td colSpan='5' className='text-center'>
-										<Spinner animation='border' role='status'>
-											<span className='sr-only'>Loading...</span>
-										</Spinner>
-									</td>
+							{currentCustomers.map((customer, index) => (
+								<tr key={index}>
+									<td>{customer.username}</td>
+									<td>{customer.email}</td>
+									<td>{customer.ruc}</td>
+									<td>{new Date(customer.createdAt).toLocaleDateString()}</td>
+									<td>{customer.sign_in_count}</td>
 								</tr>
-							) : (
-								currentCustomers.map((customer, index) => (
-									<tr key={index}>
-										<td>{customer.username}</td>
-										<td>{customer.email}</td>
-										<td>{customer.ruc_ci}</td>
-										<td>{customer.registrationDate}</td>
-										<td>{customer.loginCount}</td>
-									</tr>
-								))
-							)}
+							))}
 						</tbody>
 					</Table>
 				</Col>
