@@ -341,8 +341,9 @@
 		"supplier": "Proveedor",
 		"select": "Seleccionar",
 		"tax": "Impuesto",
-		"payrolls": "Planilla",
+		"template": "Plantilla",
 		"category": "Categoria",
+		"selectTemplate": "Seleccione Plantilla",
 		"selectCategory": "Seleccione Categoría",
 		"subCategory": "SubCategoría",
 		"selectSubCategory": "Seleccione SubCategoría"

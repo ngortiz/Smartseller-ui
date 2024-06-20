@@ -1,7 +1,31 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useQuery, gql } from '@apollo/client';
 import './style.css';
+
+const GET_CATEGORIES_QUERY = gql`
+	query GetCategories {
+		getCategories {
+			id
+			name
+			subCategories {
+				id
+				name
+			}
+		}
+	}
+`;
+
+const GET_TEMPLATES_QUERY = gql`
+	query GetTemplates {
+		getTemplates {
+			format
+			id
+			name
+		}
+	}
+`;
 
 const RegistrationFormPage = () => {
 	const { t } = useTranslation();
@@ -10,15 +34,31 @@ const RegistrationFormPage = () => {
 	const [productDescription, setProductDescription] = useState('');
 	const [supplier, setSupplier] = useState('');
 	const [tax, setTax] = useState('');
-	const [payroll, setPayroll] = useState('');
+	const [template, setTemplates] = useState('');
 	const [category, setCategory] = useState('');
 	const [subcategory, setSubcategory] = useState('');
-
+	const [categories, setCategories] = useState([]);
+	const [subcategories, setSubcategories] = useState([]);
 	const suppliers = ['Supplier 1', 'Supplier 2', 'Supplier 3'];
-	const taxes = ['IVA 10%1', 'IVA5%', 'EXENTA'];
-	const payrolls = ['Planilla 1', 'Planilla 2', 'Planilla 3'];
-	const categories = ['Category 1', 'Category 2', 'Category 3'];
-	const subcategories = ['Subcategory 1', 'Subcategory 2', 'Subcategory 3'];
+	const taxes = ['IVA 10%', 'IVA 5%', 'EXENTA'];
+
+	const { loading: loadingCategories, data: categoriesData } =
+		useQuery(GET_CATEGORIES_QUERY);
+
+	const { loading: loadingTemplates, data: templatesData } =
+		useQuery(GET_TEMPLATES_QUERY);
+
+	useEffect(() => {
+		if (categoriesData) {
+			setCategories(categoriesData.getCategories);
+		}
+	}, [categoriesData]);
+
+	useEffect(() => {
+		if (templatesData) {
+			setTemplates(templatesData.getTemplates);
+		}
+	}, [templatesData]);
 
 	const handleGenerateCode = () => {
 		setProductCode(`P${Math.floor(Math.random() * 10000)}`);
@@ -26,6 +66,18 @@ const RegistrationFormPage = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
+	};
+
+	const handleCategoryChange = e => {
+		const selectedCategory = e.target.value;
+		setCategory(selectedCategory);
+		const selectedCategoryData = categories.find(
+			cat => cat.id === selectedCategory,
+		);
+		setSubcategories(
+			selectedCategoryData ? selectedCategoryData.subCategories : [],
+		);
+		setSubcategory('');
 	};
 
 	return (
@@ -155,23 +207,27 @@ const RegistrationFormPage = () => {
 						<Col md={6}>
 							<Form.Group className='registration-form-group'>
 								<Form.Label className='registration-form-label'>
-									{t('registrationPage.payrolls')}:*
+									{t('registrationPage.template')}:*
 								</Form.Label>
-								<Form.Select
-									value={payroll}
-									onChange={e => setPayroll(e.target.value)}
-									required
-									className='registration-form-select'
-								>
-									<option value='' className='label-registration-select'>
-										{t('registrationPage.select')}
-									</option>
-									{payrolls.map((payroll, index) => (
-										<option key={index} value={payroll}>
-											{payroll}
+								{loadingTemplates ? (
+									<Spinner animation='border' />
+								) : (
+									<Form.Select
+										value={template}
+										onChange={e => setTemplate(e.target.value)}
+										required
+										className='registration-form-select'
+									>
+										<option value='' className='label-registration-select'>
+											{t('registrationPage.selectTemplate')}
 										</option>
-									))}
-								</Form.Select>
+										{templatesData.getTemplates.map(template => (
+											<option key={template.id} value={template.id}>
+												{template.name}
+											</option>
+										))}
+									</Form.Select>
+								)}
 							</Form.Group>
 						</Col>
 					</Row>
@@ -181,21 +237,25 @@ const RegistrationFormPage = () => {
 								<Form.Label className='registration-form-label'>
 									{t('registrationPage.category')}:*
 								</Form.Label>
-								<Form.Select
-									value={category}
-									onChange={e => setCategory(e.target.value)}
-									required
-									className='registration-form-select'
-								>
-									<option value='' className='label-registration-select'>
-										{t('registrationPage.selectCategory')}
-									</option>
-									{categories.map((category, index) => (
-										<option key={index} value={category}>
-											{category}
+								{loadingCategories ? (
+									<Spinner animation='border' />
+								) : (
+									<Form.Select
+										value={category}
+										onChange={handleCategoryChange}
+										required
+										className='registration-form-select'
+									>
+										<option value='' className='label-registration-select'>
+											{t('registrationPage.selectCategory')}
 										</option>
-									))}
-								</Form.Select>
+										{categories.map(category => (
+											<option key={category.id} value={category.id}>
+												{category.name}
+											</option>
+										))}
+									</Form.Select>
+								)}
 							</Form.Group>
 						</Col>
 					</Row>
@@ -205,21 +265,25 @@ const RegistrationFormPage = () => {
 								<Form.Label className='registration-form-label'>
 									{t('registrationPage.subCategory')}:*
 								</Form.Label>
-								<Form.Select
-									value={subcategory}
-									onChange={e => setSubcategory(e.target.value)}
-									required
-									className='registration-form-select'
-								>
-									<option value='' className='label-registration-select'>
-										{t('registrationPage.selectSubCategory')}
-									</option>
-									{subcategories.map((subcategory, index) => (
-										<option key={index} value={subcategory}>
-											{subcategory}
+								{loadingCategories ? (
+									<Spinner animation='border' />
+								) : (
+									<Form.Select
+										value={subcategory}
+										onChange={e => setSubcategory(e.target.value)}
+										required
+										className='registration-form-select'
+									>
+										<option value='' className='label-registration-select'>
+											{t('registrationPage.selectSubCategory')}
 										</option>
-									))}
-								</Form.Select>
+										{subcategories.map(subcategory => (
+											<option key={subcategory.id} value={subcategory.id}>
+												{subcategory.name}
+											</option>
+										))}
+									</Form.Select>
+								)}
 							</Form.Group>
 						</Col>
 					</Row>
