@@ -33,7 +33,7 @@ const RegistrationFormPage = () => {
 			<Row>
 				<Col>
 					<header className='registration-form-title'>
-						Registrar producto y sus variantes
+						{t('registrationPage.registerProducAndVariants')}
 					</header>
 				</Col>
 			</Row>
@@ -41,7 +41,7 @@ const RegistrationFormPage = () => {
 				<Row>
 					<Col>
 						<h2 className='registration-form-subtitle'>
-							Datos Generales del Producto
+							{t('registrationPage.generalProductData')}
 						</h2>
 					</Col>
 				</Row>
@@ -50,7 +50,7 @@ const RegistrationFormPage = () => {
 						<Col md={6}>
 							<Form.Group className='registration-form-group'>
 								<Form.Label className='registration-form-label'>
-									Código:*
+									{t('registrationPage.code')}:*
 								</Form.Label>
 								<div className='d-flex'>
 									<Form.Control
@@ -64,7 +64,7 @@ const RegistrationFormPage = () => {
 										onClick={handleGenerateCode}
 										className='registration-form-button'
 									>
-										Generar
+										{t('registrationPage.generar')}
 									</Button>
 								</div>
 							</Form.Group>
@@ -74,7 +74,7 @@ const RegistrationFormPage = () => {
 						<Col md={6}>
 							<Form.Group className='registration-form-group'>
 								<Form.Label className='registration-form-label'>
-									Nombre:*
+									{t('registrationPage.name')}:*
 								</Form.Label>
 								<Form.Control
 									type='text'
@@ -90,7 +90,7 @@ const RegistrationFormPage = () => {
 						<Col md={6}>
 							<Form.Group className='registration-form-group'>
 								<Form.Label className='registration-form-label'>
-									Descripción:*
+									{t('registrationPage.description')}:*
 								</Form.Label>
 								<Form.Control
 									as='textarea'
@@ -107,7 +107,7 @@ const RegistrationFormPage = () => {
 						<Col md={6}>
 							<Form.Group className='registration-form-group'>
 								<Form.Label className='registration-form-label'>
-									Proveedor:*
+									{t('registrationPage.supplier')}:*
 								</Form.Label>
 								<Form.Select
 									value={supplier}
@@ -115,7 +115,9 @@ const RegistrationFormPage = () => {
 									required
 									className='registration-form-select'
 								>
-									<option value=''>Seleccione un proveedor</option>
+									<option value='' className='label-registration-select'>
+										{t('registrationPage.select')}
+									</option>
 									{suppliers.map((supplier, index) => (
 										<option key={index} value={supplier}>
 											{supplier}
@@ -129,7 +131,7 @@ const RegistrationFormPage = () => {
 						<Col md={6}>
 							<Form.Group className='registration-form-group'>
 								<Form.Label className='registration-form-label'>
-									Impuesto:*
+									{t('registrationPage.tax')}:*
 								</Form.Label>
 								<Form.Select
 									value={tax}
@@ -137,7 +139,9 @@ const RegistrationFormPage = () => {
 									required
 									className='registration-form-select'
 								>
-									<option value=''>Seleccione un impuesto</option>
+									<option value='' className='label-registration-select'>
+										{t('registrationPage.select')}
+									</option>
 									{taxes.map((tax, index) => (
 										<option key={index} value={tax}>
 											{tax}
@@ -151,7 +155,7 @@ const RegistrationFormPage = () => {
 						<Col md={6}>
 							<Form.Group className='registration-form-group'>
 								<Form.Label className='registration-form-label'>
-									Planilla:*
+									{t('registrationPage.payrolls')}:*
 								</Form.Label>
 								<Form.Select
 									value={payroll}
@@ -159,7 +163,9 @@ const RegistrationFormPage = () => {
 									required
 									className='registration-form-select'
 								>
-									<option value=''>Seleccione una planilla</option>
+									<option value='' className='label-registration-select'>
+										{t('registrationPage.select')}
+									</option>
 									{payrolls.map((payroll, index) => (
 										<option key={index} value={payroll}>
 											{payroll}
@@ -173,7 +179,7 @@ const RegistrationFormPage = () => {
 						<Col md={6}>
 							<Form.Group className='registration-form-group'>
 								<Form.Label className='registration-form-label'>
-									Categoría:*
+									{t('registrationPage.category')}:*
 								</Form.Label>
 								<Form.Select
 									value={category}
@@ -181,7 +187,9 @@ const RegistrationFormPage = () => {
 									required
 									className='registration-form-select'
 								>
-									<option value=''>Seleccione una categoría</option>
+									<option value='' className='label-registration-select'>
+										{t('registrationPage.selectCategory')}
+									</option>
 									{categories.map((category, index) => (
 										<option key={index} value={category}>
 											{category}
@@ -195,7 +203,7 @@ const RegistrationFormPage = () => {
 						<Col md={6}>
 							<Form.Group className='registration-form-group'>
 								<Form.Label className='registration-form-label'>
-									Subcategoría:*
+									{t('registrationPage.subCategory')}:*
 								</Form.Label>
 								<Form.Select
 									value={subcategory}
@@ -203,7 +211,9 @@ const RegistrationFormPage = () => {
 									required
 									className='registration-form-select'
 								>
-									<option value=''>Seleccione una subcategoría</option>
+									<option value='' className='label-registration-select'>
+										{t('registrationPage.selectSubCategory')}
+									</option>
 									{subcategories.map((subcategory, index) => (
 										<option key={index} value={subcategory}>
 											{subcategory}
