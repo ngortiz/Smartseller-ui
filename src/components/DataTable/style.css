@@ -1,37 +1,43 @@
 .Table {
-  width: 101%;
-  margin-top: 1%;
-  color: #354052;
-  border-spacing: 0 10px;
+	width: 101%;
+	margin-top: 1%;
+	color: #354052;
+	border-spacing: 0 10px;
 }
 
 #searchForm {
-  margin-bottom: 10px;
-  margin-left: 66%;
-  width: 35%;
-  margin-top: 6%;
-  border-radius: 1px;
-  background-color: #f5f5f5;
-  padding: 5px;
+	margin-bottom: 10px;
+	margin-left: 66%;
+	width: 35%;
+	margin-top: 6%;
+	border-radius: 1px;
+	background-color: #f5f5f5;
+	padding: 5px;
 }
 
 .Table th {
-  background-color: #354052;
-  color: #fff;
-  border: 1px solid #566168;
-  padding: 12px;
-  text-align: center;
-  margin-top: 10px;
+	background-color: #354052;
+	color: #fff;
+	border: 1px solid #566168;
+	padding: 12px;
+	text-align: center;
+	margin-top: 10px;
 }
 
 .Table td {
-  border: 1px solid #bdc3c7;
-  padding: 12px;
-  font-family: 'Source Sans Pro', sans-serif;
-  margin-top: 10px;
-  text-align: center;
+	border: 1px solid #bdc3c7;
+	padding: 12px;
+	font-family: 'Source Sans Pro', sans-serif;
+	margin-top: 10px;
+	text-align: center;
 }
 
 .Table tbody tr:nth-child(odd) {
-  background-color: #ecf0f1;
+	background-color: #ecf0f1;
+}
+.spinner-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }

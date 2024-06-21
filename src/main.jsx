@@ -30,6 +30,7 @@ import OfferDiscountPage from './pages/OfferDiscountPage';
 import DiscountByCategoryPage from './pages/DiscountByCategoryPage';
 import DiscountByCouponsPage from './pages/DiscountByCouponsPage';
 import CustomersPage from './pages/CustomersPage';
+import RegistrationFormPage from './pages/RegistrationFormPage';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './utils/i18n';
 
@@ -113,6 +114,10 @@ createRoot(document.getElementById('root')).render(
 										element={<DiscountByCouponsPage />}
 									/>
 									<Route path='customers-page' element={<CustomersPage />} />
+									<Route
+										path='registration-form-page'
+										element={<RegistrationFormPage />}
+									/>
 								</Routes>
 							</Col>
 						</Row>

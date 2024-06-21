@@ -57,7 +57,7 @@ const LeftNavigationBar = () => {
 					}
 					id='basic-nav-dropdown'
 				>
-					<NavDropdown.Item href='#action/3.2'>
+					<NavDropdown.Item href='/registration-form-page'>
 						{t('leftNav.registrationFrom')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />

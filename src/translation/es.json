@@ -330,5 +330,22 @@
 		"ruc/CI": "RUC/CI",
 		"registrationDate": "Fecha de Registro",
 		"qty.LoginToTheSystem": "Cant. Ingreso al Sistema"
+	},
+	"registrationPage": {
+		"registerProducAndVariants": "Registrar producto y sus variantes",
+		"generalProductData": "Datos Generales del Producto",
+		"code": "Código",
+		"generar": "Generar",
+		"name": "Nombre",
+		"description": "Descripción",
+		"supplier": "Proveedor",
+		"select": "Seleccionar",
+		"tax": "Impuesto",
+		"template": "Plantilla",
+		"category": "Categoria",
+		"selectTemplate": "Seleccione Plantilla",
+		"selectCategory": "Seleccione Categoría",
+		"subCategory": "SubCategoría",
+		"selectSubCategory": "Seleccione SubCategoría"
 	}
 }
