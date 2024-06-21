@@ -1,4 +1,3 @@
-// RegistrationFormPage.js
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -28,8 +27,7 @@ const GET_TEMPLATES_QUERY = gql`
 		}
 	}
 `;
-
-const RegistrationFormPage = () => {
+const ProductsPage = () => {
 	const { t } = useTranslation();
 	const [productCode, setProductCode] = useState('');
 	const [productName, setProductName] = useState('');
@@ -131,4 +129,4 @@ const RegistrationFormPage = () => {
 	);
 };
 
-export default RegistrationFormPage;
+export default ProductsPage;
