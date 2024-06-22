@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import './style.css';
@@ -224,6 +225,33 @@ const RegistrationForm = ({
 			</Row>
 		</Form>
 	);
+};
+
+RegistrationForm.propTypes = {
+	productCode: PropTypes.string.isRequired,
+	productName: PropTypes.string.isRequired,
+	setProductName: PropTypes.func.isRequired,
+	productDescription: PropTypes.string.isRequired,
+	setProductDescription: PropTypes.func.isRequired,
+	supplier: PropTypes.string.isRequired,
+	setSupplier: PropTypes.func.isRequired,
+	tax: PropTypes.string.isRequired,
+	setTax: PropTypes.func.isRequired,
+	template: PropTypes.string.isRequired,
+	setTemplate: PropTypes.func.isRequired,
+	category: PropTypes.string.isRequired,
+	subcategory: PropTypes.string.isRequired,
+	setSubcategory: PropTypes.func.isRequired,
+	categories: PropTypes.array.isRequired,
+	subcategories: PropTypes.array.isRequired,
+	suppliers: PropTypes.array.isRequired,
+	taxes: PropTypes.array.isRequired,
+	loadingTemplates: PropTypes.bool.isRequired,
+	loadingCategories: PropTypes.bool.isRequired,
+	templatesData: PropTypes.object.isRequired,
+	handleGenerateCode: PropTypes.func.isRequired,
+	handleSubmit: PropTypes.func.isRequired,
+	handleCategoryChange: PropTypes.func.isRequired,
 };
 
 export default RegistrationForm;

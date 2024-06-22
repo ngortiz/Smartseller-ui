@@ -27,6 +27,7 @@ const GET_TEMPLATES_QUERY = gql`
 		}
 	}
 `;
+
 const ProductsPage = () => {
 	const { t } = useTranslation();
 	const [productCode, setProductCode] = useState('');
@@ -79,6 +80,35 @@ const ProductsPage = () => {
 		setSubcategory('');
 	};
 
+	const formProps = {
+		productCode,
+		setProductCode,
+		productName,
+		setProductName,
+		productDescription,
+		setProductDescription,
+		supplier,
+		setSupplier,
+		tax,
+		setTax,
+		template,
+		setTemplate,
+		category,
+		setCategory,
+		subcategory,
+		setSubcategory,
+		categories,
+		subcategories,
+		suppliers,
+		taxes,
+		loadingTemplates,
+		loadingCategories,
+		templatesData,
+		handleGenerateCode,
+		handleSubmit,
+		handleCategoryChange,
+	};
+
 	return (
 		<>
 			<Row>
@@ -96,34 +126,7 @@ const ProductsPage = () => {
 						</h2>
 					</Col>
 				</Row>
-				<RegistrationForm
-					productCode={productCode}
-					setProductCode={setProductCode}
-					productName={productName}
-					setProductName={setProductName}
-					productDescription={productDescription}
-					setProductDescription={setProductDescription}
-					supplier={supplier}
-					setSupplier={setSupplier}
-					tax={tax}
-					setTax={setTax}
-					template={template}
-					setTemplate={setTemplate}
-					category={category}
-					setCategory={setCategory}
-					subcategory={subcategory}
-					setSubcategory={setSubcategory}
-					categories={categories}
-					subcategories={subcategories}
-					suppliers={suppliers}
-					taxes={taxes}
-					loadingTemplates={loadingTemplates}
-					loadingCategories={loadingCategories}
-					templatesData={templatesData}
-					handleGenerateCode={handleGenerateCode}
-					handleSubmit={handleSubmit}
-					handleCategoryChange={handleCategoryChange}
-				/>
+				<RegistrationForm {...formProps} />
 			</Container>
 		</>
 	);
