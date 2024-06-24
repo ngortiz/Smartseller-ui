@@ -107,7 +107,7 @@ const RegistrationForm = ({
 								{t('registrationPage.select')}
 							</option>
 							{providers.map((provider, index) => (
-								<option key={index} value={provider}>
+								<option key={index} value={provider.id}>
 									{provider}
 								</option>
 							))}
