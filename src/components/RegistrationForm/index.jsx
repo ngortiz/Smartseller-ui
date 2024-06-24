@@ -10,8 +10,8 @@ const RegistrationForm = ({
 	setProductName,
 	productDescription,
 	setProductDescription,
-	supplier,
-	setSupplier,
+	provider,
+	setProvider,
 	tax,
 	setTax,
 	template,
@@ -21,7 +21,7 @@ const RegistrationForm = ({
 	setSubcategory,
 	categories,
 	subcategories,
-	suppliers,
+	providers,
 	taxes,
 	loadingTemplates,
 	loadingCategories,
@@ -95,20 +95,20 @@ const RegistrationForm = ({
 				<Col md={6}>
 					<Form.Group className='registration-form-group'>
 						<Form.Label className='registration-form-label'>
-							{t('registrationPage.supplier')}:*
+							{t('registrationPage.provider')}:*
 						</Form.Label>
 						<Form.Select
-							value={supplier}
-							onChange={e => setSupplier(e.target.value)}
+							value={provider}
+							onChange={e => setProvider(e.target.value)}
 							required
 							className='registration-form-select'
 						>
 							<option value='' className='label-registration-select'>
 								{t('registrationPage.select')}
 							</option>
-							{suppliers.map((supplier, index) => (
-								<option key={index} value={supplier}>
-									{supplier}
+							{providers.map((provider, index) => (
+								<option key={index} value={provider}>
+									{provider}
 								</option>
 							))}
 						</Form.Select>
@@ -233,8 +233,8 @@ RegistrationForm.propTypes = {
 	setProductName: PropTypes.func.isRequired,
 	productDescription: PropTypes.string.isRequired,
 	setProductDescription: PropTypes.func.isRequired,
-	supplier: PropTypes.string.isRequired,
-	setSupplier: PropTypes.func.isRequired,
+	provider: PropTypes.string.isRequired,
+	setProvider: PropTypes.func.isRequired,
 	tax: PropTypes.string.isRequired,
 	setTax: PropTypes.func.isRequired,
 	template: PropTypes.string.isRequired,
@@ -244,7 +244,7 @@ RegistrationForm.propTypes = {
 	setSubcategory: PropTypes.func.isRequired,
 	categories: PropTypes.array.isRequired,
 	subcategories: PropTypes.array.isRequired,
-	suppliers: PropTypes.array.isRequired,
+	providers: PropTypes.array.isRequired,
 	taxes: PropTypes.array.isRequired,
 	loadingTemplates: PropTypes.bool.isRequired,
 	loadingCategories: PropTypes.bool.isRequired,
