@@ -28,25 +28,36 @@ const GET_TEMPLATES_QUERY = gql`
 	}
 `;
 
+const GET_PROVIDERS_QUERY = gql`
+	query GetProviders {
+		getProviders {
+			id
+			name
+		}
+	}
+`;
+
 const ProductsPage = () => {
 	const { t } = useTranslation();
 	const [productCode, setProductCode] = useState('');
 	const [productName, setProductName] = useState('');
 	const [productDescription, setProductDescription] = useState('');
-	const [supplier, setSupplier] = useState('');
+	const [provider, setProvider] = useState('');
 	const [tax, setTax] = useState('');
 	const [template, setTemplate] = useState('');
 	const [category, setCategory] = useState('');
 	const [subcategory, setSubcategory] = useState('');
 	const [categories, setCategories] = useState([]);
 	const [subcategories, setSubcategories] = useState([]);
-	const suppliers = ['Supplier 1', 'Supplier 2', 'Supplier 3'];
+	const [providers, setProviders] = useState([]);
 	const taxes = ['IVA 10%', 'IVA 5%', 'EXENTA'];
 
 	const { loading: loadingCategories, data: categoriesData } =
 		useQuery(GET_CATEGORIES_QUERY);
 	const { loading: loadingTemplates, data: templatesData } =
 		useQuery(GET_TEMPLATES_QUERY);
+	const { loading: loadingProviders, data: providersData } =
+		useQuery(GET_PROVIDERS_QUERY);
 
 	useEffect(() => {
 		if (categoriesData) {
@@ -59,6 +70,12 @@ const ProductsPage = () => {
 			setTemplate(templatesData.getTemplates);
 		}
 	}, [templatesData]);
+
+	useEffect(() => {
+		if (providersData) {
+			setProviders(providersData.getProviders);
+		}
+	}, [providersData]);
 
 	const handleGenerateCode = () => {
 		setProductCode(`P${Math.floor(Math.random() * 10000)}`);
@@ -87,8 +104,8 @@ const ProductsPage = () => {
 		setProductName,
 		productDescription,
 		setProductDescription,
-		supplier,
-		setSupplier,
+		provider,
+		setProvider,
 		tax,
 		setTax,
 		template,
@@ -99,7 +116,7 @@ const ProductsPage = () => {
 		setSubcategory,
 		categories,
 		subcategories,
-		suppliers,
+		providers,
 		taxes,
 		loadingTemplates,
 		loadingCategories,

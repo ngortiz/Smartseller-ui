@@ -338,7 +338,7 @@
 		"generar": "Generar",
 		"name": "Nombre",
 		"description": "Descripción",
-		"supplier": "Proveedor",
+		"provider": "Proveedor",
 		"select": "Seleccionar",
 		"tax": "Impuesto",
 		"template": "Plantilla",
