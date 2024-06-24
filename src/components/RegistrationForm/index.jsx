@@ -6,6 +6,7 @@ import './style.css';
 
 const RegistrationForm = ({
 	productCode,
+	setProductCode,
 	productName,
 	setProductName,
 	productDescription,
@@ -17,6 +18,7 @@ const RegistrationForm = ({
 	template,
 	setTemplate,
 	category,
+	setCategory,
 	subcategory,
 	setSubcategory,
 	categories,
@@ -106,9 +108,9 @@ const RegistrationForm = ({
 							<option value='' className='label-registration-select'>
 								{t('registrationPage.select')}
 							</option>
-							{providers.map((provider, index) => (
-								<option key={index} value={provider.id}>
-									{provider}
+							{providers.map(provider => (
+								<option key={provider.id} value={provider.id}>
+									{provider.name}
 								</option>
 							))}
 						</Form.Select>
@@ -233,13 +235,14 @@ RegistrationForm.propTypes = {
 	setProductName: PropTypes.func.isRequired,
 	productDescription: PropTypes.string.isRequired,
 	setProductDescription: PropTypes.func.isRequired,
-	provider: PropTypes.string.isRequired,
+	provider: PropTypes.object.isRequired,
 	setProvider: PropTypes.func.isRequired,
 	tax: PropTypes.string.isRequired,
 	setTax: PropTypes.func.isRequired,
 	template: PropTypes.string.isRequired,
 	setTemplate: PropTypes.func.isRequired,
 	category: PropTypes.string.isRequired,
+	setCategory: PropTypes.func.isRequired,
 	subcategory: PropTypes.string.isRequired,
 	setSubcategory: PropTypes.func.isRequired,
 	categories: PropTypes.array.isRequired,

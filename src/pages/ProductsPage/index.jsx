@@ -27,6 +27,7 @@ const GET_TEMPLATES_QUERY = gql`
 		}
 	}
 `;
+
 const GET_PROVIDERS_QUERY = gql`
 	query GetProviders {
 		getProviders {
@@ -72,7 +73,7 @@ const ProductsPage = () => {
 
 	useEffect(() => {
 		if (providersData) {
-			setProviders(providersData.getProviders.map(provider => provider.name));
+			setProviders(providersData.getProviders);
 		}
 	}, [providersData]);
 
