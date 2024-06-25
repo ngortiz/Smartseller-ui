@@ -347,5 +347,20 @@
 		"selectCategory": "Seleccione Categoría",
 		"subCategory": "SubCategoría",
 		"selectSubCategory": "Seleccione SubCategoría"
+	},
+
+	"productsTable": {
+		"title": "Lista de Productos Registrados",
+		"searchPlaceholder": "Buscar...",
+		"code": "Código",
+		"name": "Nombre",
+		"category": "Categoría",
+		"subcategory": "Sub Categoría",
+		"provider": "Proveedor",
+		"variants": "Variantes",
+		"edit": "Editar",
+		"delete": "Borrar",
+		"show": "Mostrar",
+		"search": "Buscar"
 	}
 }
