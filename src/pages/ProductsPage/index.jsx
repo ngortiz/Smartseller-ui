@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useQuery, gql } from '@apollo/client';
 import RegistrationForm from '../../components/RegistrationForm';
+import ProductsTable from '../../components/ProductsTable';
 import './style.css';
 
 const GET_CATEGORIES_QUERY = gql`
@@ -42,7 +43,7 @@ const ProductsPage = () => {
 	const [productCode, setProductCode] = useState('');
 	const [productName, setProductName] = useState('');
 	const [productDescription, setProductDescription] = useState('');
-	const [provider, setProvider] = useState('');
+	const [provider, setProvider] = useState({ id: '', name: '' });
 	const [tax, setTax] = useState('');
 	const [template, setTemplate] = useState('');
 	const [category, setCategory] = useState('');
@@ -145,6 +146,12 @@ const ProductsPage = () => {
 				</Row>
 				<RegistrationForm {...formProps} />
 			</Container>
+			<Row>
+				<Col>
+					<h2 className='productTable-title'>{t('productsTable.title')}</h2>
+				</Col>
+			</Row>
+			<ProductsTable />
 		</>
 	);
 };
