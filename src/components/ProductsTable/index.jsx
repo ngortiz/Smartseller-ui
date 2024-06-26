@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Form, Row, Col, Button, Container } from 'react-bootstrap';
+import { Table, Form, Row, Col, Button, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useQuery, gql } from '@apollo/client';
 import './style.css';
@@ -35,7 +35,15 @@ const ProductsTable = () => {
 
 	const { loading, data } = useQuery(GET_PRODUCTS_QUERY);
 
-	if (loading) return <p>Loading...</p>;
+	if (loading) {
+		return (
+			<div className='spinner-container'>
+				<Spinner animation='border' role='status'>
+					<span className='visually-hidden'>Loading...</span>
+				</Spinner>
+			</div>
+		);
+	}
 
 	const products = data.getProducts.rows;
 
@@ -58,7 +66,7 @@ const ProductsTable = () => {
 					</Form.Group>
 				</Col>
 				<Col md={6}>
-					<Form.Group controlId='search' className='searchContainer-input '>
+					<Form.Group controlId='search' className='searchContainer-input'>
 						<Form.Label>{t('productsTable.search')}</Form.Label>
 						<Form.Control
 							type='text'
@@ -101,7 +109,7 @@ const ProductsTable = () => {
 								</Button>
 							</td>
 							<td>
-								<Button variant='danger' className='deleteButton '>
+								<Button variant='danger' className='deleteButton'>
 									<i className='bi bi-trash'></i>
 								</Button>
 							</td>

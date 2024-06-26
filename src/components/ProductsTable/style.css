@@ -57,9 +57,9 @@
 }
 
 .searchContainer-input {
-	width: 55%;
-	margin-left: 2%;
-	border-radius: 4px;
+	width: 54%;
+	margin-left: 46%;
+	border-radius: 0%;
 }
 
 .buttonIcon {
@@ -114,4 +114,10 @@
 .btnVariants:hover {
 	background-color: #003366;
 	border-color: #003366;
+}
+.spinner-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 }
