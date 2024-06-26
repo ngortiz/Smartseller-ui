@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
-import { Table, Form, Row, Col, Button, Spinner } from 'react-bootstrap';
+import {
+	Table,
+	Form,
+	Row,
+	Col,
+	Button,
+	Spinner,
+	Pagination,
+} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useQuery, gql } from '@apollo/client';
 import './style.css';
 
 const GET_PRODUCTS_QUERY = gql`
-	query GetProducts {
-		getProducts(limit: 10, offset: 0) {
+	query GetProducts($limit: Int!, $offset: Int!) {
+		getProducts(limit: $limit, offset: $offset) {
 			count
 			rows {
 				category {
@@ -32,8 +40,15 @@ const GET_PRODUCTS_QUERY = gql`
 const ProductsTable = () => {
 	const { t } = useTranslation();
 	const [searchTerm, setSearchTerm] = useState('');
+	const [currentPage, setCurrentPage] = useState(1);
+	const [itemsPerPage, setItemsPerPage] = useState(10);
 
-	const { loading, data } = useQuery(GET_PRODUCTS_QUERY);
+	const { loading, data } = useQuery(GET_PRODUCTS_QUERY, {
+		variables: {
+			limit: itemsPerPage,
+			offset: (currentPage - 1) * itemsPerPage,
+		},
+	});
 
 	if (loading) {
 		return (
@@ -46,10 +61,17 @@ const ProductsTable = () => {
 	}
 
 	const products = data.getProducts.rows;
+	const totalProducts = data.getProducts.count;
 
 	const filteredProducts = products.filter(product =>
 		product.name.toLowerCase().includes(searchTerm.toLowerCase()),
 	);
+
+	const totalPages = Math.ceil(totalProducts / itemsPerPage);
+
+	const handlePageChange = pageNumber => {
+		setCurrentPage(pageNumber);
+	};
 
 	return (
 		<div className='products-table-container'>
@@ -57,7 +79,11 @@ const ProductsTable = () => {
 				<Col md={6}>
 					<Form.Group controlId='show' className='searchContainer-select'>
 						<Form.Label>{t('productsTable.show')}</Form.Label>
-						<Form.Control as='select'>
+						<Form.Control
+							as='select'
+							value={itemsPerPage}
+							onChange={e => setItemsPerPage(parseInt(e.target.value, 10))}
+						>
 							<option>10</option>
 							<option>25</option>
 							<option>50</option>
@@ -117,6 +143,33 @@ const ProductsTable = () => {
 					))}
 				</tbody>
 			</Table>
+			<Pagination className='pagination-custom'>
+				<Pagination.First
+					onClick={() => handlePageChange(1)}
+					disabled={currentPage === 1}
+				/>
+				<Pagination.Prev
+					onClick={() => handlePageChange(currentPage - 1)}
+					disabled={currentPage === 1}
+				/>
+				{[...Array(totalPages)].map((_, index) => (
+					<Pagination.Item
+						key={index}
+						active={index + 1 === currentPage}
+						onClick={() => handlePageChange(index + 1)}
+					>
+						{index + 1}
+					</Pagination.Item>
+				))}
+				<Pagination.Next
+					onClick={() => handlePageChange(currentPage + 1)}
+					disabled={currentPage === totalPages}
+				/>
+				<Pagination.Last
+					onClick={() => handlePageChange(totalPages)}
+					disabled={currentPage === totalPages}
+				/>
+			</Pagination>
 		</div>
 	);
 };

@@ -121,3 +121,19 @@
 	align-items: center;
 	height: 100vh;
 }
+.pagination-custom .page-link {
+	color: #0e2a5d;
+}
+
+.pagination-custom .page-item.active .page-link {
+	background-color: #0e2a5d;
+	border-color: #0e2a5d;
+}
+
+.pagination-custom .page-link:hover {
+	color: #0e2a5d;
+}
+
+.pagination-custom .page-link:focus {
+	box-shadow: 0 0 0 0.25rem rgba(14, 42, 93, 0.25);
+}
