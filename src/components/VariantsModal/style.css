@@ -1,0 +1,57 @@
+.modal-content {
+	position: fixed;
+	top: 5%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	max-width: 83%;
+	border-radius: 10px;
+	padding: 10px;
+	font-size: medium;
+	box-shadow: 0 0 10px rgba(43, 39, 120, 0.3);
+}
+.modal-variants {
+	padding: 20px;
+}
+
+.searchContainer {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.searchContainer-select {
+	width: 20%;
+}
+
+.searchContainer-input {
+	width: 70%;
+}
+
+.variants-modal-container .modal-content {
+	max-width: 100%;
+}
+
+.variantsModal .table {
+	margin-top: 20px;
+}
+
+.variantsModal .table th {
+	text-align: center;
+	background-color: #0e2a5d;
+	color: white;
+}
+
+.variantsModal .table td,
+.variantsModal .table th {
+	padding: 10px;
+	text-align: center;
+}
+
+.variantsModal .table tbody tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.variantsModal .table tbody tr:hover {
+	background-color: #e0e0e0;
+}

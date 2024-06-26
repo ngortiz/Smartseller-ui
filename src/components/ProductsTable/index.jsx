@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Table, Form, Row, Col, Button, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useQuery, gql } from '@apollo/client';
+import VariantsModal from '../../components/VariantsModal';
 import './style.css';
 
 const GET_PRODUCTS_QUERY = gql`
@@ -32,8 +33,20 @@ const GET_PRODUCTS_QUERY = gql`
 const ProductsTable = () => {
 	const { t } = useTranslation();
 	const [searchTerm, setSearchTerm] = useState('');
+	const [showModal, setShowModal] = useState(false);
+	const [selectedProduct, setSelectedProduct] = useState(null);
 
 	const { loading, data } = useQuery(GET_PRODUCTS_QUERY);
+
+	const handleShowModal = product => {
+		setSelectedProduct(product);
+		setShowModal(true);
+	};
+
+	const handleCloseModal = () => {
+		setShowModal(false);
+		setSelectedProduct(null);
+	};
 
 	if (loading) {
 		return (
@@ -99,7 +112,11 @@ const ProductsTable = () => {
 							<td>{product.subCategory.name}</td>
 							<td>{product.provider.name}</td>
 							<td>
-								<Button variant='warning' className='btnVariabts'>
+								<Button
+									variant='warning'
+									className='btnVariabts'
+									onClick={() => handleShowModal(product)}
+								>
 									{t('productsTable.variants')}
 								</Button>
 							</td>
@@ -117,6 +134,14 @@ const ProductsTable = () => {
 					))}
 				</tbody>
 			</Table>
+
+			{selectedProduct && (
+				<VariantsModal
+					show={showModal}
+					handleClose={handleCloseModal}
+					product={selectedProduct}
+				/>
+			)}
 		</div>
 	);
 };
