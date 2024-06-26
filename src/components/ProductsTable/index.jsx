@@ -1,30 +1,51 @@
 import React, { useState } from 'react';
-import { Table, Form, Row, Col, Button } from 'react-bootstrap';
+import { Table, Form, Row, Col, Button, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useQuery, gql } from '@apollo/client';
 import './style.css';
+
+const GET_PRODUCTS_QUERY = gql`
+	query GetProducts {
+		getProducts(limit: 10, offset: 0) {
+			count
+			rows {
+				category {
+					id
+					name
+				}
+				code
+				id
+				name
+				provider {
+					id
+					name
+				}
+				subCategory {
+					name
+					id
+				}
+			}
+		}
+	}
+`;
 
 const ProductsTable = () => {
 	const { t } = useTranslation();
 	const [searchTerm, setSearchTerm] = useState('');
 
-	const products = [
-		{
-			code: '001',
-			name: 'Producto 1',
-			category: 'Categoría 1',
-			subCategory: 'Sub Categoría 1',
-			provider: 'Proveedor 1',
-			variants: 'Variante 1, Variante 2',
-		},
-		{
-			code: '002',
-			name: 'Producto 2',
-			category: 'Categoría 2',
-			subCategory: 'Sub Categoría 2',
-			provider: 'Proveedor 2',
-			variants: 'Variante 1',
-		},
-	];
+	const { loading, data } = useQuery(GET_PRODUCTS_QUERY);
+
+	if (loading) {
+		return (
+			<div className='spinner-container'>
+				<Spinner animation='border' role='status'>
+					<span className='visually-hidden'>Loading...</span>
+				</Spinner>
+			</div>
+		);
+	}
+
+	const products = data.getProducts.rows;
 
 	const filteredProducts = products.filter(product =>
 		product.name.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -45,7 +66,7 @@ const ProductsTable = () => {
 					</Form.Group>
 				</Col>
 				<Col md={6}>
-					<Form.Group controlId='search' className='searchContainer-input '>
+					<Form.Group controlId='search' className='searchContainer-input'>
 						<Form.Label>{t('productsTable.search')}</Form.Label>
 						<Form.Control
 							type='text'
@@ -74,9 +95,9 @@ const ProductsTable = () => {
 						<tr key={index}>
 							<td>{product.code}</td>
 							<td>{product.name}</td>
-							<td>{product.category}</td>
-							<td>{product.subCategory}</td>
-							<td>{product.provider}</td>
+							<td>{product.category.name}</td>
+							<td>{product.subCategory.name}</td>
+							<td>{product.provider.name}</td>
 							<td>
 								<Button variant='warning' className='btnVariabts'>
 									{t('productsTable.variants')}
@@ -88,7 +109,7 @@ const ProductsTable = () => {
 								</Button>
 							</td>
 							<td>
-								<Button variant='danger' className='deleteButton '>
+								<Button variant='danger' className='deleteButton'>
 									<i className='bi bi-trash'></i>
 								</Button>
 							</td>

@@ -6,6 +6,7 @@
 	width: 100%;
 	padding: 20px;
 }
+
 .productTable-title {
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 20px;
@@ -50,10 +51,11 @@
 }
 
 .searchContainer-select {
-	width: 8%;
-	margin-right: 46%;
-	border-radius: 0%;
+	width: 10%;
+	margin-right: 2%;
+	border-radius: 4px;
 }
+
 .searchContainer-input {
 	width: 54%;
 	margin-left: 46%;
@@ -64,10 +66,9 @@
 	margin-right: 5px;
 }
 
-.editButton {
-	background-color: #004494;
-	border-color: #004494;
-	font-size: 16px;
+.editButton,
+.deleteButton {
+	font-size: 14px;
 	font-weight: bold;
 	padding: 5px 10px;
 	border-radius: 5px;
@@ -76,30 +77,47 @@
 		background-color 0.3s,
 		border-color 0.3s,
 		color 0.3s;
-	margin-top: inherit;
+}
+
+.editButton {
+	background-color: #004494;
+	border-color: #004494;
+	color: white;
+}
+
+.editButton:hover {
+	background-color: #003366;
+	border-color: #003366;
 }
 
 .deleteButton {
 	background-color: #dc3545;
 	border-color: #dc3545;
 	color: white;
-	font-size: 16px;
-	font-weight: bold;
-	padding: 5px 10px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition:
-		background-color 0.3s,
-		border-color 0.3s,
-		color 0.3s;
-	margin-top: inherit;
 }
+
+.deleteButton:hover {
+	background-color: #c82333;
+	border-color: #bd2130;
+}
+
 .btnVariabts {
 	background-color: #004494;
 	border-color: #004494;
 	font-size: 14px;
-	padding: 10px 19px;
+	padding: 5px 19px;
 	border-radius: 5px;
 	margin-right: center;
 	margin-left: 3%;
+}
+
+.btnVariants:hover {
+	background-color: #003366;
+	border-color: #003366;
+}
+.spinner-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 }
