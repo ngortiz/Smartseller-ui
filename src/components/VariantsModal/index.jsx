@@ -30,12 +30,9 @@ const ModalVariants = ({ show, handleClose, product }) => {
 			published: 'Si',
 			inOffer: 'No',
 		},
-		// Agregar más variantes según sea necesario
 	];
 
-	const handleSearch = e => {
-		// Implementar la lógica de búsqueda si es necesario
-	};
+	const handleSearch = e => {};
 
 	return (
 		<Container>
