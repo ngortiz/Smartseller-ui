@@ -362,5 +362,22 @@
 		"delete": "Borrar",
 		"show": "Mostrar",
 		"search": "Buscar"
+	},
+
+	"variantsModal": {
+		"productVariants": "Variantes del Producto",
+		"show": "Mostrar",
+		"search": "Buscar",
+		"enterSearchTerm": "Ingrese término de búsqueda",
+		"image": "Imagen",
+		"description": "Descripción",
+		"barCode": "Codigo de Barras",
+		"internalCode": "Código Interno",
+		"specification": "Especificación",
+		"costPrice": "Precio Costo",
+		"sellPrice": "Precio Venta",
+		"amount": "Cantidad",
+		"published": "Publicado",
+		"onOffer": "En oferta"
 	}
 }

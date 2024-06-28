@@ -1,44 +1,76 @@
 import React from 'react';
-import { Modal, Button, Table, Form, Container } from 'react-bootstrap';
+import { Modal, Table, Form, Container, Spinner, Alert } from 'react-bootstrap';
+import { useQuery, gql } from '@apollo/client';
+import { useTranslation } from 'react-i18next';
 import './style.css';
 
-const ModalVariants = ({ show, handleClose, product }) => {
-	const variants = [
-		{
-			id: 1,
-			image: 'imagen1.jpg',
-			description: 'Descripción de la variante 1',
-			barcode: '123456789',
-			internalCode: 'INT-001',
-			specification: 'Especificación de la variante 1',
-			priceCost: '$70.00',
-			salePrice: '$50.00',
-			amount: '10',
-			published: 'Si',
-			inOffer: 'No',
-		},
-		{
-			id: 2,
-			image: 'imagen2.jpg',
-			description: 'Descripción de la variante 2',
-			barcode: '987654321',
-			internalCode: 'INT-002',
-			specification: '',
-			priceCost: '$70.00',
-			salePrice: '$50.00',
-			amount: '10',
-			published: 'Si',
-			inOffer: 'No',
-		},
-	];
+const GET_PRODUCT_VARIANTS_QUERY = gql`
+	query GetProductVariants($limit: Int!, $offset: Int!, $productId: Int!) {
+		getProductVariants(limit: $limit, offset: $offset, productId: $productId) {
+			count
+			rows {
+				amount
+				code
+				costPrice
+				id
+				internalCode
+				name
+				offered
+				picture
+				published
+				productAttributes
+				sellPrice
+			}
+		}
+	}
+`;
 
-	const handleSearch = e => {};
+const VariantsModal = ({ show, handleClose, product }) => {
+	const { t } = useTranslation();
+	const { id: productId } = product;
+	const { loading, error, data } = useQuery(GET_PRODUCT_VARIANTS_QUERY, {
+		variables: { limit: 10, offset: 0, productId },
+	});
+
+	if (loading) {
+		return (
+			<Container>
+				<Spinner animation='border' />
+			</Container>
+		);
+	}
+
+	if (error) {
+		return (
+			<Container>
+				<Alert variant='danger'>Error: {error.message}</Alert>
+			</Container>
+		);
+	}
+
+	const variants = data?.getProductVariants?.rows || [];
+
+	const getVariantAttributes = attributes => {
+		return Object.entries(JSON.parse(attributes)).map(
+			([attributeName, attributeValue], index) => {
+				if (attributeValue.length > 0) {
+					return (
+						<div key={index}>
+							<strong>{attributeName}:</strong>
+							{attributeValue}
+							<br></br>
+						</div>
+					);
+				}
+			},
+		);
+	};
 
 	return (
 		<Container>
 			<Modal show={show} onHide={handleClose} size='xl'>
 				<Modal.Header closeButton>
-					<Modal.Title>Variantes del Producto</Modal.Title>
+					<Modal.Title>{t('variantsModal.productVariants')}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<div className='modal-variants'>
@@ -47,7 +79,9 @@ const ModalVariants = ({ show, handleClose, product }) => {
 								controlId='showEntries'
 								className='searchContainer-select'
 							>
-								<Form.Label>Mostrar entradas</Form.Label>
+								<Form.Label className='modal-variantsShow-label'>
+									{t('variantsModal.show')}
+								</Form.Label>
 								<Form.Control as='select'>
 									<option>10</option>
 									<option>25</option>
@@ -55,43 +89,50 @@ const ModalVariants = ({ show, handleClose, product }) => {
 									<option>100</option>
 								</Form.Control>
 							</Form.Group>
-							<Form.Group controlId='search' className='searchContainer-input'>
-								<Form.Label>Buscar</Form.Label>
+							<Form.Group controlId='search' className='searchModal-input'>
+								<Form.Label className='modal-variantsSearch-label'>
+									{t('variantsModal.search')}
+								</Form.Label>
 								<Form.Control
 									type='text'
-									placeholder='Ingrese término de búsqueda'
-									onChange={handleSearch}
+									placeholder={t('variantsModal.enterSearchTerm')}
+									className='searchContainer-input '
 								/>
 							</Form.Group>
 						</div>
-						<Table striped bordered hover className='variantsModal'>
+						<Table striped bordered hover className='variantsModal-table'>
 							<thead>
 								<tr>
-									<th>Imagen</th>
-									<th>Descripción</th>
-									<th>Código de Barras</th>
-									<th>Código Interno</th>
-									<th>Especificación</th>
-									<th>Precio Costo</th>
-									<th>Precio Venta</th>
-									<th>Cantidad</th>
-									<th>Publicado</th>
-									<th>En Oferta</th>
+									<th> {t('variantsModal.image')}</th>
+									<th> {t('variantsModal.description')}</th>
+									<th> {t('variantsModal.barCode')}</th>
+									<th> {t('variantsModal.internalCode')}</th>
+									<th> {t('variantsModal.specification')}</th>
+									<th> {t('variantsModal.costPrice')}</th>
+									<th> {t('variantsModal.sellPrice')}</th>
+									<th> {t('variantsModal.amount')}</th>
+									<th> {t('variantsModal.published')}</th>
+									<th> {t('variantsModal.onOffer')}</th>
 								</tr>
 							</thead>
 							<tbody>
 								{variants.map(variant => (
 									<tr key={variant.id}>
-										<td>{variant.image}</td>
-										<td>{variant.description}</td>
-										<td>{variant.barcode}</td>
+										<td>
+											<img
+												src={`${import.meta.env.VITE_IMAGE_URL}/images/%2Fstorage%2Fproducts%2Fpicture%2F${variant.id}%2Fthumb_${variant.picture}`}
+												alt={variant.name}
+											/>
+										</td>
+										<td>{variant.name}</td>
+										<td>{variant.code}</td>
 										<td>{variant.internalCode}</td>
-										<td>{variant.specification}</td>
-										<td>{variant.priceCost}</td>
-										<td>{variant.salePrice}</td>
+										<td>{getVariantAttributes(variant.productAttributes)}</td>
+										<td>US$ {variant.costPrice}</td>
+										<td>US$ {variant.sellPrice}</td>
 										<td>{variant.amount}</td>
-										<td>{variant.published}</td>
-										<td>{variant.inOffer}</td>
+										<td>{variant.published ? 'Sí' : 'No'}</td>
+										<td>{variant.offered ? 'Sí' : 'No'}</td>
 									</tr>
 								))}
 							</tbody>
@@ -103,4 +144,4 @@ const ModalVariants = ({ show, handleClose, product }) => {
 	);
 };
 
-export default ModalVariants;
+export default VariantsModal;

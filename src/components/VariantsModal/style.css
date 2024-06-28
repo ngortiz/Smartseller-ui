@@ -10,6 +10,7 @@
 	font-size: medium;
 	box-shadow: 0 0 10px rgba(43, 39, 120, 0.3);
 }
+
 .modal-variants {
 	padding: 20px;
 }
@@ -17,41 +18,64 @@
 .searchContainer {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
+
+	width: 100%;
+}
+.modal-content input[type='text'] {
+	width: 53%;
+	padding: 8px;
+	margin-bottom: 15px;
+	border-radius: 2px;
+}
+.modal-variantsShow-label {
+	font-size: 15px;
+	margin-bottom: 10px;
+	color: #262c40;
+	font-weight: bold;
+	margin-left: 2%;
+}
+
+.modal-variantsSearch-label {
+	font-size: 15px;
+	margin-bottom: 10px;
+	color: #262c40;
+	font-weight: bold;
+	margin-left: 46%;
 }
 
 .searchContainer-select {
-	width: 20%;
+	width: 5%;
+	margin-right: 2%;
+	border-radius: 4px;
 }
 
-.searchContainer-input {
-	width: 70%;
+.searchModal-input {
+	width: 54%;
+	margin-left: 46%;
+	border-radius: 0%;
 }
 
-.variants-modal-container .modal-content {
-	max-width: 100%;
-}
-
-.variantsModal .table {
+.variantsModal-table {
 	margin-top: 20px;
+	text-align: center;
+	background-color: #f8f9fa;
 }
 
-.variantsModal .table th {
-	text-align: center;
+.variantsModal-table th {
 	background-color: #0e2a5d;
 	color: white;
 }
 
-.variantsModal .table td,
-.variantsModal .table th {
+.variantsModal-table td,
+.variantsModal-table th {
 	padding: 10px;
 	text-align: center;
+	background-color: #f8f9fa;
 }
 
-.variantsModal .table tbody tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-.variantsModal .table tbody tr:hover {
-	background-color: #e0e0e0;
+img,
+svg {
+	vertical-align: middle;
+	width: 100%;
 }
