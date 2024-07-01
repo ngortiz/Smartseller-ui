@@ -363,6 +363,24 @@
 		"show": "Mostrar",
 		"search": "Buscar"
 	},
+	"paymentModal": {
+		"paymentDetails": "Detalles del Pago",
+		"client": "Cliente",
+		"orderNumber": "Número de Orden",
+		"voucherNumber": "Nro. Comprobante",
+		"paymentDate": "Fecha de Pago",
+		"paymentAmount": "Monto de Pago",
+		"paymentMethod": "Metodo de Pago",
+		"select": "Seleccione",
+		"cash": "Efectivo",
+		"creditCard": "Tarjeta de Crédito",
+		"bankTransference": "Transferencia Bancaria",
+		"others": "Otros",
+		"account": "Cuenta",
+		"uploadVoucher": "Subir comprobannte",
+		"confirm": "Confirmar",
+		"cancel": "Cancelar"
+	},
 
 	"variantsModal": {
 		"productVariants": "Variantes del Producto",
