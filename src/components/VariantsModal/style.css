@@ -1,0 +1,80 @@
+.modal-content {
+	position: fixed;
+	top: 5%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	max-width: 83%;
+	border-radius: 10px;
+	padding: 10px;
+	font-size: medium;
+	box-shadow: 0 0 10px rgba(43, 39, 120, 0.3);
+}
+
+.modal-variants {
+	padding: 20px;
+}
+
+.searchContainer {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+
+	width: 100%;
+}
+.modal-content input[type='text'] {
+	width: 53%;
+	padding: 8px;
+	margin-bottom: 15px;
+	border-radius: 2px;
+}
+.modal-variantsShow-label {
+	font-size: 15px;
+	margin-bottom: 10px;
+	color: #262c40;
+	font-weight: bold;
+	margin-left: 2%;
+}
+
+.modal-variantsSearch-label {
+	font-size: 15px;
+	margin-bottom: 10px;
+	color: #262c40;
+	font-weight: bold;
+	margin-left: 46%;
+}
+
+.searchContainer-select {
+	width: 5%;
+	margin-right: 2%;
+	border-radius: 4px;
+}
+
+.searchModal-input {
+	width: 54%;
+	margin-left: 46%;
+	border-radius: 0%;
+}
+
+.variantsModal-table {
+	margin-top: 20px;
+	text-align: center;
+	background-color: #f8f9fa;
+}
+
+.variantsModal-table th {
+	background-color: #0e2a5d;
+	color: white;
+}
+
+.variantsModal-table td,
+.variantsModal-table th {
+	padding: 10px;
+	text-align: center;
+}
+
+img,
+svg {
+	vertical-align: middle;
+	width: 100%;
+}
