@@ -64,9 +64,15 @@
 }
 
 .variantsModal-table {
-	margin-top: 20px;
-	text-align: center;
-	background-color: white; /* Aquí se añade el fondo blanco a la tabla */
+	background-color: white;
+}
+
+.variantsModal-table tbody tr {
+	background-color: white;
+}
+
+.variantsModal-table tbody tr:hover {
+	background-color: white;
 }
 
 .variantsModal-table th {
@@ -76,14 +82,14 @@
 
 .variantsModal-table td,
 .variantsModal-table th {
-	padding: 10px;
+	padding: 12px;
 	text-align: center;
 }
 
 img,
 svg {
 	vertical-align: middle;
-	width: 80%;
+	max-width: 42%;
 }
 
 .spinner-container {

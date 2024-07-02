@@ -37,7 +37,7 @@ const ProductsTable = () => {
 	const [selectedProduct, setSelectedProduct] = useState(null);
 	const [limit, setLimit] = useState(10);
 
-	const { loading, data, refetch } = useQuery(GET_PRODUCTS_QUERY, {
+	const { loading, data } = useQuery(GET_PRODUCTS_QUERY, {
 		variables: { limit, offset: 0 },
 	});
 
@@ -53,7 +53,6 @@ const ProductsTable = () => {
 
 	const handleLimitChange = e => {
 		setLimit(Number(e.target.value));
-		refetch({ limit: Number(e.target.value), offset: 0 });
 	};
 
 	if (loading) {

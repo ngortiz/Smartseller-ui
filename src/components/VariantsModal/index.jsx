@@ -39,8 +39,9 @@ const VariantsModal = ({ show, handleClose, product }) => {
 	);
 
 	const handleLimitChange = e => {
-		setLimit(Number(e.target.value));
-		refetch({ limit: Number(e.target.value), offset: 0, productId });
+		const newLimit = Number(e.target.value);
+		setLimit(newLimit);
+		refetch({ limit: newLimit, offset: 0, productId });
 	};
 
 	if (loading) {
@@ -82,7 +83,12 @@ const VariantsModal = ({ show, handleClose, product }) => {
 	};
 
 	return (
-		<Modal show={show} onHide={handleClose} dialogClassName='variants-modal'>
+		<Modal
+			show={show}
+			scrollable={true}
+			onHide={handleClose}
+			dialogClassName='variants-modal'
+		>
 			<Modal.Header closeButton>
 				<Modal.Title>{t('variantsModal.productVariants')}</Modal.Title>
 			</Modal.Header>
@@ -101,10 +107,10 @@ const VariantsModal = ({ show, handleClose, product }) => {
 								value={limit}
 								onChange={handleLimitChange}
 							>
-								<option>10</option>
-								<option>25</option>
-								<option>50</option>
-								<option>100</option>
+								<option value={10}>10</option>
+								<option value={25}>25</option>
+								<option value={50}>50</option>
+								<option value={100}>100</option>
 							</Form.Control>
 						</Form.Group>
 						<Form.Group controlId='search' className='searchModal-input'>
@@ -120,7 +126,7 @@ const VariantsModal = ({ show, handleClose, product }) => {
 							/>
 						</Form.Group>
 					</div>
-					<Table striped bordered hover className='variantsModal-table'>
+					<Table bordered hover className='variantsModal-table'>
 						<thead>
 							<tr>
 								<th>{t('variantsModal.image')}</th>
