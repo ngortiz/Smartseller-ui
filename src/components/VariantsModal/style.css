@@ -63,6 +63,12 @@
 	background-color: #f8f9fa;
 }
 
+.variantsModal-table {
+	margin-top: 20px;
+	text-align: center;
+	background-color: white; /* Aquí se añade el fondo blanco a la tabla */
+}
+
 .variantsModal-table th {
 	background-color: #0e2a5d;
 	color: white;
@@ -79,6 +85,7 @@ svg {
 	vertical-align: middle;
 	width: 80%;
 }
+
 .spinner-container {
 	display: flex;
 	justify-content: center;
