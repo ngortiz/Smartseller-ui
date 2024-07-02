@@ -28,10 +28,20 @@ const GET_PRODUCT_VARIANTS_QUERY = gql`
 const VariantsModal = ({ show, handleClose, product }) => {
 	const { t } = useTranslation();
 	const { id: productId } = product;
-	const { loading, error, data } = useQuery(GET_PRODUCT_VARIANTS_QUERY, {
-		variables: { limit: 10, offset: 0, productId },
-	});
+	const [limit, setLimit] = useState(10);
 	const [searchTerm, setSearchTerm] = useState('');
+
+	const { loading, error, data, refetch } = useQuery(
+		GET_PRODUCT_VARIANTS_QUERY,
+		{
+			variables: { limit, offset: 0, productId },
+		},
+	);
+
+	const handleLimitChange = e => {
+		setLimit(Number(e.target.value));
+		refetch({ limit: Number(e.target.value), offset: 0, productId });
+	};
 
 	if (loading) {
 		return (
@@ -86,7 +96,11 @@ const VariantsModal = ({ show, handleClose, product }) => {
 							<Form.Label className='modal-variantsShow-label'>
 								{t('variantsModal.show')}
 							</Form.Label>
-							<Form.Control as='select'>
+							<Form.Control
+								as='select'
+								value={limit}
+								onChange={handleLimitChange}
+							>
 								<option>10</option>
 								<option>25</option>
 								<option>50</option>
