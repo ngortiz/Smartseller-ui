@@ -1,14 +1,15 @@
 .modal-content {
-	position: fixed;
-	top: 5%;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 80%;
-	max-width: 83%;
 	border-radius: 10px;
 	padding: 10px;
 	font-size: medium;
 	box-shadow: 0 0 10px rgba(43, 39, 120, 0.3);
+	width: 300%;
+	right: 93%;
+}
+
+.variants-modal .modal-dialog {
+	max-width: 80%;
+	margin: 1.75rem auto;
 }
 
 .modal-variants {
@@ -19,15 +20,15 @@
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 10px;
-
-	width: 100%;
 }
+
 .modal-content input[type='text'] {
 	width: 53%;
 	padding: 8px;
 	margin-bottom: 15px;
 	border-radius: 2px;
 }
+
 .modal-variantsShow-label {
 	font-size: 15px;
 	margin-bottom: 10px;
@@ -62,6 +63,12 @@
 	background-color: #f8f9fa;
 }
 
+.variantsModal-table {
+	margin-top: 20px;
+	text-align: center;
+	background-color: white; /* Aquí se añade el fondo blanco a la tabla */
+}
+
 .variantsModal-table th {
 	background-color: #0e2a5d;
 	color: white;
@@ -76,5 +83,12 @@
 img,
 svg {
 	vertical-align: middle;
-	width: 100%;
+	width: 80%;
+}
+
+.spinner-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 }

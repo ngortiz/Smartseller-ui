@@ -1,79 +1,65 @@
 body {
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-.modal-content {
-  position: fixed;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 500px;
-  background-color: white;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: medium;
-  box-shadow: 0 0 10px rgba(43, 39, 120, 0.3);
+	font-family: 'Source Sans Pro', sans-serif;
 }
 
 .modal-title.h4 {
-  margin-bottom: 0;
-  color: #262c40;
+	margin-bottom: 0;
+	color: #262c40;
 }
 
 .modal-content label {
-  font-size: 15px;
-  margin-bottom: 10px;
-  color: #262c40;
-  font-weight: bold;
+	font-size: 15px;
+	margin-bottom: 10px;
+	color: #262c40;
+	font-weight: bold;
 }
 
 .modal-content input[type='text'],
 .modal-content input[type='date'],
 .modal-content select {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 }
 
 .modal-content input[type='file'] {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 15px;
 }
 
 .modal-btn-primary {
-  width: 30%;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #0e315d;
-  color: #fff;
-  font-size: medium;
-  margin-left: -2%;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0 1px 1px 1px #030e15;
+	width: 30%;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: #0e315d;
+	color: #fff;
+	font-size: medium;
+	margin-left: -2%;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 0 1px 1px 1px #030e15;
 }
 
 .modal-btn-secondary {
-  width: 30%;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #fafafa;
-  color: #666;
-  border-color: #ddd;
-  border-bottom-color: rgb(221, 221, 221);
-  border-bottom-color: #ddd;
-  font-size: medium;
-  margin-left: 0%;
-  margin-right: 20%;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0 1px 1px 1px #030e15;
+	width: 30%;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: #fafafa;
+	color: #666;
+	border-color: #ddd;
+	border-bottom-color: rgb(221, 221, 221);
+	border-bottom-color: #ddd;
+	font-size: medium;
+	margin-left: 0%;
+	margin-right: 20%;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: 0 1px 1px 1px #030e15;
 }

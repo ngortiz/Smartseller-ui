@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, Form, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './style.css';
 
 const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
+	const { t } = useTranslation();
 	const paymentAmountRef = useRef(null);
 	const paymentMethodRef = useRef(null);
 	const voucherNumberRef = useRef(null);
@@ -23,13 +25,13 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 	};
 
 	return (
-		<Modal show={true} onHide={onClose}>
+		<Modal show={true} onHide={onClose} size='sm'>
 			<Modal.Header closeButton>
-				<Modal.Title>Detalles del Pago</Modal.Title>
+				<Modal.Title>{t('paymentModal.paymentDetails')}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<Form.Group controlId='formVoucherNumber'>
-					<Form.Label>Cliente</Form.Label>
+					<Form.Label>{t('paymentModal.client')}</Form.Label>
 					<Form.Control
 						type='text'
 						value={payment.username}
@@ -38,11 +40,11 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 					/>
 				</Form.Group>
 				<Form.Group controlId='formVoucherNumber'>
-					<Form.Label>Número pedido</Form.Label>
+					<Form.Label>{t('paymentModal.orderNumber')}</Form.Label>
 					<Form.Control type='text' value={payment.number} readOnly disabled />
 				</Form.Group>
 				<Form.Group controlId='formVoucherNumber'>
-					<Form.Label>Nro. Comprobante</Form.Label>
+					<Form.Label>{t('paymentModal.voucherNumber')}</Form.Label>
 					<Form.Control
 						type='text'
 						placeholder='Ingrese el número de comprobante'
@@ -50,11 +52,11 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 					/>
 				</Form.Group>
 				<Form.Group controlId='formPaymentDate'>
-					<Form.Label>Fecha de Pago</Form.Label>
+					<Form.Label>{t('paymentModal.paymentDate')}</Form.Label>
 					<Form.Control type='date' ref={paymentDateRef} />
 				</Form.Group>
 				<Form.Group controlId='formPaymentAmount'>
-					<Form.Label>Monto de Pago</Form.Label>
+					<Form.Label>{t('paymentModal.paymentAmount')}</Form.Label>
 					<Form.Control
 						type='text'
 						placeholder='Ingrese el monto del pago'
@@ -62,26 +64,26 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 					/>
 				</Form.Group>
 				<Form.Group controlId='formPaymentMethod'>
-					<Form.Label>Método de Pago</Form.Label>
+					<Form.Label>{t('paymentModal.paymentMethod')}</Form.Label>
 					<Form.Control as='select' ref={paymentMethodRef}>
-						<option>Seleccione...</option>
-						<option>Efectivo</option>
-						<option>Tarjeta de Crédito</option>
-						<option>Transferencia Bancaria</option>
-						<option>Otro</option>
+						<option>{t('paymentModal.select')}...</option>
+						<option>{t('paymentModal.cash')}</option>
+						<option>{t('paymentModal.creditCard')}</option>
+						<option>{t('paymentModal.bankTransference')}</option>
+						<option>{t('paymentModal.others')}</option>
 					</Form.Control>
 				</Form.Group>
 
 				<Form.Group controlId='formAccountType'>
-					<Form.Label>Cuenta</Form.Label>
+					<Form.Label>{t('paymentModal.account')}</Form.Label>
 					<Form.Control as='select' ref={accountTypeRef}>
-						<option>Seleccione...</option>
+						<option>{t('paymentModal.select')}...</option>
 						<option>$USD</option>
 						<option>Gs</option>
 					</Form.Control>
 				</Form.Group>
 				<Form.Group controlId='formFile' className='mb-3'>
-					<Form.Label>Subir comprobante</Form.Label>
+					<Form.Label>{t('paymentModal.uploadVoucher')}</Form.Label>
 					<Form.Control type='file' />
 				</Form.Group>
 			</Modal.Body>
@@ -91,14 +93,14 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 					variant='primary'
 					onClick={handlePaymentSubmit}
 				>
-					Confirmar
+					{t('paymentModal.confirm')}
 				</Button>
 				<Button
 					className='modal-btn-secondary '
 					variant='secondary'
 					onClick={onClose}
 				>
-					Cancelar
+					{t('paymentModal.cancel')}
 				</Button>
 			</Modal.Footer>
 		</Modal>
