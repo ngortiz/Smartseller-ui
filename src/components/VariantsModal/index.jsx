@@ -31,17 +31,13 @@ const VariantsModal = ({ show, handleClose, product }) => {
 	const [limit, setLimit] = useState(10);
 	const [searchTerm, setSearchTerm] = useState('');
 
-	const { loading, error, data, refetch } = useQuery(
-		GET_PRODUCT_VARIANTS_QUERY,
-		{
-			variables: { limit, offset: 0, productId },
-		},
-	);
+	const { loading, error, data } = useQuery(GET_PRODUCT_VARIANTS_QUERY, {
+		variables: { limit, offset: 0, productId },
+	});
 
 	const handleLimitChange = e => {
 		const newLimit = Number(e.target.value);
 		setLimit(newLimit);
-		refetch({ limit: newLimit, offset: 0, productId });
 	};
 
 	if (loading) {
