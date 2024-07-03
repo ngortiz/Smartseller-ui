@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Form, Row, Col, Button, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useQuery, gql } from '@apollo/client';
 import VariantsModal from '../../components/VariantsModal';
+import { PaginationControl } from 'react-bootstrap-pagination-control';
 import './style.css';
 
 const GET_PRODUCTS_QUERY = gql`
@@ -36,9 +37,12 @@ const ProductsTable = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState(null);
 	const [limit, setLimit] = useState(10);
+	const [page, setPage] = useState(1);
 
-	const { loading, data } = useQuery(GET_PRODUCTS_QUERY, {
-		variables: { limit, offset: 0 },
+	const offset = (page - 1) * limit;
+
+	const { loading, data, refetch } = useQuery(GET_PRODUCTS_QUERY, {
+		variables: { limit, offset },
 	});
 
 	const handleShowModal = product => {
@@ -52,20 +56,13 @@ const ProductsTable = () => {
 	};
 
 	const handleLimitChange = e => {
-		setLimit(Number(e.target.value));
+		const newLimit = Number(e.target.value);
+		setLimit(newLimit);
+		setPage(1);
 	};
 
-	if (loading) {
-		return (
-			<div className='spinner-container'>
-				<Spinner animation='border' role='status'>
-					<span className='visually-hidden'>Loading...</span>
-				</Spinner>
-			</div>
-		);
-	}
-
-	const products = data.getProducts.rows;
+	const products = data?.getProducts?.rows || [];
+	const count = data?.getProducts?.count || 0;
 
 	const filteredProducts = products.filter(product =>
 		product.name.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -82,10 +79,10 @@ const ProductsTable = () => {
 							value={limit}
 							onChange={handleLimitChange}
 						>
-							<option>10</option>
-							<option>25</option>
-							<option>50</option>
-							<option>100</option>
+							<option value={10}>10</option>
+							<option value={25}>25</option>
+							<option value={50}>50</option>
+							<option value={100}>100</option>
 						</Form.Control>
 					</Form.Group>
 				</Col>
@@ -101,50 +98,69 @@ const ProductsTable = () => {
 					</Form.Group>
 				</Col>
 			</Row>
-			<Table striped bordered hover className='productsTable'>
-				<thead>
-					<tr>
-						<th>{t('productsTable.code')}</th>
-						<th>{t('productsTable.name')}</th>
-						<th>{t('productsTable.category')}</th>
-						<th>{t('productsTable.subcategory')}</th>
-						<th>{t('productsTable.provider')}</th>
-						<th>{t('productsTable.variants')}</th>
-						<th>{t('productsTable.edit')}</th>
-						<th>{t('productsTable.delete')}</th>
-					</tr>
-				</thead>
-				<tbody>
-					{filteredProducts.map((product, index) => (
-						<tr key={index}>
-							<td>{product.code}</td>
-							<td>{product.name}</td>
-							<td>{product.category.name}</td>
-							<td>{product.subCategory.name}</td>
-							<td>{product.provider.name}</td>
-							<td>
-								<Button
-									variant='warning'
-									className='btnVariabts'
-									onClick={() => handleShowModal(product)}
-								>
-									{t('productsTable.variants')}
-								</Button>
-							</td>
-							<td>
-								<Button variant='warning' className='editButton'>
-									<i className='bi bi-pencil-square'></i>
-								</Button>
-							</td>
-							<td>
-								<Button variant='danger' className='deleteButton'>
-									<i className='bi bi-trash'></i>
-								</Button>
-							</td>
-						</tr>
-					))}
-				</tbody>
-			</Table>
+			{loading ? (
+				<div className='spinner-container'>
+					<Spinner animation='border' role='status'>
+						<span className='visually-hidden'>Loading...</span>
+					</Spinner>
+				</div>
+			) : (
+				<>
+					<Table striped bordered hover className='productsTable'>
+						<thead>
+							<tr>
+								<th>{t('productsTable.code')}</th>
+								<th>{t('productsTable.name')}</th>
+								<th>{t('productsTable.category')}</th>
+								<th>{t('productsTable.subcategory')}</th>
+								<th>{t('productsTable.provider')}</th>
+								<th>{t('productsTable.variants')}</th>
+								<th>{t('productsTable.edit')}</th>
+								<th>{t('productsTable.delete')}</th>
+							</tr>
+						</thead>
+						<tbody>
+							{filteredProducts.map((product, index) => (
+								<tr key={index}>
+									<td>{product.code}</td>
+									<td>{product.name}</td>
+									<td>{product.category.name}</td>
+									<td>{product.subCategory.name}</td>
+									<td>{product.provider.name}</td>
+									<td>
+										<Button
+											variant='warning'
+											className='btnVariabts'
+											onClick={() => handleShowModal(product)}
+										>
+											{t('productsTable.variants')}
+										</Button>
+									</td>
+									<td>
+										<Button variant='warning' className='editButton'>
+											<i className='bi bi-pencil-square'></i>
+										</Button>
+									</td>
+									<td>
+										<Button variant='danger' className='deleteButton'>
+											<i className='bi bi-trash'></i>
+										</Button>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</Table>
+
+					<PaginationControl
+						page={page}
+						between={4}
+						total={count}
+						limit={limit}
+						changePage={setPage}
+						ellipsis={1}
+					/>
+				</>
+			)}
 
 			{selectedProduct && (
 				<VariantsModal

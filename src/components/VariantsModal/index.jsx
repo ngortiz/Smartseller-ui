@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Table, Form, Container, Spinner, Alert } from 'react-bootstrap';
 import { useQuery, gql } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
+import { PaginationControl } from 'react-bootstrap-pagination-control';
 import './style.css';
 
 const GET_PRODUCT_VARIANTS_QUERY = gql`
@@ -29,15 +30,22 @@ const VariantsModal = ({ show, handleClose, product }) => {
 	const { t } = useTranslation();
 	const { id: productId } = product;
 	const [limit, setLimit] = useState(10);
+	const [page, setPage] = useState(1);
 	const [searchTerm, setSearchTerm] = useState('');
 
-	const { loading, error, data } = useQuery(GET_PRODUCT_VARIANTS_QUERY, {
-		variables: { limit, offset: 0, productId },
-	});
+	const offset = (page - 1) * limit;
+
+	const { loading, error, data, refetch } = useQuery(
+		GET_PRODUCT_VARIANTS_QUERY,
+		{
+			variables: { limit, offset, productId },
+		},
+	);
 
 	const handleLimitChange = e => {
 		const newLimit = Number(e.target.value);
 		setLimit(newLimit);
+		setPage(1);
 	};
 
 	if (loading) {
@@ -57,6 +65,8 @@ const VariantsModal = ({ show, handleClose, product }) => {
 	}
 
 	const variants = data?.getProductVariants?.rows || [];
+	const count = data?.getProductVariants?.count || 0;
+
 	const filteredVariants = variants.filter(variant =>
 		variant.name.toLowerCase().includes(searchTerm.toLowerCase()),
 	);
@@ -159,6 +169,14 @@ const VariantsModal = ({ show, handleClose, product }) => {
 							))}
 						</tbody>
 					</Table>
+					<PaginationControl
+						page={offset}
+						between={4}
+						total={count}
+						limit={limit}
+						changePage={setPage}
+						ellipsis={1}
+					/>
 				</div>
 			</Modal.Body>
 		</Modal>
