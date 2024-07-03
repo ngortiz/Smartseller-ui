@@ -35,12 +35,9 @@ const VariantsModal = ({ show, handleClose, product }) => {
 
 	const offset = (page - 1) * limit;
 
-	const { loading, error, data, refetch } = useQuery(
-		GET_PRODUCT_VARIANTS_QUERY,
-		{
-			variables: { limit, offset, productId },
-		},
-	);
+	const { loading, error, data } = useQuery(GET_PRODUCT_VARIANTS_QUERY, {
+		variables: { limit, offset, productId },
+	});
 
 	const handleLimitChange = e => {
 		const newLimit = Number(e.target.value);
@@ -67,8 +64,11 @@ const VariantsModal = ({ show, handleClose, product }) => {
 	const variants = data?.getProductVariants?.rows || [];
 	const count = data?.getProductVariants?.count || 0;
 
-	const filteredVariants = variants.filter(variant =>
-		variant.name.toLowerCase().includes(searchTerm.toLowerCase()),
+	const filteredVariants = variants.filter(
+		variant =>
+			variant.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			variant.internalCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			variant.code.toLowerCase().includes(searchTerm.toLowerCase()),
 	);
 
 	const getVariantAttributes = attributes => {
