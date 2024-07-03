@@ -58,11 +58,8 @@ const ProductsTable = () => {
 	const handleLimitChange = e => {
 		const newLimit = Number(e.target.value);
 		setLimit(newLimit);
+		setPage(1);
 	};
-
-	useEffect(() => {
-		refetch({ limit, offset });
-	}, [limit, offset, refetch]);
 
 	const products = data?.getProducts?.rows || [];
 	const count = data?.getProducts?.count || 0;
@@ -101,59 +98,69 @@ const ProductsTable = () => {
 					</Form.Group>
 				</Col>
 			</Row>
-			<Table striped bordered hover className='productsTable'>
-				<thead>
-					<tr>
-						<th>{t('productsTable.code')}</th>
-						<th>{t('productsTable.name')}</th>
-						<th>{t('productsTable.category')}</th>
-						<th>{t('productsTable.subcategory')}</th>
-						<th>{t('productsTable.provider')}</th>
-						<th>{t('productsTable.variants')}</th>
-						<th>{t('productsTable.edit')}</th>
-						<th>{t('productsTable.delete')}</th>
-					</tr>
-				</thead>
-				<tbody>
-					{filteredProducts.map((product, index) => (
-						<tr key={index}>
-							<td>{product.code}</td>
-							<td>{product.name}</td>
-							<td>{product.category.name}</td>
-							<td>{product.subCategory.name}</td>
-							<td>{product.provider.name}</td>
-							<td>
-								<Button
-									variant='warning'
-									className='btnVariabts'
-									onClick={() => handleShowModal(product)}
-								>
-									{t('productsTable.variants')}
-								</Button>
-							</td>
-							<td>
-								<Button variant='warning' className='editButton'>
-									<i className='bi bi-pencil-square'></i>
-								</Button>
-							</td>
-							<td>
-								<Button variant='danger' className='deleteButton'>
-									<i className='bi bi-trash'></i>
-								</Button>
-							</td>
-						</tr>
-					))}
-				</tbody>
-			</Table>
+			{loading ? (
+				<div className='spinner-container'>
+					<Spinner animation='border' role='status'>
+						<span className='visually-hidden'>Loading...</span>
+					</Spinner>
+				</div>
+			) : (
+				<>
+					<Table striped bordered hover className='productsTable'>
+						<thead>
+							<tr>
+								<th>{t('productsTable.code')}</th>
+								<th>{t('productsTable.name')}</th>
+								<th>{t('productsTable.category')}</th>
+								<th>{t('productsTable.subcategory')}</th>
+								<th>{t('productsTable.provider')}</th>
+								<th>{t('productsTable.variants')}</th>
+								<th>{t('productsTable.edit')}</th>
+								<th>{t('productsTable.delete')}</th>
+							</tr>
+						</thead>
+						<tbody>
+							{filteredProducts.map((product, index) => (
+								<tr key={index}>
+									<td>{product.code}</td>
+									<td>{product.name}</td>
+									<td>{product.category.name}</td>
+									<td>{product.subCategory.name}</td>
+									<td>{product.provider.name}</td>
+									<td>
+										<Button
+											variant='warning'
+											className='btnVariabts'
+											onClick={() => handleShowModal(product)}
+										>
+											{t('productsTable.variants')}
+										</Button>
+									</td>
+									<td>
+										<Button variant='warning' className='editButton'>
+											<i className='bi bi-pencil-square'></i>
+										</Button>
+									</td>
+									<td>
+										<Button variant='danger' className='deleteButton'>
+											<i className='bi bi-trash'></i>
+										</Button>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</Table>
 
-			<PaginationControl
-				page={page}
-				between={4}
-				total={count}
-				limit={limit}
-				changePage={setPage}
-				ellipsis={1}
-			/>
+					<PaginationControl
+						page={page}
+						between={4}
+						total={count}
+						limit={limit}
+						changePage={setPage}
+						ellipsis={1}
+					/>
+				</>
+			)}
 
 			{selectedProduct && (
 				<VariantsModal

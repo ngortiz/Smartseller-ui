@@ -45,12 +45,8 @@ const VariantsModal = ({ show, handleClose, product }) => {
 	const handleLimitChange = e => {
 		const newLimit = Number(e.target.value);
 		setLimit(newLimit);
-		setPage(1); // Reset page when limit changes
+		setPage(1);
 	};
-
-	useEffect(() => {
-		refetch({ limit, offset, productId });
-	}, [limit, offset, productId, refetch]);
 
 	if (loading) {
 		return (
