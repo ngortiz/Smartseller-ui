@@ -28,10 +28,17 @@ const GET_PRODUCT_VARIANTS_QUERY = gql`
 const VariantsModal = ({ show, handleClose, product }) => {
 	const { t } = useTranslation();
 	const { id: productId } = product;
-	const { loading, error, data } = useQuery(GET_PRODUCT_VARIANTS_QUERY, {
-		variables: { limit: 10, offset: 0, productId },
-	});
+	const [limit, setLimit] = useState(10);
 	const [searchTerm, setSearchTerm] = useState('');
+
+	const { loading, error, data } = useQuery(GET_PRODUCT_VARIANTS_QUERY, {
+		variables: { limit, offset: 0, productId },
+	});
+
+	const handleLimitChange = e => {
+		const newLimit = Number(e.target.value);
+		setLimit(newLimit);
+	};
 
 	if (loading) {
 		return (
@@ -72,7 +79,12 @@ const VariantsModal = ({ show, handleClose, product }) => {
 	};
 
 	return (
-		<Modal show={show} onHide={handleClose} dialogClassName='variants-modal'>
+		<Modal
+			show={show}
+			scrollable={true}
+			onHide={handleClose}
+			dialogClassName='variants-modal'
+		>
 			<Modal.Header closeButton>
 				<Modal.Title>{t('variantsModal.productVariants')}</Modal.Title>
 			</Modal.Header>
@@ -86,11 +98,15 @@ const VariantsModal = ({ show, handleClose, product }) => {
 							<Form.Label className='modal-variantsShow-label'>
 								{t('variantsModal.show')}
 							</Form.Label>
-							<Form.Control as='select'>
-								<option>10</option>
-								<option>25</option>
-								<option>50</option>
-								<option>100</option>
+							<Form.Control
+								as='select'
+								value={limit}
+								onChange={handleLimitChange}
+							>
+								<option value={10}>10</option>
+								<option value={25}>25</option>
+								<option value={50}>50</option>
+								<option value={100}>100</option>
 							</Form.Control>
 						</Form.Group>
 						<Form.Group controlId='search' className='searchModal-input'>
@@ -106,7 +122,7 @@ const VariantsModal = ({ show, handleClose, product }) => {
 							/>
 						</Form.Group>
 					</div>
-					<Table striped bordered hover className='variantsModal-table'>
+					<Table bordered hover className='variantsModal-table'>
 						<thead>
 							<tr>
 								<th>{t('variantsModal.image')}</th>

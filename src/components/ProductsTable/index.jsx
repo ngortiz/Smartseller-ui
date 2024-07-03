@@ -6,8 +6,8 @@ import VariantsModal from '../../components/VariantsModal';
 import './style.css';
 
 const GET_PRODUCTS_QUERY = gql`
-	query GetProducts {
-		getProducts(limit: 10, offset: 0) {
+	query GetProducts($limit: Int!, $offset: Int!) {
+		getProducts(limit: $limit, offset: $offset) {
 			count
 			rows {
 				category {
@@ -35,8 +35,11 @@ const ProductsTable = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showModal, setShowModal] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState(null);
+	const [limit, setLimit] = useState(10);
 
-	const { loading, data } = useQuery(GET_PRODUCTS_QUERY);
+	const { loading, data } = useQuery(GET_PRODUCTS_QUERY, {
+		variables: { limit, offset: 0 },
+	});
 
 	const handleShowModal = product => {
 		setSelectedProduct(product);
@@ -46,6 +49,10 @@ const ProductsTable = () => {
 	const handleCloseModal = () => {
 		setShowModal(false);
 		setSelectedProduct(null);
+	};
+
+	const handleLimitChange = e => {
+		setLimit(Number(e.target.value));
 	};
 
 	if (loading) {
@@ -70,7 +77,11 @@ const ProductsTable = () => {
 				<Col md={6}>
 					<Form.Group controlId='show' className='searchContainer-select'>
 						<Form.Label>{t('productsTable.show')}</Form.Label>
-						<Form.Control as='select'>
+						<Form.Control
+							as='select'
+							value={limit}
+							onChange={handleLimitChange}
+						>
 							<option>10</option>
 							<option>25</option>
 							<option>50</option>
