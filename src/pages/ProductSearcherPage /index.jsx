@@ -8,9 +8,10 @@ import {
 	Table,
 	Spinner,
 } from 'react-bootstrap';
-import './style.css';
 import { useTranslation } from 'react-i18next';
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
+import { PaginationControl } from 'react-bootstrap-pagination-control';
+import './style.css';
 
 const GET_CATEGORIES_QUERY = gql`
 	query GetCategories {
@@ -79,8 +80,13 @@ const ProductSearcherPage = () => {
 	const [description, setDescription] = useState('');
 	const [category, setCategory] = useState('');
 	const [checked, setChecked] = useState(true);
+	const [limit, setLimit] = useState(10);
+	const [page, setPage] = useState(1);
 	const { t } = useTranslation();
 	const [products, setProducts] = useState([]);
+	const [total, setTotal] = useState(0);
+
+	const offset = (page - 1) * limit;
 
 	const {
 		loading: categoriesLoading,
@@ -100,13 +106,14 @@ const ProductSearcherPage = () => {
 	useEffect(() => {
 		if (searchData && searchData.searchProductVariants) {
 			setProducts(searchData.searchProductVariants.rows);
+			setTotal(searchData.searchProductVariants.count);
 		}
 	}, [searchData]);
 
-	const handleSearch = () => {
+	const handleSearch = (page = 1, limit = 10) => {
 		const variables = {
-			offset: 0,
-			limit: 25,
+			offset: (page - 1) * limit,
+			limit: limit,
 			published: checked,
 			internalCode: internalCode || undefined,
 			barcode: barcode || undefined,
@@ -116,11 +123,8 @@ const ProductSearcherPage = () => {
 
 		searchProducts({ variables });
 
-		setInternalCode('');
-		setBarcode('');
-		setDescription('');
-		setCategory('');
-		setChecked(true);
+		setPage(page);
+		setLimit(limit);
 	};
 
 	const handleEditProduct = productId => {};
@@ -135,7 +139,7 @@ const ProductSearcherPage = () => {
 						<div key={index}>
 							<strong>{attributeName}:</strong>
 							{attributeValue}
-							<br></br>
+							<br />
 						</div>
 					);
 				}
@@ -231,7 +235,7 @@ const ProductSearcherPage = () => {
 				<Col className='mt-3'>
 					<Button
 						variant='primary'
-						onClick={handleSearch}
+						onClick={() => handleSearch(1, limit)}
 						className='product-button'
 					>
 						<i className='bi bi-search'></i> {t('productSearcherPage.searcher')}
@@ -306,6 +310,20 @@ const ProductSearcherPage = () => {
 						)}
 					</tbody>
 				</Table>
+			</Row>
+			<Row>
+				<Col className='d-flex justify-content-center'>
+					<PaginationControl
+						page={page}
+						total={total}
+						limit={limit}
+						changePage={page => {
+							setPage(page);
+							handleSearch(page, limit);
+						}}
+						ellipsis={1}
+					/>
+				</Col>
 			</Row>
 		</Container>
 	);
