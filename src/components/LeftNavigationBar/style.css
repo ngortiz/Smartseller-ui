@@ -107,6 +107,14 @@
 .LeftNavigationBar .NavDropdown {
 	flex: 1;
 }
+.nav-divider {
+	border-top: 1px solid #354052;
+	margin: 0rem;
+}
+.nav-link {
+	display: block;
+	padding: 5px;
+}
 
 @media screen and (max-width: 767px) {
 	.LeftNavigationBar {
