@@ -41,7 +41,7 @@ const ProductsTable = () => {
 
 	const offset = (page - 1) * limit;
 
-	const { loading, data, refetch } = useQuery(GET_PRODUCTS_QUERY, {
+	const { loading, data } = useQuery(GET_PRODUCTS_QUERY, {
 		variables: { limit, offset },
 	});
 
@@ -64,8 +64,10 @@ const ProductsTable = () => {
 	const products = data?.getProducts?.rows || [];
 	const count = data?.getProducts?.count || 0;
 
-	const filteredProducts = products.filter(product =>
-		product.name.toLowerCase().includes(searchTerm.toLowerCase()),
+	const filteredProducts = products.filter(
+		product =>
+			product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			product.code.toLowerCase().includes(searchTerm.toLowerCase()),
 	);
 
 	return (
