@@ -7,8 +7,8 @@ import { PaginationControl } from 'react-bootstrap-pagination-control';
 import './style.css';
 
 const GET_PRODUCTS_QUERY = gql`
-	query GetProducts($limit: Int!, $offset: Int!) {
-		getProducts(limit: $limit, offset: $offset) {
+	query GetProducts($limit: Int!, $offset: Int!, $searchTerm: String) {
+		getProducts(limit: $limit, offset: $offset, searchTerm: $searchTerm) {
 			count
 			rows {
 				category {
@@ -39,10 +39,14 @@ const ProductsTable = () => {
 	const [limit, setLimit] = useState(10);
 	const [page, setPage] = useState(1);
 
-	const offset = (page - 1) * limit;
+	let offset = (page - 1) * limit;
+
+	if (searchTerm.length > 0) {
+		offset = 0;
+	}
 
 	const { loading, data } = useQuery(GET_PRODUCTS_QUERY, {
-		variables: { limit, offset },
+		variables: { limit, offset, searchTerm },
 	});
 
 	const handleShowModal = product => {
@@ -63,12 +67,6 @@ const ProductsTable = () => {
 
 	const products = data?.getProducts?.rows || [];
 	const count = data?.getProducts?.count || 0;
-
-	const filteredProducts = products.filter(
-		product =>
-			product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			product.code.toLowerCase().includes(searchTerm.toLowerCase()),
-	);
 
 	return (
 		<div className='products-table-container'>
@@ -100,69 +98,75 @@ const ProductsTable = () => {
 					</Form.Group>
 				</Col>
 			</Row>
-			{loading ? (
-				<div className='spinner-container'>
-					<Spinner animation='border' role='status'>
-						<span className='visually-hidden'>Loading...</span>
-					</Spinner>
-				</div>
-			) : (
-				<>
-					<Table striped bordered hover className='productsTable'>
-						<thead>
-							<tr>
-								<th>{t('productsTable.code')}</th>
-								<th>{t('productsTable.name')}</th>
-								<th>{t('productsTable.category')}</th>
-								<th>{t('productsTable.subcategory')}</th>
-								<th>{t('productsTable.provider')}</th>
-								<th>{t('productsTable.variants')}</th>
-								<th>{t('productsTable.edit')}</th>
-								<th>{t('productsTable.delete')}</th>
+			<Table striped bordered hover className='productsTable'>
+				<thead>
+					<tr>
+						<th>{t('productsTable.code')}</th>
+						<th>{t('productsTable.name')}</th>
+						<th>{t('productsTable.category')}</th>
+						<th>{t('productsTable.subcategory')}</th>
+						<th>{t('productsTable.provider')}</th>
+						<th>{t('productsTable.variants')}</th>
+						<th>{t('productsTable.edit')}</th>
+						<th>{t('productsTable.delete')}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{loading ? (
+						<tr className='spinner-container' style={{ display: 'table-row' }}>
+							<td colSpan='8'>
+								<Spinner
+									animation='border'
+									role='status'
+									style={{
+										width: '3rem',
+										height: '3rem',
+									}}
+								>
+									<span className='visually-hidden'>Loading...</span>
+								</Spinner>
+							</td>
+						</tr>
+					) : (
+						products.map((product, index) => (
+							<tr key={index}>
+								<td>{product.code}</td>
+								<td>{product.name}</td>
+								<td>{product.category.name}</td>
+								<td>{product.subCategory.name}</td>
+								<td>{product.provider.name}</td>
+								<td>
+									<Button
+										variant='warning'
+										className='btnVariabts'
+										onClick={() => handleShowModal(product)}
+									>
+										{t('productsTable.variants')}
+									</Button>
+								</td>
+								<td>
+									<Button variant='warning' className='editButton'>
+										<i className='bi bi-pencil-square'></i>
+									</Button>
+								</td>
+								<td>
+									<Button variant='danger' className='deleteButton'>
+										<i className='bi bi-trash'></i>
+									</Button>
+								</td>
 							</tr>
-						</thead>
-						<tbody>
-							{filteredProducts.map((product, index) => (
-								<tr key={index}>
-									<td>{product.code}</td>
-									<td>{product.name}</td>
-									<td>{product.category.name}</td>
-									<td>{product.subCategory.name}</td>
-									<td>{product.provider.name}</td>
-									<td>
-										<Button
-											variant='warning'
-											className='btnVariabts'
-											onClick={() => handleShowModal(product)}
-										>
-											{t('productsTable.variants')}
-										</Button>
-									</td>
-									<td>
-										<Button variant='warning' className='editButton'>
-											<i className='bi bi-pencil-square'></i>
-										</Button>
-									</td>
-									<td>
-										<Button variant='danger' className='deleteButton'>
-											<i className='bi bi-trash'></i>
-										</Button>
-									</td>
-								</tr>
-							))}
-						</tbody>
-					</Table>
-
-					<PaginationControl
-						page={page}
-						between={4}
-						total={count}
-						limit={limit}
-						changePage={setPage}
-						ellipsis={1}
-					/>
-				</>
-			)}
+						))
+					)}
+				</tbody>
+			</Table>
+			<PaginationControl
+				page={page}
+				between={4}
+				total={count}
+				limit={limit}
+				changePage={setPage}
+				ellipsis={1}
+			/>
 
 			{selectedProduct && (
 				<VariantsModal
