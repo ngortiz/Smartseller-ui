@@ -235,7 +235,7 @@ RegistrationForm.propTypes = {
 	setProductName: PropTypes.func.isRequired,
 	productDescription: PropTypes.string.isRequired,
 	setProductDescription: PropTypes.func.isRequired,
-	provider: PropTypes.object.isRequired,
+	provider: PropTypes.string.isRequired,
 	setProvider: PropTypes.func.isRequired,
 	tax: PropTypes.string.isRequired,
 	setTax: PropTypes.func.isRequired,
@@ -250,11 +250,7 @@ RegistrationForm.propTypes = {
 	providers: PropTypes.array.isRequired,
 	taxes: PropTypes.array.isRequired,
 	loadingTemplates: PropTypes.bool.isRequired,
-	loadingCategories: PropTypes.bool.isRequired,
-	templatesData: PropTypes.object.isRequired,
-	handleGenerateCode: PropTypes.func.isRequired,
-	handleSubmit: PropTypes.func.isRequired,
-	handleCategoryChange: PropTypes.func.isRequired,
+	loadingCategories: PropTypes.bool.is,
 };
 
 export default RegistrationForm;
