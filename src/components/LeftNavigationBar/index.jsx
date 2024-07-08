@@ -1,5 +1,6 @@
 import React from 'react';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Nav from 'react-bootstrap/Nav';
 import './style.css';
 import icon from './images/icon.png';
 import { useTranslation } from 'react-i18next';
@@ -58,7 +59,7 @@ const LeftNavigationBar = () => {
 					id='basic-nav-dropdown'
 				>
 					<NavDropdown.Item href='/products-page'>
-						{t('leftNav.registrationFrom')}
+						{t('leftNav.registrationProduct')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
 					<NavDropdown.Item href='#action/3.3'>
@@ -88,19 +89,16 @@ const LeftNavigationBar = () => {
 				</NavDropdown>
 			</ul>
 			<ul className='category'>
-				<NavDropdown
-					title={
-						<span>
-							<i className='bi bi-arrow-down-circle-fill'> </i>
-							{t('leftNav.sales')}
-						</span>
-					}
-					id='basic-nav-dropdown'
-				>
-					<NavDropdown.Item>{t('leftNav.registerSale')}</NavDropdown.Item>
-					<NavDropdown.Divider />
-					<NavDropdown.Item>{t('leftNav.salesList')}</NavDropdown.Item>
-				</NavDropdown>
+				<Nav.Link href='/categories-page'>
+					<i className='bi bi-list-columns'></i> {t('leftNav.category')}
+				</Nav.Link>
+				<hr className='nav-divider' />
+			</ul>
+			<ul>
+				<Nav.Link href='/market-rate-page'>
+					<i className='bi bi-database-fill'></i> {t('leftNav.quotes')}
+				</Nav.Link>
+				<hr className='nav-divider' />
 			</ul>
 			<ul>
 				<h2>
@@ -109,43 +107,12 @@ const LeftNavigationBar = () => {
 					</span>
 				</h2>
 			</ul>
-			<ul>
-				<ul>
-					<NavDropdown
-						title={
-							<span>
-								<i className='bi bi-list-columns'></i> {t('leftNav.category')}
-							</span>
-						}
-						id='basic-nav-dropdown'
-					>
-						<NavDropdown.Item href='/categories-page'>
-							{t('leftNav.category')}
-						</NavDropdown.Item>
-					</NavDropdown>
-				</ul>
-			</ul>
-			<ul>
-				<ul>
-					<NavDropdown
-						title={
-							<span>
-								<i className='bi bi-database-fill'></i> {t('leftNav.quotes')}
-							</span>
-						}
-						id='basic-nav-dropdown'
-					>
-						<NavDropdown.Item href='/market-rate-page'>
-							{t('leftNav.quotes')}
-						</NavDropdown.Item>
-					</NavDropdown>
-				</ul>
-			</ul>
+
 			<ul>
 				<NavDropdown
 					title={
 						<span>
-							<i className='bi bi-arrow-down-circle-fill'> </i>
+							<i className='bi bi-arrow-down-circle-fill'></i>{' '}
 							{t('leftNav.discount')}
 						</span>
 					}
@@ -241,4 +208,5 @@ const LeftNavigationBar = () => {
 		</div>
 	);
 };
+
 export default LeftNavigationBar;

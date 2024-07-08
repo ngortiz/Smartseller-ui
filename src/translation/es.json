@@ -135,7 +135,7 @@
 		"bankPayments": "Pagos vía Banco o en Sucursal",
 		"creditCardPayments": "Por Tarjeta Credito/Debito",
 		"buys": "Compras",
-		"registrationFrom": "Registro Planilla",
+		"registrationProduct": "Registro Producto",
 		"registerBuy": "Registrar Compra",
 		"createFrom": " Crear Plantilla",
 		"registerFromExcel": " Registrar desde Excel",

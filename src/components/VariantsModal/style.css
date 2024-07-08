@@ -76,7 +76,9 @@
 }
 
 .variantsModal-table th {
-	background-color: #0e2a5d;
+	background-color: #00a65a;
+	border-color: #008d4c;
+
 	color: white;
 }
 

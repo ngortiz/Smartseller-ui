@@ -1,18 +1,32 @@
 .registration-form-container {
-	background-color: #f9f9f9;
 	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	background-color: whitesmoke;
 	margin: 20px auto;
-	width: 100%;
-	padding: 20px;
+	width: 60%;
 }
 
 .registration-form-title {
 	font-size: 24px;
+	text-align: center;
 	color: #333;
 	margin-bottom: 20px;
 	font-weight: bold;
 	font-family: 'Source Sans Pro', sans-serif;
-	border-bottom: 1px solid #eeeeee;
+	border-bottom: 3px solid #eeeeee;
 	padding-bottom: 10px;
+	width: 107%;
+	margin: -1.8%;
+	padding-top: 2%;
+	margin-left: -1%;
+}
+.registration-form-subtitle {
+	margin-top: 5px;
+	margin-bottom: 21px;
+	line-height: 1.4;
+	font-weight: 500;
+	color: #272727;
+	letter-spacing: -0.01em;
+	text-align: center;
+	font-size: 22px;
+	padding-top: 39px;
 }

@@ -35,12 +35,12 @@ const RegistrationForm = ({
 	const { t } = useTranslation();
 
 	return (
-		<Form onSubmit={handleSubmit}>
+		<Form onSubmit={handleSubmit} className='registration-form'>
 			<Row className='registration-form-row'>
 				<Col md={6}>
 					<Form.Group className='registration-form-group'>
 						<Form.Label className='registration-form-label'>
-							{t('registrationPage.code')}:*
+							{t('registrationPage.code')}
 						</Form.Label>
 						<div className='d-flex'>
 							<Form.Control
@@ -64,7 +64,7 @@ const RegistrationForm = ({
 				<Col md={6}>
 					<Form.Group className='registration-form-group'>
 						<Form.Label className='registration-form-label'>
-							{t('registrationPage.name')}:*
+							{t('registrationPage.name')}
 						</Form.Label>
 						<Form.Control
 							type='text'
@@ -80,7 +80,7 @@ const RegistrationForm = ({
 				<Col md={6}>
 					<Form.Group className='registration-form-group'>
 						<Form.Label className='registration-form-label'>
-							{t('registrationPage.description')}:*
+							{t('registrationPage.description')}
 						</Form.Label>
 						<Form.Control
 							as='textarea'
@@ -97,7 +97,7 @@ const RegistrationForm = ({
 				<Col md={6}>
 					<Form.Group className='registration-form-group'>
 						<Form.Label className='registration-form-label'>
-							{t('registrationPage.provider')}:*
+							{t('registrationPage.provider')}
 						</Form.Label>
 						<Form.Select
 							value={provider}
@@ -121,7 +121,7 @@ const RegistrationForm = ({
 				<Col md={6}>
 					<Form.Group className='registration-form-group'>
 						<Form.Label className='registration-form-label'>
-							{t('registrationPage.tax')}:*
+							{t('registrationPage.tax')}
 						</Form.Label>
 						<Form.Select
 							value={tax}
@@ -145,7 +145,7 @@ const RegistrationForm = ({
 				<Col md={6}>
 					<Form.Group className='registration-form-group'>
 						<Form.Label className='registration-form-label'>
-							{t('registrationPage.template')}:*
+							{t('registrationPage.template')}
 						</Form.Label>
 						{loadingTemplates ? (
 							<Spinner animation='border' />
@@ -173,7 +173,7 @@ const RegistrationForm = ({
 				<Col md={6}>
 					<Form.Group className='registration-form-group'>
 						<Form.Label className='registration-form-label'>
-							{t('registrationPage.category')}:*
+							{t('registrationPage.category')}
 						</Form.Label>
 						{loadingCategories ? (
 							<Spinner animation='border' />
@@ -201,7 +201,7 @@ const RegistrationForm = ({
 				<Col md={6}>
 					<Form.Group className='registration-form-group'>
 						<Form.Label className='registration-form-label'>
-							{t('registrationPage.subCategory')}:*
+							{t('registrationPage.subCategory')}
 						</Form.Label>
 						{loadingCategories ? (
 							<Spinner animation='border' />
@@ -235,7 +235,7 @@ RegistrationForm.propTypes = {
 	setProductName: PropTypes.func.isRequired,
 	productDescription: PropTypes.string.isRequired,
 	setProductDescription: PropTypes.func.isRequired,
-	provider: PropTypes.object.isRequired,
+	provider: PropTypes.string.isRequired,
 	setProvider: PropTypes.func.isRequired,
 	tax: PropTypes.string.isRequired,
 	setTax: PropTypes.func.isRequired,
@@ -250,11 +250,7 @@ RegistrationForm.propTypes = {
 	providers: PropTypes.array.isRequired,
 	taxes: PropTypes.array.isRequired,
 	loadingTemplates: PropTypes.bool.isRequired,
-	loadingCategories: PropTypes.bool.isRequired,
-	templatesData: PropTypes.object.isRequired,
-	handleGenerateCode: PropTypes.func.isRequired,
-	handleSubmit: PropTypes.func.isRequired,
-	handleCategoryChange: PropTypes.func.isRequired,
+	loadingCategories: PropTypes.bool.is,
 };
 
 export default RegistrationForm;
