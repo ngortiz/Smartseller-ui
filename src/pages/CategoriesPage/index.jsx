@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, useMutation, gql } from '@apollo/client';
 import CategoryForm from '../../components/CategoryForm/index';
 import SubCategoryForm from '../../components/SubCategoryForm/index';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +20,15 @@ const GET_CATEGORIES_QUERY = gql`
 	}
 `;
 
+const CREATE_CATEGORY_MUTATION = gql`
+	mutation CreateCategory($name: String!) {
+		createCategory(category: { name: $name }) {
+			id
+			name
+		}
+	}
+`;
+
 const CategoriesPage = () => {
 	const { t } = useTranslation();
 	const [category, setCategory] = useState('');
@@ -29,6 +38,12 @@ const CategoriesPage = () => {
 	const [categories, setCategories] = useState([]);
 
 	const { loading, error, data } = useQuery(GET_CATEGORIES_QUERY);
+	const [createCategory] = useMutation(CREATE_CATEGORY_MUTATION, {
+		onCompleted: data => {
+			setCategories([...categories, data.createCategory]);
+			setCategory('');
+		},
+	});
 
 	useEffect(() => {
 		if (data && data.getCategories) {
@@ -44,7 +59,10 @@ const CategoriesPage = () => {
 		}
 	};
 
-	const handleSaveCategory = () => {};
+	const handleSaveCategory = () => {
+		createCategory({ variables: { name: category } });
+	};
+
 	const handleAddSubCategories = () => {};
 
 	return (
