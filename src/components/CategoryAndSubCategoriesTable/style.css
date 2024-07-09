@@ -54,8 +54,8 @@
 	display: inline-block;
 	width: 50px;
 	height: 23px;
-	background-color: #00a65a;
-	border-color: #008d4c;
+	background-color: #fff;
+	border: 2px solid #666;
 	border-radius: 1.25em;
 	transition:
 		background-color 0.3s,
