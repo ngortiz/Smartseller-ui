@@ -9,16 +9,17 @@
 }
 .additional-interface-section {
 	border: 0px solid #ccc;
-	border-radius: 15px;
+	border-radius: 1px;
 	padding: 20px;
 	margin-bottom: 20px;
-	background-color: #f8f9fa;
+	background-color: white;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .additional-interface-section h3 {
 	font-size: 1.5rem;
 	margin-bottom: 20px;
 	border-bottom: 1px solid #ccc;
+	text-align: center;
 }
 
 .category-btn-edit {
@@ -47,6 +48,7 @@
 	font-size: 1.5rem;
 	margin-bottom: 20px;
 	font-weight: 400;
+	text-align: center;
 }
 
 .custom-checkbox {

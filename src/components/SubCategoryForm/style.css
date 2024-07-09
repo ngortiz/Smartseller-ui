@@ -3,16 +3,18 @@
 }
 
 .add-subcategory-section {
-	background-color: #f8f9fa;
-	border-radius: 10px;
+	background-color: white;
+	border-radius: 1px;
 	padding: 20px;
 	margin-bottom: 30px;
+	font-weight: 100;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .add-subcategory-section h3 {
 	font-size: 1.5rem;
 	margin-bottom: 20px;
+	text-align: center;
 }
 
 .subcategory-input {
