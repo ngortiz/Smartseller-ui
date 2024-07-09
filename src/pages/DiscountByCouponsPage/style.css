@@ -47,8 +47,8 @@
 }
 
 .coupons-discount-form .update-button {
-	background-color: #0e2a5d;
-	border: none;
+	background-color: #00a65a;
+	border-color: #008d4c;
 	color: white;
 	text-align: center;
 	padding: 8px 20px;
@@ -60,7 +60,8 @@
 }
 
 .coupons-discount-form .update-button:hover {
-	background-color: #004494;
+	background-color: #00a65a;
+	border-color: #008d4c;
 }
 .coupons-discount-select {
 	display: block;
@@ -92,7 +93,8 @@
 }
 
 .coupons-table th {
-	background-color: #0e2a5d;
+	background-color: #00a65a;
+	border-color: #008d4c;
 }
 
 .coupons-table tbody tr:hover {

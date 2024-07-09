@@ -50,8 +50,8 @@
 .add-category-btn {
 	width: auto;
 	padding: 10px 20px;
-	background-color: #007bff;
-	border: none;
+	background-color: #00a65a;
+	border-color: #008d4c;
 	border-radius: 5px;
 	color: #fff;
 	font-size: 1rem;
@@ -59,7 +59,8 @@
 }
 
 .add-category-btn:hover {
-	background-color: #0056b3;
+	background-color: #00a65a;
+	border-color: #008d4c;
 }
 
 .additional-interface-section {

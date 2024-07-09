@@ -20,6 +20,12 @@
 	margin-bottom: 20px;
 }
 
+.form-check .form-check-input {
+	float: right;
+	background-color: #00a65a;
+	border-color: #008d4c;
+}
+
 .save-category-checkbox label {
 	font-weight: bold;
 	color: #333;

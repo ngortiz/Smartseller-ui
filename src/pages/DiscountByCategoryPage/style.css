@@ -56,7 +56,7 @@
 
 .category-discount-form .form-check-input {
 	margin-top: 5px;
-	background-color: #0e2a5d;
+	background-color: #00a65a;
 	padding: 15px 15px;
 }
 
@@ -67,8 +67,8 @@
 }
 
 .category-discount-form .update-button {
-	background-color: #0e2a5d;
-	border: none;
+	background-color: #00a65a;
+	border-color: #008d4c;
 	color: white;
 	text-align: center;
 	padding: 10px 20px;
@@ -80,7 +80,7 @@
 }
 
 .category-discount-form .update-button:hover {
-	background-color: #004494;
+	background-color: #00a65a;
 }
 .category-discount-category {
 	display: block;
@@ -120,18 +120,19 @@
 .discount-table {
 	margin-top: 5%;
 	width: 100%;
-	text-align: left;
+	text-align: center;
 	border-collapse: collapse;
 }
 
 .discount-table th,
 .discount-table td {
 	padding: 12px;
-	border: 1px solid #dee2e6;
+	border: none;
 }
 
 .discount-table th {
-	background-color: #0e2a5d;
+	background-color: #00a65a;
+	border-color: #008d4c;
 }
 
 .discount-table tbody tr:hover {
@@ -157,4 +158,5 @@ label {
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 16px;
 	font-weight: bold;
+	text-align: center;
 }
