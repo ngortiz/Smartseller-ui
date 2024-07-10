@@ -12,6 +12,7 @@ const GET_CATEGORIES_QUERY = gql`
 		getCategories {
 			id
 			name
+			published
 			subCategories {
 				id
 				name
@@ -21,8 +22,8 @@ const GET_CATEGORIES_QUERY = gql`
 `;
 
 const CREATE_CATEGORY_MUTATION = gql`
-	mutation CreateCategory($name: String!) {
-		createCategory(category: { name: $name }) {
+	mutation CreateCategory($name: String!, $published: Boolean!) {
+		createCategory(category: { name: $name, published: $published }) {
 			id
 			name
 		}
@@ -39,10 +40,7 @@ const CategoriesPage = () => {
 
 	const { loading, error, data } = useQuery(GET_CATEGORIES_QUERY);
 	const [createCategory] = useMutation(CREATE_CATEGORY_MUTATION, {
-		onCompleted: data => {
-			setCategories([...categories, data.createCategory]);
-			setCategory('');
-		},
+		refetchQueries: [{ query: GET_CATEGORIES_QUERY }],
 	});
 
 	useEffect(() => {
@@ -59,8 +57,12 @@ const CategoriesPage = () => {
 		}
 	};
 
-	const handleSaveCategory = () => {
-		createCategory({ variables: { name: category } });
+	const handleSaveCategory = async ({ name, published }) => {
+		try {
+			await createCategory({ variables: { name, published } });
+		} catch (error) {
+			console.error('Error creating category:', error);
+		}
 	};
 
 	const handleAddSubCategories = () => {};

@@ -6,14 +6,16 @@ import './style.css';
 
 const CategoryForm = ({ category, setCategory, handleSaveCategory }) => {
 	const [isValid, setIsValid] = useState(null);
+	const [published, setPublished] = useState(true);
 	const { t } = useTranslation();
 
 	const handleSubmit = event => {
 		event.preventDefault();
 		if (category.length >= 4 && category.length <= 15) {
 			setIsValid(true);
-			handleSaveCategory();
+			handleSaveCategory({ name: category, published });
 			setCategory('');
+			setPublished(true);
 		} else {
 			setIsValid(false);
 		}
@@ -26,6 +28,10 @@ const CategoryForm = ({ category, setCategory, handleSaveCategory }) => {
 		} else {
 			setIsValid(false);
 		}
+	};
+
+	const handleCheckboxChange = e => {
+		setPublished(e.target.checked);
 	};
 
 	return (
@@ -51,6 +57,8 @@ const CategoryForm = ({ category, setCategory, handleSaveCategory }) => {
 						className='save-category-checkbox'
 						type='checkbox'
 						label={t('categoriesPage.post')}
+						checked={published}
+						onChange={handleCheckboxChange}
 					/>
 				</Form.Group>
 				<Button className='add-category-btn' variant='primary' type='submit'>

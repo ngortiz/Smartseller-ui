@@ -41,6 +41,7 @@
 .save-category-checkbox label {
 	font-weight: bold;
 	color: #333;
+	margin: 0;
 }
 
 .add-category-btn {
@@ -57,6 +58,7 @@
 .add-category-btn:hover {
 	background-color: #00a65a;
 	border-color: #008d4c;
+	padding: 11px;
 }
 
 .additional-interface-section {
