@@ -46,6 +46,13 @@ const CategoryForm = ({ category, setCategory, handleSaveCategory }) => {
 						/>
 					</div>
 				</Form.Group>
+				<Form.Group>
+					<Form.Check
+						className='save-category-checkbox'
+						type='checkbox'
+						label={t('categoriesPage.post')}
+					/>
+				</Form.Group>
 				<Button className='add-category-btn' variant='primary' type='submit'>
 					{t('categoriesPage.save')}
 				</Button>

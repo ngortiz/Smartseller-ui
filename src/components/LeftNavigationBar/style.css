@@ -1,6 +1,6 @@
 .LeftNavigationBar {
 	height: 1000vh;
-	background-color: #354052;
+	background-color: #00a884;
 	padding: 10px;
 	padding-left: 10px;
 	border-bottom: 1px solid rgb(50, 47, 47);
@@ -75,7 +75,7 @@
 }
 
 .LeftNavigationBar h2:hover {
-	background-color: #354063;
+	background-color: #a9c7c1;
 }
 
 .LeftNavigationBar ul {
@@ -95,12 +95,12 @@
 }
 
 .LeftNavigationBar ul .item:hover {
-	color: #354063;
+	color: #a9c7c1;
 	width: 110%;
 }
 
 .LeftNavigationBar ul:hover {
-	background-color: #354063;
+	background-color: #a9c7c1;
 	width: 110%;
 }
 
@@ -108,7 +108,7 @@
 	flex: 1;
 }
 .nav-divider {
-	border-top: 1px solid #354052;
+	border-top: 1px solid #00a884;
 	margin: 0rem;
 }
 .nav-link {
