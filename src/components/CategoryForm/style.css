@@ -1,24 +1,19 @@
 .categories-page-container {
 	margin-top: 50px;
+	width: 60%;
+	background-color: white;
 }
 
 .categories-page-header {
-	margin: 10px 0 20px 0;
-	text-align: left;
+	font-size: 1.5rem;
 	margin-bottom: 20px;
-	background-color: inherit;
-	border-bottom: 1px solid #eee;
-	padding: 5px;
-	margin-bottom: 15px;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 20px;
-	font-weight: bold;
-	color: #333;
+	padding: 20px;
+	text-align: center;
 }
 
 .add-category-section {
-	background-color: #f8f9fa;
-	border-radius: 10px;
+	background-color: white;
+	border-radius: 1px;
 	padding: 20px;
 	margin-bottom: 30px;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -27,6 +22,7 @@
 .add-category-section h3 {
 	font-size: 1.5rem;
 	margin-bottom: 20px;
+	text-align: center;
 }
 
 .category-input {
