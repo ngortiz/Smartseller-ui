@@ -34,7 +34,7 @@ const CategoryAndSubCategoriesTable = ({
 						</div>
 					) : (
 						<ul className='subcategory-list'>
-							{categories.map(({ name, id, subCategories }) => (
+							{categories.map(({ name, id, published, subCategories }) => (
 								<Col className='category-list-col' key={id}>
 									<span onClick={() => toggleCategory(name)}>
 										<i className='bi bi-caret-down-fill'></i>
@@ -60,6 +60,8 @@ const CategoryAndSubCategoriesTable = ({
 										<input
 											type='checkbox'
 											id={id}
+											checked={published}
+											disabled
 											className='custom-checkbox'
 										/>
 										<span className='checkmark'></span>

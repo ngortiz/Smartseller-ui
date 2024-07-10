@@ -12,6 +12,7 @@ const GET_CATEGORIES_QUERY = gql`
 		getCategories {
 			id
 			name
+			published
 			subCategories {
 				id
 				name
