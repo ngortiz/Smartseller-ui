@@ -30,16 +30,27 @@ const CREATE_CATEGORY_MUTATION = gql`
 	}
 `;
 
+const CREATE_SUB_CATEGORY_MUTATION = gql`
+	mutation CreateSubCategory($categoryId: Int!, $name: String!) {
+		createSubCategory(subCategory: { categoryId: $categoryId, name: $name }) {
+			id
+			name
+		}
+	}
+`;
+
 const CategoriesPage = () => {
 	const { t } = useTranslation();
 	const [category, setCategory] = useState('');
-	const [subCategories, setSubCategories] = useState('');
-	const [selectedCategory, setSelectedCategory] = useState('');
 	const [expandedCategory, setExpandedCategory] = useState(null);
 	const [categories, setCategories] = useState([]);
 
 	const { loading, error, data } = useQuery(GET_CATEGORIES_QUERY);
 	const [createCategory] = useMutation(CREATE_CATEGORY_MUTATION, {
+		refetchQueries: [{ query: GET_CATEGORIES_QUERY }],
+	});
+
+	const [createSubCategory] = useMutation(CREATE_SUB_CATEGORY_MUTATION, {
 		refetchQueries: [{ query: GET_CATEGORIES_QUERY }],
 	});
 
@@ -65,7 +76,13 @@ const CategoriesPage = () => {
 		}
 	};
 
-	const handleAddSubCategories = () => {};
+	const handleAddSubCategory = async ({ categoryId, name }) => {
+		try {
+			await createSubCategory({ variables: { categoryId, name } });
+		} catch (error) {
+			console.error('Error creating subcategory:', error);
+		}
+	};
 
 	return (
 		<Container className='categories-page-container'>
@@ -82,11 +99,7 @@ const CategoriesPage = () => {
 				handleSaveCategory={handleSaveCategory}
 			/>
 			<SubCategoryForm
-				selectedCategory={selectedCategory}
-				setSelectedCategory={setSelectedCategory}
-				subCategories={subCategories}
-				setSubCategories={setSubCategories}
-				handleAddSubCategories={handleAddSubCategories}
+				handleAddSubCategory={handleAddSubCategory}
 				categories={categories}
 				loading={loading}
 			/>
