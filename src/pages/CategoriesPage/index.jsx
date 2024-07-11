@@ -42,8 +42,6 @@ const CREATE_SUB_CATEGORY_MUTATION = gql`
 const CategoriesPage = () => {
 	const { t } = useTranslation();
 	const [category, setCategory] = useState('');
-	const [subCategories, setSubCategories] = useState('');
-	const [selectedCategory, setSelectedCategory] = useState('');
 	const [expandedCategory, setExpandedCategory] = useState(null);
 	const [categories, setCategories] = useState([]);
 
@@ -78,7 +76,7 @@ const CategoriesPage = () => {
 		}
 	};
 
-	const handleAddSubCategories = async ({ categoryId, name }) => {
+	const handleAddSubCategory = async ({ categoryId, name }) => {
 		try {
 			await createSubCategory({ variables: { categoryId, name } });
 		} catch (error) {
@@ -101,11 +99,7 @@ const CategoriesPage = () => {
 				handleSaveCategory={handleSaveCategory}
 			/>
 			<SubCategoryForm
-				selectedCategory={selectedCategory}
-				setSelectedCategory={setSelectedCategory}
-				subCategories={subCategories}
-				setSubCategories={setSubCategories}
-				handleAddSubCategories={handleAddSubCategories}
+				handleAddSubCategory={handleAddSubCategory}
 				categories={categories}
 				loading={loading}
 			/>
