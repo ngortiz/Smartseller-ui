@@ -34,14 +34,27 @@
 	box-sizing: border-box;
 }
 
-.save-category-checkbox {
+.checkbox-group {
+	display: flex;
+	align-items: center;
 	margin-bottom: 20px;
+}
+
+.save-category-checkbox {
+	margin-left: 0;
+}
+.form-check .form-check-input {
+	float: right;
+	margin-right: -80%;
+	background-color: #00a65a;
+	border-color: #008d4c;
+	padding: 10px;
 }
 
 .save-category-checkbox label {
 	font-weight: bold;
 	color: #333;
-	margin: 0;
+	margin-left: -22px;
 }
 
 .add-category-btn {

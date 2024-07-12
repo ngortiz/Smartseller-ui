@@ -52,7 +52,7 @@ const CategoryForm = ({ category, setCategory, handleSaveCategory }) => {
 						/>
 					</div>
 				</Form.Group>
-				<Form.Group>
+				<Form.Group className='checkbox-group'>
 					<Form.Check
 						className='save-category-checkbox'
 						type='checkbox'
