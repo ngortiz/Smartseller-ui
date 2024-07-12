@@ -1,72 +1,85 @@
 .date-button {
-  background-color: #0e2a5d;
-  color: #fff;
-  padding: 7px 18px;
-  border: none;
-  border-radius: 2px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 1px;
-  font-family: 'Source Sans Pro', sans-serif;
-  box-shadow: 0 2px 2px #335;
-  margin-left: 5%;
-  margin-top: 0%;
+	background-color: #0e2a5d;
+	color: #fff;
+	padding: 7px 18px;
+	border: none;
+	border-radius: 2px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 1px;
+	font-family: 'Source Sans Pro', sans-serif;
+	box-shadow: 0 2px 2px #335;
+	margin-left: 5%;
+	margin-top: 0%;
 }
-
+.justify-content-center {
+	justify-content: center !important;
+}
 .OrdersButton:hover {
-  background-color: #112845;
+	background-color: #00a65a;
+	border-color: #008d4c;
+}
+.date-button {
+	background-color: #00a65a;
+	border-color: #008d4c;
+	color: #fff;
+	padding: 7px 18px;
+	border: none;
+	border-radius: 2px;
+	width: 27%;
+	font-size: 17px;
 }
 
 .order-button:hover {
-  background-color: #0056b3;
+	background-color: #00a65a;
+	border-color: #008d4c;
 }
 .custom-date-picker {
-  display: flex;
-  border: 2px solid #e0e0e0;
-  padding: 5px;
-  margin-left: 1%;
-  border-radius: 2px;
-  background-color: #f5f5f5;
-  box-shadow: 0 1px 1px #053857;
-  align-items: center;
+	display: flex;
+	border: 2px solid #e0e0e0;
+	padding: 12px;
+	margin-left: 1%;
+	border-radius: 2px;
+	background-color: #f5f5f5;
+	box-shadow: 0 1px 1px #053857;
+	align-items: center;
 }
 
 .bi-calendar-icon {
-  color: #354063;
-  font-size: 1.8em;
-  margin-right: 10px;
+	color: #354063;
+	font-size: 1.8em;
+	margin-right: 10px;
 }
 
 .date-picker-input {
-  font-size: 12px;
-  font-weight: normal;
-  font-style: normal;
-  width: 150px;
-  padding: 2px;
-  border: 2px solid #e0e0e0;
-  border-radius: 4px;
-  align-items: center;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: normal;
+	width: 290px;
+	padding: 2px;
+	border: 2px solid #e0e0e0;
+	border-radius: 4px;
+	align-items: center;
 }
 
 .custom-label {
-  font-size: 16px;
-  margin-bottom: 5px;
-  padding: 0;
-  font-weight: bold;
-  font-family: 'Source Sans Pro', sans-serif;
-  margin: 10px 0;
-  margin-left: 10px;
+	font-size: 18px;
+	margin-bottom: 5px;
+	padding: 0;
+	font-weight: bold;
+	font-family: 'Source Sans Pro', sans-serif;
+	margin: 10px 0;
+	margin-left: 10px;
 }
 .date-range-picker-container {
-  text-align: center;
-  margin-top: 0%;
-  margin-bottom: 4%;
-  margin-right: 5%;
+	text-align: center;
+	margin-top: 0%;
+	margin-bottom: 4%;
 }
 .date-picker-container {
-  display: flex;
-  text-align: center;
-  margin-top: 15px;
-  margin-bottom: 0%;
-  margin-right: 25%;
+	display: flex;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 0%;
+	margin-right: 25%;
 }
