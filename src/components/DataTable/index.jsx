@@ -21,7 +21,7 @@ const DataTable = ({ orders, loading }) => {
 			<Form.Group controlId='searchForm'>
 				<Form.Control
 					type='text'
-					placeholder='Buscar por Cliente o Número'
+					placeholder={t('dataTable.BsearchByCustomerOrNumber')}
 					value={searchTerm}
 					onChange={e => setSearchTerm(e.target.value)}
 				/>
@@ -30,15 +30,15 @@ const DataTable = ({ orders, loading }) => {
 			<Table striped bordered hover className='data-table'>
 				<thead>
 					<tr>
-						<th>Item</th>
-						<th>Número</th>
-						<th>Cliente</th>
-						<th>Estado Pedido</th>
-						<th>Estado Pago</th>
-						<th>Forma Pago</th>
-						<th>Fecha Creación</th>
-						<th>Fecha Expiración</th>
-						<th>Total</th>
+						<th>{t('dataTable.item')}</th>
+						<th>{t('dataTable.number')}</th>
+						<th>{t('dataTable.client')}</th>
+						<th>{t('dataTable.orderState')}</th>
+						<th>{t('dataTable.paymentState')}</th>
+						<th>{t('dataTable.buyMethods')}</th>
+						<th>{t('dataTable.creationDate')}</th>
+						<th>{t('dataTable.expirationDate')}</th>
+						<th>{t('dataTable.total')}</th>
 					</tr>
 				</thead>
 				<tbody>
