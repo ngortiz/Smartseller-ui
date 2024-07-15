@@ -1,5 +1,6 @@
 .date-button {
-	background-color: #0e2a5d;
+	background-color: #00a65a;
+	border-color: #008d4c;
 	color: #fff;
 	padding: 7px 18px;
 	border: none;
@@ -12,22 +13,10 @@
 	margin-left: 5%;
 	margin-top: 0%;
 }
-.justify-content-center {
-	justify-content: center !important;
-}
+
 .OrdersButton:hover {
 	background-color: #00a65a;
 	border-color: #008d4c;
-}
-.date-button {
-	background-color: #00a65a;
-	border-color: #008d4c;
-	color: #fff;
-	padding: 7px 18px;
-	border: none;
-	border-radius: 2px;
-	width: 27%;
-	font-size: 17px;
 }
 
 .order-button:hover {
@@ -37,7 +26,7 @@
 .custom-date-picker {
 	display: flex;
 	border: 2px solid #e0e0e0;
-	padding: 12px;
+	padding: 5px;
 	margin-left: 1%;
 	border-radius: 2px;
 	background-color: #f5f5f5;
@@ -46,24 +35,25 @@
 }
 
 .bi-calendar-icon {
-	color: #354063;
-	font-size: 1.8em;
-	margin-right: 10px;
+	color: #354063 !important;
+	font-size: 1.8em !important;
+	margin-right: 10px !important;
 }
 
 .date-picker-input {
-	font-size: 16px;
+	font-size: 12px;
 	font-weight: normal;
 	font-style: normal;
-	width: 290px;
+	width: 170px;
 	padding: 2px;
 	border: 2px solid #e0e0e0;
 	border-radius: 4px;
 	align-items: center;
+	margin-right: 8%;
 }
 
 .custom-label {
-	font-size: 18px;
+	font-size: 16px;
 	margin-bottom: 5px;
 	padding: 0;
 	font-weight: bold;
@@ -72,14 +62,16 @@
 	margin-left: 10px;
 }
 .date-range-picker-container {
+	display: flexbox;
 	text-align: center;
-	margin-top: 0%;
+	margin-top: 5%;
 	margin-bottom: 4%;
+	margin-right: 5%;
 }
 .date-picker-container {
 	display: flex;
 	text-align: center;
 	margin-top: 15px;
 	margin-bottom: 0%;
-	margin-right: 25%;
+	margin-right: 10%;
 }

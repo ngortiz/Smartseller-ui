@@ -180,7 +180,7 @@ const DiscountByCouponsPage = () => {
 						</Col>
 
 						<Col md={2} className='d-flex align-items-center'>
-							<BiCalendar className='bi-bi-calendar3' />
+							<BiCalendar className='bi-bi-calendar' />
 							<DatePicker
 								selected={expirationDate}
 								onChange={handleExpirationDateChange}

@@ -19,8 +19,8 @@
 	width: 90%;
 	margin: 16px;
 	border-radius: 15px;
-	padding: 30px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	padding: 15px;
+	box-shadow: 0 18px 6px rgba(0, 0, 0, 0.1);
 	background: rgba(255, 255, 255, 0.8);
 }
 
@@ -32,13 +32,17 @@
 .card-text {
 	font-size: 20px;
 }
+.card-text:hover {
+	color: #f5f5f5;
+	font-weight: bold;
+}
 
 .icon-container {
 	position: absolute;
 	top: 10px;
 	right: 10px;
 	border-radius: 50%;
-	font-size: 36px;
+	font-size: 60px;
 }
 
 .btn {
@@ -48,4 +52,12 @@
 
 .btn i {
 	margin-left: 5px;
+}
+.btn i:hover {
+	color: #f5f5f5;
+	font-weight: bold;
+}
+.button-status {
+	margin-top: 10px;
+	color: white;
 }
