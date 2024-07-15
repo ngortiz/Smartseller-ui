@@ -397,5 +397,17 @@
 		"amount": "Cantidad",
 		"published": "Publicado",
 		"onOffer": "En oferta"
+	},
+	"dataTable": {
+		"item": "Item",
+		"number": "Número",
+		"client": "Cliente",
+		"orderState": "Estado de Pedido",
+		"paymentState": "Estado Pago",
+		"buyMethods": "Forma Pago",
+		"creationDate": "Fecha Creación",
+		"expirationDate": "Fecha Expiracion",
+		"total": "Total",
+		"searchByCustomerOrNumber": "Buscar por Cliente o Número"
 	}
 }

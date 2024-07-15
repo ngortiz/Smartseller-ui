@@ -1,65 +1,63 @@
-.card {
-  width: 98%;
-  margin: 10px;
-  border-radius: 1px;
-  overflow: hidden;
-  margin-right: 20px !important;
+.container-white-bg {
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	width: 90%;
+	margin-bottom: 2%;
+}
+.containerTable-white-bg {
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	width: 90%;
+	margin-top: 2%;
 }
 
-.card-body {
-  display: contents;
-  flex-direction: column;
-  align-items: center;
-  padding: 0px;
-  margin-left: 15px;
-  font-weight: bold;
+.custom-card {
+	width: 90%;
+	margin: 16px;
+	border-radius: 15px;
+	padding: 15px;
+	box-shadow: 0 18px 6px rgba(0, 0, 0, 0.1);
+	background: rgba(255, 255, 255, 0.8);
 }
 
 .card-title {
-  margin: 0 0 10px 0;
-  white-space: nowrap;
-  padding: 5px;
-  font-family: 'Source Sans Pro', sans-serif;
-  margin-left: 15px;
-  font-size: 24px;
-  font-weight: bold;
-  color: white;
+	font-size: 40px;
+	font-weight: bold;
 }
 
 .card-text {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 15px;
-  margin-bottom: 10px;
-  margin-left: 15px;
-  color: white;
+	font-size: 20px;
+}
+.card-text:hover {
+	color: #f5f5f5;
+	font-weight: bold;
 }
 
 .icon-container {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  border-radius: 50%;
-  font-size: 65px;
-  color: rgba(0, 0, 0, 0.15);
-  display: inline-block;
-  font-weight: normal;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	border-radius: 50%;
+	font-size: 60px;
 }
 
 .btn {
-  position: relative;
-  text-align: center;
-  padding: 3px 0;
-  background: rgba(0, 0, 0, 0.1);
-  border: 1px;
-  color: white;
-  border-radius: 1px;
-  font-size: x-small;
+	margin-top: 10px;
+	color: white;
 }
 
-.btn:hover {
-  background: rgba(0, 0, 0, 0.3);
+.btn i {
+	margin-left: 5px;
 }
-
-.bi-arrow-right-circle {
-  margin-left: 5px;
+.btn i:hover {
+	color: #f5f5f5;
+	font-weight: bold;
+}
+.button-status {
+	margin-top: 10px;
+	color: white;
 }

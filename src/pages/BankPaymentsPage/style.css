@@ -1,121 +1,120 @@
 .bank-header {
-  margin: 10px 0 20px 0;
-  text-align: left;
-  margin-bottom: 20px;
-  background-color: inherit;
-  border-bottom: 1px solid #eeee;
-  padding: 5px;
-  margin-bottom: 3%;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-top: -1%;
+	margin: 10px 0 20px 0;
+	text-align: left;
+	margin-bottom: 20px;
+	background-color: inherit;
+	border-bottom: 1px solid #eeee;
+	padding: 5px;
+	margin-bottom: 3%;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
+	margin-top: -1%;
 }
 
 .heard-state {
-  margin-bottom: -8px;
-  font-weight: 700;
-  display: block;
-  font-size: 15px;
+	margin-bottom: -8px;
+	font-weight: 700;
+	display: block;
+	font-size: 15px;
 }
 .heard-number {
-  margin-bottom: -10px;
-  font-weight: 700;
-  display: block;
-  text-align: center;
-  margin-left: 5px;
-  font-size: 15px;
+	margin-bottom: -10px;
+	font-weight: 700;
+	display: block;
+	text-align: center;
+	margin-left: 5px;
+	font-size: 15px;
 }
 
 .bank-container {
-  margin-bottom: 10px;
-  margin-left: 3px;
+	margin-bottom: 10px;
+	margin-left: 3px;
 }
 
 .bank-select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 11%;
-  border: 2px solid #ccc;
-  border-radius: 2px;
-  background-color: #f9f9f9;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 12px;
-  color: #333333;
+	width: 100%;
+	padding: 10px;
+	margin-top: 11%;
+	border: 2px solid #ccc;
+	border-radius: 2px;
+	background-color: #f9f9f9;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 12px;
+	color: #333333;
 }
 
 .bank-table {
-  width: 100%;
-  margin-top: 1%;
-  color: #354052;
-  border-spacing: 0 10px;
+	width: 100%;
+	margin-top: 1%;
+	color: #354052;
+	border-spacing: 0 10px;
 }
 
 .bank-table th {
-  background-color: #354052;
-  color: #fff;
-  border: 1px solid #566168;
-  padding: 6px;
-  text-align: center;
-  font-size: 15px;
+	background-color: #00a65a;
+	border-color: #008d4c;
+	color: #fff;
+	text-align: center;
+	margin-top: 10px;
 }
 
 .bank-table td {
-  border: 1px solid #bdc3c7;
-  padding: 12px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 14px;
-  text-align: center;
+	border: 1px solid #bdc3c7;
+	padding: 12px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 14px;
+	text-align: center;
 }
 
 .bank-table {
-  width: 101%;
-  margin-top: 1%;
-  color: #354052;
-  border-spacing: 0 10px;
+	width: 101%;
+	margin-top: 1%;
+	color: #354052;
+	border-spacing: 0 10px;
 }
 
 .bank-btn {
-  color: #fff;
-  padding: 10px 20px;
-  font-size: 14px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  background-color: #262c40;
-  margin-top: 5px;
+	color: #fff;
+	padding: 10px 20px;
+	font-size: 14px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	background-color: #262c40;
+	margin-top: 5px;
 }
 
 .bank-btn:hover {
-  background-color: #50657c;
+	background-color: #50657c;
 }
 
 .bank-input {
-  margin: 5px;
-  margin-top: 0px;
-  font-family: inherit;
-  font-size: 12px;
-  line-height: inherit;
-  margin-top: 10%;
-  width: 120%;
-  padding: 9px 5px;
-  background-color: #f9f9f9;
-  margin-left: 8%;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  border: 2px solid #bdc3c7;
+	margin: 5px;
+	margin-top: 0px;
+	font-family: inherit;
+	font-size: 12px;
+	line-height: inherit;
+	margin-top: 10%;
+	width: 120%;
+	padding: 9px 5px;
+	background-color: #f9f9f9;
+	margin-left: 8%;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	border: 2px solid #bdc3c7;
 }
 .bank-flex-container {
-  display: inline-flex
+	display: inline-flex;
 }
 
 .btn-pagar {
-  color: #fff;
-  padding: 10px 15px;
-  font-size: 14px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  background-color: #262c40;
-  margin-top: 5px;
+	color: #fff;
+	padding: 10px 15px;
+	font-size: 14px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	background-color: #262c40;
+	margin-top: 5px;
 }
