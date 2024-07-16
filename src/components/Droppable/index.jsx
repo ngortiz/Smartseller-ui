@@ -8,8 +8,8 @@ export default function Droppable(props) {
 
 	const style = {
 		opacity: isOver ? 1 : 0.5,
-		minHeight: '40px',
-		margin: '5px',
+		minHeight: '50px',
+		margin: '10px',
 		backgroundColor: isOver ? '#333' : 'transparent',
 		transition: 'background-color 0.3s ease',
 	};
