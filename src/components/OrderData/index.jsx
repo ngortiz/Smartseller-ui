@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Col } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
+import './style.css';
 
 export const OrderData = ({ number, voucher, state, date }) => {
 	const { t } = useTranslation();
@@ -10,8 +11,8 @@ export const OrderData = ({ number, voucher, state, date }) => {
 	const formattedDate = moment(date).format('DD-MM-YYYY HH:mm');
 
 	return (
-		<div className='column-content'>
-			<Col className='order-info-col'>
+		<Card className='order-data-card'>
+			<Card.Body>
 				<h2 className='title'>{t('orderData.title')}</h2>
 				<p>
 					<strong>{t('orderData.number')}:</strong> <label>{number}</label>
@@ -26,8 +27,8 @@ export const OrderData = ({ number, voucher, state, date }) => {
 				<p>
 					<strong>{t('orderData.date')}:</strong> <label>{formattedDate}</label>
 				</p>
-			</Col>
-		</div>
+			</Card.Body>
+		</Card>
 	);
 };
 

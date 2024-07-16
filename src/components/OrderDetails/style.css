@@ -1,10 +1,11 @@
 .column-content {
-	border: 1px solid #ddd;
-	padding: 15px;
-	margin: 15px;
-	margin-right: 8px;
-	margin-left: -1px;
+	border: 1px solid #e0e0e0;
+	padding: 20px;
+	margin: 20px 10px;
 	width: 100%;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .order-table {
@@ -17,45 +18,91 @@
 
 .order-table th,
 .order-table td {
-	border: 1px solid #ddd;
-	padding: 8px;
+	border: 1px solid #e0e0e0;
+	padding: 12px;
 	text-align: center;
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
 .order-table th {
-	background-color: #f2f2f2;
+	background-color: #00a65a;
+	color: white;
+	font-weight: bold;
 	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.order-table td {
+	background-color: white;
+}
+
+.order-table tr:nth-child(even) {
+	background-color: #f2f2f2;
 }
 
 .summary-table {
 	width: 100%;
 	border-collapse: collapse;
+	margin-top: 20px;
 }
 
 .summary-cell {
-	background-color: #f2f2f2;
-	padding: 8px;
-	text-align: right;
+	background-color: #f9f9f9;
+	color: #333;
+	padding: 12px;
+	text-align: left;
 	width: 93%;
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 15px;
+	font-size: 16px;
+	font-weight: bold;
 }
 
 .summary-value {
-	padding: 8px;
+	padding: 12px;
 	text-align: right;
 	width: 7%;
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 15px;
+	font-size: 16px;
+	background-color: white;
+}
+.additional-details-container {
+	margin-top: 20px;
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 15px;
+	border-radius: 0px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 30px;
 }
 
-.additional-details {
-	margin-top: 20px;
+.additional-details table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.additional-details th,
+.additional-details td {
+	padding: 10px;
+	text-align: center;
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 14px;
+}
+
+.additional-details th {
+	background-color: whitesmoke !important;
+	color: #333 !important;
+	border: 1px solid #ddd;
+}
+
+.additional-details td {
+	background-color: white;
+	border: 1px solid #ddd;
+	padding: 10px;
 }
 
 .spinner-cont {
 	text-align: center;
+	padding: 20px;
+}
+
+.spinner-cont .spinner {
+	font-size: 24px;
+	color: #00a65a;
 }

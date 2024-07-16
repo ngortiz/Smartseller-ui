@@ -1,83 +1,83 @@
-body {
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-header {
-  margin: 10px 0 20px 0;
-  text-align: left;
-  margin-bottom: 20px;
-  background-color: inherit;
-  border-bottom: 1px solid #eeee;
-  padding: -6px;
-  margin-bottom: 15px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+.information-container {
+	font-family: 'Source Sans Pro', sans-serif;
+	border-radius: 8px;
+	background-color: white;
+	margin: 20px auto;
+	width: 100% !important;
+	padding: 40px;
 }
 
 .order-view {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 26px;
+	font-weight: bold;
+	color: #333;
+	text-align: center;
+	padding-top: 2%;
 }
 
 .title-h2 {
-  color: #333;
+	color: white;
 }
 
 .comprobante table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+	background-color: white;
+
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
 }
 
-.comprobante th,
+.comprobante th {
+	background-color: #00a65a;
+	border-color: #008d4c;
+	color: white;
+	border: #008d4c;
+}
 .comprobante td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+	border: 0px;
+	padding: 8px;
 }
 .back-button {
-  background-color: darkblue;
-  color: white;
-  padding: 10px 20px;
-  margin-right: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-family: 'Source Sans Pro', sans-serif;
-  transition: background-color 0.3s ease;
-  border: 1px solid #42484e;
-  font-size: 18px;
-  font-weight: bold;
-  width: 20%;
+	background-color: #00a65a;
+	color: white;
+	padding: 10px 20px;
+	margin-right: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	font-family: 'Source Sans Pro', sans-serif;
+	border-color: #008d4c;
+	font-size: 18px;
+	font-weight: bold;
+	width: 15%;
+	margin-bottom: 5%;
+}
+
+.back-button:hover {
+	background-color: #008d4c;
 }
 
 .print-button {
-  background-color: orange;
-  color: white;
-  padding: 10px 32px;
-  border-radius: 5px;
-  cursor: pointer;
-  border: 1px solid rgb(97, 80, 50);
-  font-family: 'Source Sans Pro', sans-serif;
-  transition: background-color 0.3s ease;
-  font-size: 18px;
-  font-weight: bold;
-  width: 20%;
+	background-color: white; /* Azul claro */
+	color: #00a65a;
+	padding: 10px 32px;
+	border-radius: 5px;
+	cursor: pointer;
+	border: 1px solid #00a65a; /* Azul más oscuro para el borde */
+	font-family: 'Source Sans Pro', sans-serif;
+	transition: background-color 0.3s ease;
+	font-size: 18px;
+	font-weight: bold;
+	width: 15%;
+	margin-bottom: 5%;
+}
+
+.print-button:hover {
+	background-color: #3a70a8;
 }
 
 .button-container {
-  margin-top: 15px;
-  text-align: center;
+	margin-top: 15px;
+	text-align: center;
 }
-
-.additional-details th {
-  background-color: #fff;
-  color: #333;
-  padding: 10px;
-  text-align: center;
-}
-

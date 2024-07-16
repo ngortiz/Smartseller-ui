@@ -74,44 +74,46 @@ const OrderInformationPage = () => {
 	};
 
 	return (
-		<Container>
+		<>
 			<header>
 				<h1 className='order-view'>{t('orderInformationPage.title')}</h1>
 			</header>
-			<Row className='justify-content-center'>
-				<Col>
-					<OrderClientInformation
-						client={order?.username || ''}
-						address={order?.address || ''}
-						phone={order?.contactPhone || ''}
-						ruc={order?.ruc || ''}
-						color='#ffA500'
-					/>
-				</Col>
-				<Col>
-					<OrderData
-						number={order?.number.toString() || ''}
-						voucher={order?.number.toString() || ''}
-						state={order?.orderState || ''}
-						date={order?.createdAt || ''}
-					/>
-				</Col>
-				<Col>
-					<OrderPayment
-						paymentState={order?.paymentState || ''}
-						total={`"US$  ${order?.total || 0}"`}
-						totalPaid={`US$  ${order?.totalPaid || 0}`}
-						totalDebt={`US$  ${order?.totalDebt || 0}`}
-					/>
-				</Col>
-			</Row>
-			<Row className='justify-content-center'>
-				<Col>
-					<OrderDetails order={order} />
-				</Col>
-			</Row>
-			<Row className='mt-4'>
-				<Col className='button-container'>
+			<Container className='information-container'>
+				<Row className='justify-content-center'>
+					<Col>
+						<OrderClientInformation
+							client={order?.username || ''}
+							address={order?.address || ''}
+							phone={order?.contactPhone || ''}
+							ruc={order?.ruc || ''}
+							color='#ffA500'
+						/>
+					</Col>
+					<Col>
+						<OrderData
+							number={order?.number.toString() || ''}
+							voucher={order?.number.toString() || ''}
+							state={order?.orderState || ''}
+							date={order?.createdAt || ''}
+						/>
+					</Col>
+					<Col>
+						<OrderPayment
+							paymentState={order?.paymentState || ''}
+							total={`"US$  ${order?.total || 0}"`}
+							totalPaid={`US$  ${order?.totalPaid || 0}`}
+							totalDebt={`US$  ${order?.totalDebt || 0}`}
+						/>
+					</Col>
+				</Row>
+				<Row className='justify-content-center'>
+					<Col>
+						<OrderDetails order={order} />
+					</Col>
+				</Row>
+			</Container>
+			<>
+				<div className='button-container'>
 					<Button className='back-button' onClick={handleGoBack}>
 						<i className='bi bi-arrow-left-circle'></i>{' '}
 						{t('orderInformationPage.goBack')}
@@ -119,9 +121,9 @@ const OrderInformationPage = () => {
 					<Button className='print-button'>
 						<i className='bi bi-printer'></i> {t('orderInformationPage.print')}
 					</Button>
-				</Col>
-			</Row>
-		</Container>
+				</div>
+			</>
+		</>
 	);
 };
 
