@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Row, Spinner } from 'react-bootstrap';
+import { Container, Col, Row, Spinner } from 'react-bootstrap';
 import DateRangePicker from '../../components/DateRangePicker';
 import './style.css';
 import { useLazyQuery, gql } from '@apollo/client';
@@ -104,8 +104,8 @@ const OrderBoardPage = () => {
 
 	return (
 		<DndContext onDragEnd={handleDragEnd}>
-			<div className='order-control-container'>
-				<header className='order-control-header'>Control de Pedidos</header>
+			<header className='order-control-header'>Control de Pedidos</header>
+			<Container fluid className='container-board-bg'>
 				<Row>
 					<Col className='order-date-col'>
 						<DateRangePicker
@@ -160,7 +160,7 @@ const OrderBoardPage = () => {
 						</Col>
 					))}
 				</Row>
-			</div>
+			</Container>
 		</DndContext>
 	);
 };

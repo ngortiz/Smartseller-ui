@@ -1,102 +1,118 @@
 .order-card {
-  border: 1px solid rgb(218, 217, 217);
-  border-radius: 10px;
-  margin-bottom: 10px;
-  word-wrap: break-word;
-  width: auto;
-  box-shadow: 0 2px 2px 2px #053857;
+	border: 1px solid rgb(218, 217, 217);
+	border-radius: 10px;
+	margin-bottom: 10px;
+	word-wrap: break-word;
+	width: auto;
+	box-shadow: 0 2px 2px 2px #053857;
+	transition:
+		transform 0.3s,
+		box-shadow 0.3s;
 }
 
 /* Style for order card content */
 .order-card-content {
-  padding: 20px;
-  background-color: rgb(214, 238, 255);
+	padding: 20px;
+	background-color: rgb(214, 238, 255);
 }
 
 /* Style for text inside order cards */
 .order-card-text {
-  font-size: 12px;
-  color: #555;
-  font-family: 'Source Sans Pro', sans-serif;
-  padding: 5px;
+	font-size: 12px;
+	color: #333;
+	font-family: 'Source Sans Pro', sans-serif;
+	padding: 5px;
+}
+
+/* Hover state for order card */
+.order-card:hover {
+	transform: scale(1.05);
+	box-shadow: 0 4px 8px 4px #053857;
+}
+
+/* Ensuring text color remains #333 on hover */
+.order-card:hover .order-card-text {
+	color: #333;
 }
 
 /* Style for next to text */
 .texto-spam {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
+	display: flex;
+	align-items: center;
+	margin-bottom: 8px;
 }
 
 /* Style for icons */
 .texto-spam i {
-  margin-right: 10px;
-  font-size: small;
+	margin-right: 10px;
+	font-size: small;
 }
 
 /* Style for columns */
 .column-card {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 /* Style for the container of each column */
 .column-with-card {
-  width: 150%;
-  border: 1px solid #9aa1a7;
-  border-radius: 5px;
-  background-color: #eff9ff;
-  text-align: center;
-  margin: -10px;
+	width: 150%;
+	border: 1px solid #9aa1a7;
+	border-radius: 5px;
+	background-color: #eff9ff;
+	text-align: center;
+	margin: -10px;
+	margin-bottom: 15px;
+	margin-top: 10px;
 }
 
 /* Style for the title text of columns */
 .order-column-text {
-  font-size: 12px;
-  font-weight: bold;
-  color: #555;
-  margin: 5px;
-  padding: 15px;
-  font-family: 'Source Sans Pro', sans-serif;
-  border-bottom: 1px solid #9aa1a7;
-  text-transform: uppercase;
+	font-size: 12px;
+	font-weight: bold;
+	color: #555;
+	margin: 5px;
+	padding: 15px;
+	font-family: 'Source Sans Pro', sans-serif;
+	border-bottom: 1px solid #9aa1a7;
+	text-transform: uppercase;
 }
 
 /* Media queries */
 @media screen and (max-width: 768px) {
-  .order-card-content {
-    padding: 15px;
-  }
+	.order-card-content {
+		padding: 15px;
+	}
 
-  .order-card-text {
-    font-size: 10px;
-  }
+	.order-card-text {
+		font-size: 10px;
+	}
 
-  .texto-spam i {
-    margin-right: 5px;
-  }
+	.texto-spam i {
+		margin-right: 5px;
+	}
 
-  .order-column-text {
-    font-size: 10px;
-    padding: 10px;
-  }
+	.order-column-text {
+		font-size: 10px;
+		padding: 10px;
+	}
 }
 
 @media screen and (max-width: 576px) {
-  .order-card-content {
-    padding: 10px;
-  }
+	.order-card-content {
+		padding: 10px;
+	}
 
-  .order-card-text {
-    font-size: 8px;
-  }
+	.order-card-text {
+		font-size: 8px;
+	}
 
-  .texto-spam i {
-    margin-right: 3px;
-  }
+	.texto-spam i {
+		margin-right: 3px;
+	}
 
-  .order-column-text {
-    font-size: 8px;
-    padding: 5px;
-  }
+	.order-column-text {
+		font-size: 8px;
+		padding: 5px;
+	}
 }
