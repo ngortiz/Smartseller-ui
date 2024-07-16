@@ -83,24 +83,25 @@ const OrderDetails = ({ order }) => {
 					</tr>
 				</tbody>
 			</table>
-
-			<div className='additional-details'>
-				<table>
-					<thead>
-						<tr>
-							<th>{t('orderDetails.iva5Total')}:</th>
-							<th>{t('orderDetails.iva10Total')}:</th>
-							<th>{t('orderDetails.totalIVA')}:</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>US$ {iva5Total.toFixed(2)}</td>
-							<td>US$ {iva10Total.toFixed(2)}</td>
-							<td>US$ {totalIVA.toFixed(2)}</td>
-						</tr>
-					</tbody>
-				</table>
+			<div className='additional-details-container'>
+				<div className='additional-details'>
+					<table>
+						<thead>
+							<tr>
+								<th>{t('orderDetails.iva5Total')}:</th>
+								<th>{t('orderDetails.iva10Total')}:</th>
+								<th>{t('orderDetails.totalIVA')}:</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>US$ {iva5Total.toFixed(2)}</td>
+								<td>US$ {iva10Total.toFixed(2)}</td>
+								<td>US$ {totalIVA.toFixed(2)}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	);

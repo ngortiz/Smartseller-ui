@@ -1,26 +1,22 @@
-.column-content {
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin: 15px;
-  margin-right: 8px;
-  width: 110%;
+.order-data-card {
+	background: rgba(255, 255, 255, 0.8);
+	border: 0 18px 6px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 18px 6px rgba(0, 0, 0, 0.1);
+	margin-bottom: 2rem;
+	border-radius: 10px;
+	margin-top: 2rem;
 }
 
-.title {
-  font-size: 20px;
-  color: #333;
-  margin-bottom: 10px;
+.order-data-card .card-body {
+	padding: 2rem;
 }
 
-p {
-  margin: 5px 0;
+.order-data-card .title {
+	margin-bottom: 1rem;
+	color: #00a65a;
 }
 
-strong {
-  font-weight: bold;
-  margin-right: 5px;
-}
-
-label {
-  color: #354052;
+.order-data-card p {
+	margin-bottom: 0.5rem;
+	color: #555;
 }
