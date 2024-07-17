@@ -57,7 +57,8 @@ body {
 }
 
 .registration-form-button:hover {
-	background-color: #0056b3;
+	background-color: #00a65a;
+	border-color: #008d4c;
 }
 
 .label-registration-select {

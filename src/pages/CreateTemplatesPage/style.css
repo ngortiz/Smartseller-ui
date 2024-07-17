@@ -20,8 +20,8 @@
 }
 
 .create-templates-button {
-	background-color: #0e2a5d;
-	border: 2px solid #18211d;
+	background-color: #00a65a;
+	border-color: #008d4c;
 	color: #fff;
 	font-size: 16px;
 	font-weight: bold;
@@ -49,7 +49,8 @@
 }
 
 .create-templates-table th {
-	background-color: #0e2a5d;
+	background-color: #00a65a;
+	border-color: #008d4c;
 	padding: 16px;
 	color: #fff;
 	font-weight: 700;
