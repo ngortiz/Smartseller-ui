@@ -1,8 +1,10 @@
 .create-templates-container {
-	background-color: #f8f9fa;
-	padding: 20px;
-	border-radius: 8px;
+	background-color: white;
+	padding: 30px;
+	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	width: 60%;
+	margin-bottom: 2%;
 }
 
 .create-templates-header {
@@ -20,10 +22,10 @@
 }
 
 .create-templates-button {
-	background-color: #0e2a5d;
-	border: 2px solid #18211d;
+	background-color: #008d4c;
+	border-color: #008d4c;
 	color: #fff;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
 	padding: 5px 10px;
 	border-radius: 5px;
@@ -49,7 +51,8 @@
 }
 
 .create-templates-table th {
-	background-color: #0e2a5d;
+	background-color: #008d4c;
+	border-color: #008d4c;
 	padding: 16px;
 	color: #fff;
 	font-weight: 700;
@@ -58,19 +61,20 @@
 	border-bottom-width: 2px;
 }
 .create-templates-table td {
-	text-align: left;
+	text-align: center;
 	vertical-align: middle;
 	border-bottom-width: 1px;
-	font-size: 16px;
+	font-size: 12px;
 }
 
 .create-templates-delete-button {
 	background-color: #dc3545;
 	border: 2px solid #dc3545;
 	color: #fff;
-	font-size: 16px;
+	font-size: 12px;
 	font-weight: bold;
 	padding: 5px 10px;
 	border-radius: 5px;
 	margin-left: 40%;
+	text-align: center;
 }
