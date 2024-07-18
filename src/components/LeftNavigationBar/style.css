@@ -17,8 +17,6 @@
 .LeftNavigationBar img {
 	max-width: 100px;
 	padding: 1px;
-	padding: 1px;
-	padding: 1px;
 	height: auto;
 	margin-bottom: 30px;
 	border-radius: 50px;
@@ -33,19 +31,19 @@
 }
 
 .NavDropdown span {
-	border-bottom: 2px solid gray;
+	border-bottom: none;
 }
 
 .NavDropdown {
 	margin-bottom: 30px;
 	padding: 1em;
-	border-bottom: 2px solid gray;
+	border-bottom: none;
 	text-align: left;
 }
 
 .NavDropdown-item {
 	list-style: none;
-	font-size: small;
+	font-size: 17px;
 	padding: 8px;
 	text-align: left;
 }
@@ -57,63 +55,70 @@
 	text-decoration: none;
 	transition: color 0.3s;
 	margin-bottom: 30px;
-	border-bottom: 10px solid gray;
+	border-bottom: 10px solid #07d4a8;
 	text-align: left;
+	font-size: 17px;
 }
 
 .NavDropdown a:hover {
-	color: rgb(124, 115, 115);
+	color: #07d4a8;
 }
 
 .LeftNavigationBar h2 {
-	font-size: 18px;
+	font-size: 17px;
 	margin-top: 10px;
 	margin-bottom: 5px;
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: medium;
 	text-align: left;
 }
 
 .LeftNavigationBar h2:hover {
-	background-color: #a9c7c1;
+	background-color: #07d4a8;
 }
 
 .LeftNavigationBar ul {
 	padding-bottom: 0.6em;
 	margin-left: -20px;
-	padding-bottom: 0.6em;
-	margin-left: -20px;
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: medium;
+	font-size: 17px;
 }
 
 .LeftNavigationBar ul .item {
 	list-style: none;
 	margin: 5px;
-	border-bottom: 1px solid grey;
+	border-bottom: 1px solid #07d4a8;
 	text-align: left;
+	display: flex;
+	align-items: center;
+}
+
+.LeftNavigationBar ul .item i {
+	margin-right: 5px;
 }
 
 .LeftNavigationBar ul .item:hover {
-	color: #a9c7c1;
+	color: #07d4a8;
 	width: 110%;
 }
 
 .LeftNavigationBar ul:hover {
-	background-color: #a9c7c1;
+	background-color: #07d4a8;
 	width: 110%;
 }
 
 .LeftNavigationBar .NavDropdown {
 	flex: 1;
 }
+
 .nav-divider {
-	border-top: 1px solid #00a884;
+	border-top: none;
 	margin: 0rem;
 }
+
 .nav-link {
 	display: block;
 	padding: 5px;
+	font-size: 17px; /* Aumenta el tamaño de la fuente */
 }
 
 @media screen and (max-width: 767px) {

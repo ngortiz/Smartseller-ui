@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
+import { Container, Table } from 'react-bootstrap';
 
 const CreditCardPayments = () => {
 	const [selectedOption, setSelectedOption] = useState('all');
@@ -76,72 +77,74 @@ const CreditCardPayments = () => {
 			<header className='payment-header'>
 				{t('creditCardPayment.header')}
 			</header>
-			<div className='search-container'>
-				<select
-					className='form-select-lg'
-					aria-label='large-select-example'
-					value={selectedOption}
-					onChange={handleSelectorChange}
-				>
-					<option value='all' className='transacciones-body'>
-						{t('creditCardPayment.all')}
-					</option>
-					<option value='rejected_transaction' className='transacciones-body'>
-						{t('creditCardPayment.rejectedTransaction')}
-					</option>
-					<option value='accepted_transaction' className='transacciones-body'>
-						{t('creditCardPayment.acceptedTransaction')}
-					</option>
-				</select>
-			</div>
-			{loading && (
-				<div className='spinner-cont'>
-					<Spinner animation='border' role='status' variant='primary'>
-						<span className='sr-only'></span>
-					</Spinner>
+			<Container className='container-white-credit'>
+				<div className='search-container'>
+					<select
+						className='form-select-lg'
+						aria-label='large-select-example'
+						value={selectedOption}
+						onChange={handleSelectorChange}
+					>
+						<option value='all' className='transacciones-body'>
+							{t('creditCardPayment.all')}
+						</option>
+						<option value='rejected_transaction' className='transacciones-body'>
+							{t('creditCardPayment.rejectedTransaction')}
+						</option>
+						<option value='accepted_transaction' className='transacciones-body'>
+							{t('creditCardPayment.acceptedTransaction')}
+						</option>
+					</select>
 				</div>
-			)}
+				{loading && (
+					<div className='spinner-cont'>
+						<Spinner animation='border' role='status' variant='primary'>
+							<span className='sr-only'></span>
+						</Spinner>
+					</div>
+				)}
 
-			<table className='table'>
-				<thead>
-					<tr>
-						<th>{t('creditCardPayment.item')}</th>
-						<th>{t('creditCardPayment.number')}</th>
-						<th>{t('creditCardPayment.voucher')}</th>
-						<th>{t('creditCardPayment.amount')}</th>
-						<th>{t('creditCardPayment.client')}</th>
-						<th>{t('creditCardPayment.paymentMethod')}</th>
-						<th>{t('creditCardPayment.updatedAt')}</th>
-						<th>{t('creditCardPayment.pay')}</th>
-						<th>{t('creditCardPayment.cancelled')}</th>
-						<th>{t('creditCardPayment.createdAt')}</th>
-					</tr>
-				</thead>
-				<tbody>
-					{payments.map((payment, index) => (
-						<tr key={payment.id}>
-							<td>{index + 1}</td>
-							<td>
-								<Link to={`/orders/${payment.id}`}>{payment.number}</Link>
-							</td>
-							<td>Comprobante</td>
-							<td>US$ {payment.total}</td>
-
-							<td>{payment.username}</td>
-							<td>{t(`buyMethods.${payment.buyMethod}`)}</td>
-							<td>
-								{formatDateTime(
-									payment.pagoparTransaction?.paymentDate ||
-										payment.paymentDate,
-								)}
-							</td>
-							<td>{payment.pagoparTransaction?.paid ? 'Sí' : 'No'}</td>
-							<td>{payment.pagoparTransaction?.cancelled ? 'Sí' : 'No'}</td>
-							<td>{formatDateTime(payment.createdAt)}</td>
+				<Table bordered hover className='table'>
+					<thead>
+						<tr>
+							<th>{t('creditCardPayment.item')}</th>
+							<th>{t('creditCardPayment.number')}</th>
+							<th>{t('creditCardPayment.voucher')}</th>
+							<th>{t('creditCardPayment.amount')}</th>
+							<th>{t('creditCardPayment.client')}</th>
+							<th>{t('creditCardPayment.paymentMethod')}</th>
+							<th>{t('creditCardPayment.updatedAt')}</th>
+							<th>{t('creditCardPayment.pay')}</th>
+							<th>{t('creditCardPayment.cancelled')}</th>
+							<th>{t('creditCardPayment.createdAt')}</th>
 						</tr>
-					))}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{payments.map((payment, index) => (
+							<tr key={payment.id}>
+								<td>{index + 1}</td>
+								<td>
+									<Link to={`/orders/${payment.id}`}>{payment.number}</Link>
+								</td>
+								<td>Comprobante</td>
+								<td>US$ {payment.total}</td>
+
+								<td>{payment.username}</td>
+								<td>{t(`buyMethods.${payment.buyMethod}`)}</td>
+								<td>
+									{formatDateTime(
+										payment.pagoparTransaction?.paymentDate ||
+											payment.paymentDate,
+									)}
+								</td>
+								<td>{payment.pagoparTransaction?.paid ? 'Sí' : 'No'}</td>
+								<td>{payment.pagoparTransaction?.cancelled ? 'Sí' : 'No'}</td>
+								<td>{formatDateTime(payment.createdAt)}</td>
+							</tr>
+						))}
+					</tbody>
+				</Table>
+			</Container>
 		</div>
 	);
 };

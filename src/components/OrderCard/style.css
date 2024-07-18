@@ -4,7 +4,7 @@
 	margin-bottom: 10px;
 	word-wrap: break-word;
 	width: auto;
-	box-shadow: 0 2px 2px 2px #053857;
+	box-shadow: 0 2px 2px 2px #00a65a;
 	transition:
 		transform 0.3s,
 		box-shadow 0.3s;
@@ -13,7 +13,7 @@
 /* Style for order card content */
 .order-card-content {
 	padding: 20px;
-	background-color: rgb(214, 238, 255);
+	background-color: white;
 }
 
 /* Style for text inside order cards */
@@ -27,7 +27,7 @@
 /* Hover state for order card */
 .order-card:hover {
 	transform: scale(1.05);
-	box-shadow: 0 4px 8px 4px #053857;
+	box-shadow: 0 4px 8px 4px #00a65a;
 }
 
 /* Ensuring text color remains #333 on hover */
@@ -57,9 +57,10 @@
 /* Style for the container of each column */
 .column-with-card {
 	width: 150%;
-	border: 1px solid #9aa1a7;
+	border: 1px solid #00a65a;
 	border-radius: 5px;
-	background-color: #eff9ff;
+	background-color: white;
+
 	text-align: center;
 	margin: -10px;
 	margin-bottom: 15px;

@@ -6,6 +6,7 @@ import { useQuery, gql } from '@apollo/client';
 import PaymentModal from '../../components/PaymentModal/index';
 import moment from 'moment';
 import Spinner from 'react-bootstrap/Spinner';
+import { Container, Table } from 'react-bootstrap';
 
 const BankPaymentsPage = () => {
 	const [selectedOption, setSelectedOption] = useState('pending');
@@ -77,101 +78,107 @@ const BankPaymentsPage = () => {
 	return (
 		<div>
 			<header className='bank-header'>{t('bankPaymentsPage.header')}</header>
+			<Container className='container-white-bank'>
+				<div className='bank-flex-container'>
+					<div className='bank-container'>
+						<span className='heard-state'>{t('bankPaymentsPage.state')}:</span>
+						<select
+							className='bank-select'
+							aria-label='large-select-example'
+							value={selectedOption}
+							onChange={handleSelectorChange}
+						>
+							<option value='pending'>{t('bankPaymentsPage.pending')}</option>
+							<option value='no_completed'>
+								{t('bankPaymentsPage.notCompleted')}
+							</option>
+							<option value='completed'>
+								{t('bankPaymentsPage.completed')}
+							</option>
+							<option value='cancelled'>
+								{t('bankPaymentsPage.cancelled')}
+							</option>
+						</select>
+					</div>
 
-			<div className='bank-flex-container'>
-				<div className='bank-container'>
-					<span className='heard-state'>{t('bankPaymentsPage.state')}:</span>
-					<select
-						className='bank-select'
-						aria-label='large-select-example'
-						value={selectedOption}
-						onChange={handleSelectorChange}
-					>
-						<option value='pending'>{t('bankPaymentsPage.pending')}</option>
-						<option value='no_completed'>
-							{t('bankPaymentsPage.notCompleted')}
-						</option>
-						<option value='completed'>{t('bankPaymentsPage.completed')}</option>
-						<option value='cancelled'>{t('bankPaymentsPage.cancelled')}</option>
-					</select>
+					<div className='bank-container'>
+						<span className='heard-number'>
+							{t('bankPaymentsPage.orderNumber')}:
+						</span>
+						<input
+							type='text'
+							className='bank-input'
+							placeholder={t('bankPaymentsPage.searchPlaceholder')}
+							value={searchTerm}
+							onChange={handleOrderNumberChange}
+						/>
+					</div>
 				</div>
+				{loading && (
+					<div className='spinner-cont'>
+						<Spinner animation='border' role='status' variant='primary'>
+							<span className='sr-only'></span>
+						</Spinner>
+					</div>
+				)}
 
-				<div className='bank-container'>
-					<span className='heard-number'>
-						{t('bankPaymentsPage.orderNumber')}:
-					</span>
-					<input
-						type='text'
-						className='bank-input'
-						placeholder={t('bankPaymentsPage.searchPlaceholder')}
-						value={searchTerm}
-						onChange={handleOrderNumberChange}
+				{!loading && <table className='bank-table'>{}</table>}
+
+				{showPaymentModal && (
+					<PaymentModal
+						payment={selectedPayment}
+						onClose={handleCloseModal}
+						onPaymentRegister={() => {}}
 					/>
-				</div>
-			</div>
-			{loading && (
-				<div className='spinner-cont'>
-					<Spinner animation='border' role='status' variant='primary'>
-						<span className='sr-only'></span>
-					</Spinner>
-				</div>
-			)}
+				)}
 
-			{!loading && <table className='bank-table'>{}</table>}
-
-			{showPaymentModal && (
-				<PaymentModal
-					payment={selectedPayment}
-					onClose={handleCloseModal}
-					onPaymentRegister={() => {}}
-				/>
-			)}
-
-			<table className='bank-table'>
-				<thead>
-					<tr>
-						<th>{t('bankPaymentsPage.item')}</th>
-						<th>{t('bankPaymentsPage.number')}</th>
-						<th>{t('bankPaymentsPage.client')}</th>
-						<th>{t('bankPaymentsPage.orderState')}</th>
-						<th>{t('bankPaymentsPage.paymentState')}</th>
-						<th>{t('bankPaymentsPage.paymentMethod')}</th>
-						<th>{t('bankPaymentsPage.createdAt')}</th>
-						<th>{t('bankPaymentsPage.updatedAt')}</th>
-						<th>{t('bankPaymentsPage.total')}</th>
-						<th>{t('bankPaymentsPage.registerPayment')}</th>
-					</tr>
-				</thead>
-				<tbody>
-					{filterePayments.map((payment, index) => (
-						<tr key={payment.id}>
-							<td>{index + 1}</td>
-							<td>
-								<Link to={`/orders/${payment.id}`}>{payment.number}</Link>
-							</td>
-							<td>{payment.username}</td>
-							<td>{t(`orderStatus.${payment.orderState}`)}</td>
-							<td>{t(`paymentStatus.${payment.paymentState}`)}</td>
-							<td>{t(`buyMethods.${payment.buyMethod}`)}</td>
-
-							<td>{formatDateTime(payment.createdAt)}</td>
-							<td>{formatDateTime(payment.updatedAt)}</td>
-							<td>US$ {payment.total}</td>
-							<td>
-								{(payment.paymentState === 'pending' ||
-									payment.paymentState === 'no_completed') && (
-									<button
-										className='btn-pagar'
-										onClick={() => handlePaymentClick(payment)}
-									>
-										{t('bankPaymentsPage.pay')}
-									</button>
-								)}
-							</td>
+				<Table bordered hover className='bank-table'>
+					<thead>
+						<tr>
+							<th>{t('bankPaymentsPage.item')}</th>
+							<th>{t('bankPaymentsPage.number')}</th>
+							<th>{t('bankPaymentsPage.client')}</th>
+							<th>{t('bankPaymentsPage.orderState')}</th>
+							<th>{t('bankPaymentsPage.paymentState')}</th>
+							<th>{t('bankPaymentsPage.paymentMethod')}</th>
+							<th>{t('bankPaymentsPage.createdAt')}</th>
+							<th>{t('bankPaymentsPage.updatedAt')}</th>
+							<th>{t('bankPaymentsPage.total')}</th>
+							<th>{t('bankPaymentsPage.registerPayment')}</th>
 						</tr>
-					))}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{filterePayments.map((payment, index) => (
+							<tr key={payment.id}>
+								<td>{index + 1}</td>
+								<td>
+									<Link to={`/orders/${payment.id}`}>{payment.number}</Link>
+								</td>
+								<td>{payment.username}</td>
+								<td>{t(`orderStatus.${payment.orderState}`)}</td>
+								<td>{t(`paymentStatus.${payment.paymentState}`)}</td>
+								<td>{t(`buyMethods.${payment.buyMethod}`)}</td>
+								<td>{formatDateTime(payment.createdAt)}</td>
+								<td>{formatDateTime(payment.updatedAt)}</td>
+								<td>US$ {payment.total}</td>
+								<td>
+									{payment.paymentState === 'completed'
+										? t('paymentStatus.completed')
+										: (payment.paymentState === 'pending' ||
+												payment.paymentState === 'no_completed') && (
+												<button
+													className='btn-pagar'
+													onClick={() => handlePaymentClick(payment)}
+												>
+													{t('bankPaymentsPage.pay')}
+												</button>
+											)}
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</Table>
+			</Container>
 		</div>
 	);
 };

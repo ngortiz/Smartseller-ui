@@ -85,9 +85,9 @@
 }
 
 .editButton {
-	background-color: #004494;
+	background-color: white;
 	border-color: #004494;
-	color: white;
+	color: #004494;
 }
 
 .editButton:hover {
@@ -96,9 +96,9 @@
 }
 
 .deleteButton {
-	background-color: #dc3545;
+	background-color: white;
 	border-color: #dc3545;
-	color: white;
+	color: #dc3545;
 }
 
 .deleteButton:hover {
@@ -107,18 +107,20 @@
 }
 
 .btnVariabts {
-	background-color: #00a65a;
+	background-color: white;
 	border-color: #008d4c;
 	font-size: 14px;
 	padding: 5px 19px;
 	border-radius: 5px;
 	margin-right: center;
 	margin-left: 3%;
+	color: #008d4c;
 }
 
-.btnVariants:hover {
-	background-color: #003366;
-	border-color: #003366;
+.btnVariabts:hover {
+	background-color: #008d4c;
+	border-color: #008d4c;
+	color: white;
 }
 .spinner-container {
 	display: flex;
