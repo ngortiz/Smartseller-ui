@@ -8,34 +8,47 @@
 }
 
 .create-templates-header {
-	font-size: 1.5rem;
+	margin: 10px 0 20px 0;
+	text-align: center;
+	background-color: inherit;
+	padding: 5px;
+	margin-bottom: 1%;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 22px;
 	font-weight: bold;
-	color: #343a40;
-	margin-bottom: 20px;
+	color: #333;
+	margin-top: -1%;
+	padding-top: 2%;
 }
 
 .create-templates-form-label {
 	display: inline-block;
 	max-width: 100%;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 	font-weight: 700;
+	font-size: 1.1rem;
 }
 
 .create-templates-button {
 	background-color: #008d4c;
 	border-color: #008d4c;
 	color: #fff;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: bold;
-	padding: 5px 10px;
+	padding: 10px 20px;
 	border-radius: 5px;
 	cursor: pointer;
 	transition:
 		background-color 0.3s,
 		border-color 0.3s,
 		color 0.3s;
-	margin-top: inherit;
+	margin-top: 20px;
 	margin-bottom: -3%;
+}
+.create-templates-button:hover {
+	background-color: white;
+	border-color: #008d4c;
+	color: #008d4c;
 }
 
 .create-templates-attributes-list {
@@ -48,6 +61,7 @@
 	padding: 10px;
 	margin-bottom: 5px;
 	border-radius: 4px;
+	font-size: 1rem;
 }
 
 .create-templates-table th {
@@ -60,21 +74,41 @@
 	vertical-align: middle;
 	border-bottom-width: 2px;
 }
+.createTemplates-input {
+	width: 40%;
+}
+
 .create-templates-table td {
 	text-align: center;
 	vertical-align: middle;
 	border-bottom-width: 1px;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .create-templates-delete-button {
 	background-color: #dc3545;
 	border: 2px solid #dc3545;
 	color: #fff;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
-	padding: 5px 10px;
+	padding: 5px 8px;
 	border-radius: 5px;
-	margin-left: 40%;
-	text-align: center;
+	cursor: pointer;
+	transition:
+		background-color 0.3s,
+		border-color 0.3s,
+		color 0.3s;
+}
+
+.create-templates-delete-button:hover {
+	background-color: white;
+	border-color: #c82333;
+	color: #c82333;
+}
+
+@media screen and (max-width: 767px) {
+	.create-templates-container {
+		width: 90%;
+		padding: 20px;
+	}
 }
