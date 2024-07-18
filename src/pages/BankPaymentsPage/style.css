@@ -50,15 +50,18 @@
 	color: #fff;
 	text-align: center;
 	margin-top: 10px;
-	padding: 7px;
+	padding: 12px;
+	border: none;
+	font-size: 14px;
+	line-height: 1.428571;
 }
 
 .bank-table td {
 	padding: 12px;
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 14px;
+	font-size: 12px;
 	text-align: center;
-	line-height: 1.42857143;
+	line-height: 1.428571;
 	vertical-align: top;
 }
 
@@ -67,7 +70,6 @@
 	margin-top: 1%;
 	color: #354052;
 	border-spacing: 0 10px;
-	padding: 10p;
 	line-height: 1.42857143;
 	vertical-align: top;
 }
@@ -102,15 +104,14 @@
 }
 
 .btn-pagar {
-	color: #00a65a;
-	padding: 10px 15px;
-	font-size: 14px;
-	border: 2px solid #00a65a;
-	border-radius: 3px;
-	cursor: pointer;
 	background-color: white;
 	border-color: #008d4c;
-	margin-top: 5px;
+	font-size: 14px;
+	padding: 5px 19px;
+	border-radius: 5px;
+	margin-right: center;
+	margin-left: 3%;
+	color: #008d4c;
 }
 .btn-pagar:hover {
 	background-color: #00a65a;

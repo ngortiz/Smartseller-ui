@@ -112,7 +112,7 @@ const CreateTemplatesPage = () => {
 
 				<Row className='mt-5'>
 					<Col>
-						<Table striped bordered hover className='create-templates-table'>
+						<Table bordered hover className='create-templates-table'>
 							<thead>
 								<tr>
 									<th>{t('createTemplates.template')}</th>

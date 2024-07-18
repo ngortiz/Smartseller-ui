@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
-import { Container } from 'react-bootstrap';
+import { Container, Table } from 'react-bootstrap';
 
 const CreditCardPayments = () => {
 	const [selectedOption, setSelectedOption] = useState('all');
@@ -104,7 +104,7 @@ const CreditCardPayments = () => {
 					</div>
 				)}
 
-				<table className='table'>
+				<Table bordered hover className='table'>
 					<thead>
 						<tr>
 							<th>{t('creditCardPayment.item')}</th>
@@ -143,7 +143,7 @@ const CreditCardPayments = () => {
 							</tr>
 						))}
 					</tbody>
-				</table>
+				</Table>
 			</Container>
 		</div>
 	);

@@ -6,7 +6,7 @@ import { useQuery, gql } from '@apollo/client';
 import PaymentModal from '../../components/PaymentModal/index';
 import moment from 'moment';
 import Spinner from 'react-bootstrap/Spinner';
-import { Container } from 'react-bootstrap';
+import { Container, Table } from 'react-bootstrap';
 
 const BankPaymentsPage = () => {
 	const [selectedOption, setSelectedOption] = useState('pending');
@@ -132,7 +132,7 @@ const BankPaymentsPage = () => {
 					/>
 				)}
 
-				<table className='bank-table'>
+				<Table bordered hover className='bank-table'>
 					<thead>
 						<tr>
 							<th>{t('bankPaymentsPage.item')}</th>
@@ -177,7 +177,7 @@ const BankPaymentsPage = () => {
 							</tr>
 						))}
 					</tbody>
-				</table>
+				</Table>
 			</Container>
 		</div>
 	);

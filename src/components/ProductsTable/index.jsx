@@ -98,7 +98,7 @@ const ProductsTable = () => {
 					</Form.Group>
 				</Col>
 			</Row>
-			<Table striped bordered hover className='productsTable'>
+			<Table bordered hover className='productsTable'>
 				<thead>
 					<tr>
 						<th>{t('productsTable.code')}</th>
