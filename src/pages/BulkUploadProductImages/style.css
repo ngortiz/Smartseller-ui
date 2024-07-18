@@ -1,70 +1,81 @@
-.unique-bulk-upload-product-images {
-	padding: 20px;
-	font-family: Arial, sans-serif;
-	background-color: #fff;
-	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.bulk-container {
+	background-color: #ffffff;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(255, 245, 245, 0.1);
+	width: 70%;
+	margin-bottom: 2%;
 }
 
-.bulk-page-header,
-.unique-h2 {
+.bulk-page-header {
 	margin: 10px 0 20px 0;
 	text-align: left;
-	margin-bottom: 20px;
-	background-color: #f5f5f5;
-	border-bottom: 1px solid #eeee;
+	background-color: var(--secondary-color);
+	border-bottom: 1px solid #eee;
 	padding: 10px 20px;
-	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: bold;
-	color: #333;
+	color: var(--font-color);
+	border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
-.unique-form {
+.bulk-form {
 	margin-bottom: 20px;
 }
-
-.unique-form-label {
-	font-weight: bold;
-	color: #555;
-}
-
-.unique-button {
-	background-color: #0e2a5d;
-	border: 2px solid #18211d;
-	color: #fff;
-	font-size: 16px;
-	font-weight: bold;
-	padding: 10px 20px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition:
-		background-color 0.3s,
-		border-color 0.3s,
-		color 0.3s;
-}
-
-.unique-button:hover {
-	background-color: grey;
-}
-
-label {
+.bulk-label {
 	color: #354052;
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: bold;
-}
-.form-check .form-check-input {
-	float: right;
-	background-color: #0e2a5d;
-	border-color: #0d6efd;
+	margin-left: 48%;
+	text-align: right;
+	position: relative;
 }
 
-.form-check-input {
-	margin-right: 79%;
-	background-color: lightgray;
+.bulk-form-label {
+	padding-top: 13px;
+	margin-bottom: -3px;
+	text-align: right;
+	position: absolute;
+	margin-left: 0%;
 }
-.form-check-label {
-	display: flex;
-	align-items: center;
-	margin: 2%;
+
+.bulk-form .form-control {
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	width: 70%;
+	margin-left: 25%;
+	margin-top: -3%;
+}
+
+.bulk-button {
+	display: block;
+	width: fit-content;
+	padding: 10px 25px;
+	margin: 20px auto 0;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 14px;
+	background-color: #008d4c;
+	border-color: #008d4c;
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.bulk-button:hover {
+	background-color: darken(var(--primary-color), 10%);
+}
+
+.bulk-button:hover {
+	background-color: #007b43;
+	border-color: #007b43;
+}
+
+.bulk-from-check {
+	float: right;
+	margin-right: 80%;
+
+	border-color: #008d4c;
+	padding: 10px;
 }

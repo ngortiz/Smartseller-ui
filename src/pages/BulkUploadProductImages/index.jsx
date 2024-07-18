@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import './style.css';
 
@@ -18,28 +18,35 @@ const BulkUploadProductImages = () => {
 			<header className='bulk-page-header'>
 				{t('bulkUploadProductImages.massIngressiveProductImages')}
 			</header>
-
-			<Form className='unique-form'>
-				<Form.Group controlId='formZipFile' className='mb-3'>
-					<Form.Label>{t('bulkUploadProductImages.selectZIPFile')}:</Form.Label>
-					<Form.Control type='file' accept='.zip' />
-				</Form.Group>
-				<Form.Group controlId='formForceOverwrite' className='mb-3'>
-					<Form.Check
-						type='checkbox'
-						checked={forceOverwrite}
-						onChange={handleToggle}
-						label={t('bulkUploadProductImages.forceOverWriteImage')}
-					/>
-				</Form.Group>
-			</Form>
-			<Button
-				variant='primary'
-				onClick={handleUpload}
-				className='unique-button'
-			>
-				{t('bulkUploadProductImages.charge')}
-			</Button>
+			<Container className='bulk-container '>
+				<Form className='bulk-form'>
+					<Form.Group controlId='formZipFile' className='mb-3'>
+						<Form.Label className='bulk-form-label'>
+							{t('bulkUploadProductImages.selectZIPFile')}:
+						</Form.Label>
+						<Form.Control type='file' accept='.zip' />
+					</Form.Group>
+					<Form.Group
+						controlId='formForceOverwrite'
+						className='mb-3 bulk-from-check'
+					>
+						<Form.Check
+							type='checkbox'
+							checked={forceOverwrite}
+							onChange={handleToggle}
+							label={t('bulkUploadProductImages.forceOverWriteImage')}
+							className='bulk-from-check'
+						/>
+					</Form.Group>
+				</Form>
+				<Button
+					variant='primary'
+					onClick={handleUpload}
+					className='bulk-button'
+				>
+					{t('bulkUploadProductImages.charge')}
+				</Button>
+			</Container>
 		</div>
 	);
 };
