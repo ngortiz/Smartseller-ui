@@ -1,5 +1,10 @@
 #product-searcher-page {
-	font-family: 'Source Sans Pro', sans-serif;
+	background-color: white;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	margin-bottom: 2%;
 }
 
 #product-searcher-page .form-check .form-check-input {
@@ -14,29 +19,22 @@
 	width: 90%;
 	border-collapse: collapse;
 	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .product-table th {
-	background-color: #0e2a5d;
-	color: #fff;
-	font-weight: 700;
+	background-color: #00a65a;
+	border-color: #008d4c;
+	color: white;
+	border: #008d4c;
 }
 .product-table td {
-	border: 1px solid #ddd;
 	padding: 12px;
-	text-align: center;
 	color: #333;
 	font-weight: 500;
 	font-size: 12px;
-	text-align: left;
-	vertical-align: middle;
-}
-
-.product-table th {
-	background-color: #0e2a5d;
-	color: #fff;
-	font-weight: 700;
-	text-align: left;
+	text-align: center;
 	vertical-align: middle;
 }
 
@@ -70,15 +68,15 @@
 	padding: 5px;
 }
 
-.product-heard {
-	margin: 10px 0 20px 0;
-	text-align: left;
-	margin-bottom: 20px;
-	background-color: inherit;
-	border-bottom: 2px solid #eeee;
-	padding: 5px;
-	margin-bottom: 15px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.product-searcher-heard {
+	text-align: center;
+
+	padding: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 30px;
 }
 
 .product-form-select {
@@ -91,11 +89,9 @@
 	border-radius: 0px;
 }
 
-.product-button,
-.product-button-edit,
-.product-button-delete {
-	background-color: #0e2a5d;
-	border: 2px solid #18211d;
+.product-button {
+	background-color: #00a65a;
+	border-color: #008d4c;
 	color: #fff;
 	font-size: 16px;
 	font-weight: bold;
@@ -109,19 +105,29 @@
 	margin-top: inherit;
 }
 
-.product-button-edit {
+.productS-button-edit {
+	background-color: white;
+	border-color: #007bff;
+	color: #007bff;
+}
+
+.productS-button-delete {
+	background-color: white;
+	border-color: #dc3545;
+	color: #dc3545;
+}
+
+.product-button:hover {
+	background-color: #00a65a;
+	border-color: #008d4c;
+}
+.productS-button-edit:hover {
 	background-color: #007bff;
 	border-color: #007bff;
+	color: white;
 }
-
-.product-button-delete {
+.productS-button-delete:hover {
 	background-color: #dc3545;
 	border-color: #dc3545;
-}
-
-.product-button:hover,
-.product-button-edit:hover,
-.product-button-delete:hover {
-	background-color: #0056b3;
-	border-color: #0056b3;
+	color: white;
 }
