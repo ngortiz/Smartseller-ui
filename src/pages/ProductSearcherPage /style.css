@@ -16,11 +16,9 @@
 }
 
 .product-table {
-	width: 90%;
-	border-collapse: collapse;
-	margin-top: 10px;
-	margin-left: auto;
-	margin-right: auto;
+	width: 100%;
+	border-collapse: separate;
+	margin: 10px auto 0;
 }
 
 .product-table th {
@@ -29,6 +27,7 @@
 	color: white;
 	border: #008d4c;
 }
+
 .product-table td {
 	padding: 12px;
 	color: #333;
@@ -46,7 +45,7 @@
 	background-color: #f1f1f1;
 }
 
-.product-form-control {
+.products-form-control {
 	display: block;
 	width: 100%;
 	padding: 0.375rem 0.75rem;
@@ -57,20 +56,19 @@
 	margin-bottom: 10px;
 }
 
-.product-input-from {
+.products-input-from {
 	display: inline-block;
 	margin-bottom: 10px;
 	margin-left: 66%;
-	width: 35%;
+	width: 38%;
 	margin-top: 3%;
-	border-radius: 1px;
+	border-radius: 5px;
 	background-color: #f5f5f5;
 	padding: 5px;
 }
 
 .product-searcher-heard {
 	text-align: center;
-
 	padding: 10px;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 20px;
@@ -87,6 +85,7 @@
 	line-height: 1.5;
 	color: var(--bs-body-color);
 	border-radius: 0px;
+	margin-top: 2%;
 }
 
 .product-button {
@@ -105,6 +104,14 @@
 	margin-top: inherit;
 }
 
+.product-searcher-label {
+	color: #354052;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+}
+
 .productS-button-edit {
 	background-color: white;
 	border-color: #007bff;
@@ -121,11 +128,13 @@
 	background-color: #00a65a;
 	border-color: #008d4c;
 }
+
 .productS-button-edit:hover {
 	background-color: #007bff;
 	border-color: #007bff;
 	color: white;
 }
+
 .productS-button-delete:hover {
 	background-color: #dc3545;
 	border-color: #dc3545;

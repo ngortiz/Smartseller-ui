@@ -161,32 +161,38 @@ const ProductSearcherPage = () => {
 						controlId='formInternalCode'
 						className='product-form-control'
 					>
-						<Form.Label>{t('productSearcherPage.internoCode')}:</Form.Label>
+						<Form.Label className='product-searcher-label'>
+							{t('productSearcherPage.internoCode')}:
+						</Form.Label>
 						<Form.Control
 							type='text'
 							placeholder={t('productSearcherPage.enterTheInternalCode')}
 							value={internalCode}
 							onChange={e => setInternalCode(e.target.value)}
-							className='product-form-control'
+							className='productS-form-control'
 						/>
 					</Form.Group>
 					<Form.Group
 						as={Col}
 						controlId='formBarcode'
-						className='product-form-control'
+						className='productS-form-control'
 					>
-						<Form.Label>{t('productSearcherPage.baCode')}:</Form.Label>
+						<Form.Label className='product-searcher-label'>
+							{t('productSearcherPage.baCode')}:
+						</Form.Label>
 						<Form.Control
 							type='text'
 							placeholder={t('productSearcherPage.enterBarCode')}
 							value={barcode}
 							onChange={e => setBarcode(e.target.value)}
-							className='product-form-control'
+							className='productS-form-control'
 						/>
 					</Form.Group>
 
 					<Form.Group as={Col} controlId='formDescription'>
-						<Form.Label>{t('productSearcherPage.description')}:</Form.Label>
+						<Form.Label className='product-searcher-label'>
+							{t('productSearcherPage.description')}:
+						</Form.Label>
 						<Form.Control
 							type='text'
 							placeholder={t('productSearcherPage.enterDescription')}
@@ -202,7 +208,7 @@ const ProductSearcherPage = () => {
 							aria-label={t('productSearcherPage.category')}
 							value={category}
 							onChange={e => setCategory(e.target.value)}
-							className='product-form-select'
+							className='productS-form-select'
 						>
 							{categoriesLoading ? (
 								<option>{t('productSearcherPage.loading')}</option>
@@ -246,7 +252,7 @@ const ProductSearcherPage = () => {
 				</Row>
 
 				<Row className='mt-4'>
-					<Table bordered hover className='product-table'>
+					<Table bordered hover className='productS-table'>
 						<thead>
 							<tr>
 								<th>{t('productSearcherPage.productCode')}</th>
@@ -285,8 +291,8 @@ const ProductSearcherPage = () => {
 										<td>{variant.amount}</td>
 										<td>{variant.product?.category?.name || ''}</td>
 										<td>{variant.product?.subCategory?.name || ''}</td>
-										<td>US$ {variant.costPrice}</td>
-										<td>US$ {variant.sellPrice}</td>
+										<td>US$ {parseFloat(variant.costPrice).toFixed(2)}</td>
+										<td>US$ {parseFloat(variant.sellPrice).toFixed(2)}</td>
 										<td>{variant.offered ? 'Sí' : 'No'}</td>
 										<td>{getVariantAttributes(variant.productAttributes)}</td>
 										<td>
