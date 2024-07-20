@@ -159,7 +159,7 @@ const ProductSearcherPage = () => {
 					<Form.Group
 						as={Col}
 						controlId='formInternalCode'
-						className='product-form-control'
+						className='productS-form-control'
 					>
 						<Form.Label className='product-searcher-label'>
 							{t('productSearcherPage.internoCode')}:
@@ -189,7 +189,11 @@ const ProductSearcherPage = () => {
 						/>
 					</Form.Group>
 
-					<Form.Group as={Col} controlId='formDescription'>
+					<Form.Group
+						as={Col}
+						controlId='formDescription'
+						className='productS-form-control'
+					>
 						<Form.Label className='product-searcher-label'>
 							{t('productSearcherPage.description')}:
 						</Form.Label>
@@ -198,11 +202,15 @@ const ProductSearcherPage = () => {
 							placeholder={t('productSearcherPage.enterDescription')}
 							value={description}
 							onChange={e => setDescription(e.target.value)}
-							className='product-form-control'
+							className='productS-form-control'
 						/>
 					</Form.Group>
 
-					<Form.Group as={Col} controlId='formCategory'>
+					<Form.Group
+						as={Col}
+						controlId='formCategory'
+						className='productS-form-select'
+					>
 						<Form.Label>{t('productSearcherPage.categories')}:</Form.Label>
 						<Form.Select
 							aria-label={t('productSearcherPage.category')}
@@ -228,14 +236,17 @@ const ProductSearcherPage = () => {
 					<Form.Group
 						as={Col}
 						controlId='formCheckbox'
-						className='product-form-input'
+						className='productS-form-input'
 					>
+						<Form.Label className='productS-check-label'>
+							{t('productSearcherPage.post')}:
+						</Form.Label>
 						<Form.Check
 							type='checkbox'
-							label={t('productSearcherPage.post')}
+							label=''
 							checked={checked}
 							onChange={e => setChecked(e.target.checked)}
-							className='product-check-input'
+							className='productS-check-input'
 						/>
 					</Form.Group>
 
@@ -243,14 +254,15 @@ const ProductSearcherPage = () => {
 						<Button
 							variant='primary'
 							onClick={() => handleSearch(1, limit)}
-							className='product-button'
+							className='productS-button'
 						>
 							<i className='bi bi-search'></i>{' '}
 							{t('productSearcherPage.searcher')}
 						</Button>
 					</Col>
 				</Row>
-
+			</Container>
+			<Container id='product-searcher-page'>
 				<Row className='mt-4'>
 					<Table bordered hover className='productS-table'>
 						<thead>
@@ -319,6 +331,7 @@ const ProductSearcherPage = () => {
 						</tbody>
 					</Table>
 				</Row>
+
 				<Row>
 					<Col className='d-flex justify-content-center'>
 						<PaginationControl
