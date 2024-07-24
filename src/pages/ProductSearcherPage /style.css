@@ -1,54 +1,59 @@
 #product-searcher-page {
-	font-family: 'Source Sans Pro', sans-serif;
+	background-color: white;
+	padding: 30px;
+	border-radius: 0px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	margin-bottom: 2%;
 }
 
 #product-searcher-page .form-check .form-check-input {
 	display: inline-block;
-	margin-right: 76%;
+	margin-right: 57%;
 	margin-bottom: 6%;
 	margin-block: 20%;
 	padding: 14px 15px;
+	margin-top: 3%;
+}
+.productS-check-label {
+	color: #354052;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 23%;
 }
 
 .product-table {
-	width: 90%;
-	border-collapse: collapse;
-	margin-top: 10px;
+	width: 100%;
+	border-collapse: separate;
+	margin: 10px auto 0;
 }
 
-.product-table th {
-	background-color: #0e2a5d;
-	color: #fff;
-	font-weight: 700;
+.producSt-table th {
+	background-color: #00a65a;
+	border-color: #008d4c;
+	color: white;
+	border: #008d4c;
 }
-.product-table td {
-	border: 1px solid #ddd;
+
+.productS-table td {
 	padding: 12px;
-	text-align: center;
 	color: #333;
 	font-weight: 500;
-	font-size: 12px;
-	text-align: left;
+	font-size: 11px;
+	text-align: center;
 	vertical-align: middle;
 }
 
-.product-table th {
-	background-color: #0e2a5d;
-	color: #fff;
-	font-weight: 700;
-	text-align: left;
-	vertical-align: middle;
+.productS-table tbody tr:nth-child(even) {
+	background-color: white;
 }
 
-.product-table tbody tr:nth-child(even) {
-	background-color: #f9f9f9;
+.productS-table tbody tr:hover {
+	background-color: white;
 }
 
-.product-table tbody tr:hover {
-	background-color: #f1f1f1;
-}
-
-.product-form-control {
+.productS-form-control {
 	display: block;
 	width: 100%;
 	padding: 0.375rem 0.75rem;
@@ -59,29 +64,28 @@
 	margin-bottom: 10px;
 }
 
-.product-input-from {
+.productS-input-from {
 	display: inline-block;
 	margin-bottom: 10px;
 	margin-left: 66%;
-	width: 35%;
+	width: 38%;
 	margin-top: 3%;
-	border-radius: 1px;
-	background-color: #f5f5f5;
+	border-radius: 0px;
+	border-color: #008d4c;
 	padding: 5px;
 }
 
-.product-heard {
-	margin: 10px 0 20px 0;
-	text-align: left;
-	margin-bottom: 20px;
-	background-color: inherit;
-	border-bottom: 2px solid #eeee;
-	padding: 5px;
-	margin-bottom: 15px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.product-searcher-heard {
+	text-align: center;
+	padding: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 30px;
 }
 
-.product-form-select {
+.productS-form-select {
 	width: 100%;
 	padding: 0.375rem 0.75rem;
 	font-size: 14px;
@@ -89,18 +93,17 @@
 	line-height: 1.5;
 	color: var(--bs-body-color);
 	border-radius: 0px;
+	margin-top: 0%;
 }
 
-.product-button,
-.product-button-edit,
-.product-button-delete {
-	background-color: #0e2a5d;
-	border: 2px solid #18211d;
+.productS-button {
+	background-color: #00a65a;
+	border-color: #008d4c;
 	color: #fff;
 	font-size: 16px;
 	font-weight: bold;
 	padding: 5px 10px;
-	border-radius: 5px;
+	border-radius: 0px;
 	cursor: pointer;
 	transition:
 		background-color 0.3s,
@@ -108,20 +111,42 @@
 		color 0.3s;
 	margin-top: inherit;
 }
+.productS-button:hover {
+	background-color: #008d4c;
+}
+.product-searcher-label {
+	color: #354052;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+}
 
-.product-button-edit {
+.productS-button-edit {
+	background-color: white;
+	border-color: #007bff;
+	color: #007bff;
+}
+
+.productS-button-delete {
+	background-color: white;
+	border-color: #dc3545;
+	color: #dc3545;
+}
+
+.product-button:hover {
+	background-color: #00a65a;
+	border-color: #008d4c;
+}
+
+.productS-button-edit:hover {
 	background-color: #007bff;
 	border-color: #007bff;
+	color: white;
 }
 
-.product-button-delete {
+.productS-button-delete:hover {
 	background-color: #dc3545;
 	border-color: #dc3545;
-}
-
-.product-button:hover,
-.product-button-edit:hover,
-.product-button-delete:hover {
-	background-color: #0056b3;
-	border-color: #0056b3;
+	color: white;
 }

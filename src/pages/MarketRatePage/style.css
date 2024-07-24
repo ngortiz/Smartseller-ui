@@ -3,28 +3,26 @@
 	padding: 20px;
 	border-radius: 0px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.market-header2 {
-	background-color: #f5f5f5;
-	padding: 10px;
-	border-radius: 0px;
-	margin-bottom: 20px;
-	width: 100%;
+	width: 90%;
 }
 
 .market-rate-header {
-	font-family: 'Source Sans Pro', sans-serif;
+	margin: 10px 0 20px 0;
+	text-align: center;
+	background-color: var(--secondary-color);
+	border-bottom: 1px solid #eee;
+	padding: 10px 20px;
+	font-weight: bold;
 	font-size: 22px;
-	color: #333;
-	margin-bottom: 30px;
+	color: var(--font-color);
+	border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 .market-header2 {
 	color: #333;
-	text-align: left;
+	text-align: center;
 	font-size: 1.3rem;
 	font-weight: 500;
-	width: 100%;
+	margin-bottom: 5%;
 }
 
 .market-rate-form {
@@ -37,8 +35,8 @@
 }
 
 .market-rate-button {
-	background-color: #0e2a5d;
-	border: 2px solid #18211d;
+	background-color: #00a65a;
+	border-color: #008d4c;
 	color: #fff;
 	font-size: 16px;
 	font-weight: bold;
@@ -52,8 +50,8 @@
 }
 
 .market-rate-button:hover {
-	background-color: #18211d;
-	border-color: #0e2a5d;
+	background-color: #008d4c;
+	border-color: #00a65a;
 }
 
 .market-rate-table {
@@ -67,7 +65,6 @@
 }
 
 .market-rate-table th {
-	background-color: #0e2a5d;
-	color: #fff;
-	font-weight: bold;
+	background-color: #00a65a;
+	border-color: #008d4c;
 }
