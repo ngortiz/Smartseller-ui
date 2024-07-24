@@ -1,7 +1,7 @@
 .container-white-bg {
 	background-color: white;
 	padding: 20px;
-	border-radius: 10px;
+	border-radius: 0px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	width: 90%;
 	margin-bottom: 2%;
@@ -9,7 +9,7 @@
 .containerTable-white-bg {
 	background-color: white;
 	padding: 20px;
-	border-radius: 10px;
+	border-radius: 0px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	width: 90%;
 	margin-top: 2%;

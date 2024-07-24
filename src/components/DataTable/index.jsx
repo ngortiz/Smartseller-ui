@@ -21,7 +21,7 @@ const DataTable = ({ orders, loading }) => {
 			<Form.Group controlId='searchForm'>
 				<Form.Control
 					type='text'
-					placeholder={t('dataTable.BsearchByCustomerOrNumber')}
+					placeholder={t('dataTable.searchByCustomerOrNumber')}
 					value={searchTerm}
 					onChange={e => setSearchTerm(e.target.value)}
 				/>

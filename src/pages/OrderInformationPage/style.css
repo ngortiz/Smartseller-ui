@@ -1,6 +1,6 @@
 .information-container {
 	font-family: 'Source Sans Pro', sans-serif;
-	border-radius: 8px;
+	border-radius: 0px;
 	background-color: white;
 	margin: 20px auto;
 	width: 100% !important;
@@ -22,7 +22,6 @@
 
 .comprobante table {
 	background-color: white;
-
 	width: 100%;
 	border-collapse: collapse;
 	margin-top: 20px;

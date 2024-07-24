@@ -1,7 +1,7 @@
 .bulk-container {
 	background-color: #ffffff;
 	padding: 30px;
-	border-radius: 10px;
+	border-radius: 0px;
 	box-shadow: 0 4px 12px rgba(255, 245, 245, 0.1);
 	width: 90%;
 	margin-bottom: 2%;
@@ -45,7 +45,7 @@
 	font-size: 16px;
 	font-weight: bold;
 	text-align: right;
-	margin-left: -76%;
+	margin-left: -69%;
 	margin-top: 6%;
 }
 
@@ -87,7 +87,7 @@
 
 .bulk-from-check {
 	float: right;
-	margin-right: 54%;
+	margin-right: 52%;
 	border-color: #008d4c;
 	padding: 15px 10px;
 }
