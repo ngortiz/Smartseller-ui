@@ -170,7 +170,7 @@ const DiscountByCategoryPage = () => {
 							</Col>
 						</Row>
 						<Row>
-							<Table striped bordered hover className='discount-table'>
+							<Table hover className='discount-table'>
 								<thead>
 									<tr>
 										<th>{t('discountPage.category')}</th>
