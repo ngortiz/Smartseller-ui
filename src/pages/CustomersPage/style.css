@@ -1,18 +1,26 @@
 .customers-header {
 	margin: 10px 0 20px 0;
-	text-align: left;
-	margin-bottom: 20px;
-	background-color: inherit;
-	border-bottom: 1px solid #eeee;
-	padding: 5px;
-	margin-bottom: 15px;
+	text-align: center;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
 }
 
 .customers-subheader {
-	margin-top: 20px;
-	margin-bottom: 1%;
-	text-align: left;
+	text-align: center;
+	margin-bottom: 30px;
 	font-size: 20px;
+	color: #666;
+}
+
+.customers-container {
+	background-color: white;
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	width: 90%;
+	margin: 0 auto 2% auto;
 }
 
 .customers-controls-container {
@@ -46,16 +54,16 @@
 	border-collapse: collapse;
 }
 
-.customers-table th,
+.customers-table th {
+	background-color: #00a65a;
+	border-color: #008d4c;
+	padding: 14px;
+	text-align: center;
+}
+
 .customers-table td {
 	padding: 12px;
 	text-align: center;
-	border: 1px solid #ddd;
-}
-
-.customers-table th {
-	background-color: #0e2a5d;
-	color: #fff;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -66,13 +74,7 @@
 	background-color: rgba(0, 123, 255, 0.15);
 }
 
-.customers-show-entries {
-	width: 70px;
-	border-radius: 4px;
-	margin-left: 10px;
-}
-
 .customers-select-show {
-	width: 70px;
+	width: 44px;
 	border-radius: 0px;
 }

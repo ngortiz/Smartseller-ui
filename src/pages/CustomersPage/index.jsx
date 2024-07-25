@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
-import {
-	Container,
-	Row,
-	Col,
-	Form,
-	Table,
-	Spinner,
-	Button,
-} from 'react-bootstrap';
+import { Container, Row, Col, Form, Table, Spinner } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './style.css';
 import { useTranslation } from 'react-i18next';
 import { useQuery, gql } from '@apollo/client';
+import { PaginationControl } from 'react-bootstrap-pagination-control';
 
 const GET_USERS_QUERY = gql`
 	query getUsers {
@@ -42,18 +35,6 @@ const CustomersPage = () => {
 	const handleShowEntriesChange = e => {
 		setShowEntries(Number(e.target.value));
 		setCurrentPage(1);
-	};
-
-	const handleNextPage = () => {
-		if (currentPage < totalPages) {
-			setCurrentPage(currentPage + 1);
-		}
-	};
-
-	const handlePreviousPage = () => {
-		if (currentPage > 1) {
-			setCurrentPage(currentPage - 1);
-		}
 	};
 
 	if (loading) {
@@ -91,79 +72,93 @@ const CustomersPage = () => {
 	const totalPages = Math.ceil(filteredCustomers.length / showEntries);
 
 	return (
-		<Container fluid>
+		<>
 			<Row>
 				<Col>
 					<h1 className='customers-header'>{t('customersPage.client')}</h1>
 				</Col>
 			</Row>
-			<Row>
-				<Col>
-					<h2 className='customers-subheader'>
-						{t('customersPage.clientsList')}
-					</h2>
-				</Col>
-			</Row>
-			<Row className='customers-controls-container'>
-				<Col>
-					<Form.Group controlId='showEntries'>
-						<Form.Label className='customers-show-label'>Show</Form.Label>
-						<Form.Control
-							as='select'
-							className='customers-select-show'
-							value={showEntries}
-							onChange={handleShowEntriesChange}
-						>
-							<option value='1'>1</option>
-							<option value='5'>5</option>
-							<option value='10'>10</option>
-							<option value='15'>15</option>
-							<option value='20'>20</option>
-						</Form.Control>
-					</Form.Group>
-				</Col>
-				<Col>
-					<Form.Group controlId='search'>
-						<Form.Label className='customers-label-search'>
-							{t('customersPage.search')}
-						</Form.Label>
-						<Form.Control
-							type='text'
-							placeholder='Buscar...'
-							value={searchTerm}
-							onChange={handleSearchChange}
-							className='customers-search-input'
-						/>
-					</Form.Group>
-				</Col>
-			</Row>
-			<Row className='customers-table-container'>
-				<Col>
-					<Table striped bordered hover className='customers-table'>
-						<thead>
-							<tr>
-								<th>{t('customersPage.user')}</th>
-								<th>{t('customersPage.email')}</th>
-								<th>{t('customersPage.ruc/CI')}</th>
-								<th>{t('customersPage.registrationDate')}</th>
-								<th>{t('customersPage.qty.LoginToTheSystem')}</th>
-							</tr>
-						</thead>
-						<tbody>
-							{currentCustomers.map((customer, index) => (
-								<tr key={index}>
-									<td>{customer.username}</td>
-									<td>{customer.email}</td>
-									<td>{customer.ruc}</td>
-									<td>{new Date(customer.createdAt).toLocaleDateString()}</td>
-									<td>{customer.sign_in_count}</td>
+			<Container className='customers-container'>
+				<Row>
+					<Col>
+						<h2 className='customers-subheader'>
+							{t('customersPage.clientsList')}
+						</h2>
+					</Col>
+				</Row>
+				<Row className='customers-controls-container'>
+					<Col>
+						<Form.Group controlId='showEntries'>
+							<Form.Label className='customers-show-label'>Show</Form.Label>
+							<Form.Control
+								as='select'
+								className='customers-select-show'
+								value={showEntries}
+								onChange={handleShowEntriesChange}
+							>
+								<option value='1'>1</option>
+								<option value='5'>5</option>
+								<option value='10'>10</option>
+								<option value='15'>15</option>
+								<option value='20'>20</option>
+							</Form.Control>
+						</Form.Group>
+					</Col>
+					<Col>
+						<Form.Group controlId='search'>
+							<Form.Label className='customers-label-search'>
+								{t('customersPage.search')}
+							</Form.Label>
+							<Form.Control
+								type='text'
+								placeholder='Buscar...'
+								value={searchTerm}
+								onChange={handleSearchChange}
+								className='customers-search-input'
+							/>
+						</Form.Group>
+					</Col>
+				</Row>
+				<Row className='customers-table-container'>
+					<Col>
+						<Table bordered hover className='customers-table'>
+							<thead>
+								<tr>
+									<th>{t('customersPage.user')}</th>
+									<th>{t('customersPage.email')}</th>
+									<th>{t('customersPage.ruc/CI')}</th>
+									<th>{t('customersPage.registrationDate')}</th>
+									<th>{t('customersPage.qty.LoginToTheSystem')}</th>
 								</tr>
-							))}
-						</tbody>
-					</Table>
-				</Col>
-			</Row>
-		</Container>
+							</thead>
+							<tbody>
+								{currentCustomers.map((customer, index) => (
+									<tr key={index}>
+										<td>{customer.username}</td>
+										<td>{customer.email}</td>
+										<td>{customer.ruc}</td>
+										<td>{new Date(customer.createdAt).toLocaleDateString()}</td>
+										<td>{customer.sign_in_count}</td>
+									</tr>
+								))}
+							</tbody>
+						</Table>
+					</Col>
+				</Row>
+
+				<Row>
+					<Col className='d-flex justify-content-center'>
+						<PaginationControl
+							page={currentPage}
+							total={filteredCustomers.length}
+							limit={showEntries}
+							changePage={page => setCurrentPage(page)}
+							ellipsis={1}
+						/>
+					</Col>
+				</Row>
+			</Container>
+		</>
 	);
 };
 
