@@ -1,134 +1,153 @@
 .LeftNavigationBar {
 	height: 1000vh;
-	background-color: #00a884;
-	padding: 10px;
-	padding-left: 10px;
-	border-bottom: 1px solid rgb(50, 47, 47);
+	background-color: #ffffff;
+	padding: 20px;
 	text-align: left;
-	color: white;
+	color: #333;
 	display: flex;
 	flex-direction: column;
-}
-
-.col-3 {
-	flex: 1;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
 }
 
 .LeftNavigationBar img {
-	max-width: 100px;
-	padding: 1px;
+	max-width: 80px;
 	height: auto;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	border-radius: 50px;
-	background-color: white;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	transition: background-color 0.3s;
+}
+.col-3 {
+	flex: 2;
 }
 
 .LeftNavigationBar img:hover {
-	background-color: #707c89;
-}
-
-.NavDropdown span {
-	border-bottom: none;
+	background-color: #f0f0f0;
 }
 
 .NavDropdown {
-	margin-bottom: 30px;
-	padding: 1em;
+	margin-bottom: 20px;
+	padding: 1em 0;
+	text-align: left;
 	border-bottom: none;
-	text-align: left;
 }
 
-.NavDropdown-item {
-	list-style: none;
-	font-size: 17px;
-	padding: 8px;
-	text-align: left;
-}
-
-.NavDropdown a {
-	display: block;
-	padding: 8px 20px;
-	color: #495057;
-	text-decoration: none;
-	transition: color 0.3s;
-	margin-bottom: 30px;
-	border-bottom: 10px solid #07d4a8;
-	text-align: left;
-	font-size: 17px;
-}
-
-.NavDropdown a:hover {
-	color: #07d4a8;
-}
-
-.LeftNavigationBar h2 {
-	font-size: 17px;
-	margin-top: 10px;
-	margin-bottom: 5px;
-	font-family: 'Source Sans Pro', sans-serif;
-	text-align: left;
-}
-
-.LeftNavigationBar h2:hover {
-	background-color: #07d4a8;
-}
-
-.LeftNavigationBar ul {
-	padding-bottom: 0.6em;
-	margin-left: -20px;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 17px;
-}
-
-.LeftNavigationBar ul .item {
-	list-style: none;
-	margin: 5px;
-	border-bottom: 1px solid #07d4a8;
-	text-align: left;
+.NavDropdown span {
+	font-size: 18px;
+	color: #00a65a;
+	font-weight: bold;
 	display: flex;
 	align-items: center;
 }
 
+.NavDropdown span i {
+	margin-right: 10px;
+}
+
+.NavDropdown-item {
+	list-style: none;
+	font-size: 16px;
+	padding: 10px 15px;
+	text-align: left;
+	color: #666;
+	transition:
+		background-color 0.3s,
+		color 0.3s;
+	border-radius: 5px;
+	border: 1px solid #e0e0e0;
+	margin-bottom: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.NavDropdown a {
+	display: block;
+	padding: 10px 15px;
+	color: #666;
+	text-decoration: none;
+	transition:
+		background-color 0.3s,
+		color 0.3s;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #e0e0e0;
+	margin-bottom: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.NavDropdown a:hover {
+	color: #00a65a;
+	background-color: #f9f9f9;
+}
+
+.LeftNavigationBar h2:hover {
+	background-color: #f9f9f9;
+	color: #00a65a;
+}
+
+.LeftNavigationBar ul {
+	padding: 0;
+	margin: 0;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 16px;
+}
+
+.LeftNavigationBar ul .item {
+	list-style: none;
+	margin: 10px 0;
+	padding: 10px 15px;
+	border-radius: 5px;
+	border: 1px solid #e0e0e0;
+	text-align: left;
+	display: flex;
+	align-items: center;
+	color: #666;
+	transition:
+		background-color 0.3s,
+		color 0.3s;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
 .LeftNavigationBar ul .item i {
-	margin-right: 5px;
+	margin-right: 10px;
+	color: #00a65a;
 }
 
 .LeftNavigationBar ul .item:hover {
-	color: #07d4a8;
-	width: 110%;
-}
-
-.LeftNavigationBar ul:hover {
-	background-color: #07d4a8;
-	width: 110%;
-}
-
-.LeftNavigationBar .NavDropdown {
-	flex: 1;
+	background-color: #f9f9f9;
+	color: #00a65a;
 }
 
 .nav-divider {
-	border-top: none;
-	margin: 0rem;
+	border-top: 1px solid #00a65a;
+	margin: 10px 0;
 }
 
-.nav-link {
+.nav-link,
+.LeftNavigationBar h2 {
 	display: block;
-	padding: 5px;
-	font-size: 17px; /* Aumenta el tamaño de la fuente */
+	padding: 10px 15px;
+	font-size: 16px;
+	color: #666;
+	border-radius: 5px;
+	border: 1px solid #e0e0e0;
+	margin-bottom: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+	transition:
+		background-color 0.3s,
+		color 0.3s;
+}
+
+.nav-link:hover {
+	background-color: #f9f9f9;
+	color: #00a65a;
 }
 
 @media screen and (max-width: 767px) {
 	.LeftNavigationBar {
-		width: 90%;
-		background-color: #354052;
+		width: 100%;
 		padding: 10px;
-		padding-left: 10px;
-		border-bottom: 1px solid rgb(50, 47, 47);
-		text-align: left;
-		color: white;
 	}
 }
