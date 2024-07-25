@@ -1,38 +1,30 @@
 .category-discount-container {
 	background-color: white;
 	padding: 30px;
-	border-radius: 6px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 	width: 90%;
-	margin-bottom: 2%;
+	margin: 0 auto 2% auto;
 }
 
 .category-discount-header h1 {
 	margin: 10px 0 20px 0;
 	text-align: center;
-	margin-bottom: 20px;
-	background-color: inherit;
-	padding: 5px;
-	margin-bottom: 1%;
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 22px;
+	font-size: 24px;
 	font-weight: bold;
 	color: #333;
-	margin-top: -1%;
-	padding-top: 2%;
 }
 
 .category-discount-subheader h2 {
 	text-align: center;
-	margin-bottom: 10px;
-	background-color: inherit;
-	padding: 5px;
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 	font-size: 20px;
+	color: #666;
 }
 
 .category-discount-form .form-group {
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 }
 
 .category-discount-form .form-control {
@@ -86,6 +78,11 @@
 	display: block;
 	width: 69%;
 	margin-right: 5%;
+}
+.discount-table th {
+	background-color: #00a65a;
+	border-color: #008d4c;
+	font-size: 15px;
 }
 
 .align-self-center {

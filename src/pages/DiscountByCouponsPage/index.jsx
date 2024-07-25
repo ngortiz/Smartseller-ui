@@ -196,7 +196,7 @@ const DiscountByCouponsPage = () => {
 						</Col>
 					</Row>
 					<Row>
-						<Table striped bordered hover className='discount-table'>
+						<Table hover className='discount-table'>
 							<thead>
 								<tr>
 									<th>{t('discountByCoupons.client')}</th>
