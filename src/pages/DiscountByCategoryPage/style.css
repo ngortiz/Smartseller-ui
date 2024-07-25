@@ -1,40 +1,30 @@
 .category-discount-container {
-	margin: 1%;
-	background-color: #f9f9f9;
-	border-radius: 0px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	margin: 1%;
-	width: 100%;
-
-	padding: 10px 10px;
-	margin-bottom: 10px;
+	background-color: white;
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	width: 90%;
+	margin: 0 auto 2% auto;
 }
 
 .category-discount-header h1 {
-	margin: 1%;
-	text-align: left;
-	margin-bottom: 20px;
-	background-color: inherit;
-	border-bottom: 1px solid #eeee;
-	padding: 5px;
-	margin-bottom: 15px;
-}
-
-.category-discount-subheader h2 {
-	margin: 0;
-	text-align: left;
-	margin-bottom: 5%;
-	background-color: inherit;
-	border-bottom: 1px solid #eee;
-	padding-bottom: 10px;
+	margin: 10px 0 20px 0;
+	text-align: center;
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 20px;
-	font-weight: normal;
+	font-size: 24px;
+	font-weight: bold;
 	color: #333;
 }
 
+.category-discount-subheader h2 {
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 20px;
+	color: #666;
+}
+
 .category-discount-form .form-group {
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 }
 
 .category-discount-form .form-control {
@@ -55,15 +45,17 @@
 }
 
 .category-discount-form .form-check-input {
-	margin-top: 5px;
+	margin-top: 17px;
 	background-color: #00a65a;
+	border-color: #008d4c;
 	padding: 15px 15px;
 }
 
 .category-discount-form .form-check-label {
-	margin-bottom: 9px;
+	margin-bottom: 30px;
 	text-align: center;
-	margin: -1%;
+	position: relative;
+	margin-top: -103%;
 }
 
 .category-discount-form .update-button {
@@ -71,12 +63,12 @@
 	border-color: #008d4c;
 	color: white;
 	text-align: center;
-	padding: 10px 20px;
+	padding: 7px 20px;
 	font-size: 16px;
 	border-radius: 5px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
-	margin: 3%;
+	margin: 1%;
 }
 
 .category-discount-form .update-button:hover {
@@ -86,6 +78,11 @@
 	display: block;
 	width: 69%;
 	margin-right: 5%;
+}
+.discount-table th {
+	background-color: #00a65a;
+	border-color: #008d4c;
+	font-size: 15px;
 }
 
 .align-self-center {
@@ -139,20 +136,32 @@
 	background-color: #f9f9f9;
 }
 
-.delete-button {
-	background-color: #dc3545;
-}
 .product-button-edit {
+	margin-left: 35%;
+	background-color: white;
+	border-color: #007bff;
+	color: #007bff;
+}
+.product-button-edit:hover {
 	margin-left: 35%;
 	background-color: #007bff;
 	border-color: #007bff;
+	color: white;
 }
 
 .product-button-delete {
 	margin-left: 5%;
+	background-color: white;
+	border-color: #dc3545;
+	color: #dc3545;
+}
+.product-button-delete:hover {
+	margin-left: 5%;
 	background-color: #dc3545;
 	border-color: #dc3545;
+	color: white;
 }
+
 label {
 	color: #354052;
 	font-family: 'Source Sans Pro', sans-serif;

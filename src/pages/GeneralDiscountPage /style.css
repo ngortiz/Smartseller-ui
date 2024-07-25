@@ -1,33 +1,26 @@
 .general-discount-container {
 	background-color: white;
-	margin: 1%;
-	width: 100%;
-	padding: 10px 10px;
-	margin-bottom: 10px;
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	width: 90%;
+	margin: 0 auto 2% auto;
 }
 
 .general-discount-header {
-	margin: 0.1rem;
-	text-align: left;
-	margin-bottom: 20px;
-	background-color: inherit;
-	padding: -6px;
-	margin-bottom: 15px;
+	margin: 10px 0 20px 0;
+	text-align: center;
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 20px;
+	font-size: 24px;
 	font-weight: bold;
 	color: #333;
 }
 
 .general-discount-subheader {
-	margin: 1%;
-	text-align: left;
-	margin-bottom: 10px;
-	background-color: inherit;
-	padding: 5px;
-	margin-bottom: 15px;
-	margin-top: auto;
+	text-align: center;
+	margin-bottom: 30px;
 	font-size: 20px;
+	color: #666;
 }
 
 .general-discount-form .form-group {
@@ -51,16 +44,17 @@
 }
 
 .general-discount-form .form-check-input {
-	margin-top: 5px;
+	margin-top: 17px;
 	background-color: #00a65a;
 	border-color: #008d4c;
-	padding: 15px 15px;
+	padding: 20px 20px;
 }
 
 .general-discount-form .form-check-label {
-	margin-bottom: 9px;
+	margin-bottom: 50px;
 	text-align: center;
-	margin: -1%;
+	position: relative;
+	margin-top: -120%;
 }
 
 .general-discount-form .update-button {
@@ -69,18 +63,15 @@
 	color: white;
 	text-align: center;
 	padding: 10px 20px;
-	font-size: 15px;
-	border-radius: 0px;
+	font-size: 16px;
+	border-radius: 3px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
-	width: 15%;
+	width: 18%;
 	margin: 1%;
 }
 
 .general-discount-form .update-button:hover {
 	background-color: #00a65a;
 	border-color: #008d4c;
-}
-.align-self-center {
-	margin-right: 0%;
 }
