@@ -50,12 +50,13 @@ body {
 	border-color: #008d4c;
 	border: 2px solid transparent;
 	color: #fff;
-	padding: 5px 20px;
+	padding: 8px 20px;
 	font-size: 1rem;
-	border-radius: 0px;
+	border-radius: 4px;
 	transition: background-color 0.3s ease;
 	cursor: pointer;
-	margin-left: 2%;
+	margin-left: 110%;
+	margin-top: -17%;
 }
 
 .registration-form-button:hover {

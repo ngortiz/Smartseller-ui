@@ -1,4 +1,4 @@
-.date-button {
+date-button {
 	background-color: #00a65a;
 	border-color: #008d4c;
 	color: #fff;
@@ -9,17 +9,12 @@
 	font-size: 16px;
 	margin-top: 1px;
 	font-family: 'Source Sans Pro', sans-serif;
-	box-shadow: 0 2px 2px #335;
+	box-shadow: 0 2px 2px#00a65a;
 	margin-left: 5%;
 	margin-top: 0%;
 }
 
-.OrdersButton:hover {
-	background-color: #00a65a;
-	border-color: #008d4c;
-}
-
-.order-button:hover {
+.date-button:hover {
 	background-color: #00a65a;
 	border-color: #008d4c;
 }
@@ -68,7 +63,7 @@
 	margin-top: 5%;
 	margin-bottom: 4%;
 	justify-content: center !important;
-	margin-right: 40%;
+	margin-right: 3%;
 }
 .date-picker-container {
 	display: flex;

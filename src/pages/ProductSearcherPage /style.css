@@ -76,13 +76,16 @@
 }
 
 .product-searcher-heard {
+	font-size: 24px;
 	text-align: center;
-	padding: 10px;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 20px;
-	font-weight: bold;
 	color: #333;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
+	font-weight: bold;
+	font-family: 'Source Sans Pro', sans-serif;
+	border-bottom: 3px solid #eeeeee;
+	padding-bottom: 10px;
+	width: 100%;
+	padding-top: 2%;
 }
 
 .productS-form-select {

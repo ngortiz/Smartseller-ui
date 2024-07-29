@@ -12,6 +12,7 @@
 	font-size: 26px;
 	font-weight: bold;
 	color: #333;
+	border-bottom: 3px solid #eeeeee;
 	text-align: center;
 	padding-top: 2%;
 }

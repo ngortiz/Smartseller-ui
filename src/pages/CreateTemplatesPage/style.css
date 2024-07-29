@@ -1,23 +1,22 @@
 .create-templates-container {
 	background-color: white;
 	padding: 30px;
-	border-radius: 0px;
+	border-radius: 4px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	width: 70%;
 	margin-bottom: 2%;
 }
 
 .create-templates-header {
-	margin: 10px 0 20px 0;
+	font-size: 24px;
 	text-align: center;
-	background-color: inherit;
-	padding: 5px;
-	margin-bottom: 1%;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 22px;
-	font-weight: bold;
 	color: #333;
-	margin-top: -1%;
+	margin-bottom: 20px;
+	font-weight: bold;
+	font-family: 'Source Sans Pro', sans-serif;
+	border-bottom: 3px solid #eeeeee;
+	padding-bottom: 10px;
+	width: 100%;
 	padding-top: 2%;
 }
 

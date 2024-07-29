@@ -134,11 +134,11 @@ const DiscountByCouponsPage = () => {
 
 	return (
 		<>
-			<Row className='coupons-discount-header'>
+			<Row>
 				<Col>
-					<h1 className='category-discount-header'>
+					<header className='coupons-discount-header'>
 						{t('discountByCoupons.discountCoupons')}
-					</h1>
+					</header>
 				</Col>
 			</Row>
 			<Container className='coupons-discount-container'>

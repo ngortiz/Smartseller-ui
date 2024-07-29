@@ -1,16 +1,15 @@
 .bank-header {
-	margin: 10px 0 20px 0;
+	font-size: 24px;
 	text-align: center;
-	margin-bottom: 20px;
-	background-color: inherit;
-	padding: 5px;
-	margin-bottom: 3%;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 22px;
-	font-weight: bold;
 	color: #333;
-	margin-top: -1%;
+	margin-bottom: 20px;
+	font-weight: bold;
+	font-family: 'Source Sans Pro', sans-serif;
+	border-bottom: 3px solid #eeeeee;
+	padding-bottom: 10px;
+	width: 107%;
 	padding-top: 2%;
+	margin-left: -1%;
 }
 
 .heard-state {
@@ -31,7 +30,7 @@
 .container-white-bank {
 	background-color: white;
 	padding: 30px;
-	border-radius: 0px;
+	border-radius: 4px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	width: 100%;
 	margin-bottom: 2%;
@@ -90,8 +89,8 @@
 }
 .bank-select {
 	width: 100%;
-	padding: 10px;
-	margin-top: 11%;
+	padding: 8px;
+	margin-top: 12%;
 	border: 2px solid #00a65a;
 	border-radius: 2px;
 	background-color: #f9f9f9;

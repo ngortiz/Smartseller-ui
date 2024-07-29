@@ -13,23 +13,25 @@
 }
 
 .unique-title-header {
-	text-align: center;
-	padding: 10px;
-	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 24px;
-	font-weight: bold;
+	text-align: center;
 	color: #333;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
+	font-weight: bold;
+	font-family: 'Source Sans Pro', sans-serif;
+	border-bottom: 3px solid #eeeeee;
+	padding-bottom: 10px;
+	width: 100%;
+	padding-top: 2%;
 }
 
 .unique-page-header {
 	text-align: center;
-
 	padding: 10px;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 20px;
 	font-weight: bold;
-	color: #333;
+	color: #666;
 	margin-bottom: 30px;
 }
 
