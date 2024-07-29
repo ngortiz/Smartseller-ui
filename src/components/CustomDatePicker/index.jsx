@@ -8,7 +8,7 @@ import { BiCalendar } from 'react-icons/bi';
 const CustomDatePicker = ({ selectedDate, handleChange, startDate }) => {
 	return (
 		<div className='custom-date-picker'>
-			<BiCalendar className='bi bi-calendar-icon' />
+			<BiCalendar className='bi-calendar-icon' />
 			<DatePicker
 				selected={selectedDate}
 				onChange={handleChange}

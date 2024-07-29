@@ -1,1 +1,73 @@
+.date-button {
+	background-color: #00a65a;
+	border-color: #008d4c;
+	color: #fff;
+	padding: 7px 18px;
+	border: none;
+	border-radius: 2px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-top: 1px;
+	font-family: 'Source Sans Pro', sans-serif;
+	box-shadow: 0 2px 2px#00a65a;
+	margin-left: 5%;
+	margin-top: 0%;
+}
 
+.date-button:hover {
+	background-color: #00a65a;
+	border-color: #008d4c;
+}
+.custom-date-picker {
+	display: flex;
+	border: 2px solid #e0e0e0;
+	padding: 5px;
+	margin-left: 1%;
+	border-radius: 2px;
+	background-color: #f5f5f5;
+	box-shadow: 0 1px 1px #053857;
+	align-items: center;
+}
+
+.bi-calendar-icon {
+	color: #354063 !important;
+	font-size: 1.8em !important;
+	margin-right: 10px !important;
+}
+
+.date-picker-input {
+	font-size: 12px;
+	font-weight: normal;
+	font-style: normal;
+	width: 170px;
+	padding: 2px;
+	border: 2px solid #e0e0e0;
+	border-radius: 4px;
+	align-items: center;
+}
+.justify-content-center {
+	justify-content: center;
+}
+.custom-label {
+	font-size: 16px;
+	margin-bottom: 5px;
+	padding: 0;
+	font-weight: bold;
+	font-family: 'Source Sans Pro', sans-serif;
+	margin: 10px 0;
+	margin-left: 10px;
+}
+.date-range-picker-container {
+	display: flexbox;
+	text-align: center;
+	margin-top: 5%;
+	margin-bottom: 4%;
+	justify-content: center !important;
+	margin-right: 40%;
+}
+.date-picker-container {
+	display: flex;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 0%;
+}

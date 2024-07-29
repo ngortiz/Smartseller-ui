@@ -49,14 +49,14 @@ const RegistrationForm = ({
 								readOnly
 								className='registration-form-input'
 							/>
-							<Button
-								variant='primary'
-								onClick={handleGenerateCode}
-								className='registration-form-button'
-							>
-								{t('registrationPage.generar')}
-							</Button>
 						</div>
+						<Button
+							variant='primary'
+							onClick={handleGenerateCode}
+							className='registration-form-button'
+						>
+							{t('registrationPage.generar')}
+						</Button>
 					</Form.Group>
 				</Col>
 			</Row>

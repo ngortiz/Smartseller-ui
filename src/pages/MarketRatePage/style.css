@@ -4,21 +4,25 @@
 	border-radius: 0px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	width: 90%;
+	margin-top: 5%;
 }
 
 .market-rate-header {
-	margin: 10px 0 20px 0;
+	font-size: 24px;
 	text-align: center;
-	background-color: var(--secondary-color);
-	border-bottom: 1px solid #eee;
-	padding: 10px 20px;
+	color: #333;
+	margin-bottom: 2%;
 	font-weight: bold;
-	font-size: 22px;
-	color: var(--font-color);
-	border-radius: var(--border-radius) var(--border-radius) 0 0;
+	font-family: 'Source Sans Pro', sans-serif;
+	border-bottom: 3px solid #eeeeee;
+	padding-bottom: 10px;
+	width: 107%;
+	margin: -1.8%;
+	padding-top: 2%;
+	margin-left: -1%;
 }
 .market-header2 {
-	color: #333;
+	color: #666;
 	text-align: center;
 	font-size: 1.3rem;
 	font-weight: 500;

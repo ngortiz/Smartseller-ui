@@ -20,11 +20,11 @@ const GeneralDiscountPage = () => {
 
 	return (
 		<>
-			<Row className='general-discount-header'>
+			<Row>
 				<Col>
-					<h1 className='general-discount-header'>
+					<header className='general-discount-header'>
 						{t('generalDiscount.generalDiscount')}
-					</h1>
+					</header>
 				</Col>
 			</Row>
 			<Container className='general-discount-container'>
