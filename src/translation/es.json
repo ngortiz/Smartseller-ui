@@ -274,7 +274,8 @@
 		"templateName": "Nombre de la Plantilla",
 		"attributesName": "Atributos",
 		"enterAttributesName": "Ingrese el nombre del atributos",
-		"enterTemplateName": "Ingrese Nombre de la Plantilla"
+		"enterTemplateName": "Ingrese Nombre de la Plantilla",
+		"attributeLengthError": "Error de longitud"
 	},
 	"generalDiscount": {
 		"generalDiscount": "Descuento General",

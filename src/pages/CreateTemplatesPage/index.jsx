@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, useMutation, gql } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
 import {
 	Container,
@@ -9,6 +9,7 @@ import {
 	Button,
 	Table,
 	Spinner,
+	Alert,
 } from 'react-bootstrap';
 import './style.css';
 
@@ -22,11 +23,24 @@ const GET_TEMPLATES_QUERY = gql`
 	}
 `;
 
+const CREATE_TEMPLATE_MUTATION = gql`
+	mutation CreateTemplate($template: TemplateInput!) {
+		createTemplate(template: $template) {
+			id
+			name
+			format
+		}
+	}
+`;
+
 const CreateTemplatesPage = () => {
 	const { loading, error, data } = useQuery(GET_TEMPLATES_QUERY);
+	const [createTemplate] = useMutation(CREATE_TEMPLATE_MUTATION);
 	const [templateName, setTemplateName] = useState('');
 	const [attributeName, setAttributeName] = useState('');
 	const [attributes, setAttributes] = useState([]);
+	const [templateNameValid, setTemplateNameValid] = useState(null);
+	const [attributeNameValid, setAttributeNameValid] = useState(null);
 	const { t } = useTranslation();
 	const [templates, setTemplates] = useState([]);
 
@@ -37,21 +51,69 @@ const CreateTemplatesPage = () => {
 	}, [data]);
 
 	const handleAddAttribute = () => {
-		if (attributeName.trim()) {
+		if (
+			attributeName.trim().length >= 4 &&
+			attributeName.trim().length <= 255
+		) {
 			setAttributes([...attributes, attributeName]);
 			setAttributeName('');
+			setAttributeNameValid(true);
+		} else {
+			setAttributeNameValid(false);
 		}
 	};
 
-	const handleCreateTemplate = () => {
-		if (templateName.trim() && attributes.length > 0) {
-			const newTemplate = {
-				name: templateName,
-				format: attributes.join(', '),
-			};
-			setTemplates([...templates, newTemplate]);
-			setTemplateName('');
-			setAttributes([]);
+	const handleSubmit = async event => {
+		event.preventDefault();
+		if (
+			templateName.trim().length >= 4 &&
+			templateName.trim().length <= 15 &&
+			attributes.length > 0
+		) {
+			try {
+				const { data } = await createTemplate({
+					variables: {
+						template: {
+							name: templateName,
+							format: attributes.join(', '),
+						},
+					},
+				});
+
+				setTemplates([...templates, data.createTemplate]);
+				setTemplateName('');
+				setAttributes([]);
+				setTemplateNameValid(true);
+			} catch (error) {
+				console.error('Error creating template:', error);
+				setTemplateNameValid(false);
+			}
+		} else {
+			setTemplateNameValid(false);
+		}
+	};
+
+	const handleTemplateNameChange = e => {
+		setTemplateName(e.target.value);
+		if (
+			e.target.value.trim().length >= 4 &&
+			e.target.value.trim().length <= 15
+		) {
+			setTemplateNameValid(true);
+		} else {
+			setTemplateNameValid(false);
+		}
+	};
+
+	const handleAttributeNameChange = e => {
+		setAttributeName(e.target.value);
+		if (
+			e.target.value.trim().length >= 4 &&
+			e.target.value.trim().length <= 255
+		) {
+			setAttributeNameValid(true);
+		} else {
+			setAttributeNameValid(false);
 		}
 	};
 
@@ -70,7 +132,7 @@ const CreateTemplatesPage = () => {
 				</Col>
 			</Row>
 			<Container className='create-templates-container'>
-				<Form>
+				<Form onSubmit={handleSubmit}>
 					<Form.Group controlId='formTemplateName'>
 						<Form.Label className='create-templates-form-label'>
 							{t('createTemplates.templateName')}
@@ -79,9 +141,16 @@ const CreateTemplatesPage = () => {
 							type='text'
 							placeholder={t('createTemplates.enterTemplateName')}
 							value={templateName}
-							onChange={e => setTemplateName(e.target.value)}
+							onChange={handleTemplateNameChange}
+							isInvalid={templateNameValid === false}
+							isValid={templateNameValid === true}
 							className='createTemplates-input'
 						/>
+						{templateNameValid === false && (
+							<Form.Control.Feedback type='invalid'>
+								{t('createTemplates.invalidTemplateName')}
+							</Form.Control.Feedback>
+						)}
 					</Form.Group>
 					<Form.Group controlId='formAttributeName' className='mt-3'>
 						<Form.Label className='create-templates-form-label'>
@@ -91,20 +160,21 @@ const CreateTemplatesPage = () => {
 							type='text'
 							placeholder={t('createTemplates.enterAttributesName')}
 							value={attributeName}
-							onChange={e => setAttributeName(e.target.value)}
+							onChange={handleAttributeNameChange}
+							isInvalid={attributeNameValid === false}
+							isValid={attributeNameValid === true}
 							className='createTemplates-input'
 						/>
+						{attributeNameValid === false && (
+							<Form.Control.Feedback type='invalid'>
+								{t('createTemplates.invalidAttributeName')}
+							</Form.Control.Feedback>
+						)}
 					</Form.Group>
-					<div className='mt-3'>
-						<ul className='create-templates-attributes-list'>
-							{attributes.map((attr, index) => (
-								<li key={index}>{attr}</li>
-							))}
-						</ul>
-					</div>
 					<Button
 						className='create-templates-button'
-						onClick={handleCreateTemplate}
+						type='submit'
+						onClick={handleAddAttribute}
 					>
 						{t('createTemplates.add')}
 					</Button>

@@ -67,3 +67,16 @@ body {
 .label-registration-select {
 	font-weight: 700;
 }
+.registration-form-title {
+	font-size: 24px;
+	text-align: center;
+	color: #333;
+	margin-bottom: 20px;
+	font-weight: bold;
+	font-family: 'Source Sans Pro', sans-serif;
+	border-bottom: 3px solid #eeeeee;
+	padding-bottom: 10px;
+	width: 99%;
+	margin: -1.8%;
+	padding-top: 2%;
+}
