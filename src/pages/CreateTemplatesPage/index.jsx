@@ -146,11 +146,6 @@ const CreateTemplatesPage = () => {
 							isValid={templateNameValid === true}
 							className='createTemplates-input'
 						/>
-						{templateNameValid === false && (
-							<Form.Control.Feedback type='invalid'>
-								{t('createTemplates.invalidTemplateName')}
-							</Form.Control.Feedback>
-						)}
 					</Form.Group>
 					<Form.Group controlId='formAttributeName' className='mt-3'>
 						<Form.Label className='create-templates-form-label'>
@@ -165,11 +160,6 @@ const CreateTemplatesPage = () => {
 							isValid={attributeNameValid === true}
 							className='createTemplates-input'
 						/>
-						{attributeNameValid === false && (
-							<Form.Control.Feedback type='invalid'>
-								{t('createTemplates.invalidAttributeName')}
-							</Form.Control.Feedback>
-						)}
 					</Form.Group>
 					<Button
 						className='create-templates-button'
