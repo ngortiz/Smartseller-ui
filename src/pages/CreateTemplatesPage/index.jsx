@@ -143,7 +143,7 @@ const CreateTemplatesPage = () => {
 							value={templateName}
 							onChange={handleTemplateNameChange}
 							isInvalid={templateNameValid === false}
-							isValid={templateNameValid === true}
+							isValid={templateNameValid}
 							className='createTemplates-input'
 						/>
 					</Form.Group>
@@ -157,7 +157,7 @@ const CreateTemplatesPage = () => {
 							value={attributeName}
 							onChange={handleAttributeNameChange}
 							isInvalid={attributeNameValid === false}
-							isValid={attributeNameValid === true}
+							isValid={attributeNameValid}
 							className='createTemplates-input'
 						/>
 					</Form.Group>
