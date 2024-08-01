@@ -12,7 +12,6 @@ import {
 import { useTranslation } from 'react-i18next';
 import './style.css';
 
-// Queries y Mutations
 const GET_MARKET_RATES = gql`
 	query GetMarketRates {
 		getMarketRates {
@@ -56,7 +55,6 @@ const MarketRatePage = () => {
 
 	const [marketRates, setMarketRates] = useState([]);
 	const [currencyType, setCurrencyType] = useState('1');
-	D;
 	const [buyPrice, setBuyPrice] = useState('');
 	const [sellPrice, setSellPrice] = useState('');
 	const [notification, setNotification] = useState('');
@@ -127,7 +125,7 @@ const MarketRatePage = () => {
 											<option value=''>
 												{t('marketRatePage.selectCurrency')}
 											</option>
-											<option value='1'>USD</option>
+											<option value='1'>Dolar</option>
 										</Form.Select>
 									</Form.Group>
 								</Col>
