@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, useMutation, gql } from '@apollo/client';
 import {
 	Container,
 	Row,
@@ -12,6 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import './style.css';
 
+// Queries y Mutations
 const GET_MARKET_RATES = gql`
 	query GetMarketRates {
 		getMarketRates {
@@ -27,14 +28,74 @@ const GET_MARKET_RATES = gql`
 	}
 `;
 
+const CREATE_MARKET_RATE_MUTATION = gql`
+	mutation CreateMarketRate($moneyId: Int!, $priceBuy: Int!, $priceSell: Int!) {
+		createMarketRate(
+			marketRate: {
+				moneyId: $moneyId
+				priceBuy: $priceBuy
+				priceSell: $priceSell
+			}
+		) {
+			id
+			money {
+				id
+				name
+				symbol
+			}
+			priceBuy
+			priceSell
+		}
+	}
+`;
+
 const MarketRatePage = () => {
 	const { t } = useTranslation();
 	const { loading, error, data } = useQuery(GET_MARKET_RATES);
-	const [currencyType, setCurrencyType] = useState('');
+	const [createMarketRate] = useMutation(CREATE_MARKET_RATE_MUTATION);
+
+	const [marketRates, setMarketRates] = useState([]);
+	const [currencyType, setCurrencyType] = useState('1');
+	D;
 	const [buyPrice, setBuyPrice] = useState('');
 	const [sellPrice, setSellPrice] = useState('');
+	const [notification, setNotification] = useState('');
 
-	const handleSearch = () => {};
+	React.useEffect(() => {
+		if (data && data.getMarketRates) {
+			setMarketRates(data.getMarketRates);
+		}
+	}, [data]);
+
+	const handleSave = async () => {
+		if (currencyType && buyPrice && sellPrice) {
+			try {
+				const { data: newMarketRateData } = await createMarketRate({
+					variables: {
+						moneyId: parseInt(currencyType),
+						priceBuy: parseInt(buyPrice),
+						priceSell: parseInt(sellPrice),
+					},
+				});
+
+				setMarketRates([...marketRates, newMarketRateData.createMarketRate]);
+				setNotification('Se ha agregado la nueva cotización');
+			} catch (err) {
+				console.error('Error creating market rate:', err);
+			}
+		} else {
+			alert('Por favor, completa todos los campos.');
+		}
+	};
+
+	React.useEffect(() => {
+		if (notification) {
+			const timer = setTimeout(() => {
+				setNotification('');
+			}, 3000);
+			return () => clearTimeout(timer);
+		}
+	}, [notification]);
 
 	return (
 		<>
@@ -66,7 +127,7 @@ const MarketRatePage = () => {
 											<option value=''>
 												{t('marketRatePage.selectCurrency')}
 											</option>
-											<option value='USD'>USD</option>
+											<option value='1'>USD</option>
 										</Form.Select>
 									</Form.Group>
 								</Col>
@@ -76,6 +137,7 @@ const MarketRatePage = () => {
 										<Form.Control
 											value={buyPrice}
 											onChange={e => setBuyPrice(e.target.value)}
+											type='number'
 										/>
 									</Form.Group>
 								</Col>
@@ -85,11 +147,12 @@ const MarketRatePage = () => {
 										<Form.Control
 											value={sellPrice}
 											onChange={e => setSellPrice(e.target.value)}
+											type='number'
 										/>
 									</Form.Group>
 								</Col>
 								<Col md={3}>
-									<Button className='market-rate-button' onClick={handleSearch}>
+									<Button className='market-rate-button' onClick={handleSave}>
 										{t('marketRatePage.save')}
 									</Button>
 								</Col>
@@ -97,6 +160,9 @@ const MarketRatePage = () => {
 						</Form>
 					</Col>
 				</Row>
+
+				{notification && <div className='notification'>{notification}</div>}
+
 				<Row className='market-rate-table'>
 					<Col>
 						{loading ? (
@@ -117,9 +183,9 @@ const MarketRatePage = () => {
 									</tr>
 								</thead>
 								<tbody>
-									{data.getMarketRates.map((rate, index) => (
+									{marketRates.map((rate, index) => (
 										<tr key={rate.id}>
-											<td>{rate.money.name}</td>
+											<td>{rate.money ? rate.money.name : 'Dolar'}</td>
 											<td>{rate.priceBuy}</td>
 											<td>{rate.priceSell}</td>
 										</tr>
