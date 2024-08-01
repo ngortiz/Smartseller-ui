@@ -37,11 +37,6 @@ const CREATE_MARKET_RATE_MUTATION = gql`
 			}
 		) {
 			id
-			money {
-				id
-				name
-				symbol
-			}
 			priceBuy
 			priceSell
 		}
