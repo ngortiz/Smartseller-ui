@@ -11,11 +11,13 @@ import {
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import './style.css';
+import moment from 'moment';
 
 const GET_MARKET_RATES = gql`
 	query GetMarketRates {
 		getMarketRates {
 			id
+			createdAt
 			money {
 				id
 				name
@@ -37,6 +39,7 @@ const CREATE_MARKET_RATE_MUTATION = gql`
 			}
 		) {
 			id
+			createdAt
 			priceBuy
 			priceSell
 		}
@@ -53,6 +56,7 @@ const MarketRatePage = () => {
 	const [buyPrice, setBuyPrice] = useState('');
 	const [sellPrice, setSellPrice] = useState('');
 	const [notification, setNotification] = useState('');
+	const [isSaving, setIsSaving] = useState(false);
 
 	React.useEffect(() => {
 		if (data && data.getMarketRates) {
@@ -62,6 +66,7 @@ const MarketRatePage = () => {
 
 	const handleSave = async () => {
 		if (currencyType && buyPrice && sellPrice) {
+			setIsSaving(true);
 			try {
 				const { data: newMarketRateData } = await createMarketRate({
 					variables: {
@@ -72,9 +77,12 @@ const MarketRatePage = () => {
 				});
 
 				setMarketRates([...marketRates, newMarketRateData.createMarketRate]);
+
 				setNotification('Se ha agregado la nueva cotización');
 			} catch (err) {
 				console.error('Error creating market rate:', err);
+			} finally {
+				setIsSaving(false);
 			}
 		} else {
 			alert('Por favor, completa todos los campos.');
@@ -116,6 +124,7 @@ const MarketRatePage = () => {
 										<Form.Select
 											value={currencyType}
 											onChange={e => setCurrencyType(e.target.value)}
+											disabled={isSaving} // Disable select while saving
 										>
 											<option value=''>
 												{t('marketRatePage.selectCurrency')}
@@ -131,6 +140,7 @@ const MarketRatePage = () => {
 											value={buyPrice}
 											onChange={e => setBuyPrice(e.target.value)}
 											type='number'
+											disabled={isSaving} // Disable input while saving
 										/>
 									</Form.Group>
 								</Col>
@@ -141,12 +151,27 @@ const MarketRatePage = () => {
 											value={sellPrice}
 											onChange={e => setSellPrice(e.target.value)}
 											type='number'
+											disabled={isSaving} // Disable input while saving
 										/>
 									</Form.Group>
 								</Col>
 								<Col md={3}>
-									<Button className='market-rate-button' onClick={handleSave}>
-										{t('marketRatePage.save')}
+									<Button
+										className='market-rate-button'
+										onClick={handleSave}
+										disabled={isSaving} // Disable select while saving
+									>
+										{isSaving ? (
+											<Spinner
+												as='span'
+												animation='border'
+												size='sm'
+												role='status'
+												aria-hidden='true'
+											/>
+										) : (
+											t('marketRatePage.save')
+										)}
 									</Button>
 								</Col>
 							</Row>
@@ -170,15 +195,26 @@ const MarketRatePage = () => {
 							<Table bordered hover>
 								<thead>
 									<tr>
+										<th>{t('marketRatePage.date')}</th>
 										<th>{t('marketRatePage.money')}</th>
 										<th>{t('marketRatePage.purchasePrice')}</th>
 										<th>{t('marketRatePage.salePrice')}</th>
 									</tr>
 								</thead>
 								<tbody>
-									{marketRates.map((rate, index) => (
+									{marketRates.map(rate => (
 										<tr key={rate.id}>
-											<td>{rate.money ? rate.money.name : 'Dolar'}</td>
+											<td>
+												{moment(rate.createdAt).format('DD-MM-YYYY HH:mm')}
+											</td>
+
+											<td>
+												{rate.money && rate.money.name === 'Guarani'
+													? 'Dolar'
+													: rate.money
+														? rate.money.name
+														: 'Dolar'}
+											</td>
 											<td>{rate.priceBuy}</td>
 											<td>{rate.priceSell}</td>
 										</tr>
