@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useQuery, useMutation, gql } from '@apollo/client';
+import React, { useState, useEffect } from 'react';
+import { useQuery, useMutation, gql, useLazyQuery } from '@apollo/client';
 import {
 	Container,
 	Row,
@@ -48,17 +48,21 @@ const CREATE_MARKET_RATE_MUTATION = gql`
 
 const MarketRatePage = () => {
 	const { t } = useTranslation();
-	const { loading, error, data } = useQuery(GET_MARKET_RATES);
+	const [handleMarketRates, { loading, error, data }] =
+		useLazyQuery(GET_MARKET_RATES);
 	const [createMarketRate] = useMutation(CREATE_MARKET_RATE_MUTATION);
 
 	const [marketRates, setMarketRates] = useState([]);
-	const [currencyType, setCurrencyType] = useState('1');
+	const [currencyType, setCurrencyType] = useState('2');
 	const [buyPrice, setBuyPrice] = useState('');
 	const [sellPrice, setSellPrice] = useState('');
 	const [notification, setNotification] = useState('');
 	const [isSaving, setIsSaving] = useState(false);
 
-	React.useEffect(() => {
+	useEffect(() => {
+		handleMarketRates();
+	}, []);
+	useEffect(() => {
 		if (data && data.getMarketRates) {
 			setMarketRates(data.getMarketRates);
 		}
@@ -68,7 +72,7 @@ const MarketRatePage = () => {
 		if (currencyType && buyPrice && sellPrice) {
 			setIsSaving(true);
 			try {
-				const { data: newMarketRateData } = await createMarketRate({
+				await createMarketRate({
 					variables: {
 						moneyId: parseInt(currencyType),
 						priceBuy: parseInt(buyPrice),
@@ -76,9 +80,9 @@ const MarketRatePage = () => {
 					},
 				});
 
-				setMarketRates([...marketRates, newMarketRateData.createMarketRate]);
+				handleMarketRates();
 
-				setNotification('Se ha agregado la nueva cotización');
+				setNotification(t('marketRatePage.newQuoteHasBeenAdded'));
 			} catch (err) {
 				console.error('Error creating market rate:', err);
 			} finally {
@@ -89,7 +93,7 @@ const MarketRatePage = () => {
 		}
 	};
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (notification) {
 			const timer = setTimeout(() => {
 				setNotification('');
@@ -129,7 +133,7 @@ const MarketRatePage = () => {
 											<option value=''>
 												{t('marketRatePage.selectCurrency')}
 											</option>
-											<option value='1'>Dolar</option>
+											<option value='2'>Dolar</option>
 										</Form.Select>
 									</Form.Group>
 								</Col>
@@ -207,14 +211,7 @@ const MarketRatePage = () => {
 											<td>
 												{moment(rate.createdAt).format('DD-MM-YYYY HH:mm')}
 											</td>
-
-											<td>
-												{rate.money && rate.money.name === 'Guarani'
-													? 'Dolar'
-													: rate.money
-														? rate.money.name
-														: 'Dolar'}
-											</td>
+											<td>{rate.money.name}</td>
 											<td>{rate.priceBuy}</td>
 											<td>{rate.priceSell}</td>
 										</tr>

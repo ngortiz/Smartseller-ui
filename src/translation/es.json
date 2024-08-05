@@ -420,6 +420,7 @@
 		"salePrice": "Precio de Venta",
 		"save": "Guardar",
 		"date": "Fecha",
-		"money": "Moneda"
+		"money": "Moneda",
+		"newQuoteHasBeenAdded": "Se ha agregado la nueva cotización"
 	}
 }
