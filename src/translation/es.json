@@ -410,5 +410,17 @@
 		"expirationDate": "Fecha Expiracion",
 		"total": "Total",
 		"searchByCustomerOrNumber": "Buscar por Cliente o Número"
+	},
+	"marketRatePage": {
+		"quotes": "Cotizaciones",
+		"enterQuoteValues": "Ingresar los valores de la cotización",
+		"typeOfCurrency": "Tipo de Moneda",
+		"selectCurrency": "Seleccionar moneda...",
+		"purchasePrice": "Precio de Compra",
+		"salePrice": "Precio de Venta",
+		"save": "Guardar",
+		"date": "Fecha",
+		"money": "Moneda",
+		"newQuoteHasBeenAdded": "Se ha agregado la nueva cotización"
 	}
 }

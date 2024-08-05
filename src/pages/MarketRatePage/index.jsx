@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import React, { useState, useEffect } from 'react';
+import { useQuery, useMutation, gql, useLazyQuery } from '@apollo/client';
 import {
 	Container,
 	Row,
@@ -11,11 +11,13 @@ import {
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import './style.css';
+import moment from 'moment';
 
 const GET_MARKET_RATES = gql`
 	query GetMarketRates {
 		getMarketRates {
 			id
+			createdAt
 			money {
 				id
 				name
@@ -27,14 +29,78 @@ const GET_MARKET_RATES = gql`
 	}
 `;
 
+const CREATE_MARKET_RATE_MUTATION = gql`
+	mutation CreateMarketRate($moneyId: Int!, $priceBuy: Int!, $priceSell: Int!) {
+		createMarketRate(
+			marketRate: {
+				moneyId: $moneyId
+				priceBuy: $priceBuy
+				priceSell: $priceSell
+			}
+		) {
+			id
+			createdAt
+			priceBuy
+			priceSell
+		}
+	}
+`;
+
 const MarketRatePage = () => {
 	const { t } = useTranslation();
-	const { loading, error, data } = useQuery(GET_MARKET_RATES);
-	const [currencyType, setCurrencyType] = useState('');
+	const [handleMarketRates, { loading, error, data }] =
+		useLazyQuery(GET_MARKET_RATES);
+	const [createMarketRate] = useMutation(CREATE_MARKET_RATE_MUTATION);
+
+	const [marketRates, setMarketRates] = useState([]);
+	const [currencyType, setCurrencyType] = useState('2');
 	const [buyPrice, setBuyPrice] = useState('');
 	const [sellPrice, setSellPrice] = useState('');
+	const [notification, setNotification] = useState('');
+	const [isSaving, setIsSaving] = useState(false);
 
-	const handleSearch = () => {};
+	useEffect(() => {
+		handleMarketRates();
+	}, []);
+	useEffect(() => {
+		if (data && data.getMarketRates) {
+			setMarketRates(data.getMarketRates);
+		}
+	}, [data]);
+
+	const handleSave = async () => {
+		if (currencyType && buyPrice && sellPrice) {
+			setIsSaving(true);
+			try {
+				await createMarketRate({
+					variables: {
+						moneyId: parseInt(currencyType),
+						priceBuy: parseInt(buyPrice),
+						priceSell: parseInt(sellPrice),
+					},
+				});
+
+				handleMarketRates();
+
+				setNotification(t('marketRatePage.newQuoteHasBeenAdded'));
+			} catch (err) {
+				console.error('Error creating market rate:', err);
+			} finally {
+				setIsSaving(false);
+			}
+		} else {
+			alert('Por favor, completa todos los campos.');
+		}
+	};
+
+	useEffect(() => {
+		if (notification) {
+			const timer = setTimeout(() => {
+				setNotification('');
+			}, 3000);
+			return () => clearTimeout(timer);
+		}
+	}, [notification]);
 
 	return (
 		<>
@@ -62,11 +128,12 @@ const MarketRatePage = () => {
 										<Form.Select
 											value={currencyType}
 											onChange={e => setCurrencyType(e.target.value)}
+											disabled={isSaving} // Disable select while saving
 										>
 											<option value=''>
 												{t('marketRatePage.selectCurrency')}
 											</option>
-											<option value='USD'>USD</option>
+											<option value='2'>Dolar</option>
 										</Form.Select>
 									</Form.Group>
 								</Col>
@@ -76,6 +143,8 @@ const MarketRatePage = () => {
 										<Form.Control
 											value={buyPrice}
 											onChange={e => setBuyPrice(e.target.value)}
+											type='number'
+											disabled={isSaving} // Disable input while saving
 										/>
 									</Form.Group>
 								</Col>
@@ -85,18 +154,37 @@ const MarketRatePage = () => {
 										<Form.Control
 											value={sellPrice}
 											onChange={e => setSellPrice(e.target.value)}
+											type='number'
+											disabled={isSaving} // Disable input while saving
 										/>
 									</Form.Group>
 								</Col>
 								<Col md={3}>
-									<Button className='market-rate-button' onClick={handleSearch}>
-										{t('marketRatePage.save')}
+									<Button
+										className='market-rate-button'
+										onClick={handleSave}
+										disabled={isSaving} // Disable select while saving
+									>
+										{isSaving ? (
+											<Spinner
+												as='span'
+												animation='border'
+												size='sm'
+												role='status'
+												aria-hidden='true'
+											/>
+										) : (
+											t('marketRatePage.save')
+										)}
 									</Button>
 								</Col>
 							</Row>
 						</Form>
 					</Col>
 				</Row>
+
+				{notification && <div className='notification'>{notification}</div>}
+
 				<Row className='market-rate-table'>
 					<Col>
 						{loading ? (
@@ -111,14 +199,18 @@ const MarketRatePage = () => {
 							<Table bordered hover>
 								<thead>
 									<tr>
+										<th>{t('marketRatePage.date')}</th>
 										<th>{t('marketRatePage.money')}</th>
 										<th>{t('marketRatePage.purchasePrice')}</th>
 										<th>{t('marketRatePage.salePrice')}</th>
 									</tr>
 								</thead>
 								<tbody>
-									{data.getMarketRates.map((rate, index) => (
+									{marketRates.map(rate => (
 										<tr key={rate.id}>
+											<td>
+												{moment(rate.createdAt).format('DD-MM-YYYY HH:mm')}
+											</td>
 											<td>{rate.money.name}</td>
 											<td>{rate.priceBuy}</td>
 											<td>{rate.priceSell}</td>
