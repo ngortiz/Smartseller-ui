@@ -6,12 +6,15 @@ export default function Droppable(props) {
 		id: props.id,
 	});
 
+	console.log(`Droppable ${props.id} isOver:`, isOver);
+
 	const style = {
-		opacity: isOver ? 1 : 0.5,
+		opacity: isOver ? 1 : 0.8,
 		minHeight: '50px',
 		margin: '10px',
-		backgroundColor: isOver ? '#333' : 'transparent',
-		transition: 'background-color 0.3s ease',
+		backgroundColor: isOver ? '#444' : 'transparent',
+		border: isOver ? '2px dashed #333' : '2px solid transparent',
+		transition: 'background-color 0.3s ease, border 0.3s ease',
 	};
 
 	return (

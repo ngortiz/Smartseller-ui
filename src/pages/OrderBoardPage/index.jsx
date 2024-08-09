@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Container, Col, Row, Spinner } from 'react-bootstrap';
 import DateRangePicker from '../../components/DateRangePicker';
 import './style.css';
-import { useLazyQuery, gql } from '@apollo/client';
+import { useLazyQuery, gql, useMutation } from '@apollo/client';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
-
 import OrderCard from '../../components/OrderCard';
-import { DndContext } from '@dnd-kit/core';
+import { DndContext, MouseSensor, useSensor, useSensors } from '@dnd-kit/core';
 import Droppable from '../../components/Droppable';
 import OrderDraggable from '../../components/OrderDraggable';
 
@@ -27,27 +26,40 @@ const GET_ORDERS_QUERY = gql`
 	}
 `;
 
+const UPDATE_ORDER_STATE_MUTATION = gql`
+	mutation UpdateOrderState($order: OrderStateInput!) {
+		updateOrderState(order: $order) {
+			buyMethod
+			number
+			username
+			id
+			orderState
+			paymentState
+			updatedAt
+			createdAt
+			total
+		}
+	}
+`;
+
 const OrderBoardPage = () => {
 	const [orders, setOrders] = useState([]);
 	const { t } = useTranslation();
 
-	const [getOrders, { loading, error, data }] = useLazyQuery(GET_ORDERS_QUERY);
+	const [getOrders, { loading, data }] = useLazyQuery(GET_ORDERS_QUERY);
+	const [updateOrderState] = useMutation(UPDATE_ORDER_STATE_MUTATION, {
+		onError: error => console.error('Error during mutation:', error),
+	});
 
 	const defaultDate = moment().subtract(1, 'months').toDate();
 	const [startDate, setStartDate] = useState(defaultDate);
 	const [endDate, setEndDate] = useState(new Date());
 	const [firstLoading, setFirstLoading] = useState(true);
 
-	const handleStartDateChange = date => {
-		setStartDate(date);
-	};
+	const handleStartDateChange = date => setStartDate(date);
+	const handleEndDateChange = date => setEndDate(date);
 
-	const handleEndDateChange = date => {
-		setEndDate(date);
-	};
-	const handleSearch = () => {
-		getOrders({ variables: { startDate, endDate } });
-	};
+	const handleSearch = () => getOrders({ variables: { startDate, endDate } });
 
 	useEffect(() => {
 		if (data && data.getOrders) {
@@ -57,7 +69,7 @@ const OrderBoardPage = () => {
 			handleSearch();
 			setFirstLoading(false);
 		}
-	}, [loading]);
+	}, [loading, data]);
 
 	const orderColumns = [
 		{ title: t('orderStatus.issued'), filterState: 'issued' },
@@ -87,23 +99,40 @@ const OrderBoardPage = () => {
 		}
 	};
 
-	const updateOrderState = (orderId, newState) => {
-		const updatedOrders = orders.map(order =>
-			order.id === orderId ? { ...order, state: newState } : order,
-		);
-		setOrders(updatedOrders);
-	};
+	const sensors = useSensors(
+		useSensor(MouseSensor, {
+			activationConstraint: {
+				distance: 5,
+			},
+		}),
+	);
 
-	const handleDragEnd = ({ active, over }) => {
+	const handleDragEnd = async ({ active, over }) => {
 		if (over) {
-			const orderId = parseInt(active.id);
+			const orderId = active.id.replace('order-', '');
 			const newState = over.id;
-			updateOrderState(orderId, newState);
+
+			try {
+				const { data } = await updateOrderState({
+					variables: {
+						order: { id: orderId, orderState: newState },
+					},
+				});
+
+				const updatedOrders = orders.map(order =>
+					order.id === orderId
+						? { ...order, orderState: data.updateOrderState.orderState }
+						: order,
+				);
+				setOrders(updatedOrders);
+			} catch (error) {
+				console.error('Error updating order state:', error);
+			}
 		}
 	};
 
 	return (
-		<DndContext onDragEnd={handleDragEnd}>
+		<DndContext sensors={sensors} onDragEnd={handleDragEnd}>
 			<header className='order-control-header'>Control de Pedidos</header>
 			<Container fluid className='container-board-bg'>
 				<Row>
@@ -143,7 +172,7 @@ const OrderBoardPage = () => {
 									{orders.map(
 										order =>
 											order.orderState === column.filterState && (
-												<OrderDraggable key={order.id} id={order.id}>
+												<OrderDraggable key={order.id} id={`order-${order.id}`}>
 													<OrderCard
 														order={order}
 														getClassForState={getClassForState}
