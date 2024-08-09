@@ -49,13 +49,11 @@ const CreateTemplatesPage = () => {
 			setTemplates(data.getTemplates);
 		}
 	}, [data]);
-
 	const handleAddAttribute = () => {
-		if (
-			attributeName.trim().length >= 4 &&
-			attributeName.trim().length <= 255
-		) {
-			setAttributes([...attributes, attributeName]);
+		if (attributeName.trim().length >= 4 && attributeName.trim().length <= 15) {
+			// Convertir el nombre del atributo a mayúsculas antes de agregarlo
+			const uppercaseAttributeName = attributeName.trim().toUpperCase();
+			setAttributes([...attributes, uppercaseAttributeName]);
 			setAttributeName('');
 			setAttributeNameValid(true);
 		} else {
@@ -92,12 +90,12 @@ const CreateTemplatesPage = () => {
 			setTemplateNameValid(false);
 		}
 	};
-
 	const handleTemplateNameChange = e => {
-		setTemplateName(e.target.value);
+		const uppercaseTemplateName = e.target.value.toUpperCase();
+		setTemplateName(uppercaseTemplateName);
 		if (
-			e.target.value.trim().length >= 4 &&
-			e.target.value.trim().length <= 15
+			uppercaseTemplateName.trim().length >= 4 &&
+			uppercaseTemplateName.trim().length <= 15
 		) {
 			setTemplateNameValid(true);
 		} else {
@@ -106,10 +104,11 @@ const CreateTemplatesPage = () => {
 	};
 
 	const handleAttributeNameChange = e => {
-		setAttributeName(e.target.value);
+		const uppercaseAttributeName = e.target.value.toUpperCase();
+		setAttributeName(uppercaseAttributeName);
 		if (
-			e.target.value.trim().length >= 4 &&
-			e.target.value.trim().length <= 255
+			uppercaseAttributeName.trim().length >= 4 &&
+			uppercaseAttributeName.trim().length <= 15
 		) {
 			setAttributeNameValid(true);
 		} else {
@@ -203,7 +202,7 @@ const CreateTemplatesPage = () => {
 									templates.map((template, index) => (
 										<tr key={template.id || index}>
 											<td>{template.name}</td>
-											<td>{template.format}</td>
+											<td>{template.format}</td>{' '}
 											<td>
 												<Button
 													className='create-templates-delete-button'
