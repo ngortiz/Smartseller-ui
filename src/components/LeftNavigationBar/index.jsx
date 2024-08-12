@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 const LeftNavigationBar = () => {
 	const { t } = useTranslation();
+
 	return (
 		<div data-testid='leftNavigationBar' className='LeftNavigationBar'>
 			<img src={icon} alt='Logo' />
@@ -27,7 +28,7 @@ const LeftNavigationBar = () => {
 						{t('leftNav.orderControl')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item to='/'> {t('leftNav.reports')} </NavDropdown.Item>
+					<NavDropdown.Item href='/'> {t('leftNav.reports')} </NavDropdown.Item>
 				</NavDropdown>
 			</ul>
 			<ul>

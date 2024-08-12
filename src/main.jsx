@@ -14,6 +14,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import LeftNavigationBar from './components/LeftNavigationBar';
+import Breadcrumbs from './components/Breadcrumbs';
 import OrdersSummary from './pages/OrdersSummary';
 import OrderInformationPage from './pages/OrderInformationPage';
 import OrderBoardPage from './pages/OrderBoardPage';
@@ -63,9 +64,9 @@ createRoot(document.getElementById('root')).render(
 								<LeftNavigationBar />
 							</Col>
 							<Col xs={9}>
+								<Breadcrumbs />
 								<Routes>
 									<Route path='/orders/summary' element={<OrdersSummary />} />
-
 									<Route path='/order/board' element={<OrderBoardPage />} />
 									<Route
 										path='/credit-card-payments'
@@ -90,13 +91,11 @@ createRoot(document.getElementById('root')).render(
 										element={<ProductSearcherPage />}
 									/>
 									<Route path='categories-page' element={<CategoriesPage />} />
-
 									<Route
 										path='create-templates-page'
 										element={<CreateTemplatesPage />}
 									/>
 									<Route path='market-rate-page' element={<MarketRatePage />} />
-
 									<Route
 										path='general-discount-page'
 										element={<GeneralDiscountPage />}
