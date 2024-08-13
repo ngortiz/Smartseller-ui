@@ -1,31 +1,31 @@
 import React from 'react';
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { useLocation } from 'react-router-dom';
-import './style.css';
+import { Breadcrumb } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const Breadcrumbs = () => {
 	const location = useLocation();
+	const { t } = useTranslation();
+	const pathnames = location.pathname.split('/').filter(x => x);
 
-	const generateBreadcrumbs = () => {
-		const pathnames = location.pathname.split('/').filter(x => x);
-		const breadcrumbItems = pathnames.map((value, index) => {
-			const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-			return (
-				<Breadcrumb.Item key={to} href={to}>
-					{value.charAt(0).toUpperCase() + value.slice(1)}
-				</Breadcrumb.Item>
-			);
-		});
+	const breadcrumbItems = pathnames.map((value, index) => {
+		const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+		const translationKey = `breadcrumbs.${value}`;
+		const breadcrumbLabel = t(translationKey);
 
 		return (
-			<>
-				<Breadcrumb.Item href='/'>Home</Breadcrumb.Item>
-				{breadcrumbItems}
-			</>
+			<Breadcrumb.Item key={to} href={to}>
+				{breadcrumbLabel}
+			</Breadcrumb.Item>
 		);
-	};
+	});
 
-	return <Breadcrumb>{generateBreadcrumbs()}</Breadcrumb>;
+	return (
+		<Breadcrumb>
+			<Breadcrumb.Item href='/'>{t('breadcrumbs.home')}</Breadcrumb.Item>
+			{breadcrumbItems}
+		</Breadcrumb>
+	);
 };
 
 export default Breadcrumbs;

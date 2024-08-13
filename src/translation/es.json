@@ -422,5 +422,30 @@
 		"date": "Fecha",
 		"money": "Moneda",
 		"newQuoteHasBeenAdded": "Se ha agregado la nueva cotización"
+	},
+
+	"breadcrumbs": {
+		"home": "Inicio",
+		"buys": "Compras",
+		"orders": "Pedidos Online",
+		"payments": "Pago Online",
+		"summary": "Resumen",
+		"board": "Control de Pedido",
+		"bank-payments": "Pagos vía Banco o en Sucursal",
+		"credit-card-payments": "Transacciones hechas por tarjetas de crédito",
+		"products-page": "Registro Producto",
+		"create-templates-page": "Crear Plantilla",
+		"register-products-from-excel": "Registrar desde Excel",
+		"product-searcher-page": "Buscar Variantes",
+		"bulk-upload-product-images": "Carga de Imágenes",
+		"categories-page": "Categoría",
+		"market-rate-page": "Cotizaciones",
+		"discount": "Descuento",
+		"discount-page": "Descuento",
+		"general-discount-page": "Descuento General",
+		"offer-discount-page": "Descuento por Oferta",
+		"discount-by-category-page": "Descuento por Categoría",
+		"discount-by-coupons-page": "Descuento por Cupones",
+		"customers-page": "Cliente"
 	}
 }

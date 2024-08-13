@@ -67,49 +67,55 @@ createRoot(document.getElementById('root')).render(
 								<Breadcrumbs />
 								<Routes>
 									<Route path='/orders/summary' element={<OrdersSummary />} />
-									<Route path='/order/board' element={<OrderBoardPage />} />
+									<Route path='/orders/board' element={<OrderBoardPage />} />
 									<Route
-										path='/credit-card-payments'
+										path='/payments/credit-card-payments'
 										element={<CreditCardPayments />}
 									/>
-									<Route path='/bank-payments' element={<BankPaymentsPage />} />
+									<Route
+										path='/payments/bank-payments'
+										element={<BankPaymentsPage />}
+									/>
 									<Route
 										path='/orders/:orderId'
 										element={<OrderInformationPage />}
 									/>
 									<Route path='/' element={<OrdersSummary />} />
 									<Route
-										path='register-products-from-excel'
+										path='/buys/products-page'
+										element={<ProductsPage />}
+									/>
+
+									<Route
+										path='/buys/register-products-from-excel'
 										element={<RegisterProductsFromExcelPage />}
 									/>
 									<Route
-										path='bulk-upload-product-images'
-										element={<BulkUploadProductImages />}
-									/>
-									<Route
-										path='product-searcher-page'
+										path='/buys/product-searcher-page'
 										element={<ProductSearcherPage />}
 									/>
+									<Route path='/buys/bulk-upload-product-images' />
+
 									<Route path='categories-page' element={<CategoriesPage />} />
 									<Route
-										path='create-templates-page'
+										path='/buys/create-templates-page'
 										element={<CreateTemplatesPage />}
 									/>
 									<Route path='market-rate-page' element={<MarketRatePage />} />
 									<Route
-										path='general-discount-page'
+										path='/discount/general-discount-page'
 										element={<GeneralDiscountPage />}
 									/>
 									<Route
-										path='offer-discount-page'
+										path='/discount/offer-discount-page'
 										element={<OfferDiscountPage />}
 									/>
 									<Route
-										path='discount-by-category-page'
+										path='/discount/discount-by-category-page'
 										element={<DiscountByCategoryPage />}
 									/>
 									<Route
-										path='discount-by-coupons-page'
+										path='/discount/discount-by-coupons-page'
 										element={<DiscountByCouponsPage />}
 									/>
 									<Route path='customers-page' element={<CustomersPage />} />
