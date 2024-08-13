@@ -13,16 +13,12 @@ const Breadcrumbs = () => {
 		const translationKey = `breadcrumbs.${value}`;
 		const breadcrumbLabel = t(translationKey);
 
-		return (
-			<Breadcrumb.Item key={to} href={to}>
-				{breadcrumbLabel}
-			</Breadcrumb.Item>
-		);
+		return <Breadcrumb.Item>{breadcrumbLabel}</Breadcrumb.Item>;
 	});
 
 	return (
 		<Breadcrumb>
-			<Breadcrumb.Item href='/'>{t('breadcrumbs.home')}</Breadcrumb.Item>
+			<Breadcrumb.Item>{t('breadcrumbs.home')}</Breadcrumb.Item>
 			{breadcrumbItems}
 		</Breadcrumb>
 	);
