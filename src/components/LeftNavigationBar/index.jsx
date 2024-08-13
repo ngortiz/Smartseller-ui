@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 const LeftNavigationBar = () => {
 	const { t } = useTranslation();
+
 	return (
 		<div data-testid='leftNavigationBar' className='LeftNavigationBar'>
 			<img src={icon} alt='Logo' />
@@ -23,11 +24,11 @@ const LeftNavigationBar = () => {
 						{t('leftNav.summary')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='/order/board'>
+					<NavDropdown.Item href='/orders/board'>
 						{t('leftNav.orderControl')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item to='/'> {t('leftNav.reports')} </NavDropdown.Item>
+					<NavDropdown.Item href='/'> {t('leftNav.reports')} </NavDropdown.Item>
 				</NavDropdown>
 			</ul>
 			<ul>
@@ -40,11 +41,11 @@ const LeftNavigationBar = () => {
 					}
 					id='basic-nav-dropdown'
 				>
-					<NavDropdown.Item href='/bank-payments'>
+					<NavDropdown.Item href='/payments/bank-payments'>
 						{t('leftNav.bankPayments')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='/credit-card-payments'>
+					<NavDropdown.Item href='/payments/credit-card-payments'>
 						{t('leftNav.creditCardPayments')}
 					</NavDropdown.Item>
 				</NavDropdown>
@@ -58,7 +59,7 @@ const LeftNavigationBar = () => {
 					}
 					id='basic-nav-dropdown'
 				>
-					<NavDropdown.Item href='/products-page'>
+					<NavDropdown.Item href='/buys/products-page'>
 						{t('leftNav.registrationProduct')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
@@ -66,19 +67,19 @@ const LeftNavigationBar = () => {
 						{t('leftNav.registerBuy')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='/create-templates-page'>
+					<NavDropdown.Item href='/buys/create-templates-page'>
 						{t('leftNav.createFrom')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='/register-products-from-excel'>
+					<NavDropdown.Item href='/buys/register-products-from-excel'>
 						{t('leftNav.registerFromExcel')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='/product-searcher-page'>
+					<NavDropdown.Item href='/buys/product-searcher-page'>
 						{t('leftNav.searchVariant')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='/bulk-upload-product-images'>
+					<NavDropdown.Item href='/buys/bulk-upload-product-images'>
 						{t('leftNav.imageUpload')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
@@ -116,19 +117,19 @@ const LeftNavigationBar = () => {
 					}
 					id='basic-nav-dropdown'
 				>
-					<NavDropdown.Item href='/general-discount-page'>
+					<NavDropdown.Item href='/discount/general-discount-page'>
 						{t('leftNav.general')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='/offer-discount-page'>
+					<NavDropdown.Item href='/discount/offer-discount-page'>
 						{t('leftNav.byOffer')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='/discount-by-category-page'>
+					<NavDropdown.Item href='/discount/discount-by-category-page'>
 						{t('leftNav.byCategories')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='/discount-by-coupons-page'>
+					<NavDropdown.Item href='/discount/discount-by-coupons-page'>
 						{t('leftNav.byCoupons')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />

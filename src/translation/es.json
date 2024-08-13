@@ -161,7 +161,7 @@
 		"startPage": "Pagina de Inicio",
 		"changePassword": "Cambiar Contraseña ",
 		"go out": "Salir",
-		"discount": "Descuento",
+		"discount": "Descuentos",
 		"general": "General",
 		"byOffer": "Por Oferta",
 		"byCategories": "Por Categorías",
@@ -422,5 +422,29 @@
 		"date": "Fecha",
 		"money": "Moneda",
 		"newQuoteHasBeenAdded": "Se ha agregado la nueva cotización"
+	},
+
+	"breadcrumbs": {
+		"home": "Inicio",
+		"buys": "Compras",
+		"orders": "Pedidos Online",
+		"payments": "Pago Online",
+		"summary": "Resumen",
+		"board": "Control de Pedido",
+		"bank-payments": "Pagos vía Banco o en Sucursal",
+		"credit-card-payments": "Transacciones hechas por tarjetas de crédito",
+		"products-page": "Registro De Producto",
+		"create-templates-page": "Crear Plantilla",
+		"register-products-from-excel": "Registrar desde Excel",
+		"product-searcher-page": "Buscar Variantes",
+		"bulk-upload-product-images": "Carga de Imágenes",
+		"categories-page": "Categorías",
+		"market-rate-page": "Cotizaciones",
+		"discount": "Descuentos",
+		"general-discount-page": "Descuento General",
+		"offer-discount-page": "Descuento por Oferta",
+		"discount-by-category-page": "Descuento por Categorías",
+		"discount-by-coupons-page": "Descuento por Cupones",
+		"customers-page": "Clientes"
 	}
 }
