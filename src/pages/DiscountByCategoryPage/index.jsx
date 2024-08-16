@@ -10,7 +10,7 @@ import {
 } from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, useMutation, gql } from '@apollo/client';
 
 const GET_DISCOUNTS_BY_CATEGORY = gql`
 	query GetDiscountByCategory {
@@ -35,6 +35,23 @@ const GET_CATEGORIES = gql`
 	}
 `;
 
+const CREATE_DISCOUNT_BY_CATEGORY_MUTATION = gql`
+	mutation CreateDiscountByCategory(
+		$discountByCategory: DiscountByCategoryInput!
+	) {
+		createDiscountByCategory(discountByCategory: $discountByCategory) {
+			id
+			discount
+			amount
+			category {
+				id
+				name
+			}
+			enabled
+		}
+	}
+`;
+
 const DiscountByCategoryPage = () => {
 	const { t } = useTranslation();
 	const [discount, setDiscount] = useState('');
@@ -46,6 +63,12 @@ const DiscountByCategoryPage = () => {
 	);
 	const { loading: loadingCategories, data: categoriesData } =
 		useQuery(GET_CATEGORIES);
+	const [createDiscountByCategory] = useMutation(
+		CREATE_DISCOUNT_BY_CATEGORY_MUTATION,
+		{
+			refetchQueries: [{ query: GET_DISCOUNTS_BY_CATEGORY }],
+		},
+	);
 
 	const [discounts, setDiscounts] = useState([]);
 
@@ -55,32 +78,50 @@ const DiscountByCategoryPage = () => {
 		}
 	}, [discountsData]);
 
-	const handleUpdate = () => {
-		const newDiscount = {
-			category,
-			discount,
-			quantity,
-			isChecked,
-		};
-		setDiscounts([...discounts, newDiscount]);
-		setCategory('');
-		setDiscount('');
-		setQuantity('');
-		setIsChecked(false);
+	const handleUpdate = async () => {
+		try {
+			const newDiscount = {
+				categoryId: parseInt(category), // Verifica si es un número entero
+				discount: parseFloat(discount), // Verifica si es un número flotante
+				amount: parseInt(quantity), // Verifica si es un número entero
+				enabled: isChecked, // Verifica si es un booleano
+			};
+
+			console.log('Sending mutation with data:', newDiscount); // Añadido para depuración
+
+			const { data } = await createDiscountByCategory({
+				variables: { discountByCategory: newDiscount },
+			});
+
+			if (data) {
+				setDiscounts([...discounts, data.createDiscountByCategory]);
+			}
+
+			// Limpiar los campos del formulario
+			setCategory('');
+			setDiscount('');
+			setQuantity('');
+			setIsChecked(false);
+		} catch (error) {
+			console.error('Error creating discount by category:', error);
+			console.error('GraphQL errors:', error.graphQLErrors);
+			console.error('Network error:', error.networkError);
+			console.error('Message:', error.message);
+		}
 	};
 
-	const handleDelete = index => {
-		const newDiscounts = discounts.filter((_, i) => i !== index);
+	const handleDelete = id => {
+		const newDiscounts = discounts.filter(d => d.id !== id);
 		setDiscounts(newDiscounts);
 	};
 
-	const handleEdit = index => {
-		const discountToEdit = discounts[index];
-		setCategory(discountToEdit.category.name);
+	const handleEdit = id => {
+		const discountToEdit = discounts.find(d => d.id === id);
+		setCategory(discountToEdit.category.id);
 		setDiscount(discountToEdit.discount);
 		setQuantity(discountToEdit.amount);
-		setIsChecked(discountToEdit.isChecked);
-		handleDelete(index);
+		setIsChecked(discountToEdit.enabled);
+		handleDelete(id);
 	};
 
 	return (
@@ -181,20 +222,20 @@ const DiscountByCategoryPage = () => {
 									</tr>
 								</thead>
 								<tbody>
-									{discounts.map((d, index) => (
-										<tr key={index}>
+									{discounts.map(d => (
+										<tr key={d.id}>
 											<td>{d.category.name}</td>
 											<td>{d.discount}</td>
 											<td>{d.amount}</td>
 											<td>
-												{d.isChecked
+												{d.enabled
 													? t('discountPage.yes')
 													: t('discountPage.no')}
 											</td>
 											<td>
 												<Button
 													variant='info'
-													onClick={() => handleEdit(index)}
+													onClick={() => handleEdit(d.id)}
 													className='product-button-edit'
 												>
 													<i className='bi bi-pencil-square'></i>
@@ -202,7 +243,7 @@ const DiscountByCategoryPage = () => {
 												<Button
 													className='product-button-delete'
 													variant='danger'
-													onClick={() => handleDelete(index)}
+													onClick={() => handleDelete(d.id)}
 												>
 													<i className='bi bi-trash3'></i>
 												</Button>
