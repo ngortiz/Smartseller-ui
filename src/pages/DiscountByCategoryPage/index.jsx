@@ -18,6 +18,7 @@ const GET_DISCOUNTS_BY_CATEGORY = gql`
 			amount
 			discount
 			id
+			enabled
 			category {
 				name
 				id
@@ -83,7 +84,7 @@ const DiscountByCategoryPage = () => {
 		}
 	}, [discountsData]);
 
-	const handleUpdate = async () => {
+	const handleSave = async () => {
 		try {
 			const newDiscount = {
 				discount: parseFloat(discount),
@@ -94,13 +95,9 @@ const DiscountByCategoryPage = () => {
 
 			console.log('Sending mutation with data:', newDiscount);
 
-			const { data } = await createDiscountByCategory({
+			await createDiscountByCategory({
 				variables: newDiscount,
 			});
-
-			if (data) {
-				setDiscounts([...discounts, data.createDiscountByCategory]);
-			}
 
 			setCategory('');
 			setDiscount('');
@@ -108,9 +105,6 @@ const DiscountByCategoryPage = () => {
 			setIsChecked(false);
 		} catch (error) {
 			console.error('Error creating discount by category:', error);
-			console.error('GraphQL errors:', error.graphQLErrors);
-			console.error('Network error:', error.networkError);
-			console.error('Message:', error.message);
 		}
 	};
 
@@ -126,10 +120,9 @@ const DiscountByCategoryPage = () => {
 			setDiscount(discountToEdit.discount);
 			setQuantity(discountToEdit.amount);
 			setIsChecked(discountToEdit.enabled);
-			handleDelete(id);
 		}
 	};
-
+	console.log(discounts);
 	return (
 		<>
 			<Row className='category-discount-header'>
@@ -211,7 +204,7 @@ const DiscountByCategoryPage = () => {
 								</Form.Group>
 							</Col>
 							<Col md={3} className='align-self-end'>
-								<Button onClick={handleUpdate} className='update-button'>
+								<Button onClick={handleSave} className='update-button'>
 									{t('discountPage.save')}
 								</Button>
 							</Col>
