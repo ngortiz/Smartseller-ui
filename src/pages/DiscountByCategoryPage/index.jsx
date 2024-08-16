@@ -37,17 +37,22 @@ const GET_CATEGORIES = gql`
 
 const CREATE_DISCOUNT_BY_CATEGORY_MUTATION = gql`
 	mutation CreateDiscountByCategory(
-		$discountByCategory: DiscountByCategoryInput!
+		$discount: Float!
+		$amount: Int!
+		$enabled: Boolean!
+		$categoryId: Int!
 	) {
-		createDiscountByCategory(discountByCategory: $discountByCategory) {
+		createDiscountByCategory(
+			discountByCategory: {
+				discount: $discount
+				amount: $amount
+				categoryId: $categoryId
+				enabled: $enabled
+			}
+		) {
 			id
 			discount
 			amount
-			category {
-				id
-				name
-			}
-			enabled
 		}
 	}
 `;
@@ -73,7 +78,7 @@ const DiscountByCategoryPage = () => {
 	const [discounts, setDiscounts] = useState([]);
 
 	useEffect(() => {
-		if (discountsData) {
+		if (discountsData && discountsData.getDiscountByCategory) {
 			setDiscounts(discountsData.getDiscountByCategory);
 		}
 	}, [discountsData]);
@@ -81,23 +86,22 @@ const DiscountByCategoryPage = () => {
 	const handleUpdate = async () => {
 		try {
 			const newDiscount = {
-				categoryId: parseInt(category), // Verifica si es un número entero
-				discount: parseFloat(discount), // Verifica si es un número flotante
-				amount: parseInt(quantity), // Verifica si es un número entero
-				enabled: isChecked, // Verifica si es un booleano
+				discount: parseFloat(discount),
+				amount: parseInt(quantity),
+				categoryId: parseInt(category),
+				enabled: isChecked,
 			};
 
-			console.log('Sending mutation with data:', newDiscount); // Añadido para depuración
+			console.log('Sending mutation with data:', newDiscount);
 
 			const { data } = await createDiscountByCategory({
-				variables: { discountByCategory: newDiscount },
+				variables: newDiscount,
 			});
 
 			if (data) {
 				setDiscounts([...discounts, data.createDiscountByCategory]);
 			}
 
-			// Limpiar los campos del formulario
 			setCategory('');
 			setDiscount('');
 			setQuantity('');
@@ -117,11 +121,13 @@ const DiscountByCategoryPage = () => {
 
 	const handleEdit = id => {
 		const discountToEdit = discounts.find(d => d.id === id);
-		setCategory(discountToEdit.category.id);
-		setDiscount(discountToEdit.discount);
-		setQuantity(discountToEdit.amount);
-		setIsChecked(discountToEdit.enabled);
-		handleDelete(id);
+		if (discountToEdit) {
+			setCategory(discountToEdit.category.id);
+			setDiscount(discountToEdit.discount);
+			setQuantity(discountToEdit.amount);
+			setIsChecked(discountToEdit.enabled);
+			handleDelete(id);
+		}
 	};
 
 	return (
@@ -160,7 +166,7 @@ const DiscountByCategoryPage = () => {
 										className='category-discount-category'
 									>
 										<option value=''>{t('discountPage.selectCategory')}</option>
-										{categoriesData.getCategories.map(cat => (
+										{categoriesData?.getCategories?.map(cat => (
 											<option key={cat.id} value={cat.id}>
 												{cat.name}
 											</option>
@@ -224,7 +230,7 @@ const DiscountByCategoryPage = () => {
 								<tbody>
 									{discounts.map(d => (
 										<tr key={d.id}>
-											<td>{d.category.name}</td>
+											<td>{d.category?.name}</td>
 											<td>{d.discount}</td>
 											<td>{d.amount}</td>
 											<td>
