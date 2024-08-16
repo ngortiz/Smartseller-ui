@@ -13,7 +13,7 @@ const Breadcrumbs = () => {
 		const translationKey = `breadcrumbs.${value}`;
 		const breadcrumbLabel = t(translationKey);
 
-		return <Breadcrumb.Item>{breadcrumbLabel}</Breadcrumb.Item>;
+		return <Breadcrumb.Item key={index}>{breadcrumbLabel}</Breadcrumb.Item>;
 	});
 
 	return (

@@ -10,7 +10,7 @@ import {
 } from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, useMutation, gql } from '@apollo/client';
 
 const GET_DISCOUNTS_BY_CATEGORY = gql`
 	query GetDiscountByCategory {
@@ -18,6 +18,7 @@ const GET_DISCOUNTS_BY_CATEGORY = gql`
 			amount
 			discount
 			id
+			enabled
 			category {
 				name
 				id
@@ -35,6 +36,28 @@ const GET_CATEGORIES = gql`
 	}
 `;
 
+const CREATE_DISCOUNT_BY_CATEGORY_MUTATION = gql`
+	mutation CreateDiscountByCategory(
+		$discount: Float!
+		$amount: Int!
+		$enabled: Boolean!
+		$categoryId: Int!
+	) {
+		createDiscountByCategory(
+			discountByCategory: {
+				discount: $discount
+				amount: $amount
+				categoryId: $categoryId
+				enabled: $enabled
+			}
+		) {
+			id
+			discount
+			amount
+		}
+	}
+`;
+
 const DiscountByCategoryPage = () => {
 	const { t } = useTranslation();
 	const [discount, setDiscount] = useState('');
@@ -46,43 +69,60 @@ const DiscountByCategoryPage = () => {
 	);
 	const { loading: loadingCategories, data: categoriesData } =
 		useQuery(GET_CATEGORIES);
+	const [createDiscountByCategory] = useMutation(
+		CREATE_DISCOUNT_BY_CATEGORY_MUTATION,
+		{
+			refetchQueries: [{ query: GET_DISCOUNTS_BY_CATEGORY }],
+		},
+	);
 
 	const [discounts, setDiscounts] = useState([]);
 
 	useEffect(() => {
-		if (discountsData) {
+		if (discountsData && discountsData.getDiscountByCategory) {
 			setDiscounts(discountsData.getDiscountByCategory);
 		}
 	}, [discountsData]);
 
-	const handleUpdate = () => {
-		const newDiscount = {
-			category,
-			discount,
-			quantity,
-			isChecked,
-		};
-		setDiscounts([...discounts, newDiscount]);
-		setCategory('');
-		setDiscount('');
-		setQuantity('');
-		setIsChecked(false);
+	const handleSave = async () => {
+		try {
+			const newDiscount = {
+				discount: parseFloat(discount),
+				amount: parseInt(quantity),
+				categoryId: parseInt(category),
+				enabled: isChecked,
+			};
+
+			console.log('Sending mutation with data:', newDiscount);
+
+			await createDiscountByCategory({
+				variables: newDiscount,
+			});
+
+			setCategory('');
+			setDiscount('');
+			setQuantity('');
+			setIsChecked(false);
+		} catch (error) {
+			console.error('Error creating discount by category:', error);
+		}
 	};
 
-	const handleDelete = index => {
-		const newDiscounts = discounts.filter((_, i) => i !== index);
+	const handleDelete = id => {
+		const newDiscounts = discounts.filter(d => d.id !== id);
 		setDiscounts(newDiscounts);
 	};
 
-	const handleEdit = index => {
-		const discountToEdit = discounts[index];
-		setCategory(discountToEdit.category.name);
-		setDiscount(discountToEdit.discount);
-		setQuantity(discountToEdit.amount);
-		setIsChecked(discountToEdit.isChecked);
-		handleDelete(index);
+	const handleEdit = id => {
+		const discountToEdit = discounts.find(d => d.id === id);
+		if (discountToEdit) {
+			setCategory(discountToEdit.category.id);
+			setDiscount(discountToEdit.discount);
+			setQuantity(discountToEdit.amount);
+			setIsChecked(discountToEdit.enabled);
+		}
 	};
-
+	console.log(discounts);
 	return (
 		<>
 			<Row className='category-discount-header'>
@@ -119,7 +159,7 @@ const DiscountByCategoryPage = () => {
 										className='category-discount-category'
 									>
 										<option value=''>{t('discountPage.selectCategory')}</option>
-										{categoriesData.getCategories.map(cat => (
+										{categoriesData?.getCategories?.map(cat => (
 											<option key={cat.id} value={cat.id}>
 												{cat.name}
 											</option>
@@ -164,7 +204,7 @@ const DiscountByCategoryPage = () => {
 								</Form.Group>
 							</Col>
 							<Col md={3} className='align-self-end'>
-								<Button onClick={handleUpdate} className='update-button'>
+								<Button onClick={handleSave} className='update-button'>
 									{t('discountPage.save')}
 								</Button>
 							</Col>
@@ -181,20 +221,20 @@ const DiscountByCategoryPage = () => {
 									</tr>
 								</thead>
 								<tbody>
-									{discounts.map((d, index) => (
-										<tr key={index}>
-											<td>{d.category.name}</td>
+									{discounts.map(d => (
+										<tr key={d.id}>
+											<td>{d.category?.name}</td>
 											<td>{d.discount}</td>
 											<td>{d.amount}</td>
 											<td>
-												{d.isChecked
+												{d.enabled
 													? t('discountPage.yes')
 													: t('discountPage.no')}
 											</td>
 											<td>
 												<Button
 													variant='info'
-													onClick={() => handleEdit(index)}
+													onClick={() => handleEdit(d.id)}
 													className='product-button-edit'
 												>
 													<i className='bi bi-pencil-square'></i>
@@ -202,7 +242,7 @@ const DiscountByCategoryPage = () => {
 												<Button
 													className='product-button-delete'
 													variant='danger'
-													onClick={() => handleDelete(index)}
+													onClick={() => handleDelete(d.id)}
 												>
 													<i className='bi bi-trash3'></i>
 												</Button>
