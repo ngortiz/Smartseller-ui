@@ -12,6 +12,7 @@ import './style.css';
 import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, gql } from '@apollo/client';
 
+// Define your queries and mutations
 const GET_DISCOUNTS_BY_CATEGORY = gql`
 	query GetDiscountByCategory {
 		getDiscountByCategory {
@@ -58,19 +59,34 @@ const CREATE_DISCOUNT_BY_CATEGORY_MUTATION = gql`
 	}
 `;
 
+const DELETE_DISCOUNT_BY_CATEGORY_MUTATION = gql`
+	mutation DeleteDiscountByCategory($id: Int!) {
+		deleteDiscountByCategory(discountByCategory: { id: $id })
+	}
+`;
+
 const DiscountByCategoryPage = () => {
 	const { t } = useTranslation();
 	const [discount, setDiscount] = useState('');
 	const [category, setCategory] = useState('');
 	const [quantity, setQuantity] = useState('');
 	const [isChecked, setIsChecked] = useState(false);
+
 	const { loading: loadingDiscounts, data: discountsData } = useQuery(
 		GET_DISCOUNTS_BY_CATEGORY,
 	);
 	const { loading: loadingCategories, data: categoriesData } =
 		useQuery(GET_CATEGORIES);
+
 	const [createDiscountByCategory] = useMutation(
 		CREATE_DISCOUNT_BY_CATEGORY_MUTATION,
+		{
+			refetchQueries: [{ query: GET_DISCOUNTS_BY_CATEGORY }],
+		},
+	);
+
+	const [deleteDiscountByCategory] = useMutation(
+		DELETE_DISCOUNT_BY_CATEGORY_MUTATION,
 		{
 			refetchQueries: [{ query: GET_DISCOUNTS_BY_CATEGORY }],
 		},
@@ -108,9 +124,16 @@ const DiscountByCategoryPage = () => {
 		}
 	};
 
-	const handleDelete = id => {
-		const newDiscounts = discounts.filter(d => d.id !== id);
-		setDiscounts(newDiscounts);
+	const handleDelete = async id => {
+		try {
+			// Call the delete mutation
+			await deleteDiscountByCategory({ variables: { id } });
+
+			// Update the local state to reflect the change
+			setDiscounts(discounts.filter(d => d.id !== id));
+		} catch (error) {
+			console.error('Error deleting discount by category:', error);
+		}
 	};
 
 	const handleEdit = id => {
