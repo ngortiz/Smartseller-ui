@@ -65,12 +65,42 @@ const DELETE_DISCOUNT_BY_CATEGORY_MUTATION = gql`
 	}
 `;
 
+const UPDATE_DISCOUNT_BY_CATEGORY_MUTATION = gql`
+	mutation UpdateDiscountByCategory(
+		$id: Int!
+		$discount: Float!
+		$amount: Int!
+		$enabled: Boolean!
+		$categoryId: Int!
+	) {
+		updateDiscountByCategory(
+			discountByCategory: {
+				id: $id
+				discount: $discount
+				amount: $amount
+				categoryId: $categoryId
+				enabled: $enabled
+			}
+		) {
+			id
+			discount
+			amount
+			enabled
+			category {
+				id
+				name
+			}
+		}
+	}
+`;
+
 const DiscountByCategoryPage = () => {
 	const { t } = useTranslation();
 	const [discount, setDiscount] = useState('');
 	const [category, setCategory] = useState('');
 	const [quantity, setQuantity] = useState('');
 	const [isChecked, setIsChecked] = useState(false);
+	const [selectedDiscountId, setSelectedDiscountId] = useState(null);
 
 	const { loading: loadingDiscounts, data: discountsData } = useQuery(
 		GET_DISCOUNTS_BY_CATEGORY,
@@ -92,6 +122,13 @@ const DiscountByCategoryPage = () => {
 		},
 	);
 
+	const [updateDiscountByCategory] = useMutation(
+		UPDATE_DISCOUNT_BY_CATEGORY_MUTATION,
+		{
+			refetchQueries: [{ query: GET_DISCOUNTS_BY_CATEGORY }],
+		},
+	);
+
 	const [discounts, setDiscounts] = useState([]);
 
 	useEffect(() => {
@@ -102,31 +139,41 @@ const DiscountByCategoryPage = () => {
 
 	const handleSave = async () => {
 		try {
-			const newDiscount = {
-				discount: parseFloat(discount),
-				amount: parseInt(quantity),
-				categoryId: parseInt(category),
-				enabled: isChecked,
-			};
-
-			console.log('Sending mutation with data:', newDiscount);
-
-			await createDiscountByCategory({
-				variables: newDiscount,
-			});
+			if (selectedDiscountId) {
+				// Update existing discount
+				await updateDiscountByCategory({
+					variables: {
+						id: selectedDiscountId,
+						discount: parseFloat(discount),
+						amount: parseInt(quantity),
+						categoryId: parseInt(category),
+						enabled: isChecked,
+					},
+				});
+			} else {
+				// Create new discount
+				await createDiscountByCategory({
+					variables: {
+						discount: parseFloat(discount),
+						amount: parseInt(quantity),
+						categoryId: parseInt(category),
+						enabled: isChecked,
+					},
+				});
+			}
 
 			setCategory('');
 			setDiscount('');
 			setQuantity('');
 			setIsChecked(false);
+			setSelectedDiscountId(null);
 		} catch (error) {
-			console.error('Error creating discount by category:', error);
+			console.error('Error saving discount by category:', error);
 		}
 	};
 
 	const handleDelete = async id => {
 		try {
-			// Call the delete mutation
 			await deleteDiscountByCategory({ variables: { id } });
 		} catch (error) {
 			console.error('Error deleting discount by category:', error);
@@ -140,8 +187,10 @@ const DiscountByCategoryPage = () => {
 			setDiscount(discountToEdit.discount);
 			setQuantity(discountToEdit.amount);
 			setIsChecked(discountToEdit.enabled);
+			setSelectedDiscountId(discountToEdit.id);
 		}
 	};
+
 	console.log(discounts);
 	return (
 		<>
