@@ -128,9 +128,6 @@ const DiscountByCategoryPage = () => {
 		try {
 			// Call the delete mutation
 			await deleteDiscountByCategory({ variables: { id } });
-
-			// Update the local state to reflect the change
-			setDiscounts(discounts.filter(d => d.id !== id));
 		} catch (error) {
 			console.error('Error deleting discount by category:', error);
 		}
