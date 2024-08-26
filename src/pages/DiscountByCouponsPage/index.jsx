@@ -7,14 +7,15 @@ import {
 	Button,
 	Spinner,
 	Table,
+	Alert,
 } from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
-import { format, subMonths } from 'date-fns';
+import { format } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { BiCalendar } from 'react-icons/bi';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, useMutation, gql } from '@apollo/client';
 
 const GET_COUPONS_QUERY = gql`
 	query getCoupons {
@@ -49,24 +50,48 @@ const GET_USERS_QUERY = gql`
 	}
 `;
 
+const CREATE_COUPON_MUTATION = gql`
+	mutation createCoupon(
+		$discount: Float!
+		$expiration: AWSDateTime!
+		$userId: Int!
+	) {
+		createCoupon(
+			coupon: { discount: $discount, expiration: $expiration, userId: $userId }
+		) {
+			discount
+			expiration
+			used
+			code
+		}
+	}
+`;
+
 const DiscountByCouponsPage = () => {
 	const { t } = useTranslation();
 	const [client, setClient] = useState('');
 	const [discount, setDiscount] = useState('');
-	const [expirationDate, setExpirationDate] = useState(
-		subMonths(new Date(), 1),
-	);
+	const [expirationDate, setExpirationDate] = useState(new Date());
 	const [coupons, setCoupons] = useState([]);
+	const [notification, setNotification] = useState('');
+	const [notificationType, setNotificationType] = useState('success');
+
 	const {
 		loading: couponsLoading,
 		error: couponsError,
 		data: couponsData,
 	} = useQuery(GET_COUPONS_QUERY);
+
 	const {
 		loading: usersLoading,
 		error: usersError,
 		data: usersData,
 	} = useQuery(GET_USERS_QUERY);
+
+	const [createCoupon, { loading: createLoading, error: createError }] =
+		useMutation(CREATE_COUPON_MUTATION, {
+			refetchQueries: [{ query: GET_COUPONS_QUERY }],
+		});
 
 	useEffect(() => {
 		if (couponsData) {
@@ -76,21 +101,58 @@ const DiscountByCouponsPage = () => {
 
 	const clients = usersData ? usersData.getUsers : [];
 
-	const handleUpdate = () => {
-		const newCoupon = {
-			client,
-			email: 'nana@gmail.com',
-			used: false,
-			expirationDate,
-			discount,
-			code: 9999,
-			category: 'Category 1',
-		};
-		setCoupons([...coupons, newCoupon]);
-		setClient('');
-		setDiscount('');
-		setExpirationDate(subMonths(new Date(), 1));
+	const handleUpdate = async () => {
+		try {
+			const parsedDiscount = parseFloat(discount);
+			if (isNaN(parsedDiscount)) {
+				throw new Error('El descuento debe ser un número válido.');
+			}
+
+			const today = new Date();
+			if (expirationDate < today.setHours(0, 0, 0, 0)) {
+				throw new Error(
+					'La fecha de expiración debe ser igual o posterior a hoy.',
+				);
+			}
+
+			const { data } = await createCoupon({
+				variables: {
+					discount: parsedDiscount,
+					expiration: expirationDate.toISOString(),
+					userId: parseInt(client),
+				},
+			});
+
+			const newCoupon = {
+				user: clients.find(c => c.id === parseInt(client)),
+				discount: data.createCoupon.discount,
+				expiration: data.createCoupon.expiration,
+				used: data.createCoupon.used,
+				code: data.createCoupon.code,
+			};
+
+			setCoupons([...coupons, newCoupon]);
+			setClient('');
+			setDiscount('');
+			setExpirationDate(new Date());
+
+			setNotification(t('Se ha guardado con éxito'));
+			setNotificationType('success');
+		} catch (error) {
+			console.error('Error creating coupon:', error);
+			setNotification(error.message);
+			setNotificationType('danger');
+		}
 	};
+
+	useEffect(() => {
+		if (notification) {
+			const timer = setTimeout(() => {
+				setNotification('');
+			}, 3000);
+			return () => clearTimeout(timer);
+		}
+	}, [notification]);
 
 	const handleDelete = index => {
 		const newCoupons = coupons.filter((_, i) => i !== index);
@@ -99,41 +161,27 @@ const DiscountByCouponsPage = () => {
 
 	const handleEdit = index => {
 		const couponToEdit = coupons[index];
-		setClient(couponToEdit.user.username);
+		setClient(couponToEdit.user.id.toString());
 		setDiscount(couponToEdit.discount);
 		setExpirationDate(new Date(couponToEdit.expiration));
 		handleDelete(index);
 	};
 
 	const handleClientChange = e => {
-		const selectedClient = clients.find(
-			client => client.username === e.target.value,
-		);
-		setClient(selectedClient.username);
+		setClient(e.target.value);
 	};
 
 	const handleExpirationDateChange = date => {
 		setExpirationDate(date);
 	};
 
-	if (couponsLoading || usersLoading) {
-		return (
-			<div className='spinner-container'>
-				<Spinner animation='border' role='status'>
-					<span className='visually-hidden'>Loading...</span>
-				</Spinner>
-			</div>
-		);
-	}
-
-	if (couponsError || usersError) {
-		return (
-			<p>Error fetching data: {couponsError?.message || usersError?.message}</p>
-		);
-	}
-
 	return (
 		<>
+			{notification && (
+				<Alert variant={notificationType} className='notification'>
+					{notification}
+				</Alert>
+			)}
 			<Row>
 				<Col>
 					<header className='coupons-discount-header'>
@@ -162,7 +210,7 @@ const DiscountByCouponsPage = () => {
 										{t('discountByCoupons.selectClient')}
 									</option>
 									{clients.map((client, index) => (
-										<option key={index} value={client.username}>
+										<option key={index} value={client.id}>
 											{client.username}
 										</option>
 									))}
@@ -208,20 +256,30 @@ const DiscountByCouponsPage = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{coupons.map((c, index) => (
-									<tr key={index}>
-										<td>{c.user ? c.user.username : 'N/A'}</td>
-										<td>{c.user ? c.user.email : 'N/A'}</td>
-										<td>
-											{c.used
-												? t('discountByCoupons.yes')
-												: t('discountByCoupons.no')}
+								{couponsLoading ? (
+									<tr>
+										<td colSpan='6' className='text-center'>
+											<Spinner animation='border' role='status'>
+												<span className='visually-hidden'>Loading...</span>
+											</Spinner>
 										</td>
-										<td>{format(new Date(c.expiration), 'yyyy-MM-dd')}</td>
-										<td>{c.discount}</td>
-										<td>{c.code}</td>
 									</tr>
-								))}
+								) : (
+									coupons.map((c, index) => (
+										<tr key={index}>
+											<td>{c.user ? c.user.username : 'N/A'}</td>
+											<td>{c.user ? c.user.email : 'N/A'}</td>
+											<td>
+												{c.used
+													? t('discountByCoupons.yes')
+													: t('discountByCoupons.no')}
+											</td>
+											<td>{format(new Date(c.expiration), 'yyyy-MM-dd')}</td>
+											<td>{c.discount}</td>
+											<td>{c.code}</td>
+										</tr>
+									))
+								)}
 							</tbody>
 						</Table>
 					</Row>
