@@ -4,7 +4,6 @@ import './style.css';
 import { useTranslation } from 'react-i18next';
 import { useMutation, gql } from '@apollo/client';
 
-// Define la mutación updateGeneralDiscount
 const UPDATE_GENERAL_DISCOUNT = gql`
 	mutation UpdateGeneralDiscount($generalDiscount: GeneralDiscountInput!) {
 		updateGeneralDiscount(generalDiscount: $generalDiscount) {
@@ -20,14 +19,13 @@ const GeneralDiscountPage = () => {
 	const [discount, setDiscount] = useState('');
 	const [isChecked, setIsChecked] = useState(false);
 	const [loading, setLoading] = useState(true);
-	const [showNotification, setShowNotification] = useState(false); // Estado para mostrar la notificación
+	const [showNotification, setShowNotification] = useState(false);
 
-	// Usa useMutation para la mutación updateGeneralDiscount
 	const [updateGeneralDiscount, { loading: mutationLoading, error }] =
 		useMutation(UPDATE_GENERAL_DISCOUNT, {
 			onCompleted: () => {
-				setShowNotification(true); // Mostrar la notificación cuando la mutación es exitosa
-				setTimeout(() => setShowNotification(false), 3000); // Ocultar la notificación después de 3 segundos
+				setShowNotification(true);
+				setTimeout(() => setShowNotification(false), 3000);
 			},
 		});
 
