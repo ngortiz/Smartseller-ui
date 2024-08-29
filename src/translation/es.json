@@ -282,7 +282,8 @@
 		"discountRate": "Porcentaje de descuento",
 		"discount": "% Descuento",
 		"enable": "Habilitar",
-		"update": "Actualizar"
+		"update": "Actualizar",
+		"updating": "Actualizando..."
 	},
 	"offerDiscountPage": {
 		"offerDiscount": "Descuento Por Oferta",
