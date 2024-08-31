@@ -2,20 +2,71 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
+import { useMutation, useQuery, gql } from '@apollo/client';
+
+const GET_GENERAL_DISCOUNT = gql`
+	query GetGeneralDiscount {
+		getGeneralDiscount {
+			id
+			discount
+			enabled
+		}
+	}
+`;
+
+const UPDATE_GENERAL_DISCOUNT = gql`
+	mutation UpdateGeneralDiscount($generalDiscount: GeneralDiscountInput!) {
+		updateGeneralDiscount(generalDiscount: $generalDiscount) {
+			id
+			name
+			discount
+		}
+	}
+`;
 
 const GeneralDiscountPage = () => {
 	const { t } = useTranslation();
 	const [discount, setDiscount] = useState('');
 	const [isChecked, setIsChecked] = useState(false);
 	const [loading, setLoading] = useState(true);
+	const [showNotification, setShowNotification] = useState(false);
+
+	const {
+		loading: queryLoading,
+		error: queryError,
+		data,
+	} = useQuery(GET_GENERAL_DISCOUNT);
+
+	const [
+		updateGeneralDiscount,
+		{ loading: mutationLoading, error: mutationError },
+	] = useMutation(UPDATE_GENERAL_DISCOUNT, {
+		onCompleted: () => {
+			setShowNotification(true);
+			setTimeout(() => setShowNotification(false), 3000);
+		},
+	});
 
 	useEffect(() => {
-		setTimeout(() => setLoading(false), 2000);
-	}, []);
+		if (data && data.getGeneralDiscount) {
+			setDiscount(data.getGeneralDiscount.discount.toString());
+			setIsChecked(data.getGeneralDiscount.enabled);
+		}
+		setLoading(queryLoading);
+	}, [data, queryLoading]);
 
 	const handleUpdate = () => {
-		console.log('Descuento:', discount);
-		console.log('Activado:', isChecked);
+		updateGeneralDiscount({
+			variables: {
+				generalDiscount: {
+					name: 'Descuento General',
+					enabled: isChecked,
+					discount: parseFloat(discount),
+				},
+			},
+		}).catch(err => {
+			console.error('Error executing mutation:', err);
+		});
 	};
 
 	return (
@@ -71,14 +122,31 @@ const GeneralDiscountPage = () => {
 								</Form.Group>
 							</Col>
 							<Col md={7} className='align-self-end'>
-								<Button onClick={handleUpdate} className='update-button'>
-									{t('generalDiscount.update')}
+								<Button
+									onClick={handleUpdate}
+									className='update-button'
+									disabled={mutationLoading}
+								>
+									{mutationLoading
+										? t('generalDiscount.updating')
+										: t('generalDiscount.update')}
 								</Button>
 							</Col>
 						</Row>
+						{mutationError && (
+							<p>Error updating discount: {mutationError.message}</p>
+						)}
+						{queryError && <p>Error loading discount: {queryError.message}</p>}
 					</>
 				)}
 			</Container>
+			<div className={`notification ${showNotification ? 'show' : 'hide'}`}>
+				<button
+					className='notification-close'
+					onClick={() => setShowNotification(false)}
+				></button>
+				la operación ha sido existosa!
+			</div>
 		</>
 	);
 };

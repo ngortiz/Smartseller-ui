@@ -52,7 +52,8 @@
 	margin-top: 17px;
 	background-color: #00a65a;
 	border-color: #008d4c;
-	padding: 20px 20px;
+	padding: 21px 23px;
+	border-radius: 0px;
 }
 
 .general-discount-form .form-check-label {
@@ -69,7 +70,7 @@
 	text-align: center;
 	padding: 10px 20px;
 	font-size: 16px;
-	border-radius: 3px;
+	border-radius: 0px;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
 	width: 18%;
