@@ -2,20 +2,52 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
+import { useMutation, gql } from '@apollo/client';
+
+const UPDATE_OFFER_DISCOUNT = gql`
+	mutation UpdateOfferDiscount($offerDiscount: OfferDiscountInput!) {
+		updateOfferDiscount(offerDiscount: $offerDiscount) {
+			discount
+			enabled
+			id
+			name
+		}
+	}
+`;
 
 const OfferDiscountPage = () => {
 	const { t } = useTranslation();
 	const [discount, setDiscount] = useState('');
 	const [isChecked, setIsChecked] = useState(false);
 	const [loading, setLoading] = useState(true);
+	const [showNotification, setShowNotification] = useState(false);
+
+	const [
+		updateOfferDiscount,
+		{ loading: mutationLoading, error: mutationError },
+	] = useMutation(UPDATE_OFFER_DISCOUNT, {
+		onCompleted: () => {
+			setShowNotification(true);
+			setTimeout(() => setShowNotification(false), 3000);
+		},
+	});
 
 	useEffect(() => {
 		setTimeout(() => setLoading(false), 2000);
 	}, []);
 
 	const handleUpdate = () => {
-		console.log('Descuento:', discount);
-		console.log('Activado:', isChecked);
+		updateOfferDiscount({
+			variables: {
+				offerDiscount: {
+					name: 'Descuento General',
+					enabled: isChecked,
+					discount: parseFloat(discount),
+				},
+			},
+		}).catch(err => {
+			console.error('Error ejecutando la mutación:', err);
+		});
 	};
 
 	return (
@@ -71,14 +103,32 @@ const OfferDiscountPage = () => {
 								</Form.Group>
 							</Col>
 							<Col md={7} className='align-self-end'>
-								<Button onClick={handleUpdate} className='update-button'>
-									{t('offerDiscountPage.update')}
+								<Button
+									onClick={handleUpdate}
+									className='update-button'
+									disabled={mutationLoading}
+								>
+									{mutationLoading
+										? t('offerDiscountPage.updating')
+										: t('offerDiscountPage.update')}
 								</Button>
 							</Col>
 						</Row>
+						{mutationError && (
+							<p>Error updating discount: {mutationError.message}</p>
+						)}
 					</>
 				)}
 			</Container>
+			<div className={`notification ${showNotification ? 'show' : 'hide'}`}>
+				<button
+					className='notification-close'
+					onClick={() => setShowNotification(false)}
+				>
+					&times;
+				</button>
+				{t('offerDiscountPage.successMessage')}
+			</div>
 		</>
 	);
 };

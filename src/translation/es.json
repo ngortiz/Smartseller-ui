@@ -291,7 +291,9 @@
 		"discountRate": "Porcentaje de descuento",
 		"discount": "% Descuento",
 		"enable": "Habilitar",
-		"update": "Actualizar"
+		"update": "Actualizar",
+		"updating": "Actualizando...",
+		"successMessage": "la operación ha sido existosa!"
 	},
 	"discountPage": {
 		"discountByCategory": "Descuento por categoría",
