@@ -279,10 +279,11 @@
 	},
 	"generalDiscount": {
 		"generalDiscount": "Descuento General",
-		"discountRate": "Porcentaje de descuento",
+		"discountRate": "Permite aplicar un porcentaje de descuento a todos los productos",
 		"discount": "% Descuento",
 		"enable": "Habilitar",
-		"update": "Actualizar"
+		"update": "Actualizar",
+		"updating": "Actualizando..."
 	},
 	"offerDiscountPage": {
 		"offerDiscount": "Descuento Por Oferta",
