@@ -2,7 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation, useQuery, gql } from '@apollo/client';
+
+const GET_GENERAL_DISCOUNT = gql`
+	query GetGeneralDiscount {
+		getGeneralDiscount {
+			id
+			discount
+			enabled
+		}
+	}
+`;
 
 const UPDATE_GENERAL_DISCOUNT = gql`
 	mutation UpdateGeneralDiscount($generalDiscount: GeneralDiscountInput!) {
@@ -21,17 +31,29 @@ const GeneralDiscountPage = () => {
 	const [loading, setLoading] = useState(true);
 	const [showNotification, setShowNotification] = useState(false);
 
-	const [updateGeneralDiscount, { loading: mutationLoading, error }] =
-		useMutation(UPDATE_GENERAL_DISCOUNT, {
-			onCompleted: () => {
-				setShowNotification(true);
-				setTimeout(() => setShowNotification(false), 3000);
-			},
-		});
+	const {
+		loading: queryLoading,
+		error: queryError,
+		data,
+	} = useQuery(GET_GENERAL_DISCOUNT);
+
+	const [
+		updateGeneralDiscount,
+		{ loading: mutationLoading, error: mutationError },
+	] = useMutation(UPDATE_GENERAL_DISCOUNT, {
+		onCompleted: () => {
+			setShowNotification(true);
+			setTimeout(() => setShowNotification(false), 3000);
+		},
+	});
 
 	useEffect(() => {
-		setTimeout(() => setLoading(false), 2000);
-	}, []);
+		if (data && data.getGeneralDiscount) {
+			setDiscount(data.getGeneralDiscount.discount.toString());
+			setIsChecked(data.getGeneralDiscount.enabled);
+		}
+		setLoading(queryLoading);
+	}, [data, queryLoading]);
 
 	const handleUpdate = () => {
 		updateGeneralDiscount({
@@ -111,7 +133,10 @@ const GeneralDiscountPage = () => {
 								</Button>
 							</Col>
 						</Row>
-						{error && <p>Error updating discount: {error.message}</p>}
+						{mutationError && (
+							<p>Error updating discount: {mutationError.message}</p>
+						)}
+						{queryError && <p>Error loading discount: {queryError.message}</p>}
 					</>
 				)}
 			</Container>

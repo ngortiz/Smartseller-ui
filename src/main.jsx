@@ -94,7 +94,10 @@ createRoot(document.getElementById('root')).render(
 										path='/buys/product-searcher-page'
 										element={<ProductSearcherPage />}
 									/>
-									<Route path='/buys/bulk-upload-product-images' />
+									<Route
+										path='/buys/bulk-upload-product-images'
+										element={<BulkUploadProductImages />}
+									/>
 
 									<Route path='categories-page' element={<CategoriesPage />} />
 									<Route
