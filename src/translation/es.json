@@ -283,7 +283,8 @@
 		"discount": "% Descuento",
 		"enable": "Habilitar",
 		"update": "Actualizar",
-		"updating": "Actualizando..."
+		"updating": "Actualizando...",
+		"successMessage": "La operación ha sido existosa!"
 	},
 	"offerDiscountPage": {
 		"offerDiscount": "Descuento Por Oferta",
@@ -291,7 +292,9 @@
 		"discountRate": "Porcentaje de descuento",
 		"discount": "% Descuento",
 		"enable": "Habilitar",
-		"update": "Actualizar"
+		"update": "Actualizar",
+		"updating": "Actualizando...",
+		"successMessage": "La operación ha sido existosa!"
 	},
 	"discountPage": {
 		"discountByCategory": "Descuento por categoría",

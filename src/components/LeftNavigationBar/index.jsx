@@ -63,10 +63,6 @@ const LeftNavigationBar = () => {
 						{t('leftNav.registrationProduct')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='#action/3.3'>
-						{t('leftNav.registerBuy')}
-					</NavDropdown.Item>
-					<NavDropdown.Divider />
 					<NavDropdown.Item href='/buys/create-templates-page'>
 						{t('leftNav.createFrom')}
 					</NavDropdown.Item>
@@ -83,9 +79,6 @@ const LeftNavigationBar = () => {
 						{t('leftNav.imageUpload')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='#action/3.8'>
-						{t('leftNav.stockReport')}
-					</NavDropdown.Item>
 				</NavDropdown>
 			</ul>
 			<ul className='category'>
@@ -100,13 +93,7 @@ const LeftNavigationBar = () => {
 				</Nav.Link>
 				<hr className='nav-divider' />
 			</ul>
-			<ul>
-				<h2>
-					<span>
-						<i className='bi bi-megaphone-fill'></i> {t('leftNav.promotions')}
-					</span>
-				</h2>
-			</ul>
+
 			<ul>
 				<NavDropdown
 					title={
@@ -136,21 +123,12 @@ const LeftNavigationBar = () => {
 				</NavDropdown>
 			</ul>
 			<ul>
-				<NavDropdown
-					title={
-						<span>
-							<i className='bi bi-people-fill'></i> {t('leftNav.client')}
-						</span>
-					}
-					id='basic-nav-dropdown'
-				>
-					<NavDropdown.Item href='/customers-page'>
-						{t('leftNav.clients')}
-					</NavDropdown.Item>
-					<NavDropdown.Divider />
-					<NavDropdown.Item>{t('leftNav.subscribers')}</NavDropdown.Item>
-				</NavDropdown>
+				<Nav.Link href='/customers-page'>
+					<i className='bi bi-people-fill'></i> {t('leftNav.client')}
+				</Nav.Link>
+				<hr className='nav-divider' />
 			</ul>
+
 			<ul>
 				<NavDropdown
 					title={
