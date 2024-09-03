@@ -145,7 +145,7 @@ const GeneralDiscountPage = () => {
 					className='notification-close'
 					onClick={() => setShowNotification(false)}
 				></button>
-				la operación ha sido existosa!
+				{t('generalDiscount.successMessage')}
 			</div>
 		</>
 	);

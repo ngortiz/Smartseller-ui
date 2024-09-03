@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import './style.css';
 import { useTranslation } from 'react-i18next';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation, gql, useQuery } from '@apollo/client';
 
 const UPDATE_OFFER_DISCOUNT = gql`
 	mutation UpdateOfferDiscount($offerDiscount: OfferDiscountInput!) {
@@ -15,12 +15,24 @@ const UPDATE_OFFER_DISCOUNT = gql`
 	}
 `;
 
+const GET_OFFER_DISCOUNT = gql`
+	query GetOfferDiscount {
+		getOfferDiscount {
+			discount
+			enabled
+			id
+			name
+		}
+	}
+`;
+
 const OfferDiscountPage = () => {
 	const { t } = useTranslation();
 	const [discount, setDiscount] = useState('');
 	const [isChecked, setIsChecked] = useState(false);
-	const [loading, setLoading] = useState(true);
 	const [showNotification, setShowNotification] = useState(false);
+
+	const { loading, error, data } = useQuery(GET_OFFER_DISCOUNT);
 
 	const [
 		updateOfferDiscount,
@@ -33,8 +45,11 @@ const OfferDiscountPage = () => {
 	});
 
 	useEffect(() => {
-		setTimeout(() => setLoading(false), 2000);
-	}, []);
+		if (data && data.getOfferDiscount) {
+			setDiscount(data.getOfferDiscount.discount.toString());
+			setIsChecked(data.getOfferDiscount.enabled);
+		}
+	}, [data]);
 
 	const handleUpdate = () => {
 		updateOfferDiscount({
@@ -66,6 +81,8 @@ const OfferDiscountPage = () => {
 							<span className='visually-hidden'>Loading...</span>
 						</Spinner>
 					</div>
+				) : error ? (
+					<p>Error loading discount: {error.message}</p>
 				) : (
 					<>
 						<Row className='offer-discount-subheader'>
@@ -124,9 +141,7 @@ const OfferDiscountPage = () => {
 				<button
 					className='notification-close'
 					onClick={() => setShowNotification(false)}
-				>
-					&times;
-				</button>
+				></button>
 				{t('offerDiscountPage.successMessage')}
 			</div>
 		</>
