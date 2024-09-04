@@ -12,19 +12,18 @@ const OrdersSummary = () => {
 	const { t } = useTranslation();
 
 	const [startDate, setStartDate] = useState(() => {
-		const params = new URLSearchParams(window.location.search);
-		const startDateParam = params.get('startDate');
-		return startDateParam ? new Date(startDateParam) : subMonths(new Date(), 1);
+		const savedStartDate = sessionStorage.getItem('startDate');
+		return savedStartDate ? new Date(savedStartDate) : subMonths(new Date(), 1);
 	});
 
 	const [endDate, setEndDate] = useState(() => {
-		const params = new URLSearchParams(window.location.search);
-		const endDateParam = params.get('endDate');
-		return endDateParam ? new Date(endDateParam) : new Date();
+		const savedEndDate = sessionStorage.getItem('endDate');
+		return savedEndDate ? new Date(savedEndDate) : new Date();
 	});
 
 	const [orders, setOrders] = useState([]);
 	const [ordersAmountGroupByState, setOrdersAmountGroupByState] = useState([]);
+	const [firstLoading, setFirstLoading] = useState(true);
 
 	const GET_ORDERS_QUERY = gql`
 		query GetOrdersQuery($startDate: AWSDateTime!, $endDate: AWSDateTime!) {
@@ -74,30 +73,22 @@ const OrdersSummary = () => {
 	}, [ordersAmountData]);
 
 	useEffect(() => {
-		handleSearch();
-		updateURL(startDate, endDate);
-	}, [startDate, endDate]);
-
-	const updateURL = (start, end) => {
-		const params = new URLSearchParams(window.location.search);
-		params.set('startDate', start.toISOString());
-		params.set('endDate', end.toISOString());
-		window.history.replaceState(
-			{},
-			'',
-			`${window.location.pathname}?${params.toString()}`,
-		);
-	};
+		if (firstLoading) {
+			handleSearch();
+			setFirstLoading(false);
+		}
+	}, [firstLoading]);
 
 	const handleStartDateChange = date => {
 		setStartDate(date);
+		sessionStorage.setItem('startDate', date.toISOString());
 	};
 
 	const handleEndDateChange = date => {
 		setEndDate(date);
+		sessionStorage.setItem('endDate', date.toISOString());
 	};
 
-	// Función para realizar la búsqueda de datos
 	const handleSearch = () => {
 		fetchOrders({
 			variables: {
