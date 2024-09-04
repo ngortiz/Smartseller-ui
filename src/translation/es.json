@@ -89,7 +89,8 @@
 		"payment State": "Estado de Pago",
 		"order State": "Estado del Pedido",
 		"goBack": "Volver Atras",
-		"print": "Imprimir"
+		"print": "Imprimir",
+		"breadcrumbs.33": "Visualizacion de Pedido"
 	},
 	"orderDetails": {
 		"title": "Detalles del Pedido",
