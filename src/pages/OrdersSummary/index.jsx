@@ -3,13 +3,21 @@ import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import OrderStatus from '../../components/OrderStatus/index';
 import DateRangePicker from '../../components/DateRangePicker';
 import DataTable from '../../components/DataTable/index';
-import { useQuery, gql, useLazyQuery } from '@apollo/client';
+import { useLazyQuery, gql } from '@apollo/client';
 import { subMonths } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 import './style.css';
 
 const OrdersSummary = () => {
-	const [startDate, setStartDate] = useState(subMonths(new Date(), 1));
-	const [endDate, setEndDate] = useState(new Date());
+	const { t } = useTranslation();
+	const [startDate, setStartDate] = useState(() => {
+		const savedStartDate = localStorage.getItem('startDate');
+		return savedStartDate ? new Date(savedStartDate) : subMonths(new Date(), 1);
+	});
+	const [endDate, setEndDate] = useState(() => {
+		const savedEndDate = localStorage.getItem('endDate');
+		return savedEndDate ? new Date(savedEndDate) : new Date();
+	});
 	const [orders, setOrders] = useState([]);
 	const [ordersAmountGroupByState, setOrdersAmountGroupByState] = useState([]);
 	const [firstLoading, setFirstLoading] = useState(true);
@@ -54,26 +62,31 @@ const OrdersSummary = () => {
 		if (ordersData) {
 			setOrders(ordersData.getOrders);
 		}
+	}, [ordersData]);
+
+	useEffect(() => {
 		if (ordersAmountData) {
 			setOrdersAmountGroupByState(ordersAmountData.getOrdersAmountGroupByState);
 		}
+	}, [ordersAmountData]);
+
+	useEffect(() => {
 		if (firstLoading) {
 			handleSearch();
 			setFirstLoading(false);
 		}
-	}, [ordersLoading, ordersAmountLoading]);
+	}, [firstLoading]);
 
 	const handleStartDateChange = date => {
 		setStartDate(date);
+		localStorage.setItem('startDate', date.toISOString());
 	};
 
 	const handleEndDateChange = date => {
 		setEndDate(date);
+		localStorage.setItem('endDate', date.toISOString());
 	};
 
-	const handleOrdersUpdate = newOrders => {
-		setOrders(newOrders);
-	};
 	const handleSearch = () => {
 		handleSearchByDate({
 			variables: {
@@ -94,7 +107,7 @@ const OrdersSummary = () => {
 		<>
 			<Row>
 				<Col>
-					<header className='title-resumen'>Resumen de Pedidos</header>
+					<header className='title-resumen'>{t('ordersSummary.header')}</header>
 				</Col>
 			</Row>
 			<Container fluid className='container-white-bg'>
@@ -129,7 +142,7 @@ const OrdersSummary = () => {
 										: 0
 								}
 								color='#00c0ef'
-								onSearchClick={handleOrdersUpdate}
+								onSearchClick={handleSearch}
 								startDate={startDate}
 								endDate={endDate}
 							/>
@@ -143,7 +156,7 @@ const OrdersSummary = () => {
 										: 0
 								}
 								color='#f56954'
-								onSearchClick={handleOrdersUpdate}
+								onSearchClick={handleSearch}
 								startDate={startDate}
 								endDate={endDate}
 							/>
@@ -157,7 +170,7 @@ const OrdersSummary = () => {
 										: 0
 								}
 								color='#00a65a'
-								onSearchClick={handleOrdersUpdate}
+								onSearchClick={handleSearch}
 								startDate={startDate}
 								endDate={endDate}
 							/>
@@ -171,7 +184,7 @@ const OrdersSummary = () => {
 										: 0
 								}
 								color='#0073b7'
-								onSearchClick={handleOrdersUpdate}
+								onSearchClick={handleSearch}
 								startDate={startDate}
 								endDate={endDate}
 							/>
@@ -185,7 +198,7 @@ const OrdersSummary = () => {
 										: 0
 								}
 								color='#ff851b'
-								onSearchClick={handleOrdersUpdate}
+								onSearchClick={handleSearch}
 								startDate={startDate}
 								endDate={endDate}
 							/>
@@ -199,7 +212,7 @@ const OrdersSummary = () => {
 										: 0
 								}
 								color='#f39c12'
-								onSearchClick={handleOrdersUpdate}
+								onSearchClick={handleSearch}
 								startDate={startDate}
 								endDate={endDate}
 							/>
@@ -213,7 +226,7 @@ const OrdersSummary = () => {
 										: 0
 								}
 								color='#222222'
-								onSearchClick={handleOrdersUpdate}
+								onSearchClick={handleSearch}
 								startDate={startDate}
 								endDate={endDate}
 							/>

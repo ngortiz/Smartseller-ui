@@ -67,6 +67,10 @@
 		"completed": "Completado",
 		"cancelled": "cancelled"
 	},
+	"ordersSummary": {
+		"header": "Resumen de Pedidos"
+	},
+
 	"orderStatus": {
 		"issued": "No Atendido",
 		"preparing": "Preparando",
@@ -283,8 +287,7 @@
 		"discount": "% Descuento",
 		"enable": "Habilitar",
 		"update": "Actualizar",
-		"updating": "Actualizando...",
-		"successMessage": "La operación ha sido existosa!"
+		"updating": "Actualizando..."
 	},
 	"offerDiscountPage": {
 		"offerDiscount": "Descuento Por Oferta",
@@ -292,9 +295,7 @@
 		"discountRate": "Porcentaje de descuento",
 		"discount": "% Descuento",
 		"enable": "Habilitar",
-		"update": "Actualizar",
-		"updating": "Actualizando...",
-		"successMessage": "La operación ha sido existosa!"
+		"update": "Actualizar"
 	},
 	"discountPage": {
 		"discountByCategory": "Descuento por categoría",
