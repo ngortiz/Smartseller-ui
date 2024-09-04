@@ -8,6 +8,12 @@ import { useTranslation } from 'react-i18next';
 const LeftNavigationBar = () => {
 	const { t } = useTranslation();
 
+	const homePageUrl = import.meta.env.VITE_HOME_PAGE;
+
+	const handleRedirect = path => {
+		window.location.href = `${homePageUrl}${path}`;
+	};
+
 	return (
 		<div data-testid='leftNavigationBar' className='LeftNavigationBar'>
 			<img src={icon} alt='Logo' />
@@ -28,7 +34,7 @@ const LeftNavigationBar = () => {
 						{t('leftNav.orderControl')}
 					</NavDropdown.Item>
 					<NavDropdown.Divider />
-					<NavDropdown.Item href='/'> {t('leftNav.reports')} </NavDropdown.Item>
+					<NavDropdown.Item href='/'>{t('leftNav.reports')}</NavDropdown.Item>
 				</NavDropdown>
 			</ul>
 			<ul>
@@ -154,18 +160,18 @@ const LeftNavigationBar = () => {
 				</h2>
 			</ul>
 			<ul>
-				<h2>
+				<Nav.Link onClick={() => handleRedirect('/showroom/products')}>
 					<span>
 						<i className='bi bi-grid-fill'></i> {t('leftNav.productsPage')}
 					</span>
-				</h2>
+				</Nav.Link>
 			</ul>
 			<ul>
-				<h2>
+				<Nav.Link onClick={() => handleRedirect('/')}>
 					<span>
 						<i className='bi bi-house'></i> {t('leftNav.startPage')}
 					</span>
-				</h2>
+				</Nav.Link>
 			</ul>
 			<ul>
 				<NavDropdown
