@@ -119,6 +119,9 @@
 		"state": "Estado del Pedido",
 		"date": "Fecha del Pedido"
 	},
+	"orderBoard": {
+		"title": "Control de Pedidos"
+	},
 	"orderPayment": {
 		"title": "Pago",
 		"paymentState": "Estado de Pago",
