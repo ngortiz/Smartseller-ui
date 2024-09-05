@@ -67,6 +67,10 @@
 		"completed": "Completado",
 		"cancelled": "cancelled"
 	},
+	"ordersSummary": {
+		"header": "Resumen de Pedidos"
+	},
+
 	"orderStatus": {
 		"issued": "No Atendido",
 		"preparing": "Preparando",
@@ -85,7 +89,8 @@
 		"payment State": "Estado de Pago",
 		"order State": "Estado del Pedido",
 		"goBack": "Volver Atras",
-		"print": "Imprimir"
+		"print": "Imprimir",
+		"breadcrumbs.33": "Visualizacion de Pedido"
 	},
 	"orderDetails": {
 		"title": "Detalles del Pedido",
@@ -113,6 +118,9 @@
 		"voucher": "Número de Comprobante",
 		"state": "Estado del Pedido",
 		"date": "Fecha del Pedido"
+	},
+	"orderBoard": {
+		"title": "Control de Pedidos"
 	},
 	"orderPayment": {
 		"title": "Pago",
@@ -283,8 +291,7 @@
 		"discount": "% Descuento",
 		"enable": "Habilitar",
 		"update": "Actualizar",
-		"updating": "Actualizando...",
-		"successMessage": "La operación ha sido existosa!"
+		"updating": "Actualizando..."
 	},
 	"offerDiscountPage": {
 		"offerDiscount": "Descuento Por Oferta",
@@ -292,9 +299,7 @@
 		"discountRate": "Porcentaje de descuento",
 		"discount": "% Descuento",
 		"enable": "Habilitar",
-		"update": "Actualizar",
-		"updating": "Actualizando...",
-		"successMessage": "La operación ha sido existosa!"
+		"update": "Actualizar"
 	},
 	"discountPage": {
 		"discountByCategory": "Descuento por categoría",
@@ -413,7 +418,8 @@
 		"creationDate": "Fecha Creación",
 		"expirationDate": "Fecha Expiracion",
 		"total": "Total",
-		"searchByCustomerOrNumber": "Buscar por Cliente o Número"
+		"searchByCustomerOrNumber": "Buscar por Cliente o Número",
+		"breadcrumbs.44": "Visualizacion de Pedido"
 	},
 	"marketRatePage": {
 		"quotes": "Cotizaciones",
@@ -449,6 +455,7 @@
 		"offer-discount-page": "Descuento por Oferta",
 		"discount-by-category-page": "Descuento por Categorías",
 		"discount-by-coupons-page": "Descuento por Cupones",
-		"customers-page": "Clientes"
+		"customers-page": "Clientes",
+		"44": "Información del pedido"
 	}
 }

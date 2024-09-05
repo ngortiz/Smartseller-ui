@@ -51,15 +51,28 @@ const OrderBoardPage = () => {
 		onError: error => console.error('Error during mutation:', error),
 	});
 
-	const defaultDate = moment().subtract(1, 'months').toDate();
-	const [startDate, setStartDate] = useState(defaultDate);
-	const [endDate, setEndDate] = useState(new Date());
+	const defaultStartDate = moment().subtract(1, 'months').toDate();
+	const defaultEndDate = new Date();
+
+	const [startDate, setStartDate] = useState(() => {
+		const savedStartDate = sessionStorage.getItem('startDate');
+		return savedStartDate ? new Date(savedStartDate) : defaultStartDate;
+	});
+	const [endDate, setEndDate] = useState(() => {
+		const savedEndDate = sessionStorage.getItem('endDate');
+		return savedEndDate ? new Date(savedEndDate) : defaultEndDate;
+	});
 	const [firstLoading, setFirstLoading] = useState(true);
 
 	const handleStartDateChange = date => setStartDate(date);
 	const handleEndDateChange = date => setEndDate(date);
 
-	const handleSearch = () => getOrders({ variables: { startDate, endDate } });
+	const handleSearch = () => {
+		sessionStorage.setItem('startDate', startDate.toISOString());
+		sessionStorage.setItem('endDate', endDate.toISOString());
+
+		getOrders({ variables: { startDate, endDate } });
+	};
 
 	useEffect(() => {
 		if (data && data.getOrders) {
@@ -70,6 +83,17 @@ const OrderBoardPage = () => {
 			setFirstLoading(false);
 		}
 	}, [loading, data]);
+
+	useEffect(() => {
+		const savedStartDate = sessionStorage.getItem('startDate');
+		const savedEndDate = sessionStorage.getItem('endDate');
+
+		if (savedStartDate && savedEndDate) {
+			setStartDate(new Date(savedStartDate));
+			setEndDate(new Date(savedEndDate));
+			handleSearch();
+		}
+	}, []);
 
 	const orderColumns = [
 		{ title: t('orderStatus.issued'), filterState: 'issued' },
@@ -133,7 +157,7 @@ const OrderBoardPage = () => {
 
 	return (
 		<DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-			<header className='order-control-header'>Control de Pedidos</header>
+			<header className='order-control-header'>{t('orderBoard.title')}</header>
 			<Container fluid className='container-board-bg'>
 				<Row>
 					<Col className='order-date-col'>

@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
-import OrderStatus from '../../components/OrderStatus/index';
+import OrderStatus from '../../components/OrderStatus';
 import DateRangePicker from '../../components/DateRangePicker';
-import DataTable from '../../components/DataTable/index';
-import { useQuery, gql, useLazyQuery } from '@apollo/client';
+import DataTable from '../../components/DataTable';
+import { useLazyQuery, gql } from '@apollo/client';
 import { subMonths } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 import './style.css';
 
 const OrdersSummary = () => {
-	const [startDate, setStartDate] = useState(subMonths(new Date(), 1));
-	const [endDate, setEndDate] = useState(new Date());
+	const { t } = useTranslation();
+
+	const [startDate, setStartDate] = useState(() => {
+		const savedStartDate = sessionStorage.getItem('startDate');
+		return savedStartDate ? new Date(savedStartDate) : subMonths(new Date(), 1);
+	});
+
+	const [endDate, setEndDate] = useState(() => {
+		const savedEndDate = sessionStorage.getItem('endDate');
+		return savedEndDate ? new Date(savedEndDate) : new Date();
+	});
+
 	const [orders, setOrders] = useState([]);
 	const [ordersAmountGroupByState, setOrdersAmountGroupByState] = useState([]);
 	const [firstLoading, setFirstLoading] = useState(true);
@@ -42,59 +53,99 @@ const OrdersSummary = () => {
 		}
 	`;
 
-	const [handleSearchByDate, { loading: ordersLoading, data: ordersData }] =
+	const [fetchOrders, { loading: ordersLoading, data: ordersData }] =
 		useLazyQuery(GET_ORDERS_QUERY);
-
 	const [
-		handleSearchAmountsByDate,
+		fetchOrderAmounts,
 		{ loading: ordersAmountLoading, data: ordersAmountData },
 	] = useLazyQuery(GET_ORDERS_AMOUNT_GROUP_BY_STATE_QUERY);
 
+	//  Effect to update orders when there is new data
 	useEffect(() => {
 		if (ordersData) {
 			setOrders(ordersData.getOrders);
 		}
+	}, [ordersData]);
+
+	// Effect to update status groups when there is new data
+	useEffect(() => {
 		if (ordersAmountData) {
 			setOrdersAmountGroupByState(ordersAmountData.getOrdersAmountGroupByState);
 		}
+	}, [ordersAmountData]);
+
+	// Effect that is executed when mounting the component, forcing the search on page load
+	useEffect(() => {
+		handleSearch();
+	}, []);
+	// clear storage of dates saved in sessionStorage
+	useEffect(() => {
+		sessionStorage.removeItem('startDate');
+		sessionStorage.removeItem('endDate');
+
 		if (firstLoading) {
 			handleSearch();
 			setFirstLoading(false);
 		}
-	}, [ordersLoading, ordersAmountLoading]);
+	}, [firstLoading]);
 
 	const handleStartDateChange = date => {
 		setStartDate(date);
+		sessionStorage.setItem('startDate', date.toISOString());
 	};
 
 	const handleEndDateChange = date => {
 		setEndDate(date);
+		sessionStorage.setItem('endDate', date.toISOString());
 	};
 
-	const handleOrdersUpdate = newOrders => {
-		setOrders(newOrders);
-	};
+	// Managing the search for orders and groups by status
 	const handleSearch = () => {
-		handleSearchByDate({
+		fetchOrders({
 			variables: {
 				startDate: startDate.toISOString(),
 				endDate: endDate.toISOString(),
 			},
 		});
+		fetchOrderAmounts({
+			variables: {
+				startDate: startDate.toISOString(),
+				endDate: endDate.toISOString(),
+			},
+		});
+	};
 
-		handleSearchAmountsByDate({
-			variables: {
-				startDate: startDate.toISOString(),
-				endDate: endDate.toISOString(),
-			},
-		});
+	// Render order statuses with defined colors
+	const renderOrderStatuses = () => {
+		const statusColors = {
+			new: '#00c0ef',
+			issued: '#f56954',
+			preparing: '#00a65a',
+			prepared: '#0073b7',
+			delivering: '#ff851b',
+			ready_to_pickup: '#f39c12',
+			dispatched: '#222222',
+		};
+
+		return Object.keys(statusColors).map((status, index) => (
+			<Col xs={12} sm={6} md={4} lg={3} className='px-2' key={status}>
+				<OrderStatus
+					status={status}
+					amount={ordersAmountGroupByState[index]?.amount || 0}
+					color={statusColors[status]}
+					onSearchClick={handleSearch}
+					startDate={startDate}
+					endDate={endDate}
+				/>
+			</Col>
+		));
 	};
 
 	return (
 		<>
 			<Row>
 				<Col>
-					<header className='title-resumen'>Resumen de Pedidos</header>
+					<header className='title-resumen'>{t('ordersSummary.header')}</header>
 				</Col>
 			</Row>
 			<Container fluid className='container-white-bg'>
@@ -119,117 +170,16 @@ const OrdersSummary = () => {
 						</Col>
 					</Row>
 				) : (
-					<Row>
-						<Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-							<OrderStatus
-								status='new'
-								amount={
-									ordersAmountGroupByState[0]
-										? ordersAmountGroupByState[0].amount
-										: 0
-								}
-								color='#00c0ef'
-								onSearchClick={handleOrdersUpdate}
-								startDate={startDate}
-								endDate={endDate}
-							/>
-						</Col>
-						<Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-							<OrderStatus
-								status='issued'
-								amount={
-									ordersAmountGroupByState[1]
-										? ordersAmountGroupByState[1].amount
-										: 0
-								}
-								color='#f56954'
-								onSearchClick={handleOrdersUpdate}
-								startDate={startDate}
-								endDate={endDate}
-							/>
-						</Col>
-						<Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-							<OrderStatus
-								status='preparing'
-								amount={
-									ordersAmountGroupByState[2]
-										? ordersAmountGroupByState[2].amount
-										: 0
-								}
-								color='#00a65a'
-								onSearchClick={handleOrdersUpdate}
-								startDate={startDate}
-								endDate={endDate}
-							/>
-						</Col>
-						<Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-							<OrderStatus
-								status='prepared'
-								amount={
-									ordersAmountGroupByState[3]
-										? ordersAmountGroupByState[3].amount
-										: 0
-								}
-								color='#0073b7'
-								onSearchClick={handleOrdersUpdate}
-								startDate={startDate}
-								endDate={endDate}
-							/>
-						</Col>
-						<Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-							<OrderStatus
-								status='delivering'
-								amount={
-									ordersAmountGroupByState[4]
-										? ordersAmountGroupByState[4].amount
-										: 0
-								}
-								color='#ff851b'
-								onSearchClick={handleOrdersUpdate}
-								startDate={startDate}
-								endDate={endDate}
-							/>
-						</Col>
-						<Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-							<OrderStatus
-								status='ready_to_pickup'
-								amount={
-									ordersAmountGroupByState[5]
-										? ordersAmountGroupByState[5].amount
-										: 0
-								}
-								color='#f39c12'
-								onSearchClick={handleOrdersUpdate}
-								startDate={startDate}
-								endDate={endDate}
-							/>
-						</Col>
-						<Col xs={12} sm={6} md={4} lg={3} className='px-2'>
-							<OrderStatus
-								status='dispatched'
-								amount={
-									ordersAmountGroupByState[6]
-										? ordersAmountGroupByState[6].amount
-										: 0
-								}
-								color='#222222'
-								onSearchClick={handleOrdersUpdate}
-								startDate={startDate}
-								endDate={endDate}
-							/>
-						</Col>
-					</Row>
+					<Row>{renderOrderStatuses()}</Row>
 				)}
 			</Container>
-			<>
-				<Container fluid className='containerTable-white-bg'>
-					<Row>
-						<Col>
-							<DataTable orders={orders} loading={ordersLoading} />
-						</Col>
-					</Row>
-				</Container>
-			</>
+			<Container fluid className='containerTable-white-bg'>
+				<Row>
+					<Col>
+						<DataTable orders={orders} loading={ordersLoading} />
+					</Col>
+				</Row>
+			</Container>
 		</>
 	);
 };
