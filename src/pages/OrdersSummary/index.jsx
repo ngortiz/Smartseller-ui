@@ -89,7 +89,6 @@ const OrdersSummary = () => {
 		}
 	}, [firstLoading]);
 
-	// Update date values ​​in sessionStorage and status
 	const handleStartDateChange = date => {
 		setStartDate(date);
 		sessionStorage.setItem('startDate', date.toISOString());
