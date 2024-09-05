@@ -60,25 +60,36 @@ const OrdersSummary = () => {
 		{ loading: ordersAmountLoading, data: ordersAmountData },
 	] = useLazyQuery(GET_ORDERS_AMOUNT_GROUP_BY_STATE_QUERY);
 
+	//  Effect to update orders when there is new data
 	useEffect(() => {
 		if (ordersData) {
 			setOrders(ordersData.getOrders);
 		}
 	}, [ordersData]);
 
+	// Effect to update status groups when there is new data
 	useEffect(() => {
 		if (ordersAmountData) {
 			setOrdersAmountGroupByState(ordersAmountData.getOrdersAmountGroupByState);
 		}
 	}, [ordersAmountData]);
 
+	// Effect that is executed when mounting the component, forcing the search on page load
 	useEffect(() => {
+		handleSearch();
+	}, []);
+	// clear storage of dates saved in sessionStorage
+	useEffect(() => {
+		sessionStorage.removeItem('startDate');
+		sessionStorage.removeItem('endDate');
+
 		if (firstLoading) {
 			handleSearch();
 			setFirstLoading(false);
 		}
 	}, [firstLoading]);
 
+	// Update date values ​​in sessionStorage and status
 	const handleStartDateChange = date => {
 		setStartDate(date);
 		sessionStorage.setItem('startDate', date.toISOString());
@@ -89,6 +100,7 @@ const OrdersSummary = () => {
 		sessionStorage.setItem('endDate', date.toISOString());
 	};
 
+	// Managing the search for orders and groups by status
 	const handleSearch = () => {
 		fetchOrders({
 			variables: {
@@ -104,6 +116,7 @@ const OrdersSummary = () => {
 		});
 	};
 
+	// Render order statuses with defined colors
 	const renderOrderStatuses = () => {
 		const statusColors = {
 			new: '#00c0ef',
