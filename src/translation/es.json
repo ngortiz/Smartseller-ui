@@ -457,5 +457,10 @@
 		"discount-by-coupons-page": "Descuento por Cupones",
 		"customers-page": "Clientes",
 		"44": "Información del pedido"
+	},
+	"variantsFrom": {
+		"save": "Guardar",
+		"add": "Agregar",
+		"productVariants": "Variantes del Producto"
 	}
 }
