@@ -467,6 +467,7 @@
 		"variantCode": " Cod. Barras",
 		"priceCost": "P.Costo (USD)",
 		"priceSale": "P.Venta (USD)",
-		"code": "Cod. Interno"
+		"code": "Cod. Interno",
+		"images": "Imagenes"
 	}
 }
