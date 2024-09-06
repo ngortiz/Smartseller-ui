@@ -160,17 +160,18 @@ const ProductsPage = () => {
 				</Row>
 				<RegistrationForm {...formProps} />
 			</Container>
-			<Row>
-				<Col>
-					<h2 className='productTable-title'>{t('productsTable.title')}</h2>
-				</Col>
-			</Row>
-			<ProductsTable />
 			<VariantsForm
 				variants={variants}
 				handleVariantChange={handleVariantChange}
 				handleAddVariant={handleAddVariant}
 			/>
+			<Row>
+				<Col>
+					<h2 className='productTable-title'>{t('productsTable.title')}</h2>
+				</Col>
+			</Row>
+
+			<ProductsTable />
 		</>
 	);
 };

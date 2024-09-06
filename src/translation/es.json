@@ -461,6 +461,12 @@
 	"variantsFrom": {
 		"save": "Guardar",
 		"add": "Agregar",
-		"productVariants": "Variantes del Producto"
+		"productVariants": "Variantes del Producto",
+		"variantStock": "Variante en Stock",
+		"description": "Descripción",
+		"variantCode": " Cod. Barras",
+		"priceCost": "P.Costo (USD)",
+		"priceSale": "P.Venta (USD)",
+		"code": "Cod. Interno"
 	}
 }
