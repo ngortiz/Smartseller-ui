@@ -468,6 +468,8 @@
 		"priceCost": "P.Costo (USD)",
 		"priceSale": "P.Venta (USD)",
 		"code": "Cod. Interno",
-		"images": "Imagenes"
+		"images": "Imagenes",
+		"chooseFile": "Elegir imagen",
+		"file": "Elegir imagen"
 	}
 }

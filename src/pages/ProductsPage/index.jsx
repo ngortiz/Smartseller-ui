@@ -108,6 +108,10 @@ const ProductsPage = () => {
 		setVariants(newVariants);
 	};
 
+	const handleRemoveVariant = index => {
+		const newVariants = variants.filter((_, i) => i !== index);
+		setVariants(newVariants);
+	};
 	const handleAddVariant = () => {
 		setVariants([...variants, { name: '', code: '', price: '', stock: '' }]);
 	};
@@ -139,6 +143,8 @@ const ProductsPage = () => {
 		handleGenerateCode,
 		handleSubmit,
 		handleCategoryChange,
+		handleAddVariant, // Asegúrate de que esté aquí
+		handleRemoveVariant,
 	};
 
 	return (
@@ -164,6 +170,7 @@ const ProductsPage = () => {
 				variants={variants}
 				handleVariantChange={handleVariantChange}
 				handleAddVariant={handleAddVariant}
+				handleRemoveVariant={handleRemoveVariant}
 			/>
 			<Row>
 				<Col>
