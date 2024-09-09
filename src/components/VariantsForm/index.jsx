@@ -306,10 +306,10 @@ const VariantsForm = ({
 				{t('variantsFrom.save')}
 			</Button>
 
-			<Col className='text-right'>
+			<Col>
 				<Button
 					variant='danger'
-					onClick={() => handleRemoveVariant(variants.length - 1)}
+					onClick={() => handleRemoveVariant(index)}
 					className='remove-variant-button'
 				>
 					Eliminar
