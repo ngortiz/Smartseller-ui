@@ -457,5 +457,21 @@
 		"discount-by-coupons-page": "Descuento por Cupones",
 		"customers-page": "Clientes",
 		"44": "Información del pedido"
+	},
+	"variantsFrom": {
+		"save": "Guardar",
+		"add": "Agregar",
+		"productVariants": "Variantes del Producto",
+		"variantStock": "Variante en Stock",
+		"description": "Descripción",
+		"variantCode": " Cod. Barras",
+		"priceCost": "P.Costo (USD)",
+		"priceSale": "P.Venta (USD)",
+		"code": "Cod. Interno",
+		"images": "Imagenes",
+		"chooseFile": "Subir image ",
+		"file": "Subir imagen ",
+		"removeVariant": "Eliminar",
+		"addVariant": "Agregar"
 	}
 }

@@ -1,9 +1,11 @@
+// src/pages/ProductsPage.jsx
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useQuery, gql } from '@apollo/client';
 import RegistrationForm from '../../components/RegistrationForm';
 import ProductsTable from '../../components/ProductsTable';
+import VariantsForm from '../../components/VariantsForm';
 import './style.css';
 
 const GET_CATEGORIES_QUERY = gql`
@@ -51,6 +53,8 @@ const ProductsPage = () => {
 	const [categories, setCategories] = useState([]);
 	const [subcategories, setSubcategories] = useState([]);
 	const [providers, setProviders] = useState([]);
+	const [variants, setVariants] = useState([]);
+
 	const taxes = ['IVA 10%', 'IVA 5%', 'EXENTA'];
 
 	const { loading: loadingCategories, data: categoriesData } =
@@ -98,6 +102,20 @@ const ProductsPage = () => {
 		setSubcategory('');
 	};
 
+	const handleVariantChange = (index, field, value) => {
+		const newVariants = [...variants];
+		newVariants[index][field] = value;
+		setVariants(newVariants);
+	};
+
+	const handleRemoveVariant = index => {
+		const newVariants = variants.filter((_, i) => i !== index);
+		setVariants(newVariants);
+	};
+	const handleAddVariant = () => {
+		setVariants([...variants, { name: '', code: '', price: '', stock: '' }]);
+	};
+
 	const formProps = {
 		productCode,
 		setProductCode,
@@ -125,6 +143,8 @@ const ProductsPage = () => {
 		handleGenerateCode,
 		handleSubmit,
 		handleCategoryChange,
+		handleAddVariant,
+		handleRemoveVariant,
 	};
 
 	return (
@@ -146,11 +166,18 @@ const ProductsPage = () => {
 				</Row>
 				<RegistrationForm {...formProps} />
 			</Container>
+			<VariantsForm
+				variants={variants}
+				handleVariantChange={handleVariantChange}
+				handleAddVariant={handleAddVariant}
+				handleRemoveVariant={handleRemoveVariant}
+			/>
 			<Row>
 				<Col>
 					<h2 className='productTable-title'>{t('productsTable.title')}</h2>
 				</Col>
 			</Row>
+
 			<ProductsTable />
 		</>
 	);
