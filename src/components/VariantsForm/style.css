@@ -7,7 +7,7 @@
 	margin-bottom: 2%;
 }
 
-.tiltle-variants {
+.title-variants {
 	font-size: 24px;
 	font-weight: 600;
 	margin-bottom: 20px;
@@ -22,29 +22,14 @@
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	width: 95%;
 	margin-bottom: 2%;
-	border: 1px solid #008d4c;
-}
-
-.variant-form-scroll {
-	max-height: 500px;
-	overflow-y: auto;
-	margin-bottom: 20px;
-}
-
-.variant-form {
-	background-color: #ffffff;
-	border-radius: 8px;
-	padding: 15px;
-	margin-bottom: 20px;
 }
 
 .subtitulo-variants {
-	font-size: 18px;
+	font-size: larger;
 	font-weight: 500;
-	margin-bottom: 10px;
-	color: #555;
+	margin-bottom: 15px;
+	color: #333;
 	text-align: center;
-	border-bottom: 3px solid #eeeeee;
 }
 
 .form-row {
@@ -70,14 +55,30 @@
 	margin-top: 10px;
 	display: inline-block;
 }
+.variant-form {
+	border-bottom: 3px solid #ddd;
+	box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+	padding: 10px 10px;
+	position: relative;
+	margin-bottom: 26px;
+}
 
-.remove-variant-button {
+.btn-remove-variant {
 	background-color: white;
 	border-color: #dc3545;
 	color: #dc3545;
-	margin-left: 50%;
-	margin-top: -5%;
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
 }
+
+.form-row {
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+}
+
 .save-variant-button {
 	margin-left: 40%;
 	margin-top: 2%;
@@ -85,11 +86,11 @@
 	color: #008d4c;
 	background-color: white;
 }
-.add-variant-button {
+.btn-add-variant {
 	border-radius: 4px;
 	font-size: 16px;
 	font-weight: 600;
-	margin-left: 44%;
+	margin-left: 2%;
 	margin-top: 2%;
 }
 
@@ -113,14 +114,12 @@
 	border-color: #008d4c;
 	color: #555;
 	background-color: white;
+	position: static;
 }
 
 .btn-choose-file:hover {
-	background-color: #0056b3;
-}
-
-.text-right {
-	text-align: right;
+	background-color: white;
+	color: #555;
 }
 
 .form-checkbox1-variant,
@@ -134,4 +133,33 @@
 .form-check-input:hover {
 	background-color: #008d4c;
 	border-color: #008d4c;
+}
+.form-check-input {
+	width: 2em;
+	height: 2em;
+	margin-top: 0.25em;
+	vertical-align: top;
+
+	background-color: #008d4c;
+}
+.button-remove-image {
+	background-color: white;
+	border-color: white;
+	color: #dc3545;
+	margin-top: 26%;
+	margin-left: 64px;
+	position: relative;
+}
+.image-button-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+.image-preview {
+	max-height: 130px;
+	max-width: 117px;
+	margin-bottom: -26%;
+	margin-left: 15%;
+	margin-top: 2%;
 }

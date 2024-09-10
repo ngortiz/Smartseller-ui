@@ -143,7 +143,7 @@ const ProductsPage = () => {
 		handleGenerateCode,
 		handleSubmit,
 		handleCategoryChange,
-		handleAddVariant, // Asegúrate de que esté aquí
+		handleAddVariant,
 		handleRemoveVariant,
 	};
 

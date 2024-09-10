@@ -469,7 +469,9 @@
 		"priceSale": "P.Venta (USD)",
 		"code": "Cod. Interno",
 		"images": "Imagenes",
-		"chooseFile": "Elegir imagen",
-		"file": "Elegir imagen"
+		"chooseFile": "Subir image ",
+		"file": "Subir imagen ",
+		"removeVariant": "Eliminar",
+		"addVariant": "Agregar"
 	}
 }

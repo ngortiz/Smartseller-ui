@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Row, Col, Button, Container } from 'react-bootstrap';
+import { Form, Row, Col, Button, Container, Image } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import './style.css';
 
@@ -16,26 +16,33 @@ const VariantsForm = ({
 
 	const handleFileSelect = (index, imgIndex, event) => {
 		const file = event.target.files[0];
-		setSelectedFiles({
-			...selectedFiles,
-			[`${index}-${imgIndex}`]: file
-				? file.name
-				: t('variantsFrom.noFileChosen'),
+		setSelectedFiles(prevFiles => ({
+			...prevFiles,
+			[`${index}-${imgIndex}`]: file ? URL.createObjectURL(file) : '',
+		}));
+	};
+
+	const handleRemoveImage = fileKey => {
+		setSelectedFiles(prevFiles => {
+			const updatedFiles = { ...prevFiles };
+			delete updatedFiles[fileKey];
+			return updatedFiles;
 		});
-		handleFileChange(index, imgIndex, event);
 	};
 
 	return (
 		<Container className='variants-form-container'>
-			<header className='tiltle-variants'>
+			<header className='title-variants'>
 				{t('variantsFrom.productVariants')}
 			</header>
 			<Container className='variant-container'>
-				<div className='variant-form-scroll'>
+				<div>
 					{variants.map((variant, index) => (
 						<Form key={index} className='variant-form'>
 							<h5 className='subtitulo-variants'>Datos Requeridos</h5>
-							<Row className='form-row'>
+							<Row
+								className={`form-row ${index % 2 === 0 ? 'row-even' : 'row-odd'}`}
+							>
 								<Col>
 									<Form.Group className='form-group'>
 										<Form.Label className='label-form-variants'>
@@ -280,24 +287,63 @@ const VariantsForm = ({
 													}
 												>
 													{t('variantsFrom.chooseFile') || 'Elegir archivo'}
-													{` ${imgIndex + 1}`}
+													{imgIndex + 1}
 												</Button>
+
+												{/* Previsualización de la imagen */}
+												<div className='image-preview-container'>
+													{selectedFiles[`${index}-${imgIndex}`] ? (
+														<>
+															<Image
+																src={selectedFiles[`${index}-${imgIndex}`]}
+																alt={`Preview ${imgIndex + 1}`}
+																className='image-preview'
+															/>
+															<Button
+																variant='danger'
+																className='button-remove-image'
+																onClick={() =>
+																	handleRemoveImage(`${index}-${imgIndex}`)
+																}
+															>
+																<i className='bi bi-trash'></i>
+															</Button>
+														</>
+													) : (
+														<Image
+															src='/images/no-image.png'
+															alt=' '
+															className='image-preview'
+															style={{
+																maxHeight: '130px',
+																verticalAlign: 'middle',
+																maxWidth: ' 49%',
+																marginBottom: '35%',
+																marginRight: '8%',
+																marginTop: ' 30%',
+															}}
+														/>
+													)}
+												</div>
 											</div>
 										</Form.Group>
 									</Col>
 								))}
 							</Row>
+
+							<Button
+								type='button'
+								variant='danger'
+								onClick={() => handleRemoveVariant(index)}
+								className='btn-remove-variant'
+							>
+								<i className='bi bi-trash'></i>
+							</Button>
 						</Form>
 					))}
 				</div>
-				<Button
-					variant='success'
-					onClick={handleAddVariant}
-					className='add-variant-button'
-				>
-					Agregar
-				</Button>
 			</Container>
+
 			<Button
 				variant='success'
 				onClick={handleAddVariant}
@@ -305,26 +351,39 @@ const VariantsForm = ({
 			>
 				{t('variantsFrom.save')}
 			</Button>
-
-			<Col>
-				<Button
-					variant='danger'
-					onClick={() => handleRemoveVariant(index)}
-					className='remove-variant-button'
-				>
-					Eliminar
-				</Button>
-			</Col>
+			<Button
+				type='button'
+				variant='success'
+				onClick={handleAddVariant}
+				className='btn-add-variant'
+			>
+				{t('variantsFrom.addVariant')}
+			</Button>
 		</Container>
 	);
 };
 
 VariantsForm.propTypes = {
-	variants: PropTypes.array.isRequired,
+	variants: PropTypes.arrayOf(
+		PropTypes.shape({
+			description: PropTypes.string,
+			barcode: PropTypes.string,
+			internalCode: PropTypes.string,
+			costPrice: PropTypes.number,
+			salePrice: PropTypes.number,
+			quantity: PropTypes.number,
+			checkbox1: PropTypes.bool,
+			checkbox2: PropTypes.bool,
+			weight: PropTypes.string,
+			color: PropTypes.string,
+			dimension: PropTypes.string,
+			material: PropTypes.string,
+			piece: PropTypes.string,
+		}),
+	).isRequired,
 	handleVariantChange: PropTypes.func.isRequired,
 	handleAddVariant: PropTypes.func.isRequired,
 	handleRemoveVariant: PropTypes.func.isRequired,
-	handleFileChange: PropTypes.func.isRequired,
 };
 
 export default VariantsForm;
