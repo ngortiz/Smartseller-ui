@@ -19,7 +19,7 @@
 	background-color: white;
 	padding: 30px;
 	border-radius: 0px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 	width: 95%;
 	margin-bottom: 2%;
 }
@@ -129,6 +129,7 @@
 .form-check-input:checked {
 	background-color: #008d4c;
 	border-color: #008d4c;
+	vertical-align: middle;
 }
 .form-check-input:hover {
 	background-color: #008d4c;
@@ -137,8 +138,9 @@
 .form-check-input {
 	width: 2em;
 	height: 2em;
-	margin-top: 0.25em;
+	margin-top: -0.75em;
 	vertical-align: top;
+	margin-right: 5px;
 
 	background-color: #008d4c;
 }
@@ -162,4 +164,13 @@
 	margin-bottom: -26%;
 	margin-left: 15%;
 	margin-top: 2%;
+}
+.form-checkbox-variant {
+	margin-top: 10%;
+	color: #555;
+}
+
+.form-group-checkbox2 {
+	margin-left: -6%;
+	margin-bottom: 5px;
 }

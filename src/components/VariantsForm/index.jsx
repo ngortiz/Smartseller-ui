@@ -131,6 +131,7 @@ const VariantsForm = ({
 										/>
 									</Form.Group>
 								</Col>
+
 								<Col>
 									<Form.Group className='form-group'>
 										<Form.Label className='label-form-variants'>
@@ -149,11 +150,12 @@ const VariantsForm = ({
 								</Col>
 								<Col>
 									<Form.Group className='form-group'>
-										<Form.Label className='label-form-variants'></Form.Label>
+										<Form.Label className='label-form-variants'>
+											Oferta
+										</Form.Label>
 										<Form.Check
 											type='checkbox'
-											className='form-checkbox1-variant'
-											checked={variant.checkbox1}
+											className='form-checkbox-variant'
 											onChange={e =>
 												handleVariantChange(
 													index,
@@ -162,10 +164,16 @@ const VariantsForm = ({
 												)
 											}
 										/>
+									</Form.Group>
+								</Col>
+								<Col className='form-group-checkbox2'>
+									<Form.Group className='form-group-checkbox2'>
+										<Form.Label className='label-form-variants'>
+											Publicar
+										</Form.Label>
 										<Form.Check
 											type='checkbox'
-											className='form-checkbox2-variant'
-											checked={variant.checkbox2}
+											className='form-checkbox-variant'
 											onChange={e =>
 												handleVariantChange(
 													index,
