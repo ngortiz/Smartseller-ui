@@ -456,7 +456,9 @@
 		"discount-by-category-page": "Descuento por Categorías",
 		"discount-by-coupons-page": "Descuento por Cupones",
 		"customers-page": "Clientes",
-		"44": "Información del pedido"
+		"44": "Información del pedido",
+		"analytics": "Estadisticas",
+		"platform-analytics-page": "Analitica de Plataforma"
 	},
 	"variantsFrom": {
 		"save": "Guardar",
@@ -473,5 +475,14 @@
 		"file": "Subir imagen ",
 		"removeVariant": "Eliminar",
 		"addVariant": "Agregar"
+	},
+	"platformAnalytcs": {
+		"platformAnalytcs": "Analítica de Plataforma",
+		"startDate": "Fecha de Inicio",
+		"endDate": "Fecha Final",
+		"search": "Buscar",
+		"chart": "Cantidad de Visitas Agrupados por Páginas",
+		"numberOfVisits": "Cantidad de visitas",
+		"date": "Fecha"
 	}
 }

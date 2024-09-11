@@ -32,6 +32,8 @@ import DiscountByCategoryPage from './pages/DiscountByCategoryPage';
 import DiscountByCouponsPage from './pages/DiscountByCouponsPage';
 import CustomersPage from './pages/CustomersPage';
 import ProductsPage from './pages/ProductsPage';
+import PlatformAnalyticsPage from './pages/PlatformAnalyticsPage';
+
 import { I18nextProvider } from 'react-i18next';
 import i18n from './utils/i18n';
 
@@ -123,6 +125,10 @@ createRoot(document.getElementById('root')).render(
 									/>
 									<Route path='customers-page' element={<CustomersPage />} />
 									<Route path='products-page' element={<ProductsPage />} />
+									<Route
+										path='/analytics/platform-analytics-page'
+										element={<PlatformAnalyticsPage />}
+									/>
 								</Routes>
 							</Col>
 						</Row>
