@@ -10,6 +10,7 @@ const VariantsForm = ({
 	handleAddVariant,
 	handleRemoveVariant,
 	handleFileChange,
+	handleSaveProductWithVariants,
 }) => {
 	const { t } = useTranslation();
 	const [selectedFiles, setSelectedFiles] = useState({});
@@ -122,9 +123,9 @@ const VariantsForm = ({
 										</Form.Label>
 										<Form.Control
 											type='number'
-											value={variant.salePrice}
+											value={variant.sellPrice}
 											onChange={e =>
-												handleVariantChange(index, 'salePrice', e.target.value)
+												handleVariantChange(index, 'sellPrice', e.target.value)
 											}
 											required
 											className='form-input-variant'
@@ -139,9 +140,9 @@ const VariantsForm = ({
 										</Form.Label>
 										<Form.Control
 											type='number'
-											value={variant.quantity}
+											value={variant.amount}
 											onChange={e =>
-												handleVariantChange(index, 'quantity', e.target.value)
+												handleVariantChange(index, 'amount', e.target.value)
 											}
 											required
 											className='form-input-variant'
@@ -354,7 +355,7 @@ const VariantsForm = ({
 
 			<Button
 				variant='success'
-				onClick={handleAddVariant}
+				onClick={handleSaveProductWithVariants}
 				className='save-variant-button'
 			>
 				{t('variantsFrom.save')}
@@ -378,8 +379,8 @@ VariantsForm.propTypes = {
 			barcode: PropTypes.string,
 			internalCode: PropTypes.string,
 			costPrice: PropTypes.number,
-			salePrice: PropTypes.number,
-			quantity: PropTypes.number,
+			sellPrice: PropTypes.number,
+			amount: PropTypes.number,
 			checkbox1: PropTypes.bool,
 			checkbox2: PropTypes.bool,
 			weight: PropTypes.string,
@@ -392,6 +393,7 @@ VariantsForm.propTypes = {
 	handleVariantChange: PropTypes.func.isRequired,
 	handleAddVariant: PropTypes.func.isRequired,
 	handleRemoveVariant: PropTypes.func.isRequired,
+	handleSaveProductWithVariants: PropTypes.func.isRequired,
 };
 
 export default VariantsForm;
