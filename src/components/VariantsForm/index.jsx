@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Row, Col, Button, Container, Image } from 'react-bootstrap';
+import {
+	Form,
+	Row,
+	Col,
+	Button,
+	Container,
+	Image,
+	Spinner,
+} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import './style.css';
 
@@ -11,6 +19,7 @@ const VariantsForm = ({
 	handleRemoveVariant,
 	handleFileChange,
 	handleSaveProductWithVariants,
+	saving,
 }) => {
 	const { t } = useTranslation();
 	const [selectedFiles, setSelectedFiles] = useState({});
@@ -339,15 +348,12 @@ const VariantsForm = ({
 									</Col>
 								))}
 							</Row>
-
 							<Button
 								type='button'
 								variant='danger'
 								onClick={() => handleRemoveVariant(index)}
 								className='btn-remove-variant'
-							>
-								<i className='bi bi-trash'></i>
-							</Button>
+							></Button>
 						</Form>
 					))}
 				</div>
@@ -357,14 +363,29 @@ const VariantsForm = ({
 				variant='success'
 				onClick={handleSaveProductWithVariants}
 				className='save-variant-button'
+				disabled={saving}
 			>
-				{t('variantsFrom.save')}
+				{saving ? (
+					<>
+						<Spinner
+							as='span'
+							animation='border'
+							size='sm'
+							role='status'
+							aria-hidden='true'
+						/>
+						{t('variantsFrom.saving')}
+					</>
+				) : (
+					t('variantsFrom.save')
+				)}
 			</Button>
 			<Button
 				type='button'
 				variant='success'
 				onClick={handleAddVariant}
 				className='btn-add-variant'
+				disabled={saving}
 			>
 				{t('variantsFrom.addVariant')}
 			</Button>

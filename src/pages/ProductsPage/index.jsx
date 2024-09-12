@@ -1,6 +1,6 @@
 // src/pages/ProductsPage.jsx
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, gql } from '@apollo/client';
 import RegistrationForm from '../../components/RegistrationForm';
@@ -59,6 +59,7 @@ const SAVE_PRODUCT_MUTATION = gql`
 				categoryId: $categoryId
 				subCategoryId: $subCategoryId
 				providerId: $providerId
+				taxId: $taxId
 				templateId: $templateId
 			}
 		) {
@@ -113,6 +114,7 @@ const ProductsPage = () => {
 	const [subcategories, setSubcategories] = useState([]);
 	const [providers, setProviders] = useState([]);
 	const [variants, setVariants] = useState([]);
+	const [saving, setSaving] = useState(false);
 
 	const [saveProduct] = useMutation(SAVE_PRODUCT_MUTATION);
 	const [saveProductVariant] = useMutation(SAVE_PRODUCT_VARIANT_MUTATION);
@@ -198,6 +200,9 @@ const ProductsPage = () => {
 
 	const handleSaveProductWithVariants = async () => {
 		console.log('save product with variants');
+
+		setSaving(true);
+
 		const productInput = {
 			name: productName,
 			code: productCode,
@@ -218,7 +223,7 @@ const ProductsPage = () => {
 
 		console.log('Product', data);
 
-		const { productId } = data.saveProduct;
+		const { id: productId } = data.saveProduct;
 
 		variants.forEach(async variant => {
 			const result = await saveProductVariant({
@@ -228,8 +233,8 @@ const ProductsPage = () => {
 					code: variant.barcode,
 					internalCode: variant.internalCode,
 					name: variant.description,
-					offered: variant.offered,
-					published: variant.published,
+					offered: variant.checkbox1,
+					published: variant.checkbox2,
 					costPrice: variant.costPrice,
 					sellPrice: variant.sellPrice,
 					productAttributes: JSON.stringify({
@@ -242,6 +247,8 @@ const ProductsPage = () => {
 			});
 			console.log('Variant', result.data.saveProductVariant);
 		});
+
+		setSaving(false);
 	};
 
 	const formProps = {
@@ -300,6 +307,7 @@ const ProductsPage = () => {
 				handleAddVariant={handleAddVariant}
 				handleRemoveVariant={handleRemoveVariant}
 				handleSaveProductWithVariants={handleSaveProductWithVariants}
+				saving={saving}
 			/>
 			<Row>
 				<Col>

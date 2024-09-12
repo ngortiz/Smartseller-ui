@@ -460,6 +460,7 @@
 	},
 	"variantsFrom": {
 		"save": "Guardar",
+    "saving": "Guardando...",
 		"add": "Agregar",
 		"productVariants": "Variantes del Producto",
 		"variantStock": "Variante en Stock",
