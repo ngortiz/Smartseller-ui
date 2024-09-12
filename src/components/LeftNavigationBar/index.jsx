@@ -144,7 +144,9 @@ const LeftNavigationBar = () => {
 					}
 					id='basic-nav-dropdown'
 				>
-					<NavDropdown.Item>{t('leftNav.platformAnalytics')}</NavDropdown.Item>
+					<NavDropdown.Item href='/analytics/platform-analytics-page'>
+						{t('leftNav.platformAnalytics')}
+					</NavDropdown.Item>
 					<NavDropdown.Divider />
 					<NavDropdown.Item>{t('leftNav.onlineSales')}</NavDropdown.Item>
 					<NavDropdown.Divider />
