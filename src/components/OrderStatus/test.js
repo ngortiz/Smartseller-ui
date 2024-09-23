@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import OrderStatus from '../OrderStatus';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '../../i18nForTests'; // Ajusta la ruta si es necesario
+import i18n from '../../i18nForTests';
 
 // Mock function for onSearchClick
 const mockOnSearchClick = jest.fn();
@@ -13,8 +13,8 @@ test('renders OrderStatus component with amount and background', () => {
 		color: 'blue',
 		amount: 100,
 		status: 'Processing',
-		startDate: new Date(), // Usar objeto Date
-		endDate: new Date(), // Usar objeto Date
+		startDate: new Date(),
+		endDate: new Date(),
 	};
 
 	const { getByText, getByTestId } = render(
@@ -24,8 +24,8 @@ test('renders OrderStatus component with amount and background', () => {
 				amount={testData.amount}
 				status={testData.status}
 				onSearchClick={mockOnSearchClick}
-				startDate={testData.startDate} // Asegúrate de que el componente maneje objetos Date
-				endDate={testData.endDate} // Asegúrate de que el componente maneje objetos Date
+				startDate={testData.startDate}
+				endDate={testData.endDate}
 			/>
 		</I18nextProvider>,
 	);

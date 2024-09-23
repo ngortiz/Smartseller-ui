@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '../../setupTests'; // Asegúrate de que la ruta sea correcta
+import i18n from '../../setupTests';
 import OrderPayment from '../OrderPayment';
 
 describe('OrderPayment component', () => {
@@ -20,7 +20,7 @@ describe('OrderPayment component', () => {
 			</I18nextProvider>,
 		);
 
-		// Verificar que los textos traducidos están presentes
+		s;
 		expect(getByText('Estado de Pago:')).toBeInTheDocument();
 		expect(getByText('Paid')).toBeInTheDocument();
 		expect(getByText('100')).toBeInTheDocument();

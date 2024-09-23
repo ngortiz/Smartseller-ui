@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import { OrderData } from '../OrderData';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '../../i18nForTests'; // Este es el archivo de configuración para pruebas
+import i18n from '../../i18nForTests';
 
 test('checks if the text "Pedido" is present in the rendered output', () => {
 	// Render the component with the translation provider
