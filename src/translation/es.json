@@ -376,7 +376,7 @@
 	"paymentModal": {
 		"paymentDetails": "Detalles del Pago",
 		"client": "Cliente",
-		"orderNumber": "Número de Orden",
+		"orderNumber": "Número de Pedido",
 		"voucherNumber": "Nro. Comprobante",
 		"paymentDate": "Fecha de Pago",
 		"paymentAmount": "Monto de Pago",
@@ -389,7 +389,10 @@
 		"account": "Tipo de Moneda",
 		"uploadVoucher": "Subir comprobannte",
 		"confirm": "Confirmar",
-		"cancel": "Cancelar"
+		"cancel": "Cancelar",
+		"image": "Imagen",
+		"ussDebt": "Deuda USS",
+		"gsDebt": "Deuda Gs"
 	},
 
 	"variantsModal": {

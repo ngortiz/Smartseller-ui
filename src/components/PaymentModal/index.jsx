@@ -30,17 +30,12 @@ const PAY_ORDER_MUTATION = gql`
 	}
 `;
 
-const PaymentModal = ({ payment, onClose, onPaymentRegister, marketRate }) => {
+const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 	const { t } = useTranslation();
 	const voucherNumberRef = useRef(null);
 	const accountTypeRef = useRef(null);
 
 	const [payOrder] = useMutation(PAY_ORDER_MUTATION);
-
-	// Realiza la conversión de USD a Gs
-	const convertUsdToGs = totalUsd => {
-		return totalUsd * (marketRate?.priceBuy ?? 1); // Utiliza la tasa de cambio si está disponible
-	};
 
 	const handlePaymentSubmit = async () => {
 		if (!voucherNumberRef.current || !accountTypeRef.current) {
@@ -57,7 +52,7 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister, marketRate }) => {
 
 		const paymentData = {
 			orderId: payment.id,
-			total: payment.debtUss,
+			total: payment.totalDebt,
 			moneyId: accountType === 'Gs' ? 1 : 2,
 			voucherNumber,
 			userId: payment.userId,
@@ -77,7 +72,9 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister, marketRate }) => {
 	};
 
 	const deudaUsd = payment.total ?? 0;
-	const deudaGs = convertUsdToGs(deudaUsd);
+	const totalGs = payment.totalGs ?? 0;
+
+	const formatNumber = number => new Intl.NumberFormat('es-PY').format(number);
 
 	return (
 		<Modal show={true} onHide={onClose} size='sm'>
@@ -86,7 +83,7 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister, marketRate }) => {
 			</Modal.Header>
 			<Modal.Body>
 				<Form.Group controlId='formClient'>
-					<Form.Label>Cliente:</Form.Label>
+					<Form.Label>{t('paymentModal.client')}:</Form.Label>
 					<Form.Control
 						type='text'
 						value={payment.username}
@@ -95,26 +92,33 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister, marketRate }) => {
 					/>
 				</Form.Group>
 				<Form.Group controlId='formOrderNumber'>
-					<Form.Label>Nro. de Pedido:</Form.Label>
+					<Form.Label>{t('paymentModal.orderNumber')}:</Form.Label>
 					<Form.Control type='text' value={payment.number} readOnly disabled />
 				</Form.Group>
 				<Form.Group controlId='formVoucherNumber'>
-					<Form.Label>Nro. Comprobante*:</Form.Label>
+					<Form.Label>{t('paymentModal.voucherNumber')}:</Form.Label>
 					<Form.Control
 						type='text'
 						placeholder='Ingrese el número de comprobante'
 						ref={voucherNumberRef}
 					/>
 				</Form.Group>
+				<Form.Group controlId='formAccountType'>
+					<Form.Label>{t('paymentModal.account')}:</Form.Label>
+					<Form.Control as='select' ref={accountTypeRef}>
+						<option>{t('paymentModal.select')}...</option>
+						<option>$USD</option>
+						<option>Gs</option>
+					</Form.Control>
+				</Form.Group>
 
 				<Form.Group controlId='formFile' className='mb-3'>
-					<Form.Label>Imagen:</Form.Label>
+					<Form.Label>{t('paymentModal.image')}:</Form.Label>
 					<Form.Control type='file' disabled />
-					<Form.Text>No file chosen</Form.Text>
 				</Form.Group>
 
 				<Form.Group controlId='formDebt'>
-					<Form.Label>Deuda USS:</Form.Label>
+					<Form.Label>{t('paymentModal.ussDebt')}</Form.Label>
 					<Form.Control
 						type='text'
 						value={`US$ ${deudaUsd.toFixed(2)}`}
@@ -124,10 +128,10 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister, marketRate }) => {
 				</Form.Group>
 
 				<Form.Group controlId='formDebtGs'>
-					<Form.Label>Deuda Gs:</Form.Label>
+					<Form.Label>{t('paymentModal.gsDebt')}</Form.Label>
 					<Form.Control
 						type='text'
-						value={`Gs. ${deudaGs.toFixed(0)}`}
+						value={`Gs. ${formatNumber(totalGs)}`}
 						readOnly
 						disabled
 					/>
@@ -149,9 +153,6 @@ PaymentModal.propTypes = {
 	payment: PropTypes.object.isRequired,
 	onClose: PropTypes.func.isRequired,
 	onPaymentRegister: PropTypes.func.isRequired,
-	marketRate: PropTypes.shape({
-		priceBuy: PropTypes.number,
-	}),
 };
 
 export default PaymentModal;
