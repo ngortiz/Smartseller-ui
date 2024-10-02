@@ -2,26 +2,84 @@ import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Form, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import './style.css';
+import { gql, useMutation } from '@apollo/client';
+
+const PAY_ORDER_MUTATION = gql`
+	mutation PayOrder(
+		$orderId: Int!
+		$moneyId: Int!
+		$voucherNumber: String!
+		$total: Float!
+		$userId: Int!
+	) {
+		payOrder(
+			payOrder: {
+				orderId: $orderId
+				moneyId: $moneyId
+				voucherNumber: $voucherNumber
+				total: $total
+				userId: $userId
+			}
+		) {
+			id
+			comment
+			moneyId
+			moneyValue
+			voucherNumber
+		}
+	}
+`;
 
 const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 	const { t } = useTranslation();
-	const paymentAmountRef = useRef(null);
-	const paymentMethodRef = useRef(null);
 	const voucherNumberRef = useRef(null);
-	const paymentDateRef = useRef(null);
 	const accountTypeRef = useRef(null);
 
-	const handlePaymentSubmit = () => {
+	const [payOrder] = useMutation(PAY_ORDER_MUTATION);
+
+	const handlePaymentSubmit = async () => {
+		if (!voucherNumberRef.current || !accountTypeRef.current) {
+			console.error('Referencia de formulario no encontrada');
+			return;
+		}
+
+		const voucherNumber = voucherNumberRef.current.value;
+		const accountType = accountTypeRef.current.value;
+
+		if (!voucherNumber) {
+			console.error('El número de comprobante es requerido');
+			return;
+		}
+
 		const paymentData = {
 			orderId: payment.id,
-			amount: paymentAmountRef.current.value,
-			method: paymentMethodRef.current.value,
-			voucherNumber: voucherNumberRef.current.value,
-			paymentDate: paymentDateRef.current.value,
-			accountType: accountTypeRef.current.value,
+			total: accountType === 'Gs' ? payment.totalGs : payment.total,
+			moneyId: accountType === 'Gs' ? 1 : 2,
+			voucherNumber,
+			userId: payment.userId,
 		};
-		onPaymentRegister(paymentData);
+
+		try {
+			const { data } = await payOrder({
+				variables: {
+					...paymentData,
+				},
+			});
+			console.log('Payment success:', data);
+			onPaymentRegister(paymentData);
+		} catch (error) {
+			console.error('Payment error:', error);
+		}
+	};
+
+	const deudaUsd = payment.total ?? 0;
+	const deudaGs = payment.totalGs ?? 0;
+
+	const formatNumber = (number, currency) => {
+		if (currency === 'USD') {
+			return `US$ ${number.toFixed(2)}`;
+		}
+		return `Gs. ${new Intl.NumberFormat('es-PY').format(number)}`;
 	};
 
 	return (
@@ -30,8 +88,8 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 				<Modal.Title>{t('paymentModal.paymentDetails')}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<Form.Group controlId='formVoucherNumber'>
-					<Form.Label>{t('paymentModal.client')}</Form.Label>
+				<Form.Group controlId='formClient'>
+					<Form.Label>{t('paymentModal.client')}:</Form.Label>
 					<Form.Control
 						type='text'
 						value={payment.username}
@@ -39,67 +97,53 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 						disabled
 					/>
 				</Form.Group>
-				<Form.Group controlId='formVoucherNumber'>
-					<Form.Label>{t('paymentModal.orderNumber')}</Form.Label>
+				<Form.Group controlId='formOrderNumber'>
+					<Form.Label>{t('paymentModal.orderNumber')}:</Form.Label>
 					<Form.Control type='text' value={payment.number} readOnly disabled />
 				</Form.Group>
 				<Form.Group controlId='formVoucherNumber'>
-					<Form.Label>{t('paymentModal.voucherNumber')}</Form.Label>
+					<Form.Label>{t('paymentModal.voucherNumber')}:</Form.Label>
 					<Form.Control
 						type='text'
 						placeholder='Ingrese el número de comprobante'
 						ref={voucherNumberRef}
 					/>
 				</Form.Group>
-				<Form.Group controlId='formPaymentDate'>
-					<Form.Label>{t('paymentModal.paymentDate')}</Form.Label>
-					<Form.Control type='date' ref={paymentDateRef} />
-				</Form.Group>
-				<Form.Group controlId='formPaymentAmount'>
-					<Form.Label>{t('paymentModal.paymentAmount')}</Form.Label>
-					<Form.Control
-						type='text'
-						placeholder='Ingrese el monto del pago'
-						ref={paymentAmountRef}
-					/>
-				</Form.Group>
-				<Form.Group controlId='formPaymentMethod'>
-					<Form.Label>{t('paymentModal.paymentMethod')}</Form.Label>
-					<Form.Control as='select' ref={paymentMethodRef}>
+
+				<Form.Group controlId='formAccountType'>
+					<Form.Label>{t('paymentModal.account')}:</Form.Label>
+					<Form.Control as='select' ref={accountTypeRef}>
 						<option>{t('paymentModal.select')}...</option>
-						<option>{t('paymentModal.cash')}</option>
-						<option>{t('paymentModal.creditCard')}</option>
-						<option>{t('paymentModal.bankTransference')}</option>
-						<option>{t('paymentModal.others')}</option>
+						<option value='USD'>Dólar (USD)</option>
+						<option value='Gs'>Guaraní (Gs)</option>
 					</Form.Control>
 				</Form.Group>
 
-				<Form.Group controlId='formAccountType'>
-					<Form.Label>{t('paymentModal.account')}</Form.Label>
-					<Form.Control as='select' ref={accountTypeRef}>
-						<option>{t('paymentModal.select')}...</option>
-						<option>$USD</option>
-						<option>Gs</option>
-					</Form.Control>
+				<Form.Group controlId='formDebt'>
+					<Form.Label>{t('paymentModal.ussDebt')}</Form.Label>
+					<Form.Control
+						type='text'
+						value={formatNumber(deudaUsd, 'USD')}
+						readOnly
+						disabled
+					/>
 				</Form.Group>
-				<Form.Group controlId='formFile' className='mb-3'>
-					<Form.Label>{t('paymentModal.uploadVoucher')}</Form.Label>
-					<Form.Control type='file' />
+
+				<Form.Group controlId='formDebtGs'>
+					<Form.Label>{t('paymentModal.gsDebt')}</Form.Label>
+					<Form.Control
+						type='text'
+						value={formatNumber(deudaGs, 'Gs')}
+						readOnly
+						disabled
+					/>
 				</Form.Group>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button
-					className='modal-btn-primary'
-					variant='primary'
-					onClick={handlePaymentSubmit}
-				>
+				<Button variant='primary' onClick={handlePaymentSubmit}>
 					{t('paymentModal.confirm')}
 				</Button>
-				<Button
-					className='modal-btn-secondary '
-					variant='secondary'
-					onClick={onClose}
-				>
+				<Button variant='secondary' onClick={onClose}>
 					{t('paymentModal.cancel')}
 				</Button>
 			</Modal.Footer>
