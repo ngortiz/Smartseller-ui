@@ -45,6 +45,7 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 
 		const voucherNumber = voucherNumberRef.current.value;
 		const accountType = accountTypeRef.current.value;
+
 		if (!voucherNumber) {
 			console.error('El número de comprobante es requerido');
 			return;
@@ -52,7 +53,7 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 
 		const paymentData = {
 			orderId: payment.id,
-			total: payment.totalDebt,
+			total: accountType === 'Gs' ? payment.totalGs : payment.total,
 			moneyId: accountType === 'Gs' ? 1 : 2,
 			voucherNumber,
 			userId: payment.userId,
@@ -72,9 +73,14 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 	};
 
 	const deudaUsd = payment.total ?? 0;
-	const totalGs = payment.totalGs ?? 0;
+	const deudaGs = payment.totalGs ?? 0;
 
-	const formatNumber = number => new Intl.NumberFormat('es-PY').format(number);
+	const formatNumber = (number, currency) => {
+		if (currency === 'USD') {
+			return `US$ ${number.toFixed(2)}`;
+		}
+		return `Gs. ${new Intl.NumberFormat('es-PY').format(number)}`;
+	};
 
 	return (
 		<Modal show={true} onHide={onClose} size='sm'>
@@ -103,25 +109,21 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 						ref={voucherNumberRef}
 					/>
 				</Form.Group>
+
 				<Form.Group controlId='formAccountType'>
 					<Form.Label>{t('paymentModal.account')}:</Form.Label>
 					<Form.Control as='select' ref={accountTypeRef}>
 						<option>{t('paymentModal.select')}...</option>
-						<option>$USD</option>
-						<option>Gs</option>
+						<option value='USD'>Dólar (USD)</option>
+						<option value='Gs'>Guaraní (Gs)</option>
 					</Form.Control>
-				</Form.Group>
-
-				<Form.Group controlId='formFile' className='mb-3'>
-					<Form.Label>{t('paymentModal.image')}:</Form.Label>
-					<Form.Control type='file' disabled />
 				</Form.Group>
 
 				<Form.Group controlId='formDebt'>
 					<Form.Label>{t('paymentModal.ussDebt')}</Form.Label>
 					<Form.Control
 						type='text'
-						value={`US$ ${deudaUsd.toFixed(2)}`}
+						value={formatNumber(deudaUsd, 'USD')}
 						readOnly
 						disabled
 					/>
@@ -131,7 +133,7 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 					<Form.Label>{t('paymentModal.gsDebt')}</Form.Label>
 					<Form.Control
 						type='text'
-						value={`Gs. ${formatNumber(totalGs)}`}
+						value={formatNumber(deudaGs, 'Gs')}
 						readOnly
 						disabled
 					/>
