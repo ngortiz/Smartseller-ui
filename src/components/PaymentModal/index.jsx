@@ -1,31 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Modal } from 'react-bootstrap';
+import { Button, Form, Modal, Spinner } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { gql, useMutation } from '@apollo/client';
 
 const PAY_ORDER_MUTATION = gql`
-	mutation PayOrder(
-		$orderId: Int!
-		$moneyId: Int!
-		$voucherNumber: String!
-		$total: Float!
-		$userId: Int!
-	) {
-		payOrder(
-			payOrder: {
-				orderId: $orderId
-				moneyId: $moneyId
-				voucherNumber: $voucherNumber
-				total: $total
-				userId: $userId
-			}
-		) {
+	mutation PayOrder($input: PayOrderInput!) {
+		payOrder(input: $input) {
 			id
 			comment
 			moneyId
 			moneyValue
-			voucherNumber
 		}
 	}
 `;
@@ -35,7 +20,8 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 	const voucherNumberRef = useRef(null);
 	const accountTypeRef = useRef(null);
 
-	const [payOrder] = useMutation(PAY_ORDER_MUTATION);
+	const [payOrder, { loading }] = useMutation(PAY_ORDER_MUTATION);
+	const [error, setError] = useState(null);
 
 	const handlePaymentSubmit = async () => {
 		if (!voucherNumberRef.current || !accountTypeRef.current) {
@@ -47,27 +33,35 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 		const accountType = accountTypeRef.current.value;
 
 		if (!voucherNumber) {
-			console.error('El número de comprobante es requerido');
+			setError('El número de comprobante es requerido');
 			return;
 		}
 
-		const paymentData = {
+		console.log({
 			orderId: payment.id,
-			total: accountType === 'Gs' ? payment.totalGs : payment.total,
 			moneyId: accountType === 'Gs' ? 1 : 2,
 			voucherNumber,
+			total: accountType === 'Gs' ? payment.totalGs : payment.total,
 			userId: payment.userId,
-		};
+		});
 
 		try {
 			const { data } = await payOrder({
 				variables: {
-					...paymentData,
+					input: {
+						orderId: payment.id,
+						moneyId: accountType === 'Gs' ? 1 : 2,
+						voucherNumber,
+						total: accountType === 'Gs' ? payment.totalGs : payment.total,
+						userId: payment.userId,
+					},
 				},
 			});
-			console.log('Payment success:', data);
-			onPaymentRegister(paymentData);
+
+			onPaymentRegister(data.payOrder);
+			onClose();
 		} catch (error) {
+			setError('Error en el pago. Intente nuevamente.');
 			console.error('Payment error:', error);
 		}
 	};
@@ -138,10 +132,20 @@ const PaymentModal = ({ payment, onClose, onPaymentRegister }) => {
 						disabled
 					/>
 				</Form.Group>
+
+				{error && <p className='text-danger'>{error}</p>}
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant='primary' onClick={handlePaymentSubmit}>
-					{t('paymentModal.confirm')}
+				<Button
+					variant='primary'
+					onClick={handlePaymentSubmit}
+					disabled={loading}
+				>
+					{loading ? (
+						<Spinner animation='border' size='sm' />
+					) : (
+						t('paymentModal.confirm')
+					)}
 				</Button>
 				<Button variant='secondary' onClick={onClose}>
 					{t('paymentModal.cancel')}
