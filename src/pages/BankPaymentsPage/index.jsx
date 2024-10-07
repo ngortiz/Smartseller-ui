@@ -34,6 +34,7 @@ const BankPaymentsPage = () => {
 				updatedAt
 				createdAt
 				total
+				totalGs
 			}
 		}
 	`;
