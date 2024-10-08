@@ -10,8 +10,11 @@ const Breadcrumbs = () => {
 
 	const breadcrumbItems = pathnames.map((value, index) => {
 		const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-		const translationKey = `breadcrumbs.${value}`;
-		const breadcrumbLabel = t(translationKey);
+
+		let breadcrumbLabel = t(`breadcrumbs.${value}`);
+		if (!isNaN(value)) {
+			breadcrumbLabel = t('breadcrumbs.order-information');
+		}
 
 		return <Breadcrumb.Item key={index}>{breadcrumbLabel}</Breadcrumb.Item>;
 	});
