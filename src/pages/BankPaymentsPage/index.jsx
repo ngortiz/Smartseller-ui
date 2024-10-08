@@ -42,6 +42,7 @@ const BankPaymentsPage = () => {
 	const { loading, error, data } = useQuery(GET_ORDERS_BY_PAYMENT_STATE_QUERY, {
 		variables: { state: selectedOption, paidViaCreditCard: false },
 	});
+
 	useEffect(() => {
 		if (data && data.getOrdersByPaymentState) {
 			setPayments(data.getOrdersByPaymentState);
@@ -50,7 +51,6 @@ const BankPaymentsPage = () => {
 
 	const handleSelectorChange = e => {
 		const selectedValue = e.target.value;
-
 		setSelectedOption(selectedValue);
 	};
 
@@ -67,15 +67,23 @@ const BankPaymentsPage = () => {
 		setShowPaymentModal(false);
 	};
 
+	const handlePaymentRegister = registeredPayment => {
+		setPayments(prevPayments =>
+			prevPayments.filter(payment => payment.id !== registeredPayment.id),
+		);
+	};
+
 	const formatDateTime = dateTime => {
 		return moment(dateTime).format('DD-MM-YYYY HH:mm');
 	};
-	const filterePayments =
+
+	const filteredPayments =
 		searchTerm.length <= 0
 			? payments
-			: payments.filter(payment => {
-					return payment.number.toString().includes(searchTerm);
-				});
+			: payments.filter(payment =>
+					payment.number.toString().includes(searchTerm),
+				);
+
 	return (
 		<div>
 			<header className='bank-header'>{t('bankPaymentsPage.header')}</header>
@@ -115,6 +123,7 @@ const BankPaymentsPage = () => {
 						/>
 					</div>
 				</div>
+
 				{loading && (
 					<div className='spinner-cont'>
 						<Spinner animation='border' role='status' variant='primary'>
@@ -129,7 +138,7 @@ const BankPaymentsPage = () => {
 					<PaymentModal
 						payment={selectedPayment}
 						onClose={handleCloseModal}
-						onPaymentRegister={() => {}}
+						onPaymentRegister={handlePaymentRegister}
 					/>
 				)}
 
@@ -149,7 +158,7 @@ const BankPaymentsPage = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{filterePayments.map((payment, index) => (
+						{filteredPayments.map((payment, index) => (
 							<tr key={payment.id}>
 								<td>{index + 1}</td>
 								<td>
