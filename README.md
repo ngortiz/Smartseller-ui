@@ -20,6 +20,6 @@ React, JavaScript,CSS, AWS AppSync, Graphql, Lamba Functions y Amplify Hosting.
 
 <img width="1269" alt="Screenshot 2024-10-24 at 10 34 10" src="https://github.com/user-attachments/assets/7a05c657-1811-4fec-8527-fecddae9199b">
 
-## Crear categorias y subcategorias de productos
+## Crear categorías y subcategorías de productos
 
 <img width="1280" alt="Screenshot 2024-10-24 at 10 36 21" src="https://github.com/user-attachments/assets/e71f34a5-59ba-494e-a513-74c309c8d885">
