@@ -1,8 +1,25 @@
-# React + Vite
+# Panel de Administración para sitio Ecommerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto consiste en una aplicacion web que permite a los administradores del sitio 
+registrar productos, crear plantillas,crear categorias de pruductos, hacer seguimiento de pedido
+entre otras tareas.
+# Tecnología 
+React, JavaScript,CSS, AWS AppSync, Graphql, Lamba Functions y Amplify Hosting.
 
-Currently, two official plugins are available:
+# Interfaz de usuario 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Resumen de pedidos
+
+<img width="1243" alt="Screenshot 2024-10-24 at 10 19 23" src="https://github.com/user-attachments/assets/ccc36a75-3d50-4c48-a55e-75301b0f9ea6">
+
+## Control de pedidos tipo trello
+
+<img width="1237" alt="Screenshot 2024-10-24 at 10 31 37" src="https://github.com/user-attachments/assets/f21b278d-3b3d-47fc-a339-a45ab2645c22">
+
+## Registro de productos
+
+<img width="1269" alt="Screenshot 2024-10-24 at 10 34 10" src="https://github.com/user-attachments/assets/7a05c657-1811-4fec-8527-fecddae9199b">
+
+## Crear categorias y subcategorias de productos
+
+<img width="1280" alt="Screenshot 2024-10-24 at 10 36 21" src="https://github.com/user-attachments/assets/e71f34a5-59ba-494e-a513-74c309c8d885">
