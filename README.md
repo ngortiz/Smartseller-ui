@@ -9,7 +9,9 @@ React, JavaScript,CSS, AWS AppSync, Graphql, Lamba Functions y Amplify Hosting.
 
 # Sitio de Prueba
 Url: https://main.d1hhl67p2ryamt.amplifyapp.com
+
 Usuario: smartseller
+
 Password: smartseller2025
 
 # Interfaz de usuario 
