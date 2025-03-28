@@ -7,12 +7,8 @@ entre otras tareas.
 # Tecnología 
 React, JavaScript,CSS, AWS AppSync, Graphql, Lamba Functions y Amplify Hosting.
 
-# Sitio de Prueba
-Url: https://main.d1hhl67p2ryamt.amplifyapp.com
-
-Usuario: smartseller
-
-Password: smartseller2025
+## 📽️ Demo del Proyecto  
+[🎥 Ver video en Google Drive] https://drive.google.com/file/d/16td0sn3-6mDf7MUW6InV6aI0bkWACzQA/view?usp=drive_link
 
 # Interfaz de usuario 
 
